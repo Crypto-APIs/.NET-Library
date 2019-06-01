@@ -1,0 +1,35 @@
+variables:
+  NUGET_PATH: 'D:\Program Files (x86)\nuget.exe'
+  MSBUILD_PATH: 'c:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe'
+  MSTEST_PATH: 'c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe'
+  PROJECT_NAME: 'CryptoApisSdkLibrary'
+  TEST_PROJECT_NAME: 'TestCryptoApiSdkProject'
+  FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
+  TRX_FILENAME: 'results.trx'
+  TRX_PATH: 'TestResults'
+before_script:
+stages:
+  - build
+  - test
+build:
+  stage: build
+  only:
+    - branches  
+  script:
+  - echo "Restoring NuGet Packages... "
+  - '& "$env:NUGET_PATH" restore'
+  - echo "Release build..."
+  - '& "$env:MSBUILD_PATH" /p:Configuration=Release /clp:ErrorsOnly'
+  artifacts:
+    untracked: true
+    expire_in: 2 days
+test:
+  stage: test
+  script:
+  - echo "Starting tests..."
+  - cd "$env:TEST_PROJECT_NAME"
+  - cd bin\Release
+  - '& "$env:MSTEST_PATH" /testcontainer:"$env:TEST_PROJECT_NAME".dll /resultsfile:"$env:TRX_FILENAME"'
+  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TRX_PATH"\"$env:TRX_FILENAME"'
+  dependencies:
+  - build

@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{63F47B4B-85E9-440D-9D0C-2773FB6D99EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestCryptoApiSdkProject</RootNamespace>
+    <AssemblyName>TestCryptoApiSdkProject</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BaseCollectionTestWithoutSkip.cs" />
+    <Compile Include="BaseCollectionTest.cs" />
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\BchTest.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\BchMain.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\EthMain.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\EthRopsten.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\LtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\LtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\BtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\BtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAcount\EthMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAcount\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAcount\EthRopsten.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\BchMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\BchTest.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\BtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\BtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\EthMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\EthRopsten.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\LtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\LtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\BchMain.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\BchTest.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\BtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\BtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\EthMain.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\EthRopsten.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\LtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\LtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\BchTest.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\BchMain.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\LtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\LtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\BtcTest.cs" />
+    <Compile Include="Blockchains\Addresses\MultisignatureAddress\BtcMain.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAcount\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\GetAddress\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\GenerateAddress\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Addresses\AddressTransactions\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Contracts\Deploy\EthMain.cs" />
+    <Compile Include="Blockchains\Contracts\Deploy\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Contracts\Deploy\EthRopsten.cs" />
+    <Compile Include="Blockchains\Contracts\EstimateGas\EthMain.cs" />
+    <Compile Include="Blockchains\Contracts\EstimateGas\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Contracts\EstimateGas\EthRopsten.cs" />
+    <Compile Include="Blockchains\Contracts\Deploy\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Contracts\EstimateGas\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\EthRopsten.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\EthMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\BtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\LtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\BtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\LtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\BchTest.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\BchMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\BchMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\BchTest.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\BtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\BtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\EthMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\EthRopsten.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\LtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHeight\LtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetBlockHash\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\BchMain.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\BchTest.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\BtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\BtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\EthMain.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\EthRopsten.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\LtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\LtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetInfo\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\BchMain.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\BchTest.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\BtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\BtcTest.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\EthMain.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\EthRopsten.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\LtcMain.cs" />
+    <Compile Include="Blockchains\Info\GetLatestBlock\LtcTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\BchMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\BchTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\BtcMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\BtcTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\EthMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\EthRinkeby.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\EthRopsten.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\LtcMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateGetDelete\LtcTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateUsingPrivateKey\EthMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateUsingPrivateKey\EthRinkeby.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateUsingPrivateKey\EthRopsten.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\BchMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\BchTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\BtcMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\BtcTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\EthMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\EthRinkeby.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\EthRopsten.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\LtcMain.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\LtcTest.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\DeletePayment\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\PaymentForwardings\CreateUsingPrivateKey\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Tokens\GetBalance\EthMain.cs" />
+    <Compile Include="Blockchains\Tokens\GetBalance\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Tokens\GetBalance\EthRopsten.cs" />
+    <Compile Include="Blockchains\Tokens\GetTokens\EthMain.cs" />
+    <Compile Include="Blockchains\Tokens\GetTokens\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Tokens\GetTokens\EthRopsten.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPrivateKey\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPrivateKey\EthMain.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPrivateKey\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPrivateKey\EthRopsten.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPassword\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Tokens\GetTokens\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Tokens\GetBalance\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPassword\EthMain.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPassword\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Tokens\TransferUsingPassword\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransactionHd\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\NewTransaction\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPasswordWithGas\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPasswordWithGas\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPasswordWithGas\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPassword\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPassword\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPassword\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKeyWithGas\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKeyWithGas\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKeyWithGas\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKey\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKey\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKey\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\EstimateTransactionGas\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\EstimateTransactionGas\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\EstimateTransactionGas\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHashAndTransactionIndex\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHashAndTransactionIndex\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHashAndTransactionIndex\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHeightAndTransactionIndex\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHeightAndTransactionIndex\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHeightAndTransactionIndex\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHash\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\PendingTransactions\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\PendingTransactions\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\PendingTransactions\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\PushTransaction\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\PushTransaction\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\PushTransaction\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\QueuedTransactions\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\QueuedTransactions\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\QueuedTransactions\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPassword\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPassword\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPassword\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPrivateKey\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPrivateKey\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPrivateKey\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\LocallySignTransaction\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\LocallySignTransaction\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\LocallySignTransaction\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\LtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\DecodeTransaction\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\EstimateTransactionGas\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\QueuedTransactions\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\PendingTransactions\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\PushTransaction\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\SendTransaction\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\LocallySignTransaction\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPrivateKey\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\SendAllAmountUsingPassword\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKeyWithGas\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPrivateKey\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPasswordWithGas\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransactionPassword\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\CreateTransaction\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetUnconfirmedTransactions\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfosByBlockHeight\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHeightAndTransactionIndex\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByTransactionId\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\GetInfoByBlockHashAndTransactionIndex\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\BchMain.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\BchTest.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\BtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\BtcTest.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\EthMain.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\EthRinkeby.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\EthRopsten.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\LtcMain.cs" />
+    <Compile Include="Blockchains\Transactions\TransactionsFee\LtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\BchMain.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\BchTest.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\BtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\BtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\LtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\LtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\BtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\LtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\BtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\LtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\BchTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\BchMain.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\LtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\LtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\BtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\BtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\BchTest.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteHdWallet\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\BchMain.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\BchTest.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\BtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\BtcTest.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexTest\BchMain.cs" />
+    <Compile Include="Blockchains\Wallets\ComplexHdTest\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\LtcMain.cs" />
+    <Compile Include="Blockchains\Wallets\DeleteWallet\LtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BchMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BchTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\EthMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\EthRinkeby.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\EthRopsten.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\LtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\LtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\BchMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\BchTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\BtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\BtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\EthMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\EthRinkeby.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\EthRopsten.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\LtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\LtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BchMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BchTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\EthMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\EthRinkeby.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\EthRopsten.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\LtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\LtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateToken\EthMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateToken\EthRinkeby.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateToken\EthRopsten.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateTransactionPool\EthMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateTransactionPool\EthRinkeby.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateTransactionPool\EthRopsten.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\BchMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\BchTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\BtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\BtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\EthMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\EthRinkeby.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\EthRopsten.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\LtcMain.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\DeleteHook\LtcTest.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateAddressGetDelete\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateTransactionPool\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateToken\BaseEthSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BaseBtcSimilarCoin.cs" />
+    <Compile Include="Exchanges\GetAssets.cs" />
+    <Compile Include="Exchanges\GetLatestQuoteTrades.cs" />
+    <Compile Include="Exchanges\GetHistoricalQuoteTrades.cs" />
+    <Compile Include="Exchanges\GetHistoricalTrades.cs" />
+    <Compile Include="Exchanges\GetLatestSymbolTrades.cs" />
+    <Compile Include="Exchanges\GetArbitrageInfo.cs" />
+    <Compile Include="Exchanges\GetPeriods.cs" />
+    <Compile Include="Exchanges\GetCurrentRates.cs" />
+    <Compile Include="Exchanges\GetLatestTrades.cs" />
+    <Compile Include="Exchanges\GetSymbols.cs" />
+    <Compile Include="Exchanges\GetHistoricalData.cs" />
+    <Compile Include="Exchanges\GetLatestData.cs" />
+    <Compile Include="Exchanges\GetExchangeRates.cs" />
+    <Compile Include="TestMissingApiKey.cs" />
+    <Compile Include="Exchanges\GetExchanges.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CryptoApiSnippets\CryptoApiSnippets.csproj">
+      <Project>{97ecb02b-d77e-412f-ab7c-357d404ea628}</Project>
+      <Name>CryptoApiSnippets</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CryptoApisSdkLibrary\CryptoApisSdkLibrary.csproj">
+      <Project>{ed367eb1-65c9-4637-b6f1-3ffe39ad0de4}</Project>
+      <Name>CryptoApisSdkLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
