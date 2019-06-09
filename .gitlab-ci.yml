@@ -6,7 +6,6 @@ variables:
   TEST_PROJECT_NAME: 'TestCryptoApiSdkProject'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
   TRX_FILENAME: 'results.trx'
-  TRX_PATH: 'TestResults'
 before_script:
 stages:
   - build
@@ -30,6 +29,6 @@ test:
   - cd "$env:TEST_PROJECT_NAME"
   - cd bin\Release
   - '& "$env:MSTEST_PATH" /testcontainer:"$env:TEST_PROJECT_NAME".dll /resultsfile:"$env:TRX_FILENAME"'
-  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TRX_PATH"\"$env:TRX_FILENAME"'
+  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TRX_FILENAME"'
   dependencies:
   - build
