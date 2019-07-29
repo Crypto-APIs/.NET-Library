@@ -12,14 +12,13 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var network = BtcSimilarNetwork.Mainnet;
       IEnumerable<TransactionAddress> inputs = new[]
       {
-        new TransactionAddress("1P3t6SKHuymgrs2vvgFvtsmnKen2C8gKU9", 0.54),
-        new TransactionAddress("1K2huCLxy9tXWc5Yn8ow6vqPGvTaCXHo5q", 1.0),
+        new TransactionAddress("no3yJMxBSKzq6wuUNLN7cUssfPGTiRbb5c", 121.39),
       };
       IEnumerable<TransactionAddress> outputs = new[]
       {
-        new TransactionAddress("1EdcP2TSFsiQHNGvbbgsxgH7HfaFC54GwF", 1.54),
+        new TransactionAddress("nsXYgWCuBVSYxD1rWz543EFkfxcPV9PC2y", 121.39),
       };
-      var fee = new Fee(0.00023141);
+      var fee = new Fee(1.00023141);
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.CreateTransaction(

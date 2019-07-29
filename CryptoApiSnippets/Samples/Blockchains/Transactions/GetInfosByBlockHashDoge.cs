@@ -9,7 +9,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
     {
       var coin = BtcSimilarCoin.Doge;
       var network = BtcSimilarNetwork.Testnet;
-      var blockHash = "00000000007458053c7cfa0105abd5b778753074d4aac19d7beedd0a74bc1e34";
+      var blockHash = "2babf28b085c2efb4615d41051c59a7c257d1ad9e71ce308fb72eb1a93805a19";
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.GetInfos(

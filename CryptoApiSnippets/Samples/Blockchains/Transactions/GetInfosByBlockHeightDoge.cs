@@ -9,7 +9,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
     {
       var coin = BtcSimilarCoin.Doge;
       var network = BtcSimilarNetwork.Mainnet;
-      var blockHeight = 552875;
+      var blockHeight = 1985323;
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.GetInfos(

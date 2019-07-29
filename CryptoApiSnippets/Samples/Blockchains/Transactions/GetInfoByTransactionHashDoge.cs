@@ -8,8 +8,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
     public void GetInfoByTransactionHashDoge()
     {
       var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Mainnet;
-      var transactionHash = "5a4ebf66822b0b2d56bd9dc64ece0bc38ee7844a23ff1d7320a88c5fdb2ad3e2";
+      var network = BtcSimilarNetwork.Testnet;
+      var transactionHash = "512ba78dbe7265f07ebec2297d59e0ddccc884fbf2fdd72cb14f924ffb9aefde";
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.GetInfo(

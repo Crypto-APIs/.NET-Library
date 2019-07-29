@@ -9,19 +9,19 @@ namespace CryptoApiSnippets.Samples.Blockchains
     public void NewTransactionDoge()
     {
       var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Mainnet;
+      var network = BtcSimilarNetwork.Testnet;
       IEnumerable<TransactionAddress> inputs = new[]
       {
-        new TransactionAddress("bchtest:qrqxlge4wjv7kttm0u9srqjttprhylsz6g84fhjgzf", 0.00109),
+        new TransactionAddress("no3yJMxBSKzq6wuUNLN7cUssfPGTiRbb5c", 15.222),
       };
       IEnumerable<TransactionAddress> outputs = new[]
       {
-        new TransactionAddress("qzsq3lqt2s08635y54h96la8002jy5tvlshrnskeux", 0.00109),
+        new TransactionAddress("nrJZpzhP5baL6KirRMqLE5oWFJA25V279a", 15.222),
       };
-      var fee = new Fee(0.00023141);
+      var fee = new Fee(1.0);
       IEnumerable <string> wifs = new[]
       {
-        "cSKbuySxbKm4uQK9SQQRjpsZfENNBrFxKm3rmoMER9ua6XR79Shs"
+        "ckDxktqwNyxW1YQpvgWFne2FoUWTSZ9eCpM7Nn7PaWrDRicNgxA6"
       };
             
       var manager = new CryptoManager(ApiKey);

@@ -139,10 +139,15 @@
     <Compile Include="Samples\Blockchains\Tokens\TransferUsingPrivateKey.cs" />
     <Compile Include="Samples\Blockchains\Tokens\TransferUsingPassword.cs" />
     <Compile Include="Samples\Blockchains\Tokens\GetBalance.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\CreateTransactionDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\CreateTransactionDoge.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\DecodeTransactionDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\DecodeTransactionDoge.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashDoge.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHashDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHashDoge.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHeightDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHeightDoge.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetUnconfirmedTransactionsDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetUnconfirmedTransactionsDoge.cs" />

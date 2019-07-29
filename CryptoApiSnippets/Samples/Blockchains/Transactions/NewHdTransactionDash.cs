@@ -19,9 +19,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
       };
       IEnumerable<TransactionAddress> outputs = new[]
       {
-        new TransactionAddress("my4TmbbhJCLJB9q1eHUHQWJfbbJoYdLwtE", 0.007),
+        new TransactionAddress("yVrjEE1zwXckCMXZoTStJtb9SJ29xr1ZMc", 2.004),
       };
-      var fee = new Fee("bchtest:qzqyyz4m5v6v4wthvadmfwxdw4mzlmusfyyrnk73ut", 0.00023141);
+      var fee = new Fee(0.00023141);
 
 
       var manager = new CryptoManager(ApiKey);

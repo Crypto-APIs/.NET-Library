@@ -11,8 +11,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var coin = BtcSimilarCoin.Doge;
       var network = BtcSimilarNetwork.Testnet;
       var hexEncodedInfo =
-        "020000000133c23cd5a0a74e5775fc60cbd0838f032968e1e88f64acb951ffd8f7b9a4cea70000000000ffffffff0208b70400000000001976a914392f49c5a9b85d4f3de6996ef88af204d3ab425688acd3300a00000000001976a914c06fa3357499eb2d7b7f0b01824b5847727e02d288ac00000000";
-      var wifs = new List<string> { "cSKbuySxbKm4uQK9SQQRjpsZfENNBrFxKm3rmoMER9ua6XR79Shs" };
+        "0100000002cc9c4bc91cd5aa3221b480c7dc5b2c6f4712486d0608e95dd09917f7d2d963070100000000ffffffffd1cdd08eaafaf5f02ce590b4ef188c2ad3ffb3195f6ce2db2523c8ab28a3e72f0100000000ffffffff0220d80ed3020000001976a914fff5827ee63cc9e8073f7ffb221c57efe1756a6088ac31b1957a000000001976a914cedde8f2a0b38593095aaca585dfebf137fb294188ac00000000";
+      var wifs = new List<string> { "ckDxktqwNyxW1YQpvgWFne2FoUWTSZ9eCpM7Nn7PaWrDRicNgxA6" };
             
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.SignTransaction(
