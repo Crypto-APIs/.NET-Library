@@ -15,8 +15,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHierarchicalDeterministicWalletBch executed successfully, " +
-          $"{response.Wallet.Addresses.Count} addresses of \"{response.Wallet.Name}\" wallet returned"
+        ? "GetHierarchicalDeterministicWalletBch executed successfully, " +
+          $"{response.Wallet.Addresses.Count} addresses of \"" +
+          $"{response.Wallet.Name}\" wallet returned"
         : $"GetHierarchicalDeterministicWalletBch error: {response.ErrorMessage}");
     }
   }

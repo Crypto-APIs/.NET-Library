@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.PaymentForwarding.GetPayments(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetPaymentsBch executed successfully, " +
+        ? "GetPaymentsBch executed successfully, " +
           $"{response.Payments.Count} payments returned"
         : $"GetPaymentsBch error: {response.ErrorMessage}");
     }

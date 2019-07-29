@@ -17,7 +17,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateAddressLtc executed successfully, HookId is \"{response.Payload.Id}\""
+        ? "CreateAddressLtc executed successfully, HookId is \"" +
+          $"{response.Payload.Id}\""
         : $"CreateAddressLtc error: {response.ErrorMessage}");
 
       return response.Payload.Id;

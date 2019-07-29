@@ -19,12 +19,14 @@ namespace TestCryptoApiSdkProject
             });
             AccountCredentialsFilenameProvider = new GetFilenameProvider(new[]
             {
+                @"..\..\..\Credentials\AccountCredentials.txt",
                 @"..\..\AccountCredentials.txt",
                 @"E:\Igor\Third\AccountCredentials.txt",
                 @"E:\Work\CryptoApisSdkLibrary\Credentials\AccountCredentials.txt"
             });
             ApiKeyFilenameProvider = new GetFilenameProvider(new[]
             {
+                @"..\..\..\Credentials\ApiKey.txt",
                 @"..\..\ApiKey.txt",
                 @"E:\Igor\Third\ApiKey.txt",
                 @"e:\Work\CryptoApisSdkLibrary\Credentials\ApiKey.txt"

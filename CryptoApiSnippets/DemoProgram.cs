@@ -53,21 +53,25 @@ namespace CryptoApiSnippets
             snippets.GetInfoEth();
             snippets.GetInfoBch();
             snippets.GetInfoLtc();
+            snippets.GetInfoDoge();
 
             snippets.GetBlockHashBtc();
             snippets.GetBlockHashEth();
             snippets.GetBlockHashBch();
             snippets.GetBlockHashLtc();
+            snippets.GetBlockHashDoge();
 
             snippets.GetBlockHeightBtc();
             snippets.GetBlockHeightEth();
             snippets.GetBlockHeightBch();
             snippets.GetBlockHeightLtc();
+            snippets.GetBlockHeightDoge();
 
             snippets.GetLatestBlockBtc();
             snippets.GetLatestBlockEth();
             snippets.GetLatestBlockBch();
             snippets.GetLatestBlockLtc();
+            snippets.GetLatestBlockDoge();
         }
 
         private static void RunAddressBlockchainsFeatures(BlockchainSnippets snippets)
@@ -76,20 +80,24 @@ namespace CryptoApiSnippets
             snippets.GetAddressEth();
             snippets.GetAddressBch();
             snippets.GetAddressLtc();
+            snippets.GetAddressDoge();
 
             snippets.GetAddressInMultisignatureAddressesBtc();
             snippets.GetAddressInMultisignatureAddressesBch();
             snippets.GetAddressInMultisignatureAddressesLtc();
+            snippets.GetAddressInMultisignatureAddressesDoge();
 
             snippets.GenerateAddressBtc();
             snippets.GenerateAddressEth();
             snippets.GenerateAddressBch();
             snippets.GenerateAddressLtc();
+            snippets.GenerateAddressDoge();
 
             snippets.GetAddressTransactionsBtc();
             snippets.GetAddressTransactionsEth();
             snippets.GetAddressTransactionsBch();
             snippets.GetAddressTransactionsLtc();
+            snippets.GetAddressTransactionsDoge();
 
             snippets.GenerateAccountEth();
             snippets.GetAddressBalanceEth();
@@ -124,6 +132,15 @@ namespace CryptoApiSnippets
             snippets.RemoveAddressesLtc(ltcWallet, ltcAddresses[0]);
             snippets.DeleteWalletLtc(ltcWallet);
 
+            var dogeWallet = snippets.CreateWalletDoge();
+            snippets.GetWalletsDoge();
+            snippets.GetWalletDoge(dogeWallet);
+            var dogeAddresses = new[] { "Lad4PXW9HWQctdJVqcC97kSMzRw6iYRSjw", "LYXF1zZwXzMDWimEWzz4csoMaKfnwHMGxD" };
+            snippets.AddAddressDoge(dogeWallet, dogeAddresses);
+            snippets.GenerateAddressesDoge(dogeWallet);
+            snippets.RemoveAddressesDoge(dogeWallet, dogeAddresses[0]);
+            snippets.DeleteWalletDoge(dogeWallet);
+
             var btcHdWallet = snippets.CreateHierarchicalDeterministicWalletBtc();
             snippets.GetHierarchicalDeterministicWalletsBtc();
             snippets.GetHierarchicalDeterministicWalletBtc(btcHdWallet);
@@ -147,6 +164,14 @@ namespace CryptoApiSnippets
             snippets.GenerateHierarchicalDeterministicAddressesLtc(ltcHdWallet);
             // snippets.RemoveHierarchicalDeterministicLtcAddresses(ltcHdWallet, ltcHdAddresses[0]); todo: this is not implemented?
             snippets.DeleteHierarchicalDeterministicWalletLtc(ltcHdWallet);
+
+            var dogeHdWallet = snippets.CreateHierarchicalDeterministicWalletDoge();
+            snippets.GetHierarchicalDeterministicWalletsDoge();
+            snippets.GetHierarchicalDeterministicWalletDoge(dogeHdWallet);
+            // snippets.AddHierarchicalDeterministicDogeAddress(); todo: this is not implemented?
+            snippets.GenerateHierarchicalDeterministicAddressesDoge(dogeHdWallet);
+            // snippets.RemoveHierarchicalDeterministicDogeAddresses(dogeHdWallet, dogeHdAddresses[0]); todo: this is not implemented?
+            snippets.DeleteHierarchicalDeterministicWalletDoge(dogeHdWallet);
         }
 
         private static void RunTransactionBlockchainsFeatures(BlockchainSnippets snippets)
@@ -155,6 +180,7 @@ namespace CryptoApiSnippets
             snippets.GetInfoByTransactionHashEth();
             snippets.GetInfoByTransactionHashBch();
             snippets.GetInfoByTransactionHashLtc();
+            snippets.GetInfoByTransactionHashDoge();
 
             snippets.GetInfoByBlockHashAndTransactionIndex();
             snippets.GetInfoByBlockHeightAndTransactionIndex();
@@ -163,18 +189,22 @@ namespace CryptoApiSnippets
             snippets.GetInfosByBlockHeightEth();
             snippets.GetInfosByBlockHeightBch();
             snippets.GetInfosByBlockHeightLtc();
+            snippets.GetInfosByBlockHeightDoge();
 
             snippets.GetInfosByBlockHashBtc();
             snippets.GetInfosByBlockHashBch();
             snippets.GetInfosByBlockHashLtc();
-            
+            snippets.GetInfosByBlockHashDoge();
+
             snippets.GetUnconfirmedTransactionsBtc();
             snippets.GetUnconfirmedTransactionsBch();
             snippets.GetUnconfirmedTransactionsLtc();
+            snippets.GetUnconfirmedTransactionsDoge();
 
             snippets.CreateTransactionBtc();
             snippets.CreateTransactionBch();
             snippets.CreateTransactionLtc();
+            snippets.CreateTransactionDoge();
 
             snippets.CreateTransactionUsingPassword();
             snippets.CreateTransactionUsingPrivateKey();
@@ -185,16 +215,19 @@ namespace CryptoApiSnippets
             snippets.SendTransactionBtc();
             snippets.SendTransactionBch();
             snippets.SendTransactionLtc();
+            snippets.SendTransactionDoge();
 
             snippets.LocallySignTransaction();
 
             snippets.NewTransactionBtc();
             snippets.NewTransactionBch();
             snippets.NewTransactionLtc();
+            snippets.NewTransactionDoge();
 
             snippets.NewHdTransactionBtc();
             snippets.NewHdTransactionBch();
             snippets.NewHdTransactionLtc();
+            snippets.NewHdTransactionDoge();
 
             snippets.PushTransaction();
             snippets.EstimateTransactionGas();
@@ -204,16 +237,18 @@ namespace CryptoApiSnippets
             snippets.DecodeTransactionBtc();
             snippets.DecodeTransactionBch();
             snippets.DecodeTransactionLtc();
+            snippets.DecodeTransactionDoge();
 
             snippets.TransactionsFeeBtc();
             snippets.TransactionsFeeEth();
             snippets.TransactionsFeeBch();
             snippets.TransactionsFeeLtc();
+            snippets.TransactionsFeeDoge();
 
             snippets.SignTransactionBtc();
             snippets.SignTransactionBch();
             snippets.SignTransactionLtc();
-
+            snippets.SignTransactionDoge();
         }
 
         private static void RunPaymentForwardingBlockchainsFeatures(BlockchainSnippets snippets)
@@ -222,21 +257,25 @@ namespace CryptoApiSnippets
             var ethPaymentId = snippets.CreatePaymentEth();
             var bchPaymentId = snippets.CreatePaymentBch();
             var ltcPaymentId = snippets.CreatePaymentLtc();
+            var dogePaymentId = snippets.CreatePaymentDoge();
 
             snippets.GetPaymentsBtc();
             snippets.GetPaymentsEth();
             snippets.GetPaymentsBch();
             snippets.GetPaymentsLtc();
+            snippets.GetPaymentsDoge();
 
             snippets.GetHistoricalPaymentsBtc();
             snippets.GetHistoricalPaymentsEth();
             snippets.GetHistoricalPaymentsBch();
             snippets.GetHistoricalPaymentsLtc();
+            snippets.GetHistoricalPaymentsDoge();
 
             snippets.DeletePaymentBtc(btcPaymentId);
             snippets.DeletePaymentEth(ethPaymentId);
             snippets.DeletePaymentBch(bchPaymentId);
             snippets.DeletePaymentLtc(ltcPaymentId);
+            snippets.DeletePaymentDoge(dogePaymentId);
         }
 
         private static void RunWebhookNotificationBlockchainsFeatures(BlockchainSnippets snippets)
@@ -245,16 +284,19 @@ namespace CryptoApiSnippets
             snippets.CreateNewBlockEth();
             snippets.CreateNewBlockBch();
             snippets.CreateNewBlockLtc();
+            snippets.CreateNewBlockDoge();
 
             snippets.CreateConfirmedTransactionBtc();
             snippets.CreateConfirmedTransactionEth();
             snippets.CreateConfirmedTransactionBch();
             snippets.CreateConfirmedTransactionLtc();
+            snippets.CreateConfirmedTransactionDoge();
 
             var btcHookId = snippets.CreateAddressBtc();
             var ethHookId = snippets.CreateAddressEth();
             var bchHookId = snippets.CreateAddressBch();
             var ltcHookId = snippets.CreateAddressLtc();
+            var dogeHookId = snippets.CreateAddressDoge();
 
             snippets.CreateToken();
             snippets.CreateTransactionPool();
@@ -263,11 +305,13 @@ namespace CryptoApiSnippets
             snippets.GetHooksEth();
             snippets.GetHooksBch();
             snippets.GetHooksLtc();
+            snippets.GetHooksDoge();
 
             snippets.DeleteHookBtc(btcHookId);
             snippets.DeleteHookEth(ethHookId);
             snippets.DeleteHookBch(bchHookId);
             snippets.DeleteHookLtc(ltcHookId);
+            snippets.DeleteHookDoge(dogeHookId);
         }
 
         private static void RunContractBlockchainsFeatures(BlockchainSnippets snippets)

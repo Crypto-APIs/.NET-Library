@@ -15,7 +15,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeletePaymentEth executed successfully, status is \"{response.Payload.Message}\""
+        ? "DeletePaymentEth executed successfully, status is \"" +
+          $"{response.Payload.Message}\""
         : $"DeletePaymentEth error: {response.ErrorMessage}");
     }
   }

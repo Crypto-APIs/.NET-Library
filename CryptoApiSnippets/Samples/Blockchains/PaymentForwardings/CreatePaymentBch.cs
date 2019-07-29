@@ -19,10 +19,12 @@ namespace CryptoApiSnippets.Samples.Blockchains
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.PaymentForwarding.CreatePayment(
-        coin, network, fromAddress, toAddress, callbackUrl, wallet, password, confirmations, fee);
+        coin, network, fromAddress, toAddress, callbackUrl, wallet, 
+        password, confirmations, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreatePaymentBch executed successfully, PaymentId is \"{response.Payload.Id}\""
+        ? "CreatePaymentBch executed successfully, PaymentId is \"" +
+          $"{response.Payload.Id}\""
         : $"CreatePaymentBch error: {response.ErrorMessage}");
 
       return response.Payload.Id;

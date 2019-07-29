@@ -7,7 +7,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Info.GetInfo
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest
     {
-        //[Ignore] // todo: unknown error
         [TestMethod]
         public void GeneralTest()
         {

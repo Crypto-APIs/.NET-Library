@@ -17,7 +17,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateAddressBtc executed successfully, HookId is \"{response.Payload.Id}\""
+        ? "CreateAddressBtc executed successfully, HookId is \"" +
+          $"{response.Payload.Id}\""
         : $"CreateAddressBtc error: {response.ErrorMessage}");
 
       return response.Payload.Id;

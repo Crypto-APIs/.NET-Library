@@ -16,7 +16,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateNewBlockEth executed successfully, HookId is \"{response.Payload.Id}\""
+        ? "CreateNewBlockEth executed successfully, HookId is \"" +
+          $"{response.Payload.Id}\""
         : $"CreateNewBlockEth error: {response.ErrorMessage}");
     }
   }

@@ -15,8 +15,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GenerateAddressesBch executed successfully, " +
-          $"{response.Payload.Wallet.Addresses.Count} addresses of \"{response.Payload.Wallet.Name}\" wallet returned"
+        ? "GenerateAddressesBch executed successfully, " +
+          $"{response.Payload.Wallet.Addresses.Count} addresses of \"" +
+          $"{response.Payload.Wallet.Name}\" wallet returned"
         : $"GenerateAddressesBch error: {response.ErrorMessage}");
     }
   }

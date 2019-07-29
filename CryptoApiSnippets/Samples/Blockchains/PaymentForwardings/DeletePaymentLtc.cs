@@ -15,7 +15,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeletePaymentLtc executed successfully, status is \"{response.Payload.Message}\""
+        ? "DeletePaymentLtc executed successfully, status is \"" +
+          $"{response.Payload.Message}\""
         : $"DeletePaymentLtc error: {response.ErrorMessage}");
     }
   }

@@ -15,8 +15,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetWalletBtc executed successfully, " +
-          $"{response.Wallet.Addresses.Count} addresses of \"{response.Wallet.Name}\" wallet returned"
+        ? "GetWalletBtc executed successfully, " +
+          $"{response.Wallet.Addresses.Count} addresses of \"" +
+          $"{response.Wallet.Name}\" wallet returned"
         : $"GetWalletBtc error: {response.ErrorMessage}");
     }
   }

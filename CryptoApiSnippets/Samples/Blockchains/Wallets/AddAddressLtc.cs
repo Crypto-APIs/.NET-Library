@@ -6,7 +6,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
 {
   partial class BlockchainSnippets
   {
-    public void AddAddressLtc(string walletName, IEnumerable<string> addresses)
+    public void AddAddressLtc(string walletName, ICollection<string> addresses)
     {
       var coin = BtcSimilarCoin.Ltc;
       var network = BtcSimilarNetwork.Mainnet;
@@ -16,8 +16,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"AddAddressLtc executed successfully, " +
-          $"{response.Wallet.Name} addresses was added to \"{response.Wallet.Name}\" wallet"
+        ? "AddAddressLtc executed successfully, " +
+          $"{response.Wallet.Name} addresses was added to \"" +
+          $"{response.Wallet.Name}\" wallet"
         : $"AddAddressLtc error: {response.ErrorMessage}");
     }
   }

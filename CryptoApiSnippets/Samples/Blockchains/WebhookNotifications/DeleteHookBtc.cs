@@ -15,7 +15,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, hookId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeleteHookBtc executed successfully, Status is \"{response.Payload.Message}\""
+        ? "DeleteHookBtc executed successfully, Status is \"" +
+          $"{response.Payload.Message}\""
         : $"DeleteHookBtc error: {response.ErrorMessage}");
     }
   }

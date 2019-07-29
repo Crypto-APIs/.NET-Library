@@ -15,8 +15,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GenerateAddressesLtc executed successfully, " +
-          $"{response.Payload.Wallet.Addresses.Count} addresses of \"{response.Payload.Wallet.Name}\" wallet returned"
+        ? "GenerateAddressesLtc executed successfully, " +
+          $"{response.Payload.Wallet.Addresses.Count} addresses of \"" +
+          $"{response.Payload.Wallet.Name}\" wallet returned"
         : $"GenerateAddressesLtc error: {response.ErrorMessage}");
     }
   }

@@ -16,7 +16,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateNewBlockLtc executed successfully, HookId is \"{response.Payload.Id}\""
+        ? "CreateNewBlockLtc executed successfully, HookId is \"" +
+          $"{response.Payload.Id}\""
         : $"CreateNewBlockLtc error: {response.ErrorMessage}");
     }
   }

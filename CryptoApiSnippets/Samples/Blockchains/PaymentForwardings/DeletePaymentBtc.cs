@@ -15,7 +15,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeletePaymentBtc executed successfully, status is \"{response.Payload.Message}\""
+        ? "DeletePaymentBtc executed successfully, status is \"" +
+          $"{response.Payload.Message}\""
         : $"DeletePaymentBtc error: {response.ErrorMessage}");
     }
   }

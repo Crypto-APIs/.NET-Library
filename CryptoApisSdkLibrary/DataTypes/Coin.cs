@@ -59,6 +59,8 @@ namespace CryptoApisSdkLibrary.DataTypes
         public static BtcSimilarCoin Btc => new BtcSimilarCoin("btc");
         public static BtcSimilarCoin Bch => new BtcSimilarCoin("bch");
         public static BtcSimilarCoin Ltc => new BtcSimilarCoin("ltc");
+        public static BtcSimilarCoin Doge => new BtcSimilarCoin("doge");
+        public static BtcSimilarCoin Dash => new BtcSimilarCoin("dash");
 
         private BtcSimilarCoin(string value) : base(value)
         {
