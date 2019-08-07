@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeleteWalletLtc executed successfully, " +
+        ? "DeleteWalletLtc executed successfully, " +
           $"\"{response.Payload.Message}\" status was returned"
         : $"DeleteWalletLtc error: {response.ErrorMessage}");
     }

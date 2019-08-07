@@ -20,7 +20,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, fromAddress, gasPrice, gasLimit, privateKey, byteCode);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"Deploy executed successfully, TransactionHash is {response.Payload.Hex}"
+        ? "Deploy executed successfully, " +
+          $"TransactionHash is {response.Payload.Hex}"
         : $"Deploy error: {response.ErrorMessage}");
     }
   }

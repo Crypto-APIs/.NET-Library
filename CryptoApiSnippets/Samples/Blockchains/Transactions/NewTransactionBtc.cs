@@ -33,7 +33,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, inputs, outputs, fee, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"NewTransactionBtc executed successfully, " +
+        ? "NewTransactionBtc executed successfully, " +
           $"txid is \"{response.Payload.Txid}\""
         : $"NewTransactionBtc error: {response.ErrorMessage}");
     }

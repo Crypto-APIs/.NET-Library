@@ -12,10 +12,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var password = "password";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GenerateAccount(coin, network, password);
+      var response = manager.Blockchains.Address.GenerateAccount(
+          coin, network, password);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GenerateAccountEth executed successfully, " +
+        ? "GenerateAccountEth executed successfully, " +
           $"new address is {response.Payload.Address}"
         : $"GenerateAccountEth error: {response.ErrorMessage}");
     }

@@ -5,20 +5,20 @@ namespace CryptoApiSnippets.Samples.Blockchains
 {
   partial class BlockchainSnippets
   {
-    public void GetInfoByTransactionHashLtc()
+    public void GetInfoByTransactionIdLtc()
     {
       var coin = BtcSimilarCoin.Ltc;
       var network = BtcSimilarNetwork.Mainnet;
-      var transactionHash = "d77cb6b67f4d559d1e74ef400c6f540c90ca89e9abe4efb497fd0e62c5f8e0aa";
+      var transactionId = "924e34052a093da9c9bb74ff1802034be5c98df811333a5da31437116ab81b5e";
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.GetInfo(
-        coin, network, transactionHash);
+        coin, network, transactionId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetInfoByTransactionHashLtc executed successfully, " +
+        ? "GetInfoByTransactionIdLtc executed successfully, " +
           $"block hash is {response.Transaction.BlockHash}"
-        : $"GetInfoByTransactionHashLtc error: {response.ErrorMessage}");
+        : $"GetInfoByTransactionIdLtc error: {response.ErrorMessage}");
     }
   }
 }

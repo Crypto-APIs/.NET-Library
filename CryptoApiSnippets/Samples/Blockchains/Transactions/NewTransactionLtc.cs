@@ -29,7 +29,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, inputs, outputs, fee, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"NewTransactionLtc executed successfully, " +
+        ? "NewTransactionLtc executed successfully, " +
           $"txid is \"{response.Payload.Txid}\""
         : $"NewTransactionLtc error: {response.ErrorMessage}");
     }

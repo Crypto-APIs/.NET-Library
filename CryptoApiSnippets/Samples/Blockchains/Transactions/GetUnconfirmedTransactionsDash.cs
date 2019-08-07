@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, skip:0, limit:50);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetUnconfirmedTransactionsDash executed successfully, " +
+        ? "GetUnconfirmedTransactionsDash executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetUnconfirmedTransactionsDash error: {response.ErrorMessage}");
     }

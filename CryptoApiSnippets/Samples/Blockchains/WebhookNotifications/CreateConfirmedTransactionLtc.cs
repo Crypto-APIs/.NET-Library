@@ -18,7 +18,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url, transactionHash, confirmationCount);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateConfirmedTransactionLtc executed successfully, " +
+        ? "CreateConfirmedTransactionLtc executed successfully, " +
           $"HookId is \"{response.Payload.Id}\""
         : $"CreateConfirmedTransactionLtc error: {response.ErrorMessage}");
     }

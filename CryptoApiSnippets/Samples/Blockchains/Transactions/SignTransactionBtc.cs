@@ -19,7 +19,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SignTransactionBtc executed successfully, return hex is {response.Payload.Hex}"
+        ? "SignTransactionBtc executed successfully, " +
+          $"return hex is {response.Payload.Hex}"
         : $"SignTransactionBtc error: {response.ErrorMessage}");
     }
   }

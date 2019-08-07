@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Wallet.GetWallets(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetWalletsDash executed successfully, " +
+        ? "GetWalletsDash executed successfully, " +
           $"{response.Wallets.Count} wallets returned"
         : $"GetWalletsDash error: {response.ErrorMessage}");
     }

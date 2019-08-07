@@ -10,7 +10,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetArbitrageInfo(limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetArbitrageInfo executed successfully, " +
+        ? "GetArbitrageInfo executed successfully, " +
           $"{response.Trades.Count} trades returned"
         : $"GetArbitrageInfo error: {response.ErrorMessage}");
     }

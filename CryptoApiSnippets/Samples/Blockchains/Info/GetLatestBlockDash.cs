@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Info.GetLatestBlock(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetLatestBlockDash executed successfully, " +
+        ? "GetLatestBlockDash executed successfully, " +
           $"difficulty is {response.HashInfo.Difficulty} now"
         : $"GetLatestBlockDash error: {response.ErrorMessage}");
     }

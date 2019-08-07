@@ -23,7 +23,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           gasPrice, gasLimit, amount, privateKey);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"TransferUsingPrivateKey executed successfully, " +
+        ? "TransferUsingPrivateKey executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
         : $"TransferUsingPrivateKey error: {response.ErrorMessage}");
     }

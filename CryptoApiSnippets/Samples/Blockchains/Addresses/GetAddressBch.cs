@@ -12,10 +12,12 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var address = "1DBrYbe5U7LGDcHA5tiLCxivZ7JZAGqGhJ";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GetAddress(coin, network, address);
+      var response = manager.Blockchains.Address.GetAddress(
+          coin, network, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAddressBch executed successfully, balance is {response.Payload.Balance}"
+        ? "GetAddressBch executed successfully, " +
+          $"balance is {response.Payload.Balance}"
         : $"GetAddressBch error: {response.ErrorMessage}");
     }
   }

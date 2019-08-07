@@ -26,7 +26,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateTransactionLtc executed successfully, " +
+        ? "CreateTransactionLtc executed successfully, " +
           $"HexEncodedInfo is \"{response.Payload.Hex}\""
         : $"CreateTransactionLtc error: {response.ErrorMessage}");
     }

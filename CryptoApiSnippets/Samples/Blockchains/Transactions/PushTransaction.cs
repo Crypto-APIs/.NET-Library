@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"PushTransaction executed successfully, " +
+        ? "PushTransaction executed successfully, " +
           $"TransactionHash \"{response.Payload.Hex}\""
         : $"PushTransaction error: {response.ErrorMessage}");
     }

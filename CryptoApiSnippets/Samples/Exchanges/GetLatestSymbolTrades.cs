@@ -13,7 +13,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetLatestTrades(symbol, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetLatestSymbolTrades executed successfully, " +
+        ? "GetLatestSymbolTrades executed successfully, " +
           $"{response.Trades.Count} trades returned"
         : $"GetLatestSymbolTrades error: {response.ErrorMessage}");
     }

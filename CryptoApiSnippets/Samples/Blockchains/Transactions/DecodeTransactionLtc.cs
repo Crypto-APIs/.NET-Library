@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DecodeTransactionLtc executed successfully, " +
+        ? "DecodeTransactionLtc executed successfully, " +
           $"Transaction hash is \"{response.Transaction.Hash}\""
         : $"DecodeTransactionLtc error: {response.ErrorMessage}");
     }

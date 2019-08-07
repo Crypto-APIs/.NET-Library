@@ -18,7 +18,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url, transactionHash, confirmationCount);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateConfirmedTransactionDash executed successfully, " +
+        ? "CreateConfirmedTransactionDash executed successfully, " +
           $"HookId is \"{response.Payload.Id}\""
         : $"CreateConfirmedTransactionDash error: {response.ErrorMessage}");
     }

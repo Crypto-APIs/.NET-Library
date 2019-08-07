@@ -201,12 +201,12 @@ namespace CryptoApiSnippets
 
         private static void RunTransactionBlockchainsFeatures(BlockchainSnippets snippets)
         {
-            snippets.GetInfoByTransactionHashBtc();
             snippets.GetInfoByTransactionHashEth();
-            snippets.GetInfoByTransactionHashBch();
-            snippets.GetInfoByTransactionHashLtc();
-            snippets.GetInfoByTransactionHashDoge();
-            snippets.GetInfoByTransactionHashDash();
+            snippets.GetInfoByTransactionIdBtc();
+            snippets.GetInfoByTransactionIdBch();
+            snippets.GetInfoByTransactionIdLtc();
+            snippets.GetInfoByTransactionIdDoge();
+            snippets.GetInfoByTransactionIdDash();
 
             snippets.GetInfoByBlockHashAndTransactionIndex();
             snippets.GetInfoByBlockHeightAndTransactionIndex();

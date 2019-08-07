@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeleteWalletDoge executed successfully, " +
+        ? "DeleteWalletDoge executed successfully, " +
           $"\"{response.Payload.Message}\" status was returned"
         : $"DeleteWalletDoge error: {response.ErrorMessage}");
     }

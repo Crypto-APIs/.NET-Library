@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Token.GetTokens(coin, network, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetTokens executed successfully, " +
+        ? "GetTokens executed successfully, " +
           $"{response.Tokens.Count} tokens returned"
         : $"GetTokens error: {response.ErrorMessage}");
     }

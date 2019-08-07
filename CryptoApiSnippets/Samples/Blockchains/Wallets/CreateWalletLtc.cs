@@ -21,7 +21,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateWalletLtc executed successfully, " +
+        ? "CreateWalletLtc executed successfully, " +
           $"wallet \"{response.Wallet.Name}\" created"
         : $"CreateWalletLtc error: {response.ErrorMessage}");
 

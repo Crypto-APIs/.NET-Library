@@ -18,7 +18,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addressCount, password);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateHierarchicalDeterministicWalletDash executed successfully, " +
+        ? "CreateHierarchicalDeterministicWalletDash executed successfully, " +
           $"HD wallet \"{response.Wallet.Name}\" created"
         : $"CreateHierarchicalDeterministicWalletDash error: {response.ErrorMessage}");
 

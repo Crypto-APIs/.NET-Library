@@ -10,7 +10,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetSymbols(skip: 0, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetSymbols executed successfully, " +
+        ? "GetSymbols executed successfully, " +
           $"{response.Symbols.Count} symbols returned"
         : $"GetSymbols error: {response.ErrorMessage}");
     }

@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, blockHeight, skip: 0, limit: 4);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetInfosByBlockHeightBtc executed successfully, " +
+        ? "GetInfosByBlockHeightBtc executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetInfosByBlockHeightBtc error: {response.ErrorMessage}");
     }

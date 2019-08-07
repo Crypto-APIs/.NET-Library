@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeleteWalletBch executed successfully, " +
+        ? "DeleteWalletBch executed successfully, " +
           $"\"{response.Payload.Message}\" status was returned"
         : $"DeleteWalletBch error: {response.ErrorMessage}");
     }

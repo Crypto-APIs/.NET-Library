@@ -2,6 +2,8 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Errors;
 using RestSharp;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CryptoApisSdkLibrary.Modules
 {
@@ -22,6 +24,27 @@ namespace CryptoApisSdkLibrary.Modules
                     ? errorMessage
                     : $"{nameof(T)} undefined error"
             };
+        }
+
+        protected T GetSync<T>(IRestRequest request) where T : BaseResponse, new()
+        {
+            var response = Client.Execute<T>(request);
+            return response.IsSuccessful
+                ? response.Data
+                : MakeErrorMessage<T>(response);
+        }
+
+        protected Task<T> GetAsyncResponse<T>(IRestRequest request, CancellationToken cancellationToken)
+            where T : BaseResponse, new()
+        {
+            return Task.Run(async () =>
+            {
+                var response = await Client.ExecuteTaskAsync<T>(
+                    request, cancellationToken);
+                return response.IsSuccessful
+                    ? response.Data
+                    : MakeErrorMessage<T>(response);
+            }, cancellationToken);
         }
 
         private bool TryParseErrorMessage(IRestResponse response, out string errorMessage)

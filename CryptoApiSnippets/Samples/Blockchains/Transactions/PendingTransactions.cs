@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"PendingTransactions executed successfully, " +
+        ? "PendingTransactions executed successfully, " +
           $"{response.Transactions.Count} pending transactions returned"
         : $"PendingTransactions error: {response.ErrorMessage}");
     }

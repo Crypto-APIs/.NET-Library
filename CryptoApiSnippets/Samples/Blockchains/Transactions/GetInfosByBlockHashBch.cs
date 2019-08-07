@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, blockHash, skip: 0, limit: 4);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetInfosByBlockHashBch executed successfully, " +
+        ? "GetInfosByBlockHashBch executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetInfosByBlockHashBch error: {response.ErrorMessage}");
     }

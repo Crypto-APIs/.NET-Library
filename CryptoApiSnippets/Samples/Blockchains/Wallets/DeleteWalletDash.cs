@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeleteWalletDash executed successfully, " +
+        ? "DeleteWalletDash executed successfully, " +
           $"\"{response.Payload.Message}\" status was returned"
         : $"DeleteWalletDash error: {response.ErrorMessage}");
     }

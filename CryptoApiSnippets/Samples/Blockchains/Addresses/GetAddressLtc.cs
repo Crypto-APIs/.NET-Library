@@ -12,10 +12,12 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var address = "LgRynKyCZKWCpoX4bVenXzRYujt4GpHWuF";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GetAddress(coin, network, address);
+      var response = manager.Blockchains.Address.GetAddress(
+          coin, network, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAddressLtc executed successfully, balance is {response.Payload.Balance}"
+        ? "GetAddressLtc executed successfully, " +
+          $"balance is {response.Payload.Balance}"
         : $"GetAddressLtc error: {response.ErrorMessage}");
     }
   }

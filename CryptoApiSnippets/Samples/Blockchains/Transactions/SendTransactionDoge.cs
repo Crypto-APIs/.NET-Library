@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SendTransactionDoge executed successfully, " +
+        ? "SendTransactionDoge executed successfully, " +
           $"TransactionHash is \"{response.Payload.Txid}\""
         : $"SendTransactionDoge error: {response.ErrorMessage}");
     }
