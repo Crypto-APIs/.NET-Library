@@ -56,6 +56,9 @@
     <Compile Include="DataTypes\BtcUnconfirmedTransaction.cs" />
     <Compile Include="DataTypes\EthTransaction.cs" />
     <Compile Include="DataTypes\Fee.cs" />
+    <Compile Include="Modules\Blockchains\Addresses\BlockchainAddressModule.Async.cs" />
+    <Compile Include="Modules\Blockchains\Addresses\BlockchainAddressModule.Sync.cs" />
+    <Compile Include="Modules\Blockchains\Addresses\Requests.cs" />
     <Compile Include="Modules\Blockchains\Info\BlockchainInfoModule.Async.cs" />
     <Compile Include="Modules\Blockchains\Info\BlockchainInfoModule.Sync.cs" />
     <Compile Include="Modules\Blockchains\Info\Requests.cs" />

@@ -10,6 +10,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
         /// </summary>
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
+        /// <see cref=""/>
         EstimateGasContractResponse EstimateGas(EthSimilarCoin coin, EthSimilarNetwork network);
 
         /// <summary>
@@ -22,6 +23,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="privateKey">Private key.</param>
         /// <param name="byteCode">Byte code.</param>
+        /// <see cref=""/>
         DeployContractResponse Deploy(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, double gasPrice, double gasLimit, string privateKey, string byteCode);
     }

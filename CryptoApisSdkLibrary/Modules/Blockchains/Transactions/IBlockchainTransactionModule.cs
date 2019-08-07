@@ -12,6 +12,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="transactionId">Id of the transaction in blockchain.</param>
+        /// <see cref=""/>
         BtcTransactionInfoResponse GetInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string transactionId);
 
         /// <summary>
@@ -20,6 +21,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        /// <see cref=""/>
         EthTransactionInfoResponse GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, string transactionHash);
 
         /// <summary>
@@ -29,6 +31,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="blockHash">Blockhash in blockchain.</param>
         /// <param name="transactionIndex">Index of the transaction in block.</param>
+        /// <see cref=""/>
         EthTransactionInfoResponse GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, string blockHash, int transactionIndex);
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="blockHeight">Block height.</param>
         /// <param name="transactionIndex">Index of the transaction in block.</param>
+        /// <see cref=""/>
         EthTransactionInfoResponse GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight, int transactionIndex);
 
         /// <summary>
@@ -48,6 +52,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="blockHeight">Block height.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
+        /// <see cref=""/>
         GetBtcTransactionInfosResponse GetInfos(BtcSimilarCoin coin, BtcSimilarNetwork network, int blockHeight,
             int skip = 0, int limit = 50);
 
@@ -59,6 +64,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="blockHash">Hash of block.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
+        /// <see cref=""/>
         GetBtcTransactionInfosResponse GetInfos(BtcSimilarCoin coin, BtcSimilarNetwork network, string blockHash,
             int skip = 0, int limit = 50);
 
@@ -70,6 +76,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="blockHeight">Block height.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
+        /// <see cref=""/>
         GetEthTransactionInfosResponse GetInfos(EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight,
             int skip = 0, int limit = 50);
 
@@ -80,6 +87,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
+        /// <see cref=""/>
         GetUnconfirmedTransactionsResponse GetUnconfirmedTransactions(BtcSimilarCoin coin, BtcSimilarNetwork network,
             int skip = 0, int limit = 50);
 
@@ -89,6 +97,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
+        /// <see cref=""/>
         BtcDecodeTransactionResponse DecodeTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo);
 
         /// <summary>
@@ -99,6 +108,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
+        /// <see cref=""/>
         CreateBtcTransactionResponse CreateTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee);
 
@@ -111,6 +121,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
+        /// <see cref=""/>
         CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, double value, string password);
 
@@ -125,6 +136,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
+        /// <see cref=""/>
         CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, double value, string password, double gasPrice, double gasLimit);
 
@@ -137,6 +149,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="toAddress">Input address.</param>
         /// <param name="privateKey">Private key.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
+        /// <see cref=""/>
         CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, string privateKey, double value);
 
@@ -151,6 +164,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="privateKey">Private key.</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
+        /// <see cref=""/>
         CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, string privateKey, double value, double gasPrice, double gasLimit);
 
@@ -162,6 +176,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
+        /// <see cref=""/>
         CreateEthTransactionResponse SendAllAmountUsingPassword(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, string password);
 
@@ -173,6 +188,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="privateKey">Private key.</param>
+        /// <see cref=""/>
         CreateEthTransactionResponse SendAllAmountUsingPrivateKey(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, string privateKey);
 
@@ -183,6 +199,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
         /// <param name="wifs">wifs</param>
+        /// <see cref=""/>
         SignBtcTransactionResponse SignTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
             string hexEncodedInfo, IEnumerable<string> wifs);
 
@@ -192,6 +209,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
+        /// <see cref=""/>
         SendBtcTransactionResponse SendTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo);
 
         /// <summary>
@@ -203,6 +221,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
+        /// <see cref=""/>
         LocallySignTransactionResponse LocallySignTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, double value);
 
@@ -215,6 +234,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
         /// <param name="wifs">Private ECDSA keys.</param>
+        /// <see cref=""/>
         NewBtcTransactionResponse NewTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee,
             IEnumerable<string> wifs);
@@ -230,6 +250,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
         /// <param name="lockTime">Use locktime if a transaction should be delayed to a specific time.</param>
+        /// <see cref=""/>
         NewBtcTransactionResponse NewHdTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
             string wallet, string password,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, 
@@ -241,6 +262,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction</param>
+        /// <see cref=""/>
         PushTransactionResponse PushTransaction(EthSimilarCoin coin, EthSimilarNetwork network, string hexEncodedInfo);
 
         /// <summary>
@@ -252,6 +274,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="data"></param>
+        /// <see cref=""/>
         EstimateTransactionGasResponse EstimateTransactionGas(EthSimilarCoin coin, EthSimilarNetwork network,
             string fromAddress, string toAddress, double value, string data = null);
 
@@ -260,6 +283,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// </summary>
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
+        /// <see cref=""/>
         PendingTransactionsResponse PendingTransactions(EthSimilarCoin coin, EthSimilarNetwork network);
 
         /// <summary>
@@ -267,6 +291,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// </summary>
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
+        /// <see cref=""/>
         QueuedTransactionsResponse QueuedTransactions(EthSimilarCoin coin, EthSimilarNetwork network);
 
         /// <summary>
@@ -274,6 +299,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// </summary>
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
+        /// <see cref=""/>
         BtcTransactionsFeeResponse TransactionsFee(BtcSimilarCoin coin, BtcSimilarNetwork network);
 
         /// <summary>
@@ -281,6 +307,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// </summary>
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
+        /// <see cref=""/>
         EthTransactionsFeeResponse TransactionsFee(EthSimilarCoin coin, EthSimilarNetwork network);
 
         // New Transaction Using HDWallet Endpoint

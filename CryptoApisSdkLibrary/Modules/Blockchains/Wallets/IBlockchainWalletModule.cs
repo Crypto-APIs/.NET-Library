@@ -13,6 +13,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addresses">Array of addresses that will be added to wallet.</param>
+        /// <see cref=""/>
         WalletInfoResponse CreateWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses);
 
         /// <summary>
@@ -23,6 +24,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addressCount">Number of addresses that should be generated in new wallet.</param>
         /// <param name="password">Wallet password.</param>
+        /// <see cref=""/>
         HdWalletInfoResponse CreateHdWallet(
             BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, int addressCount, string password);
 
@@ -31,6 +33,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// </summary>
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
+        /// <see cref=""/>
         GetWalletsResponse GetWallets(BtcSimilarCoin coin, BtcSimilarNetwork network);
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// </summary>
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
+        /// <see cref=""/>
         GetHdWalletsResponse GetHdWallets(BtcSimilarCoin coin, BtcSimilarNetwork network);
 
         /// <summary>
@@ -46,6 +50,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
+        /// <see cref=""/>
         WalletInfoResponse GetWalletInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
 
         /// <summary>
@@ -54,6 +59,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
+        /// <see cref=""/>
         HdWalletInfoResponse GetHdWalletInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
 
         /// <summary>
@@ -63,6 +69,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addresses">Array of addresses that will be added to wallet.</param>
+        /// <see cref=""/>
         WalletInfoResponse AddAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses);
 
         /// <summary>
@@ -71,6 +78,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
+        /// <see cref=""/>
         GenerateWalletAddressResponse GenerateAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
 
         /// <summary>
@@ -81,6 +89,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addressCount">Count of generated addresses.</param>
         /// <param name="encryptedPassword">Encrypted password</param>
+        /// <see cref=""/>
         HdWalletInfoResponse GenerateHdAddress(BtcSimilarCoin coin, BtcSimilarNetwork network,
             string walletName, int addressCount, string encryptedPassword);
 
@@ -91,6 +100,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="address">Address which should be deleted.</param>
+        /// <see cref=""/>
         RemoveAddressResponse RemoveAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, string address);
 
         /// <summary>
@@ -99,6 +109,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
+        /// <see cref=""/>
         DeleteWalletResponse DeleteWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
 
         /// <summary>
@@ -107,6 +118,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="walletName">Wallet name.</param>
+        /// <see cref=""/>
         DeleteWalletResponse DeleteHdWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
     }
 }

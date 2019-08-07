@@ -41,7 +41,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetSymbols(int skip = 0, int limit = 50)
+        public IRestRequest GetSymbols(int skip, int limit)
         {
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
@@ -55,7 +55,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetPeriods(int skip = 0, int limit = 50)
+        public IRestRequest GetPeriods(int skip, int limit)
         {
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
@@ -69,8 +69,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetExchangeRate(Asset baseAsset, Asset quoteAsset,
-            DateTime? timeStamp = null)
+        public IRestRequest GetExchangeRate(Asset baseAsset, Asset quoteAsset, DateTime? timeStamp)
         {
             if (baseAsset == null)
                 throw new RequestException("BaseAsset is null");
@@ -86,8 +85,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetCurrentRates(Asset baseAsset,
-            DateTime? timeStamp = null, int skip = 0, int limit = 100)
+        public IRestRequest GetCurrentRates(Asset baseAsset, DateTime? timeStamp, int skip, int limit)
         {
             if (baseAsset == null)
                 throw new RequestException("BaseAsset is null");
@@ -107,7 +105,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetLatestData(Symbol symbol, Period period, int limit = 50)
+        public IRestRequest GetLatestData(Symbol symbol, Period period, int limit)
         {
             if (symbol == null)
                 throw new RequestException("Symbol is null");
@@ -145,7 +143,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetLatestTrades(Symbol symbol, int skip = 0, int limit = 50)
+        public IRestRequest GetLatestTrades(Symbol symbol, int skip, int limit)
         {
             if (symbol == null)
                 throw new RequestException("Symbol is null");
@@ -161,7 +159,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetLatestTrades(int skip = 0, int limit = 50)
+        public IRestRequest GetLatestTrades(int skip, int limit)
         {
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
@@ -208,7 +206,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetLatestQuoteTrades(int limit = 50)
+        public IRestRequest GetLatestQuoteTrades(int limit)
         {
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
@@ -252,7 +250,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return request;
         }
 
-        public IRestRequest GetArbitrageInfo(int skip = 0, int limit = 50)
+        public IRestRequest GetArbitrageInfo(int skip, int limit)
         {
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");

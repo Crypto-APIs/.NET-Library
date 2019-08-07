@@ -11,6 +11,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="url">Webhook callback url.</param>
+        /// <see cref=""/>
         CreateBtcNewBlockWebHookResponse CreateNewBlock(BtcSimilarCoin coin, BtcSimilarNetwork network, string url);
 
         /// <summary>
@@ -19,6 +20,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="url">Webhook callback url.</param>
+        /// <see cref=""/>
         CreateEthWebHookResponse CreateNewBlock(EthSimilarCoin coin, EthSimilarNetwork network, string url);
 
         /// <summary>
@@ -31,6 +33,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="url">Webhook callback url.</param>
         /// <param name="transactionHash">Transaction hash.</param>
         /// <param name="confirmationCount">Confirmations of mined transactions.</param>
+        /// <see cref=""/>
         CreateBtcConfirmedTransactionWebHookResponse CreateConfirmedTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, 
             string url, string transactionHash, int confirmationCount);
 
@@ -44,6 +47,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="url">Webhook callback url.</param>
         /// <param name="transactionHash">Transaction hash.</param>
         /// <param name="confirmationCount">Confirmations of mined transactions.</param>
+        /// <see cref=""/>
         CreateEthConfirmedTransactionWebHookResponse CreateConfirmedTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
             string url, string transactionHash, int confirmationCount);
 
@@ -54,6 +58,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="url">Webhook callback url.</param>
         /// <param name="address">.</param>
+        /// <see cref=""/>
         CreateBtcAddressWebHookResponse CreateAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string url, string address);
 
         /// <summary>
@@ -63,6 +68,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="url">Webhook callback url.</param>
         /// <param name="address">.</param>
+        /// <see cref=""/>
         CreateEthAddressWebHookResponse CreateAddress(EthSimilarCoin coin, EthSimilarNetwork network, string url, string address);
 
         /// <summary>
@@ -72,6 +78,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="url">Webhook callback url.</param>
         /// <param name="address">.</param>
+        /// <see cref=""/>
         CreateEthAddressWebHookResponse CreateToken(EthSimilarCoin coin, EthSimilarNetwork network, string url, string address);
 
         /// <summary>
@@ -81,6 +88,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="url">Webhook callback url.</param>
+        /// <see cref=""/>
         CreateEthWebHookResponse CreateTransactionPool(EthSimilarCoin coin, EthSimilarNetwork network, string url);
 
         /// <summary>
@@ -88,6 +96,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// </summary>
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
+        /// <see cref=""/>
         GetBtcHooksResponse GetHooks(BtcSimilarCoin coin, BtcSimilarNetwork network);
 
         /// <summary>
@@ -95,6 +104,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// </summary>
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
+        /// <see cref=""/>
         GetEthHooksResponse GetHooks(EthSimilarCoin coin, EthSimilarNetwork network);
 
         /// <summary>
@@ -103,6 +113,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
         /// <param name="network">Network of BTC-similar coin.</param>
         /// <param name="hookId">Webhook id.</param>
+        /// <see cref=""/>
         DeleteWebhookResponse Delete(BtcSimilarCoin coin, BtcSimilarNetwork network, string hookId);
 
         /// <summary>
@@ -111,6 +122,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="coin">ETH-similar coin (ETH, ...)</param>
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="hookId">Webhook id.</param>
+        /// <see cref=""/>
         DeleteWebhookResponse Delete(EthSimilarCoin coin, EthSimilarNetwork network, string hookId);
     }
 }

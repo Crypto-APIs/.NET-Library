@@ -1,7 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Exchanges;
-using RestSharp;
 using System;
 
 namespace CryptoApisSdkLibrary.Modules.Exchanges
@@ -34,7 +32,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
 
         public GetExchangeRateResponse GetExchangeRate(Asset baseAsset, Asset quoteAsset)
         {
-            var request = Requests.GetExchangeRate(baseAsset, quoteAsset);
+            var request = Requests.GetExchangeRate(baseAsset, quoteAsset, timeStamp: null);
             return GetSync<GetExchangeRateResponse>(request);
         }
 
@@ -135,10 +133,8 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
 
         public GetArbitrageInfoResponse GetArbitrageInfo(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetArbitrageInfo(limit);
+            var request = Requests.GetArbitrageInfo(skip, limit);
             return GetSync<GetArbitrageInfoResponse>(request);
         }
-
-        
     }
 }

@@ -1,7 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Exchanges;
-using RestSharp;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,7 +32,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         public Task<GetExchangeRateResponse> GetExchangeRateAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset)
         {
-            var request = Requests.GetExchangeRate(baseAsset, quoteAsset);
+            var request = Requests.GetExchangeRate(baseAsset, quoteAsset, timeStamp: null);
             return GetAsyncResponse<GetExchangeRateResponse>(request, cancellationToken);
         }
 
@@ -159,6 +157,5 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             var request = Requests.GetArbitrageInfo(skip, limit);
             return GetAsyncResponse<GetArbitrageInfoResponse>(request, cancellationToken);
         }
-
     }
 }

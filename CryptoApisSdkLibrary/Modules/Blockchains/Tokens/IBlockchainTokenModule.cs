@@ -12,6 +12,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="network">Network of ETH-similar coin.</param>
         /// <param name="address">Address with tokens.</param>
         /// <param name="contract">Contract address.</param>
+        /// <see cref=""/>
         GetBalanceTokenResponse GetBalance(EthSimilarCoin coin, EthSimilarNetwork network, string address, string contract);
 
         /// <summary>
@@ -26,6 +27,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="password">Password.</param>
         /// <param name="amount">The amount of token is per unit.</param>
+        /// <see cref=""/>
         TransferTokensResponse Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
             string contract, double gasPrice, double gasLimit, string password, double amount);
 
@@ -41,6 +43,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="amount">The amount of token is per unit.</param>
         /// <param name="privateKey">Private key.</param>
+        /// <see cref=""/>
         TransferTokensResponse Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
             string contract, double gasPrice, double gasLimit, double amount, string privateKey);
 
@@ -52,6 +55,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="address">Address with tokens.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
+        /// <see cref=""/>
         GetTokensResponse GetTokens(EthSimilarCoin coin, EthSimilarNetwork network, string address, int skip = 0, int limit = 50);
     }
 }
