@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
         symbol, startPeriod, endPeriod);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHistoricalTrades executed successfully, " +
+        ? "GetHistoricalTrades executed successfully, " +
           $"{response.Trades.Count} trades returned"
         : $"GetHistoricalTrades error: {response.ErrorMessage}");
     }

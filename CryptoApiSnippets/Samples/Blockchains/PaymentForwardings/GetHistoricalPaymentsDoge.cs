@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHistoricalPaymentsDoge executed successfully, " +
+        ? "GetHistoricalPaymentsDoge executed successfully, " +
           $"{response.Payments.Count} payments returned"
         : $"GetHistoricalPaymentsDoge error: {response.ErrorMessage}");
     }

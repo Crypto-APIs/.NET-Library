@@ -143,8 +143,8 @@
     <Compile Include="Samples\Blockchains\Transactions\CreateTransactionDoge.cs" />
     <Compile Include="Samples\Blockchains\Transactions\DecodeTransactionDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\DecodeTransactionDoge.cs" />
-    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashDash.cs" />
-    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashDoge.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionIdDash.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionIdDoge.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHashDash.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHashDoge.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHeightDash.cs" />
@@ -204,10 +204,10 @@
     <Compile Include="Samples\Blockchains\Transactions\GetInfosByBlockHeightBtc.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfoByBlockHeightAndTransactionIndex.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfoByBlockHashAndTransactionIndex.cs" />
-    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashLtc.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionIdLtc.cs" />
     <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashEth.cs" />
-    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashBch.cs" />
-    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionHashBtc.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionIdBch.cs" />
+    <Compile Include="Samples\Blockchains\Transactions\GetInfoByTransactionIdBtc.cs" />
     <Compile Include="Samples\Blockchains\Wallets\AddAddressDoge.cs" />
     <Compile Include="Samples\Blockchains\Wallets\AddAddressDash.cs" />
     <Compile Include="Samples\Blockchains\Wallets\AddAddressBch.cs" />

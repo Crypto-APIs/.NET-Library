@@ -18,7 +18,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, fromAddress, toAddress, privateKey);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SendAllAmountUsingPrivateKey executed successfully, " +
+        ? "SendAllAmountUsingPrivateKey executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
         : $"SendAllAmountUsingPrivateKey error: {response.ErrorMessage}");
     }

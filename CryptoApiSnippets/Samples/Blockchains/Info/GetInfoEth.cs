@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Info.GetInfo(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetInfoEth executed successfully, " +
+        ? "GetInfoEth executed successfully, " +
           $"difficulty is {response.Info.Difficulty} now"
         : $"GetInfoEth error: {response.ErrorMessage}");
     }

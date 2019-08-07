@@ -29,6 +29,11 @@ namespace CryptoApisSdkLibrary.DataTypes
         [DeserializeAs(Name = "_id")]
         public string Id { get; protected set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
         #region IEquatable<Exchange>
 
         public bool Equals(Exchange other)

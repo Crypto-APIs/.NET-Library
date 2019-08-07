@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHistoricalPaymentsLtc executed successfully, " +
+        ? "GetHistoricalPaymentsLtc executed successfully, " +
           $"{response.Payments.Count} payments returned"
         : $"GetHistoricalPaymentsLtc error: {response.ErrorMessage}");
     }

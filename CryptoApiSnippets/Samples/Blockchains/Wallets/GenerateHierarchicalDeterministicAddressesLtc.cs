@@ -17,7 +17,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addressCount, encryptedPassword);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GenerateHierarchicalDeterministicAddressesLtc executed successfully, " +
+        ? "GenerateHierarchicalDeterministicAddressesLtc executed successfully, " +
           $"{response.Wallet.Addresses.Count} addresses of \"{response.Wallet.Name}\" wallet returned"
         : $"GenerateHierarchicalDeterministicAddressesLtc error: {response.ErrorMessage}");
     }

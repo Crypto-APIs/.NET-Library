@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Address.GenerateAddress(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GenerateAddressDash executed successfully, " +
+        ? "GenerateAddressDash executed successfully, " +
           $"new address is {response.Payload.Address}"
         : $"GenerateAddressDash error: {response.ErrorMessage}");
     }

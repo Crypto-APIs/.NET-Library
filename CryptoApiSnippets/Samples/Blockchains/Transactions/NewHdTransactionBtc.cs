@@ -25,7 +25,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, wallet, password, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"NewHdTransactionBtc executed successfully, " +
+        ? "NewHdTransactionBtc executed successfully, " +
           $"txid is \"{response.Payload.Txid}\""
         : $"NewHdTransactionBtc error: {response.ErrorMessage}");
     }

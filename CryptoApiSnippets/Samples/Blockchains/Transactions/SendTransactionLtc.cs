@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SendTransactionLtc executed successfully, " +
+        ? "SendTransactionLtc executed successfully, " +
           $"TransactionHash is \"{response.Payload.Txid}\""
         : $"SendTransactionLtc error: {response.ErrorMessage}");
     }

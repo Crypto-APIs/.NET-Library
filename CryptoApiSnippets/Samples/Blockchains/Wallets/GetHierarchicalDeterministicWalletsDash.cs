@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Wallet.GetHdWallets(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHierarchicalDeterministicWalletsDash executed successfully, " +
+        ? "GetHierarchicalDeterministicWalletsDash executed successfully, " +
           $"{response.Wallets.Count} HD wallets returned"
         : $"GetHierarchicalDeterministicWalletsDash error: {response.ErrorMessage}");
     }

@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DecodeTransactionDoge executed successfully, " +
+        ? "DecodeTransactionDoge executed successfully, " +
           $"Transaction hash is \"{response.Transaction.Hash}\""
         : $"DecodeTransactionDoge error: {response.ErrorMessage}");
     }

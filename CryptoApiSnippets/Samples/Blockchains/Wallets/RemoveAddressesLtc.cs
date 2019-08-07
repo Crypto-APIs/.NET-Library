@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"RemoveAddressesLtc executed successfully" 
+        ? "RemoveAddressesLtc executed successfully" 
         : $"RemoveAddressesLtc error: {response.ErrorMessage}");
     }
   }

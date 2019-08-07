@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Address.GenerateAddress(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GenerateAddressDoge executed successfully, " +
+        ? "GenerateAddressDoge executed successfully, " +
           $"new address is {response.Payload.Address}"
         : $"GenerateAddressDoge error: {response.ErrorMessage}");
     }

@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHistoricalPaymentsDash executed successfully, " +
+        ? "GetHistoricalPaymentsDash executed successfully, " +
           $"{response.Payments.Count} payments returned"
         : $"GetHistoricalPaymentsDash error: {response.ErrorMessage}");
     }

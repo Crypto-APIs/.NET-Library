@@ -29,7 +29,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, inputs, outputs, fee, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"NewTransactionDash executed successfully, " +
+        ? "NewTransactionDash executed successfully, " +
           $"txid is \"{response.Payload.Txid}\""
         : $"NewTransactionDash error: {response.ErrorMessage}");
     }

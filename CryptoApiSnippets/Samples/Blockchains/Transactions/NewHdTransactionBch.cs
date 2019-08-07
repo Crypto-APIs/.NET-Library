@@ -29,7 +29,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, wallet, password, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"NewHdTransactionBch executed successfully, " +
+        ? "NewHdTransactionBch executed successfully, " +
           $"txid is \"{response.Payload.Txid}\""
         : $"NewHdTransactionBch error: {response.ErrorMessage}");
     }

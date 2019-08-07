@@ -10,7 +10,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetPeriods();
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetPeriods executed successfully, " +
+        ? "GetPeriods executed successfully, " +
           $"{response.Periods.Count} periods returned"
         : $"GetPeriods error: {response.ErrorMessage}");
     }

@@ -56,6 +56,12 @@
     <Compile Include="DataTypes\BtcUnconfirmedTransaction.cs" />
     <Compile Include="DataTypes\EthTransaction.cs" />
     <Compile Include="DataTypes\Fee.cs" />
+    <Compile Include="Modules\Blockchains\Info\BlockchainInfoModule.Async.cs" />
+    <Compile Include="Modules\Blockchains\Info\BlockchainInfoModule.Sync.cs" />
+    <Compile Include="Modules\Blockchains\Info\Requests.cs" />
+    <Compile Include="Modules\Exchanges\ExchangeModules.Async.cs" />
+    <Compile Include="Modules\Exchanges\Requests.cs" />
+    <Compile Include="Modules\Exchanges\ExchangeModules.cs" />
     <Compile Include="RequestTypes\NewHdBtcTransactionRequest.cs" />
     <Compile Include="RequestTypes\NewBtcTransactionRequest.cs" />
     <Compile Include="ResponseTypes\Blockchains\NewBtcTransactionResponse.cs" />
@@ -179,7 +185,6 @@
     <Compile Include="ResponseTypes\Exchanges\GetAllLatestQuoteTradesResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetHistoricalTradesResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetLatestTradesResponse.cs" />
-    <Compile Include="ResponseTypes\Exchanges\GetAllLatestTradesResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetHistoricalDataResponse.cs" />
     <Compile Include="ResponseTypes\Errors\ErrorResponseVariant1.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetLatestDataResponse.cs" />
@@ -197,7 +202,7 @@
     <Compile Include="DataTypes\Trade.cs" />
     <Compile Include="DataTypes\Symbol.cs" />
     <Compile Include="DataTypes\QuoteTrade.cs" />
-    <Compile Include="Modules\Exchanges\ExchangeModules.cs" />
+    <Compile Include="Modules\Exchanges\ExchangeModules.Sync.cs" />
     <Compile Include="Misc\Consts.cs" />
     <Compile Include="CryptoManager.cs" />
     <Compile Include="DataTypes\Exchange.cs" />

@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
         symbol, startPeriod, endPeriod, limit: 2);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHistoricalQuoteTrades executed successfully, " +
+        ? "GetHistoricalQuoteTrades executed successfully, " +
           $"{response.QuoteTrades.Count} trades returned"
         : $"GetHistoricalQuoteTrades error: {response.ErrorMessage}");
     }

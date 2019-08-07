@@ -15,8 +15,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? "DeletePaymentDoge executed successfully, status is \"" +
-          $"{response.Payload.Message}\""
+        ? "DeletePaymentDoge executed successfully, status is " +
+          $"\"{response.Payload.Message}\""
         : $"DeletePaymentDoge error: {response.ErrorMessage}");
     }
   }

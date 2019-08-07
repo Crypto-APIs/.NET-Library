@@ -19,7 +19,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SignTransactionDash executed successfully, return hex is {response.Payload.Hex}"
+        ? "SignTransactionDash executed successfully, " +
+          $"return hex is {response.Payload.Hex}"
         : $"SignTransactionDash error: {response.ErrorMessage}");
     }
   }

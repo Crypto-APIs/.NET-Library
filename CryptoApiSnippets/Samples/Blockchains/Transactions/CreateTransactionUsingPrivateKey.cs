@@ -21,7 +21,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, fromAddress, toAddress, privateKey, value, gasPrice, gasLimit);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateTransactionUsingPrivateKey executed successfully, " +
+        ? "CreateTransactionUsingPrivateKey executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
         : $"CreateTransactionUsingPrivateKey error: {response.ErrorMessage}");
     }

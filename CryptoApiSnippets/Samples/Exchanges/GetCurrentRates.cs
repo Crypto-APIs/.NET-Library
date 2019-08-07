@@ -13,7 +13,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetCurrentRates(asset, skip: 0, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetCurrentRates executed successfully, " +
+        ? "GetCurrentRates executed successfully, " +
           $"{response.Rates.Count} rates returned"
         : $"GetCurrentRates error: {response.ErrorMessage}");
     }

@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAddressTransactionsDoge executed successfully, " +
+        ? "GetAddressTransactionsDoge executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetAddressTransactionsDoge error: {response.ErrorMessage}");
     }

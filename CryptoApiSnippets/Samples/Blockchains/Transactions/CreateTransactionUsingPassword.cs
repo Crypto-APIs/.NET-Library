@@ -21,7 +21,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, fromAddress, toAddress, value, password, gasPrice, gasLimit);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateTransactionUsingPassword executed successfully, " +
+        ? "CreateTransactionUsingPassword executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
         : $"CreateTransactionUsingPassword error: {response.ErrorMessage}");
     }

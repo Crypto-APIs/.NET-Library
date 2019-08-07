@@ -25,7 +25,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateTransactionDoge executed successfully, " +
+        ? "CreateTransactionDoge executed successfully, " +
           $"HexEncodedInfo is \"{response.Payload.Hex}\""
         : $"CreateTransactionDoge error: {response.ErrorMessage}");
     }

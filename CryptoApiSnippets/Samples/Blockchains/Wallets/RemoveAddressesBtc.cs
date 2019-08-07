@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"RemoveAddressesBtc executed successfully"
+        ? "RemoveAddressesBtc executed successfully"
         : $"RemoveAddressesBtc error: {response.ErrorMessage}");
     }
   }

@@ -5,20 +5,20 @@ namespace CryptoApiSnippets.Samples.Blockchains
 {
   partial class BlockchainSnippets
   {
-    public void GetInfoByTransactionHashDoge()
+    public void GetInfoByTransactionIdDash()
     {
-      var coin = BtcSimilarCoin.Doge;
+      var coin = BtcSimilarCoin.Dash;
       var network = BtcSimilarNetwork.Testnet;
-      var transactionHash = "512ba78dbe7265f07ebec2297d59e0ddccc884fbf2fdd72cb14f924ffb9aefde";
+      var transactionId = "9df2da1770e009bd7d75947fc9be07980bf30a67ae59a893cb89c1f4eeb57a19";
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Blockchains.Transaction.GetInfo(
-        coin, network, transactionHash);
+        coin, network, transactionId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetInfoByTransactionHashDoge executed successfully, " +
+        ? "GetInfoByTransactionIdDash executed successfully, " +
           $"block hash is {response.Transaction.BlockHash}"
-        : $"GetInfoByTransactionHashDoge error: {response.ErrorMessage}");
+        : $"GetInfoByTransactionIdDash error: {response.ErrorMessage}");
     }
   }
 }

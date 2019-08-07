@@ -15,8 +15,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? "DeletePaymentDash executed successfully, status is \"" +
-          $"{response.Payload.Message}\""
+        ? "DeletePaymentDash executed successfully, status is " +
+          $"\"{response.Payload.Message}\""
         : $"DeletePaymentDash error: {response.ErrorMessage}");
     }
   }

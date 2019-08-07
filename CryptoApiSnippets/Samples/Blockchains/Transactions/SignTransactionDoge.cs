@@ -19,7 +19,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SignTransactionDoge executed successfully, return hex is {response.Payload.Hex}"
+        ? "SignTransactionDoge executed successfully, " +
+          $"return hex is {response.Payload.Hex}"
         : $"SignTransactionDoge error: {response.ErrorMessage}");
     }
   }

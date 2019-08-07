@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"QueuedTransactions executed successfully, " +
+        ? "QueuedTransactions executed successfully, " +
           $"{response.Transactions.Count} queued transactions returned"
         : $"QueuedTransactions error: {response.ErrorMessage}");
     }
