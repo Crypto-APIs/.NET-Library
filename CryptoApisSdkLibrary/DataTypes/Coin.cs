@@ -70,6 +70,7 @@ namespace CryptoApisSdkLibrary.DataTypes
     public class EthSimilarCoin : Coin
     {
         public static EthSimilarCoin Eth => new EthSimilarCoin("eth");
+        public static EthSimilarCoin Etc => new EthSimilarCoin("etc");
 
         private EthSimilarCoin(string value) : base(value)
         {
