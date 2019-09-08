@@ -26,8 +26,8 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported exchanges.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
-        Task<GetAllExchangesResponse> GetExchangesAsync(
-            CancellationToken cancellationToken, int skip = 0, int limit = 50);
+        Task<GetAllExchangesResponse> GetExchangesAsync(CancellationToken cancellationToken, 
+            int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get detailed list of all associated assets.
@@ -105,6 +105,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a specific time.
         /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
         /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
@@ -127,6 +128,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <summary>
         /// Get the current exchange rate between requested asset and all other assets at a current time.
         /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
         /// <param name="skip">The offset of items to start from.</param>
@@ -150,6 +152,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <summary>
         /// Get the current exchange rate between requested asset and all other assets at a specific time.
         /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
         /// <param name="timeStamp">Time (in UNIX Timestamp) of the market data used to calculate exchange rate.</param>
