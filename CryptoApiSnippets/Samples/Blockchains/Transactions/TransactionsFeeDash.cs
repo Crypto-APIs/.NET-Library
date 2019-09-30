@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"TransactionsFeeDash executed successfully, " +
+        ? "TransactionsFeeDash executed successfully, " +
           $"recommended transactions fee is '{response.Payload.Recommended}'"
         : $"TransactionsFeeDash error: {response.ErrorMessage}");
     }

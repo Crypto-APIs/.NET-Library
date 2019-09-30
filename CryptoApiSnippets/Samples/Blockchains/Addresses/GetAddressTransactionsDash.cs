@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAddressTransactionsDash executed successfully, " +
+        ? "GetAddressTransactionsDash executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetAddressTransactionsDash error: {response.ErrorMessage}");
     }

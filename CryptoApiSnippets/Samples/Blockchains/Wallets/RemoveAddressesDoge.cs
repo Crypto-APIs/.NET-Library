@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"RemoveAddressesDoge executed successfully, "
+        ? "RemoveAddressesDoge executed successfully, "
         : $"RemoveAddressesDoge error: {response.ErrorMessage}");
     }
   }

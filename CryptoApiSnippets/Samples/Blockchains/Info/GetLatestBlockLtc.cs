@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Info.GetLatestBlock(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetLatestBlockLtc executed successfully, " +
+        ? "GetLatestBlockLtc executed successfully, " +
           $"difficulty is {response.HashInfo.Difficulty} now"
         : $"GetLatestBlockLtc error: {response.ErrorMessage}");
     }

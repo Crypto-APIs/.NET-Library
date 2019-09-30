@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"RemoveAddressesDash executed successfully, "
+        ? "RemoveAddressesDash executed successfully, "
         : $"RemoveAddressesDash error: {response.ErrorMessage}");
     }
   }

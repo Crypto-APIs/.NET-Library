@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Wallet.GetWallets(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetWalletsBtc executed successfully, " +
+        ? "GetWalletsBtc executed successfully, " +
           $"{response.Wallets.Count} wallets returned"
         : $"GetWalletsBtc error: {response.ErrorMessage}");
     }

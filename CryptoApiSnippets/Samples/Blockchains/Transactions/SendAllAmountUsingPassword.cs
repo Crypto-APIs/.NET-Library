@@ -18,7 +18,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, fromAddress, toAddress, password);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SendAllAmountUsingPassword executed successfully, " +
+        ? "SendAllAmountUsingPassword executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
         : $"SendAllAmountUsingPassword error: {response.ErrorMessage}");
     }

@@ -21,7 +21,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateWalletBtc executed successfully, " +
+        ? "CreateWalletBtc executed successfully, " +
           $"wallet \"{response.Wallet.Name}\" created"
         : $"CreateWalletBtc error: {response.ErrorMessage}");
 

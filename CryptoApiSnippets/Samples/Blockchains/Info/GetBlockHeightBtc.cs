@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Info.GetBlockHeigh(coin, network, blockHeight);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetBlockHeightBtc executed successfully, " +
+        ? "GetBlockHeightBtc executed successfully, " +
           $"difficulty is {response.HashInfo.Difficulty} now"
         : $"GetBlockHeightBtc error: {response.ErrorMessage}");
     }

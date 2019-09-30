@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DeleteHierarchicalDeterministicWalletBch executed successfully, " +
+        ? "DeleteHierarchicalDeterministicWalletBch executed successfully, " +
           $"\"{response.Payload.Message}\" status was returned"
         : $"DeleteHierarchicalDeterministicWalletBch error: {response.ErrorMessage}");
     }

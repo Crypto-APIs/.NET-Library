@@ -19,7 +19,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, fromAddress, toAddress, value, data);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"EstimateTransactionGas executed successfully, gas needed {response.Payload.GasNeeded}"
+        ? "EstimateTransactionGas executed successfully, " +
+          $"gas needed {response.Payload.GasNeeded}"
         : $"EstimateTransactionGas error: {response.ErrorMessage}");
     }
   }

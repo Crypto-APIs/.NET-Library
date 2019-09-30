@@ -14,7 +14,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetLatestData(symbol, period, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetLatestData executed successfully, " +
+        ? "GetLatestData executed successfully, " +
           $"{response.Ohlcv.Count} records returned"
         : $"GetLatestData error: {response.ErrorMessage}");
     }

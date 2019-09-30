@@ -17,7 +17,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
         symbol, period, startPeriod, endPeriod, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetHistoricalData executed successfully, " +
+        ? "GetHistoricalData executed successfully, " +
           $"{response.Ohlcv.Count} records returned"
         : $"GetHistoricalData error: {response.ErrorMessage}");
     }

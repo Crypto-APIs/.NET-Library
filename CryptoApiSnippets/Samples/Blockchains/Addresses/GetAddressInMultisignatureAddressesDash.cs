@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, address, skip: 0, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAddressInMultisignatureAddressesDash executed successfully, " +
+        ? "GetAddressInMultisignatureAddressesDash executed successfully, " +
           $"{response.Addresses.Count} addresses returned"
         : $"GetAddressInMultisignatureAddressesDash error: {response.ErrorMessage}");
     }

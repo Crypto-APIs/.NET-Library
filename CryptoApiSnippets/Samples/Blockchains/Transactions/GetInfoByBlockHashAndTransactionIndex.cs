@@ -17,7 +17,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, blockHash, transactionIndex);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetInfoByBlockHashAndTransactionIndex executed successfully, " +
+        ? "GetInfoByBlockHashAndTransactionIndex executed successfully, " +
           $"transaction hash is {response.Payload.TransactionHash}"
         : $"GetInfoByBlockHashAndTransactionIndex error: {response.ErrorMessage}");
     }

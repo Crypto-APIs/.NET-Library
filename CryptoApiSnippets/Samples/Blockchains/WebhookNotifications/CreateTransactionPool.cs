@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           coin, network, url);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateTransactionPool executed successfully, " +
+        ? "CreateTransactionPool executed successfully, " +
           $"HookId is \"{response.Payload.Id}\""
         : $"CreateTransactionPool error: {response.ErrorMessage}");
     }

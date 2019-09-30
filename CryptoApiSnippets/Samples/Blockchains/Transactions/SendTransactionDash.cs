@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"SendTransactionDash executed successfully, " +
+        ? "SendTransactionDash executed successfully, " +
           $"TransactionHash is \"{response.Payload.Txid}\""
         : $"SendTransactionDash error: {response.ErrorMessage}");
     }

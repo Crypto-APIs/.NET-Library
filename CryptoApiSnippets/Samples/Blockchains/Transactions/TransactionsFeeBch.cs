@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"TransactionsFeeBch executed successfully, " +
+        ? "TransactionsFeeBch executed successfully, " +
           $"recommended transactions fee is '{response.Payload.Recommended}'"
         : $"TransactionsFeeBch error: {response.ErrorMessage}");
     }

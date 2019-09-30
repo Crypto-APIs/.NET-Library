@@ -29,7 +29,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, wallet, password, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"NewHdTransactionLtc executed successfully, " +
+        ? "NewHdTransactionLtc executed successfully, " +
           $"txid is \"{response.Payload.Txid}\""
         : $"NewHdTransactionLtc error: {response.ErrorMessage}");
     }

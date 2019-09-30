@@ -13,7 +13,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var manager = new CryptoManager(ApiKey);
       var exchangeRate = manager.Exchanges.GetExchangeRate(baseAsset, quoteAsset);
       Console.WriteLine(string.IsNullOrEmpty(exchangeRate.ErrorMessage)
-        ? $"GetExchangeRate executed successfully, a MedianPrice for " +
+        ? "GetExchangeRate executed successfully, a MedianPrice for " +
           $"{exchangeRate.ExchangeRate.BaseAssetId}/{exchangeRate.ExchangeRate.QuoteAssetId} " +
           $"is {exchangeRate.ExchangeRate.MedianPrice}"
         : $"GetExchangeRate error: {exchangeRate.ErrorMessage}");

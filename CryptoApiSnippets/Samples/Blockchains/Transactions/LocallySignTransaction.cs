@@ -18,7 +18,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, fromAddress, toAddress, value);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"LocallySignTransaction executed successfully, " +
+        ? "LocallySignTransaction executed successfully, " +
           $"transfered \"{response.Payload.Value}\""
         : $"LocallySignTransaction error: {response.ErrorMessage}");
     }

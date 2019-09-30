@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, skip: 0, limit: 50);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetUnconfirmedTransactionsBtc executed successfully, " +
+        ? "GetUnconfirmedTransactionsBtc executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetUnconfirmedTransactionsBtc error: {response.ErrorMessage}");
     }

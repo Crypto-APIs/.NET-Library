@@ -21,7 +21,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateWalletDoge executed successfully, " +
+        ? "CreateWalletDoge executed successfully, " +
           $"wallet \"{response.Wallet.Name}\" created"
         : $"CreateWalletDoge error: {response.ErrorMessage}");
 

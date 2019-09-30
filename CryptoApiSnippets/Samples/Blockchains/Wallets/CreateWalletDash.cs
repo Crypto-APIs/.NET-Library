@@ -21,7 +21,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateWalletDash executed successfully, " +
+        ? "CreateWalletDash executed successfully, " +
           $"wallet \"{response.Wallet.Name}\" created"
         : $"CreateWalletDash error: {response.ErrorMessage}");
 

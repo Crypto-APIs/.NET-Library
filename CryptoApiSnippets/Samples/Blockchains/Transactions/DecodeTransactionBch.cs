@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, hexEncodedInfo);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"DecodeTransactionBch executed successfully, " +
+        ? "DecodeTransactionBch executed successfully, " +
           $"Transaction hash is \"{response.Transaction.Hash}\""
         : $"DecodeTransactionBch error: {response.ErrorMessage}");
     }

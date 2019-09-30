@@ -15,7 +15,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Info.GetBlockHash(coin, network, blockHash);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetBlockHashDoge executed successfully, " +
+        ? "GetBlockHashDoge executed successfully, " +
           $"difficulty is {response.HashInfo.Difficulty} now"
         : $"GetBlockHashDoge error: {response.ErrorMessage}");
     }

@@ -72,6 +72,11 @@ namespace CryptoApisSdkLibrary.DataTypes
             Id = id;
         }
 
+        public override string ToString()
+        {
+            return $"{BaseAsset}/{QuoteAsset}";
+        }
+
         #region IEquatable<Symbol>
 
         public bool Equals(Symbol other)

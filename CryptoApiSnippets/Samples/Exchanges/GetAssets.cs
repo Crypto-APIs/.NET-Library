@@ -10,7 +10,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var response = manager.Exchanges.GetAssets(skip: 0, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAssets executed successfully, " +
+        ? "GetAssets executed successfully, " +
           $"{response.Assets.Count} assets returned"
         : $"GetAssets error: {response.ErrorMessage}");
     }

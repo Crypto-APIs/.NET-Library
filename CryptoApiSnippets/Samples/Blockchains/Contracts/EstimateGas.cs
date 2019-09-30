@@ -14,8 +14,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var response = manager.Blockchains.Contract.EstimateGas(coin, network);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"EstimateGas executed successfully, " +
-          $"gas price is {response.Payload.GasPrice}, gas limit is {response.Payload.GasLimit}"
+        ? "EstimateGas executed successfully, " +
+          $"gas price is {response.Payload.GasPrice}, " +
+          $"gas limit is {response.Payload.GasLimit}"
         : $"EstimateGas error: {response.ErrorMessage}");
     }
   }

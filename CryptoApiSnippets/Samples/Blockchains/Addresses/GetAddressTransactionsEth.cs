@@ -16,7 +16,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"GetAddressTransactionsEth executed successfully, " +
+        ? "GetAddressTransactionsEth executed successfully, " +
           $"{response.Transactions.Count} transactions returned"
         : $"GetAddressTransactionsEth error: {response.ErrorMessage}");
     }

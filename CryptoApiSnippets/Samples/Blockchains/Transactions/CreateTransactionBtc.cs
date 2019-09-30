@@ -26,7 +26,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
         coin, network, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateTransactionBtc executed successfully, " +
+        ? "CreateTransactionBtc executed successfully, " +
           $"HexEncodedInfo is \"{response.Payload.Hex}\""
         : $"CreateTransactionBtc error: {response.ErrorMessage}");
     }

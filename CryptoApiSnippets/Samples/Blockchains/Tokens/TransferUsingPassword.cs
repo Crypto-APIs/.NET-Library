@@ -23,7 +23,7 @@ namespace CryptoApiSnippets.Samples.Blockchains
           gasPrice, gasLimit, password, amount);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"TransferUsingPassword executed successfully, " +
+        ? "TransferUsingPassword executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
         : $"TransferUsingPassword error: {response.ErrorMessage}");
     }
