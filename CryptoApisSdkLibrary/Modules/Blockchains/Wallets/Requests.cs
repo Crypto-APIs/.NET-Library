@@ -15,8 +15,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
             Request = request;
         }
 
-        public IRestRequest CreateWallet(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, IEnumerable<string> addresses)
+        public IRestRequest CreateWallet(NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
@@ -27,11 +26,11 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
             if (!enumerable.Any())
                 throw new ArgumentNullException(nameof(addresses), "Addresses is empty");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/wallets",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets",
                 new CreateWalletRequest(walletName, enumerable));
         }
 
-        public IRestRequest CreateHdWallet(BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public IRestRequest CreateHdWallet(NetworkCoin networkCoin,
             string walletName, int addressCount, string password)
         {
             if (string.IsNullOrEmpty(walletName))
@@ -41,38 +40,37 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/wallets/hd",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd",
                 new CreateHdWalletRequest(walletName, password, addressCount));
         }
 
-        public IRestRequest GetWallets(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public IRestRequest GetWallets(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/wallets");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/wallets");
         }
 
-        public IRestRequest GetHdWallets(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public IRestRequest GetHdWallets(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/wallets/hd");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/wallets/hd");
         }
 
-        public IRestRequest GetWalletInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
-        {
-            if (string.IsNullOrEmpty(walletName))
-                throw new ArgumentNullException(nameof(walletName));
-
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/wallets/{walletName}");
-        }
-
-        public IRestRequest GetHdWalletInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public IRestRequest GetWalletInfo(NetworkCoin networkCoin, string walletName)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
 
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/wallets/hd/{walletName}");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/wallets/{walletName}");
         }
 
-        public IRestRequest AddAddress(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, IEnumerable<string> addresses)
+        public IRestRequest GetHdWalletInfo(NetworkCoin networkCoin, string walletName)
+        {
+            if (string.IsNullOrEmpty(walletName))
+                throw new ArgumentNullException(nameof(walletName));
+
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/wallets/hd/{walletName}");
+        }
+
+        public IRestRequest AddAddress(NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
@@ -83,19 +81,19 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
             if (!enumerable.Any())
                 throw new ArgumentNullException(nameof(addresses), "Addresses is empty");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/wallets/{walletName}/addresses",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/{walletName}/addresses",
                 new AddAddressToWalletRequest(enumerable));
         }
 
-        public IRestRequest GenerateAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public IRestRequest GenerateAddress(NetworkCoin networkCoin, string walletName)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/wallets/{walletName}/addresses/generate");
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/{walletName}/addresses/generate");
         }
 
-        public IRestRequest GenerateHdAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName,
+        public IRestRequest GenerateHdAddress(NetworkCoin networkCoin, string walletName,
             int addressCount, string encryptedPassword)
         {
             if (string.IsNullOrEmpty(walletName))
@@ -105,34 +103,34 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
             if (string.IsNullOrEmpty(encryptedPassword))
                 throw new ArgumentNullException(nameof(encryptedPassword));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/wallets/hd/{walletName}/addresses/generate",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/{walletName}/addresses/generate",
                 new GenerateHdWalletAddressRequest(addressCount, encryptedPassword));
         }
 
-        public IRestRequest RemoveAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, string address)
+        public IRestRequest RemoveAddress(NetworkCoin networkCoin, string walletName, string address)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
             if (string.IsNullOrEmpty(address))
                 throw new ArgumentNullException(nameof(address));
 
-            return Request.Delete($"{Consts.Blockchain}/{coin}/{network}/wallets/{walletName}/address/{address}");
+            return Request.Delete($"{Consts.Blockchain}/{networkCoin}/wallets/{walletName}/address/{address}");
         }
 
-        public IRestRequest DeleteWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public IRestRequest DeleteWallet(NetworkCoin networkCoin, string walletName)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
 
-            return Request.Delete($"{Consts.Blockchain}/{coin}/{network}/wallets/{walletName}");
+            return Request.Delete($"{Consts.Blockchain}/{networkCoin}/wallets/{walletName}");
         }
 
-        public IRestRequest DeleteHdWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public IRestRequest DeleteHdWallet(NetworkCoin networkCoin, string walletName)
         {
             if (string.IsNullOrEmpty(walletName))
                 throw new ArgumentNullException(nameof(walletName));
 
-            return Request.Delete($"{Consts.Blockchain}/{coin}/{network}/wallets/hd/{walletName}");
+            return Request.Delete($"{Consts.Blockchain}/{networkCoin}/wallets/hd/{walletName}");
         }
 
         private CryptoApiRequest Request { get; }

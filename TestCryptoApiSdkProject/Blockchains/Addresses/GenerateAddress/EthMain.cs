@@ -6,7 +6,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.GenerateAddress
     [TestClass]
     public class EthMain : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Mainnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthMainNet;
     }
 }

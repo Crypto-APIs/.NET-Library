@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void CreateNewBlockBch()
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
       var url = "http://www.mocky.io/v2/5b0d4b5f3100006e009d55f5";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.CreateNewBlock(
-          coin, network, url);
+      var response = manager.Blockchains.WebhookNotification.CreateNewBlock<BtcWebHookResponse>(
+          NetworkCoin.BchMainNet, url);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateNewBlockBch executed successfully, HookId is \"" +

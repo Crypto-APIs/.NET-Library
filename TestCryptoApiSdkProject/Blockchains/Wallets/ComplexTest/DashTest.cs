@@ -7,8 +7,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
     [TestClass]
     public class DashTest : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Dash;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DashTestNet;
 
         protected override List<string> Addresses => _addresses ?? (_addresses = new List<string>
         {

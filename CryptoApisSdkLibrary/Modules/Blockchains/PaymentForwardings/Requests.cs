@@ -13,7 +13,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             Request = request;
         }
 
-        public IRestRequest CreatePayment(BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public IRestRequest CreatePayment(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string wallet, string password,
             int confirmations, double? fee)
         {
@@ -32,11 +32,11 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             if (fee.HasValue && fee.Value <= 0)
                 throw new ArgumentOutOfRangeException(nameof(fee));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/payments",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/payments",
                 new CreateBtcPaymentRequest(fromAddress, toAddress, callbackUrl, wallet, password, confirmations, fee));
         }
 
-        public IRestRequest CreatePayment(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest CreatePayment(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string password,
             int confirmations, double? gasPrice, double? gasLimit)
         {
@@ -46,10 +46,10 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             var paymentRequest = new CreateEthPaymentPasswordRequest(
                 fromAddress, toAddress, callbackUrl, password,
                 confirmations, gasPrice, gasLimit);
-            return InternalCreatePayment(coin, network, paymentRequest);
+            return InternalCreatePayment(networkCoin, paymentRequest);
         }
 
-        public IRestRequest CreatePaymentUsingPrivateKey(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest CreatePaymentUsingPrivateKey(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string privateKey,
             int confirmations, double? gasPrice, double? gasLimit)
         {
@@ -59,46 +59,28 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             var paymentRequest = new CreateEthPaymentPrivateKeyRequest(
                 fromAddress, toAddress, callbackUrl, privateKey,
                 confirmations, gasPrice, gasLimit);
-            return InternalCreatePayment(coin, network, paymentRequest);
+            return InternalCreatePayment(networkCoin, paymentRequest);
         }
 
-        public IRestRequest GetPayments(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public IRestRequest GetPayments(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/payments");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/payments");
         }
 
-        public IRestRequest GetPayments(EthSimilarCoin coin, EthSimilarNetwork network)
+        public IRestRequest GetHistoricalPayments(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/payments");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/payments/history");
         }
 
-        public IRestRequest GetHistoricalPayments(BtcSimilarCoin coin, BtcSimilarNetwork network)
-        {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/payments/history");
-        }
-
-        public IRestRequest GetHistoricalPayments(EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/payments/history");
-        }
-
-        public IRestRequest DeletePayment(BtcSimilarCoin coin, BtcSimilarNetwork network, string paymentId)
+        public IRestRequest DeletePayment(NetworkCoin networkCoin, string paymentId)
         {
             if (string.IsNullOrEmpty(paymentId))
                 throw new ArgumentNullException(nameof(paymentId));
 
-            return Request.Delete($"{Consts.Blockchain}/{coin}/{network}/payments/{paymentId}");
+            return Request.Delete($"{Consts.Blockchain}/{networkCoin}/payments/{paymentId}");
         }
 
-        public IRestRequest DeletePayment(EthSimilarCoin coin, EthSimilarNetwork network, string paymentId)
-        {
-            if (string.IsNullOrEmpty(paymentId))
-                throw new ArgumentNullException(nameof(paymentId));
-
-            return Request.Delete($"{Consts.Blockchain}/{coin}/{network}/payments/{paymentId}");
-        }
-
-        private IRestRequest InternalCreatePayment(EthSimilarCoin coin, EthSimilarNetwork network,
+        private IRestRequest InternalCreatePayment(NetworkCoin networkCoin,
             CreateEthPaymentRequest request)
         {
             if (string.IsNullOrEmpty(request.FromAddress))
@@ -114,7 +96,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             if (request.GasLimit.HasValue && request.GasLimit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(request.GasLimit), request.GasLimit, "GasLimit is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/payments", request);
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/payments", request);
         }
 
         private CryptoApiRequest Request { get; }

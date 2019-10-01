@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -10,7 +11,7 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateNewBloc
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.WebhookNotification.CreateNewBlock(Coin, Network, Url);
+            var response = Manager.Blockchains.WebhookNotification.CreateNewBlock<EthWebHookResponse>(NetworkCoin, Url);
 
             Assert.IsNotNull(response);
             if (IsAdditionalPackagePlan)
@@ -32,11 +33,10 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateNewBloc
         public void NullUrl()
         {
             string url = null;
-            Manager.Blockchains.WebhookNotification.CreateNewBlock(Coin, Network, url);
+            Manager.Blockchains.WebhookNotification.CreateNewBlock<EthWebHookResponse>(NetworkCoin, url);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         private string Url { get; } = "http://www.mocky.io/v2/5b0d4b5f3100006e009d55f5";
     }
 }

@@ -12,8 +12,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetTokens
 
         }
 
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Rinkeby;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRinkeby;
         protected override string Address { get; } = "0x2b5634c42055806a59e9107ed44d43c426e58258 ";
     }
 }

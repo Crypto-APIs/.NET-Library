@@ -5,69 +5,56 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
 {
     internal partial class BlockchainPaymentForwardingModule
     {
-        public CreateBtcPaymentResponse CreatePayment(BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public T CreatePayment<T>(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string wallet, string password,
             int confirmations, double? fee = null)
+            where T : CreateBtcPaymentResponse, new()
         {
-            var request = Requests.CreatePayment(coin, network, fromAddress, toAddress, callbackUrl,
+            var request = Requests.CreatePayment(networkCoin, fromAddress, toAddress, callbackUrl,
                 wallet, password, confirmations, fee);
-            return GetSync<CreateBtcPaymentResponse>(request);
+            return GetSync<T>(request);
         }
 
-        public CreateEthPaymentResponse CreatePayment(EthSimilarCoin coin, EthSimilarNetwork network,
+        public T CreatePayment<T>(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string password,
             int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new()
         {
-            var request = Requests.CreatePayment(coin, network, fromAddress, toAddress, callbackUrl,
+            var request = Requests.CreatePayment(networkCoin, fromAddress, toAddress, callbackUrl,
                  password, confirmations, gasPrice, gasLimit);
-            return GetSync<CreateEthPaymentResponse>(request);
+            return GetSync<T>(request);
         }
 
-        public CreateEthPaymentResponse CreatePaymentUsingPrivateKey(
-            EthSimilarCoin coin, EthSimilarNetwork network,
+        public T CreatePaymentUsingPrivateKey<T>(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string privateKey,
             int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new()
         {
             var request = Requests.CreatePaymentUsingPrivateKey(
-                coin, network, fromAddress, toAddress, callbackUrl,
+                networkCoin, fromAddress, toAddress, callbackUrl,
                 privateKey, confirmations, gasPrice, gasLimit);
-            return GetSync<CreateEthPaymentResponse>(request);
+            return GetSync<T>(request);
         }
 
-        public GetBtcPaymentsResponse GetPayments(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public T GetPayments<T>(NetworkCoin networkCoin)
+            where T : GetPaymentsResponse, new()
         {
-            var request = Requests.GetPayments(coin, network);
-            return GetSync<GetBtcPaymentsResponse>(request);
+            var request = Requests.GetPayments(networkCoin);
+            return GetSync<T>(request);
         }
 
-        public GetEthPaymentsResponse GetPayments(EthSimilarCoin coin, EthSimilarNetwork network)
+        public T GetHistoricalPayments<T>(NetworkCoin networkCoin)
+            where T : GetHistoricalPaymentsResponse, new()
         {
-            var request = Requests.GetPayments(coin, network);
-            return GetSync<GetEthPaymentsResponse>(request);
+            var request = Requests.GetHistoricalPayments(networkCoin);
+            return GetSync<T>(request);
         }
 
-        public GetBtcHistoricalPaymentsResponse GetHistoricalPayments(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public T DeletePayment<T>(NetworkCoin networkCoin, string paymentId)
+            where T : DeletePaymentResponse, new()
         {
-            var request = Requests.GetHistoricalPayments(coin, network);
-            return GetSync<GetBtcHistoricalPaymentsResponse>(request);
-        }
-
-        public GetEthHistoricalPaymentsResponse GetHistoricalPayments(EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            var request = Requests.GetHistoricalPayments(coin, network);
-            return GetSync<GetEthHistoricalPaymentsResponse>(request);
-        }
-
-        public DeleteBtcPaymentResponse DeletePayment(BtcSimilarCoin coin, BtcSimilarNetwork network, string paymentId)
-        {
-            var request = Requests.DeletePayment(coin, network, paymentId);
-            return GetSync<DeleteBtcPaymentResponse>(request);
-        }
-
-        public DeleteEthPaymentResponse DeletePayment(EthSimilarCoin coin, EthSimilarNetwork network, string paymentId)
-        {
-            var request = Requests.DeletePayment(coin, network, paymentId);
-            return GetSync<DeleteEthPaymentResponse>(request);
+            var request = Requests.DeletePayment(networkCoin, paymentId);
+            return GetSync<T>(request);
         }
     }
 }

@@ -1,72 +1,50 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
-using System.Diagnostics;
 
 namespace CryptoApisSdkLibrary.Modules.Blockchains.Addresses
 {
     internal partial class BlockchainAddressModule
     {
-        public GetBtcAddressResponse GetAddress(
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string address)
+        public T GetAddress<T>(NetworkCoin networkCoin, string address) 
+            where T : GetAddressResponse, new()
         {
-            var request = Requests.GetAddress(coin, network, address);
-            var result = GetSync<GetBtcAddressResponse>(request);
-            if (coin != BtcSimilarCoin.Bch && result?.Payload != null)
-            {
-                Debug.Assert(result.Payload.Legacy == null);
-            }
-            return result;
+            var request = Requests.GetAddress(networkCoin, address);
+            return GetSync<T>(request);
         }
 
-        public GetEthAddressResponse GetAddress(EthSimilarCoin coin, EthSimilarNetwork network, string address)
+        public T GenerateAddress<T>(NetworkCoin networkCoin)
+            where T : GenerateAddressResponse, new()
         {
-            var request = Requests.GetAddress(coin, network, address);
-            return GetSync<GetEthAddressResponse>(request);
+            var request = Requests.GenerateAddress(networkCoin);
+            return GetSync<T>(request);
         }
 
-        public GenerateBtcAddressResponse GenerateAddress(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public T GetAddressInMultisignatureAddresses<T>(NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetMultisignatureAddressesResponse, new()
         {
-            var request = Requests.GenerateAddress(coin, network);
-            return GetSync<GenerateBtcAddressResponse>(request);
+            var request = Requests.GetAddressInMultisignatureAddresses(networkCoin, address, skip, limit);
+            return GetSync<T>(request);
         }
 
-        public GetMultisignatureAddressesResponse GetAddressInMultisignatureAddresses(
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string address, int skip = 0, int limit = 50)
+        public T GetAddressTransactions<T>(NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetAddressTransactionsResponse, new()
         {
-            var request = Requests.GetAddressInMultisignatureAddresses(coin, network, address, skip, limit);
-            return GetSync<GetMultisignatureAddressesResponse>(request);
+            var request = Requests.GetAddressTransactions(networkCoin, address, skip, limit);
+            return GetSync<T>(request);
         }
 
-        public GenerateEthAddressResponse GenerateAddress(EthSimilarCoin coin, EthSimilarNetwork network)
+        public T GetAddressBalance<T>(NetworkCoin networkCoin, string address)
+            where T : GetAddressBalanceResponse, new()
         {
-            var request = Requests.GenerateAddress(coin, network);
-            return GetSync<GenerateEthAddressResponse>(request);
+            var request = Requests.GetAddressBalance(networkCoin, address);
+            return GetSync<T>(request);
         }
 
-        public GetBtcAddressTransactionsResponse GetAddressTransactions(
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string address, int skip = 0, int limit = 50)
+        public T GenerateAccount<T>(NetworkCoin networkCoin, string password)
+            where T : GenerateAccountResponse, new()
         {
-            var request = Requests.GetAddressTransactions(coin, network, address, skip, limit);
-            return GetSync<GetBtcAddressTransactionsResponse>(request);
-        }
-
-        public GetEthAddressTransactionsResponse GetAddressTransactions(
-            EthSimilarCoin coin, EthSimilarNetwork network, string address, int skip = 0, int limit = 50)
-        {
-            var request = Requests.GetAddressTransactions(coin, network, address, skip, limit);
-            return GetSync<GetEthAddressTransactionsResponse>(request);
-        }
-
-        public GetEthAddressBalanceResponse GetAddressBalance(EthSimilarCoin coin, EthSimilarNetwork network, string address)
-        {
-            var request = Requests.GetAddressBalance(coin, network, address);
-            return GetSync<GetEthAddressBalanceResponse>(request);
-        }
-
-        public GenerateEthAccountResponse GenerateAccount(EthSimilarCoin coin, EthSimilarNetwork network, string password)
-        {
-            var request = Requests.GenerateAccount(coin, network, password);
-            return GetSync<GenerateEthAccountResponse>(request);
+            var request = Requests.GenerateAccount(networkCoin, password);
+            return GetSync<T>(request);
         }
     }
 }

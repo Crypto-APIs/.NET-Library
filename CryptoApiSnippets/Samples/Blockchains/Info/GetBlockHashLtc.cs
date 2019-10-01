@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetBlockHashLtc()
     {
-      var coin = BtcSimilarCoin.Ltc;
-      var network = BtcSimilarNetwork.Mainnet;
       var blockHash = "f69e755922153ae0fa017322a3ee3463558f74b03dc2aed6261ae6f3dcd3dc53";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Info.GetBlockHash(coin, network, blockHash);
+      var response = manager.Blockchains.Info.GetBlockHash<GetBtcHashInfoResponse>(
+        NetworkCoin.LtcMainNet, blockHash);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetBlockHashLtc executed successfully, " +

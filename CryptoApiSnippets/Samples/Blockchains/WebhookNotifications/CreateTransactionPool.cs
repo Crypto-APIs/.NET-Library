@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void CreateTransactionPool()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Ropsten;
       var url = "http://somepoint.point";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.CreateTransactionPool(
-          coin, network, url);
+      var response = manager.Blockchains.WebhookNotification.CreateTransactionPool<EthWebHookResponse>(
+          NetworkCoin.EthRopsten, url);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateTransactionPool executed successfully, " +

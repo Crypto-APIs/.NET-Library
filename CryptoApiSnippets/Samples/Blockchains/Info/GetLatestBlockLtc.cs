@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetLatestBlockLtc()
     {
-      var coin = BtcSimilarCoin.Ltc;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Info.GetLatestBlock(coin, network);
+      var response = manager.Blockchains.Info.GetLatestBlock<GetBtcHashInfoResponse>(
+        NetworkCoin.LtcMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetLatestBlockLtc executed successfully, " +

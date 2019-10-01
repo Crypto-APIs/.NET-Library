@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetInfoDoge()
     {
-      var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Info.GetInfo(coin, network);
+      var response = manager.Blockchains.Info.GetInfo<GetBtcInfoResponse>(
+        NetworkCoin.DogeMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetInfoDoge executed successfully, " +

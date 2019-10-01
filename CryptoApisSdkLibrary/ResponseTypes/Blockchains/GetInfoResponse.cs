@@ -3,13 +3,16 @@ using System;
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class GetBtcInfoResponse : BaseResponse
+    public abstract class GetInfoResponse : BaseResponse
+    { }
+
+    public class GetBtcInfoResponse : GetInfoResponse
     {
         [DeserializeAs(Name = "payload")]
         public GetBtcInfoPayload Info { get; protected set; }
     }
 
-    public class GetEthInfoResponse : BaseResponse
+    public class GetEthInfoResponse : GetInfoResponse
     {
         [DeserializeAs(Name = "payload")]
         public GetEthInfoPayload Info { get; protected set; }

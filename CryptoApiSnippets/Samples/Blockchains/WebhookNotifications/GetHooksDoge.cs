@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetHooksDoge()
     {
-      var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.GetHooks(coin, network);
+      var response = manager.Blockchains.WebhookNotification.GetHooks<GetBtcHooksResponse>(
+        NetworkCoin.DogeMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? $"GetHooksDoge executed successfully, {response.Hooks.Count} hooks returned"

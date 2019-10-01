@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdkProject.Blockchains.Info.GetBlockHeight
@@ -9,7 +10,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Info.GetBlockHeight
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Info.GetBlockHeigh(Coin, Network, BlockHeight);
+            var response = Manager.Blockchains.Info.GetBlockHeight<GetEthHashInfoResponse>(NetworkCoin, BlockHeight);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -19,15 +20,14 @@ namespace TestCryptoApiSdkProject.Blockchains.Info.GetBlockHeight
         [TestMethod]
         public void IncorrectedBlock()
         {
-            var response = Manager.Blockchains.Info.GetBlockHeigh(Coin, Network, blockHeight: -123);
+            var response = Manager.Blockchains.Info.GetBlockHeight<GetEthHashInfoResponse>(NetworkCoin, blockHeight: -123);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.AreEqual("Block not found", response.ErrorMessage);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract int BlockHeight { get; }
     }
 }

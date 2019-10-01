@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace CryptoApiSnippets.Samples.Blockchains
 {
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void DeleteHookLtc(string hookId)
     {
-      var coin = BtcSimilarCoin.Ltc;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.Delete(
-          coin, network, hookId);
+      var response = manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(
+        NetworkCoin.LtcMainNet, hookId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "DeleteHookLtc executed successfully, Status is \"" +

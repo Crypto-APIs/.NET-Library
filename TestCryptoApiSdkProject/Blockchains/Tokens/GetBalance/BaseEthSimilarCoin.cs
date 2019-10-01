@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -10,7 +11,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetBalance
         [TestMethod]
         public virtual void GeneralTest()
         {
-            var response = Manager.Blockchains.Token.GetBalance(Coin, Network, Address, Contract);
+            var response = Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, Address, Contract);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -22,7 +23,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetBalance
         public void InvalidAddress()
         {
             var address = "1'23";
-            var response = Manager.Blockchains.Token.GetBalance(Coin, Network, address, Contract);
+            var response = Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, address, Contract);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -33,7 +34,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetBalance
         public void InvalidContract()
         {
             var contract = "1'23";
-            var response = Manager.Blockchains.Token.GetBalance(Coin, Network, Address, contract);
+            var response = Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, Address, contract);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -45,7 +46,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetBalance
         public void NullAddress()
         {
             string address = null;
-            Manager.Blockchains.Token.GetBalance(Coin, Network, address, Contract);
+            Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, address, Contract);
         }
 
         [TestMethod]
@@ -53,11 +54,10 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetBalance
         public void NullContract()
         {
             string contract = null;
-            Manager.Blockchains.Token.GetBalance(Coin, Network, Address, contract);
+            Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, Address, contract);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string Address { get; }
         protected abstract string Contract { get; }
     }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,8 +8,6 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public string CreatePaymentDoge()
     {
-      var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Mainnet;
       var fromAddress = "1P3t6SKHuymgrs2vvgFvtsmnKen2C8gKU9";
       var toAddress = "1K2huCLxy9tXWc5Yn8ow6vqPGvTaCXHo5q";
       var callbackUrl = "http://myaddress.com/paymet_forwarding_hook";
@@ -18,8 +17,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var fee = 0.00022827;
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.CreatePayment(
-        coin, network, fromAddress, toAddress, callbackUrl, wallet, 
+      var response = manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+        NetworkCoin.DogeMainNet, fromAddress, toAddress, callbackUrl, wallet, 
         password, confirmations, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)

@@ -1,6 +1,7 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
 {
@@ -15,8 +16,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -31,8 +32,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -47,8 +48,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, fromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, fromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -63,8 +64,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, toAddress, Contract, gasPrice, gasLimit, Password, amount);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, toAddress, Contract, gasPrice, gasLimit, Password, amount);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -79,14 +80,13 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, contract, gasPrice, gasLimit, Password, amount);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, contract, gasPrice, gasLimit, Password, amount);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.AreEqual($"{contract}  is not a valid Ethereum address", response.ErrorMessage);
         }
-
 
         [TestMethod]
         public void InvalidPassword()
@@ -96,8 +96,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double amount = 115;
             var password = "1'23";
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, password, amount);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, password, amount);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -113,8 +113,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, fromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, fromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
         }
 
         [TestMethod]
@@ -126,8 +126,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, toAddress, Contract, gasPrice, gasLimit, Password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, toAddress, Contract, gasPrice, gasLimit, Password, amount);
         }
 
         [TestMethod]
@@ -139,8 +139,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, contract, gasPrice, gasLimit, Password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, contract, gasPrice, gasLimit, Password, amount);
         }
 
         [TestMethod]
@@ -152,8 +152,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double amount = 115;
             string password = null;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, password, amount);
         }
 
         [TestMethod]
@@ -164,8 +164,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
         }
 
         [TestMethod]
@@ -176,8 +176,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 0;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
         }
 
         [TestMethod]
@@ -188,12 +188,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPassword
             double gasLimit = 60000;
             double amount = 0;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
         protected abstract string Contract { get; }

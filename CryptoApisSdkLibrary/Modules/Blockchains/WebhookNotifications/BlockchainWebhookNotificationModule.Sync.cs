@@ -5,79 +5,53 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.WebhookNotifications
 {
     internal partial class BlockchainWebhookNotificationModule
     {
-        public CreateBtcNewBlockWebHookResponse CreateNewBlock(BtcSimilarCoin coin, BtcSimilarNetwork network, string url)
+        public T CreateNewBlock<T>(NetworkCoin networkCoin, string url)
+            where T : WebHookResponse, new()
         {
-            var request = Requests.CreateNewBlock(coin, network, url);
-            return GetSync<CreateBtcNewBlockWebHookResponse>(request);
+            var request = Requests.CreateNewBlock(networkCoin, url);
+            return GetSync<T>(request);
         }
 
-        public CreateEthWebHookResponse CreateNewBlock(EthSimilarCoin coin, EthSimilarNetwork network, string url)
+        public T CreateConfirmedTransaction<T>(NetworkCoin networkCoin, string url, string transactionHash, int confirmationCount)
+            where T : CreateConfirmedTransactionWebHookResponse, new()
         {
-            var request = Requests.CreateNewBlock(coin, network, url);
-            return GetSync<CreateEthWebHookResponse>(request);
+            var request = Requests.CreateConfirmedTransaction(networkCoin, url, transactionHash, confirmationCount);
+            return GetSync<T>(request);
         }
 
-        public CreateBtcConfirmedTransactionWebHookResponse CreateConfirmedTransaction(
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string url,
-            string transactionHash, int confirmationCount)
+        public T CreateAddress<T>(NetworkCoin networkCoin, string url, string address)
+            where T : CreateAddressWebHookResponse, new()
         {
-            var request = Requests.CreateConfirmedTransaction(coin, network, url, transactionHash, confirmationCount);
-            return GetSync<CreateBtcConfirmedTransactionWebHookResponse>(request);
+            var request = Requests.CreateAddress(networkCoin, url, address);
+            return GetSync<T>(request);
         }
 
-        public CreateEthConfirmedTransactionWebHookResponse CreateConfirmedTransaction(
-            EthSimilarCoin coin, EthSimilarNetwork network, string url, string transactionHash, int confirmationCount)
+        public T CreateToken<T>(NetworkCoin networkCoin, string url, string address)
+            where T : CreateEthAddressWebHookResponse, new()
         {
-            var request = Requests.CreateConfirmedTransaction(coin, network, url, transactionHash, confirmationCount);
-            return GetSync<CreateEthConfirmedTransactionWebHookResponse>(request);
+            var request = Requests.CreateToken(networkCoin, url, address);
+            return GetSync<T>(request);
         }
 
-        public CreateBtcAddressWebHookResponse CreateAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string url, string address)
+        public T CreateTransactionPool<T>(NetworkCoin networkCoin, string url)
+            where T : EthWebHookResponse, new()
         {
-            var request = Requests.CreateAddress(coin, network, url, address);
-            return GetSync<CreateBtcAddressWebHookResponse>(request);
+            var request = Requests.CreateTransactionPool(networkCoin, url);
+            return GetSync<T>(request);
         }
 
-        public CreateEthAddressWebHookResponse CreateAddress(EthSimilarCoin coin, EthSimilarNetwork network, string url, string address)
+        public T GetHooks<T>(NetworkCoin networkCoin)
+            where T : GetHooksResponse, new()
         {
-            var request = Requests.CreateAddress(coin, network, url, address);
-            return GetSync<CreateEthAddressWebHookResponse>(request);
+            var request = Requests.GetHooks(networkCoin);
+            return GetSync<T>(request);
         }
 
-        public CreateEthAddressWebHookResponse CreateToken(EthSimilarCoin coin, EthSimilarNetwork network, string url, string address)
+        public T Delete<T>(NetworkCoin networkCoin, string hookId)
+            where T : DeleteWebhookResponse, new()
         {
-            var request = Requests.CreateToken(coin, network, url, address);
-            return GetSync<CreateEthAddressWebHookResponse>(request);
-        }
-
-        public CreateEthWebHookResponse CreateTransactionPool(EthSimilarCoin coin, EthSimilarNetwork network, string url)
-        {
-            var request = Requests.CreateTransactionPool(coin, network, url);
-            return GetSync<CreateEthWebHookResponse>(request);
-        }
-
-        public GetBtcHooksResponse GetHooks(BtcSimilarCoin coin, BtcSimilarNetwork network)
-        {
-            var request = Requests.GetHooks(coin, network);
-            return GetSync<GetBtcHooksResponse>(request);
-        }
-
-        public GetEthHooksResponse GetHooks(EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            var request = Requests.GetHooks(coin, network);
-            return GetSync<GetEthHooksResponse>(request);
-        }
-
-        public DeleteWebhookResponse Delete(BtcSimilarCoin coin, BtcSimilarNetwork network, string hookId)
-        {
-            var request = Requests.Delete(coin, network, hookId);
-            return GetSync<DeleteWebhookResponse>(request);
-        }
-
-        public DeleteWebhookResponse Delete(EthSimilarCoin coin, EthSimilarNetwork network, string hookId)
-        {
-            var request = Requests.Delete(coin, network, hookId);
-            return GetSync<DeleteWebhookResponse>(request);
+            var request = Requests.Delete(networkCoin, hookId);
+            return GetSync<T>(request);
         }
     }
 }

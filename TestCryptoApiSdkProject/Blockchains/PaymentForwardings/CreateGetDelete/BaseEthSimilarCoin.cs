@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -15,35 +16,35 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             var paymentId = response.Payload.Id;
             Assert.IsFalse(string.IsNullOrEmpty(paymentId));
 
-            var doubleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            var doubleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
             Assert.IsNotNull(doubleResponse);
             Assert.IsFalse(string.IsNullOrEmpty(doubleResponse.ErrorMessage));
             Assert.AreEqual($"Payment Forwarding from address '{FromAddress}' already created", doubleResponse.ErrorMessage);
 
-            var tripleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, ToAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            var tripleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, ToAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
             Assert.IsNotNull(tripleResponse);
             Assert.IsFalse(string.IsNullOrEmpty(tripleResponse.ErrorMessage));
             Assert.AreEqual($"'to' address must be different from 'from' address", tripleResponse.ErrorMessage);
 
             try
             {
-                var getResponse = Manager.Blockchains.PaymentForwarding.GetPayments(Coin, Network);
+                var getResponse = Manager.Blockchains.PaymentForwarding.GetPayments<GetEthPaymentsResponse>(NetworkCoin);
                 Assert.IsTrue(string.IsNullOrEmpty(getResponse.ErrorMessage));
                 Assert.IsTrue(getResponse.Payments.Any());
                 Assert.IsNotNull(getResponse.Payments.FirstOrDefault(h =>
                     h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)));
 
-                var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments(Coin, Network);
+                var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments<GetEthHistoricalPaymentsResponse>(NetworkCoin);
                 Assert.IsTrue(string.IsNullOrEmpty(getHistoricalResponse.ErrorMessage));
                 Assert.IsTrue(getHistoricalResponse.Payments.Any());
                 Assert.IsNotNull(getHistoricalResponse.Payments.FirstOrDefault(h =>
@@ -51,7 +52,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             }
             finally
             {
-                var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment(Coin, Network, paymentId);
+                var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteEthPaymentResponse>(NetworkCoin, paymentId);
                 Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
                 Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
                 Assert.AreEqual("ok", deleteResponse.Payload.Message);
@@ -65,8 +66,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, fromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, fromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -80,8 +81,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var toAddress = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, toAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, toAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -96,8 +97,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var callbackUrl = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, callbackUrl, Password, Confirmations, GasPrice, GasLimit); // todo: I don't know what password
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, callbackUrl, Password, Confirmations, GasPrice, GasLimit); // todo: I don't know what password
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -111,8 +112,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var password = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, password, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, password, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -124,8 +125,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, fromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, fromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -133,8 +134,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, toAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, toAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -142,8 +143,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullCallbackUrl()
         {
             string callbackUrl = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, callbackUrl, Password, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, callbackUrl, Password, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -151,8 +152,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullPassword()
         {
             string password = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, password, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, password, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -163,8 +164,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var confirmations = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, Password, confirmations);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, confirmations);
         }
 
         [TestMethod]
@@ -175,8 +176,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var gasPrice = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, gasPrice);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, gasPrice);
         }
 
         [TestMethod]
@@ -187,12 +188,11 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var gasLimit = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, gasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, gasLimit);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         private string CallbackUrl { get; } = "http://myaddress.com/paymet_forwarding_hook";
         private string Password { get; } = "SECRET123456";
         private int Confirmations { get; } = 2;
@@ -205,7 +205,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             {
                 if (_fromAddress == null)
                 {
-                    _fromAddress = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+                    _fromAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
                     Assert.IsNotNull(_fromAddress);
                 }
                 return _fromAddress;
@@ -218,7 +218,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             {
                 if (_toAddress == null)
                 {
-                    _toAddress = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+                    _toAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
                     Assert.IsNotNull(_toAddress);
                 }
                 return _toAddress;

@@ -2,7 +2,10 @@
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class GenerateEthAccountResponse : BaseResponse
+    public class GenerateAccountResponse : BaseResponse
+    { }
+
+    public class GenerateEthAccountResponse : GenerateAccountResponse
     {
         [DeserializeAs(Name = "payload")]
         public GenerateEthAccountPayload Payload { get; protected set; }

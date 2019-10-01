@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetAddressDash()
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
       var address = "1DBrYbe5U7LGDcHA5tiLCxivZ7JZAGqGhJ";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GetAddress(
-          coin, network, address);
+      var response = manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(
+          NetworkCoin.DashMainNet, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetAddressDash executed successfully, " +

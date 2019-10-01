@@ -10,29 +10,28 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <summary>
         /// Get token balances of adressess, as well as to transfer tokens from one address to another.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="address">Address with tokens.</param>
         /// <param name="contract">Contract address.</param>
-        GetBalanceTokenResponse GetBalance(EthSimilarCoin coin, EthSimilarNetwork network, string address, string contract);
+        T GetBalance<T>(NetworkCoin networkCoin, string address, string contract)
+            where T : GetBalanceTokenResponse, new();
 
         /// <summary>
         /// Get token balances of adressess, as well as to transfer tokens from one address to another.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="address">Address with tokens.</param>
         /// <param name="contract">Contract address.</param>
-        Task<GetBalanceTokenResponse> GetBalanceAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string address, string contract);
+        Task<T> GetBalanceAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string address, string contract)
+            where T : GetBalanceTokenResponse, new();
 
         /// <summary>
         /// Transfer Tokens using password.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="contract">Contract address.</param>
@@ -40,16 +39,16 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="password">Password.</param>
         /// <param name="amount">The amount of token is per unit.</param>
-        TransferTokensResponse Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string contract, double gasPrice, double gasLimit, string password, double amount);
+        T Transfer<T>(NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string contract, double gasPrice, double gasLimit, string password, double amount)
+            where T : TransferTokensResponse, new();
 
         /// <summary>
         /// Transfer Tokens using password.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="contract">Contract address.</param>
@@ -57,15 +56,15 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="password">Password.</param>
         /// <param name="amount">The amount of token is per unit.</param>
-        Task<TransferTokensResponse> TransferAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string contract, double gasPrice, double gasLimit, string password, double amount);
+        Task<T> TransferAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string contract, double gasPrice, double gasLimit, string password, double amount)
+            where T : TransferTokensResponse, new();
 
         /// <summary>
         /// Transfer Tokens using private key.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="contract">Contract address.</param>
@@ -73,16 +72,16 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="amount">The amount of token is per unit.</param>
         /// <param name="privateKey">Private key.</param>
-        TransferTokensResponse Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string contract, double gasPrice, double gasLimit, double amount, string privateKey);
+        T Transfer<T>(NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string contract, double gasPrice, double gasLimit, double amount, string privateKey)
+            where T : TransferTokensResponse, new();
 
         /// <summary>
         /// Transfer Tokens using private key.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="contract">Contract address.</param>
@@ -90,31 +89,32 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
         /// <param name="gasLimit">Gas limit.</param>
         /// <param name="amount">The amount of token is per unit.</param>
         /// <param name="privateKey">Private key.</param>
-        Task<TransferTokensResponse> TransferAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string contract, double gasPrice, double gasLimit, double amount, string privateKey);
+        Task<T> TransferAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string contract, double gasPrice, double gasLimit, double amount, string privateKey)
+            where T : TransferTokensResponse, new();
 
         /// <summary>
         /// Get list of each transfer for the specified address.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="address">Address with tokens.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        GetTokensResponse GetTokens(EthSimilarCoin coin, EthSimilarNetwork network, string address, int skip = 0, int limit = 50);
+        T GetTokens<T>(NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetTokensResponse, new();
 
         /// <summary>
         /// Get list of each transfer for the specified address.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="address">Address with tokens.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        Task<GetTokensResponse> GetTokensAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string address, int skip = 0, int limit = 50);
+        Task<T> GetTokensAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetTokensResponse, new();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -15,8 +16,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -31,8 +32,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -47,8 +48,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, fromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, fromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -63,8 +64,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, toAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, toAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -79,8 +80,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, contract, gasPrice, gasLimit, amount, PrivateKey);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, contract, gasPrice, gasLimit, amount, PrivateKey);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -96,8 +97,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double amount = 115;
             var privateKey = "1'23";
 
-            var response = Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, privateKey);
+            var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, privateKey);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -113,8 +114,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, fromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, fromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
         }
 
         [TestMethod]
@@ -126,8 +127,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, toAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, toAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
         }
 
         [TestMethod]
@@ -139,8 +140,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, contract, gasPrice, gasLimit, amount, PrivateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, contract, gasPrice, gasLimit, amount, PrivateKey);
         }
 
         [TestMethod]
@@ -152,8 +153,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double amount = 115;
             string privateKey = null;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, privateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, privateKey);
         }
 
         [TestMethod]
@@ -164,8 +165,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
         }
 
         [TestMethod]
@@ -176,8 +177,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 0;
             double amount = 115;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
         }
 
         [TestMethod]
@@ -188,12 +189,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.TransferUsingPrivateKey
             double gasLimit = 60000;
             double amount = 0;
 
-            Manager.Blockchains.Token.Transfer(
-                Coin, Network, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
+            Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
+                NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
         protected abstract string Contract { get; }

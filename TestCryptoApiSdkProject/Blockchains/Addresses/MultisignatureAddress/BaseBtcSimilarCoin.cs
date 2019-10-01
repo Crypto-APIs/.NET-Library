@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -12,8 +13,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.MultisignatureAddress
         public void TestInvalidAddress()
         {
             var address = "qwe";
-            var response = Manager.Blockchains.Address.GetAddressInMultisignatureAddresses(
-                Coin, Network, address);
+            var response = Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
+                NetworkCoin, address);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -24,24 +25,23 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.MultisignatureAddress
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void TestBtcNullAddress()
         {
-            Manager.Blockchains.Address.GetAddressInMultisignatureAddresses(
-                Coin, Network, null);
+            Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
+                NetworkCoin, null);
         }
 
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Blockchains.Address.GetAddressInMultisignatureAddresses(
-                Coin, Network, Address);
+            return Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
+                NetworkCoin, Address);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Blockchains.Address.GetAddressInMultisignatureAddresses(
-                Coin, Network, Address, limit: limit);
+            return Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
+                NetworkCoin, Address, limit: limit);
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string Address { get; }
     }
 }

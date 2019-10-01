@@ -2,7 +2,10 @@
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class EstimateGasContractResponse : BaseResponse
+    public abstract class EstimateGasContractResponse : BaseResponse
+    { }
+
+    public class EthEstimateGasContractResponse : EstimateGasContractResponse
     {
         [DeserializeAs(Name = "payload")]
         public EstimateGasContract Payload { get; protected set; }

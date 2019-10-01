@@ -4,7 +4,10 @@ using System.Collections.Generic;
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class GetBtcAddressTransactionsResponse : BaseCollectionResponse
+    public abstract class GetAddressTransactionsResponse : BaseCollectionResponse
+    { }
+
+    public class GetBtcAddressTransactionsResponse : GetAddressTransactionsResponse
     {
         [DeserializeAs(Name = "payload")]
         public List<BtcTransaction> Transactions { get; protected set; } = new List<BtcTransaction>();
@@ -12,7 +15,7 @@ namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
         protected override IEnumerable<object> GetItems => Transactions;
     }
 
-    public class GetEthAddressTransactionsResponse : BaseCollectionResponse
+    public class GetEthAddressTransactionsResponse : GetAddressTransactionsResponse
     {
         [DeserializeAs(Name = "payload")]
         public List<EthTransaction> Transactions { get; protected set; } = new List<EthTransaction>();

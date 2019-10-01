@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetAddressLtc()
     {
-      var coin = BtcSimilarCoin.Ltc;
-      var network = BtcSimilarNetwork.Mainnet;
       var address = "LgRynKyCZKWCpoX4bVenXzRYujt4GpHWuF";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GetAddress(
-          coin, network, address);
+      var response = manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(
+          NetworkCoin.LtcMainNet, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetAddressLtc executed successfully, " +

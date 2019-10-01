@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class GetBtcHashInfoResponse : BaseResponse
+    public abstract class GetHashInfoResponse : BaseResponse
+    { }
+
+    public class GetBtcHashInfoResponse : GetHashInfoResponse
     {
         [DeserializeAs(Name = "payload")]
         public GetBtcHashInfoPayload HashInfo { get; protected set; }
     }
 
-    public class GetEthHashInfoResponse : BaseResponse
+    public class GetEthHashInfoResponse : GetHashInfoResponse
     {
         [DeserializeAs(Name = "payload")]
         public GetEthHashInfoPayload HashInfo { get; protected set; }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void DeletePaymentDash(string paymentId)
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.DeletePayment(
-        coin, network, paymentId);
+      var response = manager.Blockchains.PaymentForwarding.DeletePayment<DeleteBtcPaymentResponse>(
+        NetworkCoin.DashMainNet, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "DeletePaymentDash executed successfully, status is " +

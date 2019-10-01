@@ -158,45 +158,45 @@ namespace CryptoApiSnippets
             snippets.RemoveAddressesDash(dashWallet, dashAddresses[0]);
             snippets.DeleteWalletDash(dashWallet);
 
-            var btcHdWallet = snippets.CreateHierarchicalDeterministicWalletBtc();
-            snippets.GetHierarchicalDeterministicWalletsBtc();
-            snippets.GetHierarchicalDeterministicWalletBtc(btcHdWallet);
-            // snippets.AddHierarchicalDeterministicBtcAddress(); todo: this is not implemented?
-            snippets.GenerateHierarchicalDeterministicAddressesBtc(btcHdWallet);
-            // snippets.RemoveHierarchicalDeterministicBtcAddresses(btcHdWallet, btcHdAddresses[0]); todo: this is not implemented?
-            snippets.DeleteHierarchicalDeterministicWalletBtc(btcHdWallet);
+            var btcHdWallet = snippets.CreateHdWalletBtc();
+            snippets.GetHdWalletsBtc();
+            snippets.GetHdWalletBtc(btcHdWallet);
+            // snippets.AddHdBtcAddress(); todo: this is not implemented?
+            snippets.GenerateHdAddressesBtc(btcHdWallet);
+            // snippets.RemoveHdBtcAddresses(btcHdWallet, btcHdAddresses[0]); todo: this is not implemented?
+            snippets.DeleteHdWalletBtc(btcHdWallet);
 
-            var bchHdWallet = snippets.CreateHierarchicalDeterministicWalletBch();
-            snippets.GetHierarchicalDeterministicWalletsBch();
-            snippets.GetHierarchicalDeterministicWalletBch(bchHdWallet);
-            // snippets.AddHierarchicalDeterministicBchAddress(); todo: this is not implemented?
-            snippets.GenerateHierarchicalDeterministicAddressesBch(bchHdWallet);
-            // snippets.RemoveHierarchicalDeterministicBchAddresses(bchHdWallet, bchHdAddresses[0]); todo: this is not implemented?
-            snippets.DeleteHierarchicalDeterministicWalletBch(bchHdWallet);
+            var bchHdWallet = snippets.CreateHdWalletBch();
+            snippets.GetHdWalletsBch();
+            snippets.GetHdWalletBch(bchHdWallet);
+            // snippets.AddHdBchAddress(); todo: this is not implemented?
+            snippets.GenerateHdAddressesBch(bchHdWallet);
+            // snippets.RemoveHdBchAddresses(bchHdWallet, bchHdAddresses[0]); todo: this is not implemented?
+            snippets.DeleteHdWalletBch(bchHdWallet);
 
-            var ltcHdWallet = snippets.CreateHierarchicalDeterministicWalletLtc();
-            snippets.GetHierarchicalDeterministicWalletsLtc();
-            snippets.GetHierarchicalDeterministicWalletLtc(ltcHdWallet);
-            // snippets.AddHierarchicalDeterministicLtcAddress(); todo: this is not implemented?
-            snippets.GenerateHierarchicalDeterministicAddressesLtc(ltcHdWallet);
-            // snippets.RemoveHierarchicalDeterministicLtcAddresses(ltcHdWallet, ltcHdAddresses[0]); todo: this is not implemented?
-            snippets.DeleteHierarchicalDeterministicWalletLtc(ltcHdWallet);
+            var ltcHdWallet = snippets.CreateHdWalletLtc();
+            snippets.GetHdWalletsLtc();
+            snippets.GetHdWalletLtc(ltcHdWallet);
+            // snippets.AddHdLtcAddress(); todo: this is not implemented?
+            snippets.GenerateHdAddressesLtc(ltcHdWallet);
+            // snippets.RemoveHdLtcAddresses(ltcHdWallet, ltcHdAddresses[0]); todo: this is not implemented?
+            snippets.DeleteHdWalletLtc(ltcHdWallet);
 
-            var dogeHdWallet = snippets.CreateHierarchicalDeterministicWalletDoge();
-            snippets.GetHierarchicalDeterministicWalletsDoge();
-            snippets.GetHierarchicalDeterministicWalletDoge(dogeHdWallet);
-            // snippets.AddHierarchicalDeterministicDogeAddress(); todo: this is not implemented?
-            snippets.GenerateHierarchicalDeterministicAddressesDoge(dogeHdWallet);
-            // snippets.RemoveHierarchicalDeterministicDogeAddresses(dogeHdWallet, dogeHdAddresses[0]); todo: this is not implemented?
-            snippets.DeleteHierarchicalDeterministicWalletDoge(dogeHdWallet);
+            var dogeHdWallet = snippets.CreateHdWalletDoge();
+            snippets.GetHdWalletsDoge();
+            snippets.GetHdWalletDoge(dogeHdWallet);
+            // snippets.AddHdDogeAddress(); todo: this is not implemented?
+            snippets.GenerateHdAddressesDoge(dogeHdWallet);
+            // snippets.RemoveHdDogeAddresses(dogeHdWallet, dogeHdAddresses[0]); todo: this is not implemented?
+            snippets.DeleteHdWalletDoge(dogeHdWallet);
 
-            var dashHdWallet = snippets.CreateHierarchicalDeterministicWalletDash();
-            snippets.GetHierarchicalDeterministicWalletsDash();
-            snippets.GetHierarchicalDeterministicWalletDash(dashHdWallet);
-            // snippets.AddHierarchicalDeterministicDashAddress(); todo: this is not implemented?
-            snippets.GenerateHierarchicalDeterministicAddressesDash(dashHdWallet);
-            // snippets.RemoveHierarchicalDeterministicDashAddresses(dashHdWallet, dashHdAddresses[0]); todo: this is not implemented?
-            snippets.DeleteHierarchicalDeterministicWalletDash(dashHdWallet);
+            var dashHdWallet = snippets.CreateHdWalletDash();
+            snippets.GetHdWalletsDash();
+            snippets.GetHdWalletDash(dashHdWallet);
+            // snippets.AddHdDashAddress(); todo: this is not implemented?
+            snippets.GenerateHdAddressesDash(dashHdWallet);
+            // snippets.RemoveHdDashAddresses(dashHdWallet, dashHdAddresses[0]); todo: this is not implemented?
+            snippets.DeleteHdWalletDash(dashHdWallet);
         }
 
         private static void RunTransactionBlockchainsFeatures(BlockchainSnippets snippets)

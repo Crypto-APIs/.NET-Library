@@ -30,6 +30,6 @@ test:
   - cd bin\Release
   - '& "$env:MSTEST_PATH" /testcontainer:"$env:TEST_PROJECT_NAME".dll /resultsfile:"$env:TRX_FILENAME"'
   after_script:
-  - '& "$env:FAULTED_TESTS_PUBLISHER" bin\Release\"$env:TRX_FILENAME"'
+  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\bin\Release\$env:TRX_FILENAME"'
   dependencies:
   - build

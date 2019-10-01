@@ -7,74 +7,57 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
 {
     internal partial class BlockchainPaymentForwardingModule
     {
-        public Task<CreateBtcPaymentResponse> CreatePaymentAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string fromAddress, string toAddress,
+        public Task<T> CreatePaymentAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
             string callbackUrl, string wallet, string password, int confirmations, double? fee = null)
+            where T : CreateBtcPaymentResponse, new()
         {
-            var request = Requests.CreatePayment(coin, network, fromAddress, toAddress, callbackUrl,
+            var request = Requests.CreatePayment(networkCoin, fromAddress, toAddress, callbackUrl,
                 wallet, password, confirmations, fee);
-            return GetAsyncResponse<CreateBtcPaymentResponse>(request, cancellationToken);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthPaymentResponse> CreatePaymentAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public Task<T> CreatePaymentAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
             string callbackUrl, string password, int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new()
         {
-            var request = Requests.CreatePayment(coin, network, fromAddress, toAddress, callbackUrl,
+            var request = Requests.CreatePayment(networkCoin, fromAddress, toAddress, callbackUrl,
                 password, confirmations, gasPrice, gasLimit);
-            return GetAsyncResponse<CreateEthPaymentResponse>(request, cancellationToken);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthPaymentResponse> CreatePaymentUsingPrivateKeyAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public Task<T> CreatePaymentUsingPrivateKeyAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
             string callbackUrl, string privateKey, int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new()
         {
             var request = Requests.CreatePaymentUsingPrivateKey(
-                coin, network, fromAddress, toAddress, callbackUrl,
+                networkCoin, fromAddress, toAddress, callbackUrl,
                 privateKey, confirmations, gasPrice, gasLimit);
-            return GetAsyncResponse<CreateEthPaymentResponse>(request, cancellationToken);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetBtcPaymentsResponse> GetPaymentsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public Task<T> GetPaymentsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetPaymentsResponse, new()
         {
-            var request = Requests.GetPayments(coin, network);
-            return GetAsyncResponse<GetBtcPaymentsResponse>(request, cancellationToken);
+            var request = Requests.GetPayments(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetEthPaymentsResponse> GetPaymentsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network)
+        public Task<T> GetHistoricalPaymentsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetHistoricalPaymentsResponse, new()
         {
-            var request = Requests.GetPayments(coin, network);
-            return GetAsyncResponse<GetEthPaymentsResponse>(request, cancellationToken);
+            var request = Requests.GetHistoricalPayments(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetBtcHistoricalPaymentsResponse> GetHistoricalPaymentsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public Task<T> DeletePaymentAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string paymentId)
+            where T : DeletePaymentResponse, new()
         {
-            var request = Requests.GetHistoricalPayments(coin, network);
-            return GetAsyncResponse<GetBtcHistoricalPaymentsResponse>(request, cancellationToken);
-        }
-
-        public Task<GetEthHistoricalPaymentsResponse> GetHistoricalPaymentsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            var request = Requests.GetHistoricalPayments(coin, network);
-            return GetAsyncResponse<GetEthHistoricalPaymentsResponse>(request, cancellationToken);
-        }
-
-        public Task<DeleteBtcPaymentResponse> DeletePaymentAsync(CancellationToken cancellationToken,
-        BtcSimilarCoin coin, BtcSimilarNetwork network, string paymentId)
-        {
-            var request = Requests.DeletePayment(coin, network, paymentId);
-            return GetAsyncResponse<DeleteBtcPaymentResponse>(request, cancellationToken);
-        }
-
-        public Task<DeleteEthPaymentResponse> DeletePaymentAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string paymentId)
-        {
-            var request = Requests.DeletePayment(coin, network, paymentId);
-            return GetAsyncResponse<DeleteEthPaymentResponse>(request, cancellationToken);
+            var request = Requests.DeletePayment(networkCoin, paymentId);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -13,8 +14,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -28,8 +29,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, fromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, fromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -43,8 +44,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var toAddress = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, toAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, toAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -58,8 +59,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var callbackUrl = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -73,8 +74,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var privateKey = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -86,8 +87,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
         public void TestEthNullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, fromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, fromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -95,8 +96,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
         public void TestEthNullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, toAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, toAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -104,8 +105,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
         public void TestEthNullCallbackUrl()
         {
             string callbackUrl = null;
-            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -113,10 +114,9 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
         public void TestEthNullPrivateKey()
         {
             string privateKey = null;
-            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
         }
-
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A Confirmations was inappropriately allowed.")]
@@ -126,8 +126,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var confirmations = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, PrivateKey, confirmations);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, PrivateKey, confirmations);
         }
 
         [TestMethod]
@@ -138,8 +138,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var gasPrice = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, gasPrice);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, gasPrice);
         }
 
         [TestMethod]
@@ -150,12 +150,11 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
                 return;
 
             var gasLimit = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, gasLimit);
+            Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, gasLimit);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         private string PrivateKey { get; } = "0x17de216dff24b36c35af535c7d4d9d36f57326f3ee8aaf7fd373715c27a15b7e";
         private string CallbackUrl { get; } = "http://myaddress.com/paymet_forwarding_hook";
         private int Confirmations { get; } = 2;
@@ -168,7 +167,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
             {
                 if (_fromAddress == null)
                 {
-                    _fromAddress = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+                    _fromAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
                     Assert.IsNotNull(_fromAddress);
                 }
                 return _fromAddress;
@@ -181,7 +180,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateUsingPriv
             {
                 if (_toAddress == null)
                 {
-                    _toAddress = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+                    _toAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
                     Assert.IsNotNull(_toAddress);
                 }
                 return _toAddress;

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetPaymentsBch()
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.GetPayments(coin, network);
+      var response = manager.Blockchains.PaymentForwarding.
+        GetPayments<GetBtcPaymentsResponse>(NetworkCoin.BchMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetPaymentsBch executed successfully, " +

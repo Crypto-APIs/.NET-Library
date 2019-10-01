@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdkProject.Blockchains.Info.GetInfo
@@ -9,14 +10,13 @@ namespace TestCryptoApiSdkProject.Blockchains.Info.GetInfo
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Info.GetInfo(EthSimilarCoin.Eth, EthSimilarNetwork.Mainnet);
+            var response = Manager.Blockchains.Info.GetInfo<GetEthInfoResponse>(NetworkCoin);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.IsFalse(string.IsNullOrEmpty(response.Info.Chain));
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
     }
 }

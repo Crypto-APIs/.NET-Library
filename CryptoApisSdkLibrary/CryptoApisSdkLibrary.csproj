@@ -54,6 +54,7 @@
     <Compile Include="DataTypes\ArbitrageInfo.cs" />
     <Compile Include="DataTypes\BtcTransaction.cs" />
     <Compile Include="DataTypes\BtcUnconfirmedTransaction.cs" />
+    <Compile Include="DataTypes\NetworkCoin.cs" />
     <Compile Include="DataTypes\EthTransaction.cs" />
     <Compile Include="DataTypes\Fee.cs" />
     <Compile Include="Modules\Blockchains\Addresses\BlockchainAddressModule.Async.cs" />
@@ -92,10 +93,8 @@
     <Compile Include="ResponseTypes\Blockchains\SignBtcTransactionResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\BtcDecodeTransactionResponse.cs" />
     <Compile Include="ResponseTypes\BaseCollectionResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateBtcConfirmedTransactionWebHookResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateBtcNewBlockWebHookResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateEthAddressWebHookResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateEthConfirmedTransactionWebHookResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\CreateConfirmedTransactionWebHookResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\BtcWebHookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\EthTransactionInfoResponse.cs" />
     <Compile Include="DataTypes\Exceptions\UndefineMatchTypeException.cs" />
     <Compile Include="DataTypes\MatchType.cs" />
@@ -126,15 +125,11 @@
     <Compile Include="RequestTypes\EstimateTransactionRequest.cs" />
     <Compile Include="RequestTypes\PushTransactionRequest.cs" />
     <Compile Include="RequestTypes\SendEthTransactionRequest.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateBtcAddressWebHookResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\CreateAddressWebHookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\CreateEthTransactionResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateEthPaymentResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\CreateEthWebHookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetBtcHistoricalPaymentsResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetMultisignatureAddressesResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetBtcHooksResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetEthHooksResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\DeleteEthPaymentResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\GetHooksResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\DeleteBtcPaymentResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\DeleteWebhookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetTokensResponse.cs" />
@@ -148,8 +143,6 @@
     <Compile Include="ResponseTypes\Blockchains\PendingTransactionsResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetEthTransactionInfosResponse.cs" />
     <Compile Include="DataTypes\EthTransactionInfo.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetEthHistoricalPaymentsResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetEthPaymentsResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetBtcPaymentsResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\CreateBtcPaymentResponse.cs" />
     <Compile Include="RequestTypes\CreateBtcTransactionRequest.cs" />
@@ -178,7 +171,7 @@
     <Compile Include="ResponseTypes\Blockchains\GetEthAddressBalanceResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GenerateAddressResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetAddressTransactionsResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetBtcAddressResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\GetAddressResponse.cs" />
     <Compile Include="Modules\Blockchains\Transactions\BlockchainTransactionModule.cs" />
     <Compile Include="Modules\Blockchains\Transactions\IBlockchainTransactionModule.cs" />
     <Compile Include="Modules\Blockchains\PaymentForwardings\BlockchainPaymentForwardingModule.cs" />

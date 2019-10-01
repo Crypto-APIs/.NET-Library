@@ -6,8 +6,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Info.GetBlockHeight
     [TestClass]
     public class EthRopsten : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Ropsten;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRopsten;
         protected override int BlockHeight { get; } = 1;
     }
 }

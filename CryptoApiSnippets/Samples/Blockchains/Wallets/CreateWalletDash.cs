@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,8 +8,6 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public string CreateWalletDash()
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
       var walletName = "DemoDashWallet";
       var addresses = new[]
       {
@@ -17,8 +16,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       };
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Wallet.CreateWallet(
-        coin, network, walletName, addresses);
+      var response = manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(
+        NetworkCoin.DashMainNet, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateWalletDash executed successfully, " +

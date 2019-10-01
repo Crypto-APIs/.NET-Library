@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,12 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetAddressInMultisignatureAddressesDoge()
     {
-      var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Testnet;
       var address = "mfX9XpSGvUSJQSL3UMgW3kqER52KWhAYM9";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GetAddressInMultisignatureAddresses(
-        coin, network, address, skip: 0, limit: 10);
+      var response = manager.Blockchains.Address.
+        GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
+          NetworkCoin.DogeTestNet, address, skip: 0, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetAddressInMultisignatureAddressesDoge executed successfully, " +

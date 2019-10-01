@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetBlockHeightBch()
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
       var blockHeight = 548249;
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Info.GetBlockHeigh(coin, network, blockHeight);
+      var response = manager.Blockchains.Info.GetBlockHeight<GetBtcHashInfoResponse>(
+        NetworkCoin.BchMainNet, blockHeight);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetBlockHeightBch executed successfully, " +

@@ -1,6 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateNewBlock
 {
@@ -10,7 +11,7 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateNewBloc
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.WebhookNotification.CreateNewBlock(Coin, Network, Url);
+            var response = Manager.Blockchains.WebhookNotification.CreateNewBlock<BtcWebHookResponse>(NetworkCoin, Url);
 
             Assert.IsNotNull(response);
             if (IsAdditionalPackagePlan)
@@ -32,11 +33,10 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateNewBloc
         public void NullUrl()
         {
             string url = null;
-            Manager.Blockchains.WebhookNotification.CreateNewBlock(Coin, Network, url);
+            Manager.Blockchains.WebhookNotification.CreateNewBlock<BtcWebHookResponse>(NetworkCoin, url);
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         private string Url { get; } = "http://www.mocky.io/v2/5b0d4b5f3100006e009d55f5";
     }
 }

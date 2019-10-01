@@ -6,8 +6,7 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateAddress
     [TestClass]
     public class EthMain : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Mainnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthMainNet;
         protected override string Address { get; } = "0xe9aaa8f53ee7f758bd1967c470436208d881a6ae";
 
     }

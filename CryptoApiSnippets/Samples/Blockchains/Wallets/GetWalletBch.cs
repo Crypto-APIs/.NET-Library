@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetWalletBch(string walletName)
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Wallet.GetWalletInfo(
-        coin, network, walletName);
+      var response = manager.Blockchains.Wallet.GetWalletInfo<WalletInfoResponse>(
+        NetworkCoin.BchMainNet, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetWalletBch executed successfully, " +

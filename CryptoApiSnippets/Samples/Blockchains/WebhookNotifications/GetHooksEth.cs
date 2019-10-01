@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetHooksEth()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Ropsten;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.GetHooks(coin, network);
+      var response = manager.Blockchains.WebhookNotification.GetHooks<GetEthHooksResponse>(
+        NetworkCoin.EthRopsten);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? $"GetHooksEth executed successfully, {response.Hooks.Count} hooks returned"

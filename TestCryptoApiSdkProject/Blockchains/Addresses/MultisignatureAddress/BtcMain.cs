@@ -7,7 +7,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.MultisignatureAddress
     public class BtcMain : BaseBtcSimilarCoin
     {
         protected override string Address { get; } = "1DUb2YYbQA1jjaNYzVXLZ7ZioEhLXtbUru";
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Btc;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Mainnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BtcMainNet;
     }
 }

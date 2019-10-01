@@ -2,13 +2,17 @@
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class GenerateBtcAddressResponse : BaseResponse
+    public abstract class GenerateAddressResponse : BaseResponse
+    {
+    }
+
+    public class GenerateBtcAddressResponse : GenerateAddressResponse
     {
         [DeserializeAs(Name = "payload")]
         public GenerateBtcAddressPayload Payload { get; protected set; }
     }
 
-    public class GenerateEthAddressResponse : BaseResponse
+    public class GenerateEthAddressResponse : GenerateAddressResponse
     {
         [DeserializeAs(Name = "payload")]
         public GenerateEthAddressPayload Payload { get; protected set; }

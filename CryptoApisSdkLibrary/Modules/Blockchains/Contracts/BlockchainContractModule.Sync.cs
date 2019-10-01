@@ -5,18 +5,20 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
 {
     internal partial class BlockchainContractModule
     {
-        public EstimateGasContractResponse EstimateGas(EthSimilarCoin coin, EthSimilarNetwork network)
+        public T EstimateGas<T>(NetworkCoin networkCoin)
+            where T : EstimateGasContractResponse, new()
         {
-            var request = Requests.EstimateGas(coin, network);
-            return GetSync<EstimateGasContractResponse>(request);
+            var request = Requests.EstimateGas(networkCoin);
+            return GetSync<T>(request);
         }
 
-        public DeployContractResponse Deploy(EthSimilarCoin coin, EthSimilarNetwork network,
+        public T Deploy<T>(NetworkCoin networkCoin,
             string fromAddress, double gasPrice, double gasLimit, string privateKey, string byteCode)
+            where T : DeployContractResponse, new()
         {
-            var request = Requests.Deploy(coin, network,
+            var request = Requests.Deploy(networkCoin,
                 fromAddress, gasPrice, gasLimit, privateKey, byteCode);
-            return GetSync<DeployContractResponse>(request);
+            return GetSync<T>(request);
         }
     }
 }

@@ -7,7 +7,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.AddressTransactions
     public class DogeTest : BaseBtcSimilarCoin
     {
         protected override string Address { get; } = "nsXYgWCuBVSYxD1rWz543EFkfxcPV9PC2y";
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Doge;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DogeTestNet;
     }
 }

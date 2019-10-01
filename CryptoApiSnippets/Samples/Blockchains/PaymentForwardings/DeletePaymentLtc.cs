@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void DeletePaymentLtc(string paymentId)
     {
-      var coin = BtcSimilarCoin.Ltc;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.DeletePayment(
-        coin, network, paymentId);
+      var response = manager.Blockchains.PaymentForwarding.DeletePayment<DeleteBtcPaymentResponse>(
+        NetworkCoin.LtcMainNet, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "DeletePaymentLtc executed successfully, status is " +

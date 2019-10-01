@@ -7,58 +7,32 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Info
 {
     internal partial class BlockchainInfoModule
     {
-        public Task<GetBtcInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public Task<T> GetInfoAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetInfoResponse, new()
         {
-            var request = Requests.GetInfo(coin, network);
-            return GetAsyncResponse<GetBtcInfoResponse>(request, cancellationToken);
+            var request = Requests.GetInfo(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetEthInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network)
+        public Task<T> GetBlockHashAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string blockHash)
+            where T : GetHashInfoResponse, new()
         {
-            var request = Requests.GetInfo(coin, network);
-            return GetAsyncResponse<GetEthInfoResponse>(request, cancellationToken);
+            var request = Requests.GetBlockHash(networkCoin, blockHash);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetBtcHashInfoResponse> GetBlockHashAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string blockHash)
+        public Task<T> GetBlockHeightAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, int blockHeight)
+            where T : GetHashInfoResponse, new()
         {
-            var request = Requests.GetBlockHash(coin, network, blockHash);
-            return GetAsyncResponse<GetBtcHashInfoResponse>(request, cancellationToken);
+            var request = Requests.GetBlockHeight(networkCoin, blockHeight);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetEthHashInfoResponse> GetBlockHashAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string blockHash)
+        public Task<T> GetLatestBlockAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetHashInfoResponse, new()
         {
-            var request = Requests.GetBlockHash(coin, network, blockHash);
-            return GetAsyncResponse<GetEthHashInfoResponse>(request, cancellationToken);
-        }
-
-        public Task<GetBtcHashInfoResponse> GetBlockHeighAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, int blockHeight)
-        {
-            var request = Requests.GetBlockHeight(coin, network, blockHeight);
-            return GetAsyncResponse<GetBtcHashInfoResponse>(request, cancellationToken);
-        }
-
-        public Task<GetEthHashInfoResponse> GetBlockHeighAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight)
-        {
-            var request = Requests.GetBlockHeight(coin, network, blockHeight);
-            return GetAsyncResponse<GetEthHashInfoResponse>(request, cancellationToken);
-        }
-
-        public Task<GetBtcHashInfoResponse> GetLatestBlockAsync(CancellationToken cancellationToken, BtcSimilarCoin coin, BtcSimilarNetwork network)
-        {
-            var request = Requests.GetLatestBlock(coin, network);
-            return GetAsyncResponse<GetBtcHashInfoResponse>(request, cancellationToken);
-        }
-
-        public Task<GetEthHashInfoResponse> GetLatestBlockAsync(CancellationToken cancellationToken, EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            var request = Requests.GetLatestBlock(coin, network);
-            return GetAsyncResponse<GetEthHashInfoResponse>(request, cancellationToken);
+            var request = Requests.GetLatestBlock(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
     }
 }

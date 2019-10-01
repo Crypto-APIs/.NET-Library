@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var walletName = GetRandomWalletName();
-            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet(Coin, Network, walletName, 2, Password);
+            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, 2, Password);
             Assert.IsNotNull(fromWallet);
             try
             {
@@ -26,35 +27,35 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 var toAddress = addresses[1].Address;
                 Assert.IsNotNull(toAddress);
 
-                var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                    Coin, Network, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
+                var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                    NetworkCoin, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
 
                 Assert.IsNotNull(response);
                 Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
                 Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
                 var paymentId = response.Payload.Id;
 
-                var doubleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                    Coin, Network, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
+                var doubleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                    NetworkCoin, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
                 Assert.IsNotNull(doubleResponse);
                 Assert.IsFalse(string.IsNullOrEmpty(doubleResponse.ErrorMessage));
                 Assert.AreEqual($"Payment Forwarding from address '{fromAddress}' already created", doubleResponse.ErrorMessage);
 
-                var tripleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                    Coin, Network, toAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
+                var tripleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                    NetworkCoin, toAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
                 Assert.IsNotNull(tripleResponse);
                 Assert.IsFalse(string.IsNullOrEmpty(tripleResponse.ErrorMessage));
                 Assert.AreEqual($"'to' address must be different from 'from' address", tripleResponse.ErrorMessage);
 
                 try
                 {
-                    var getResponse = Manager.Blockchains.PaymentForwarding.GetPayments(Coin, Network);
+                    var getResponse = Manager.Blockchains.PaymentForwarding.GetPayments<GetBtcPaymentsResponse>(NetworkCoin);
                     Assert.IsNotNull(getResponse);
                     Assert.IsTrue(getResponse.Payments.Any());
                     Assert.IsNotNull(getResponse.Payments.FirstOrDefault(h =>
                         h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)));
 
-                    var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments(Coin, Network);
+                    var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments<GetBtcHistoricalPaymentsResponse>(NetworkCoin);
                     Assert.IsTrue(string.IsNullOrEmpty(getHistoricalResponse.ErrorMessage));
                     //Assert.IsTrue(getHistoricalResponse.Payments.Any());
                     //Assert.IsNotNull(getHistoricalResponse.Payments.FirstOrDefault(h =>
@@ -62,7 +63,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 }
                 finally
                 {
-                    var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment(Coin, Network, paymentId);
+                    var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteBtcPaymentResponse>(NetworkCoin, paymentId);
                     Assert.IsNotNull(deleteResponse);
                     Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
                     Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
@@ -71,7 +72,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             }
             finally
             {
-                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteHdWallet(Coin, Network, fromWallet.Wallet.Name);
+                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, fromWallet.Wallet.Name);
                 Assert.IsNotNull(fromWalletDelete);
                 Assert.IsTrue(string.IsNullOrEmpty(fromWalletDelete.ErrorMessage));
                 Assert.AreEqual($"Wallet {walletName} was successfully deleted!", fromWalletDelete.Payload.Message);
@@ -85,8 +86,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, fromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, fromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -100,8 +101,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var toAddress = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, toAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, toAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -115,8 +116,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var callbackUrl = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, callbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, callbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -130,8 +131,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var wallet = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, wallet, Password, Confirmations, Fee);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, wallet, Password, Confirmations, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -146,8 +147,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var confirmations = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, confirmations, Fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, confirmations, Fee);
         }
 
         [TestMethod]
@@ -158,8 +159,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var fee = 0;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, fee);
         }
 
         [TestMethod]
@@ -169,8 +170,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var password = "qwe";
-            var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), password, Confirmations, Fee);
+            var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), password, Confirmations, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -184,7 +185,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 return;
 
             var walletName = GetRandomWalletName();
-            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet(Coin, Network, walletName, 2, Password);
+            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, 2, Password);
             Assert.IsNotNull(fromWallet);
             try
             {
@@ -193,8 +194,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
                 var toAddress = fromWallet.Wallet.Addresses.LastOrDefault()?.Address;
                 Assert.IsNotNull(toAddress);
                 var wrongPassword = "qweSdf34$dfw#";
-                var response = Manager.Blockchains.PaymentForwarding.CreatePayment(
-                    Coin, Network, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, wrongPassword, Confirmations, Fee);
+                var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                    NetworkCoin, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, wrongPassword, Confirmations, Fee);
 
                 Assert.IsNotNull(response);
                 Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -202,7 +203,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             }
             finally
             {
-                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteHdWallet(Coin, Network, fromWallet.Wallet.Name);
+                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, fromWallet.Wallet.Name);
                 Assert.IsNotNull(fromWalletDelete);
                 Assert.IsTrue(string.IsNullOrEmpty(fromWalletDelete.ErrorMessage));
                 Assert.AreEqual($"Wallet {walletName} was successfully deleted!", fromWalletDelete.Payload.Message);
@@ -214,8 +215,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, fromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, fromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
         }
 
         [TestMethod]
@@ -223,8 +224,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, toAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, toAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
         }
 
         [TestMethod]
@@ -232,8 +233,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullCallbackUrl()
         {
             string callbackUrl = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, callbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, callbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
         }
 
         [TestMethod]
@@ -241,8 +242,8 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullWallet()
         {
             string wallet = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, wallet, Password, Confirmations, Fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, wallet, Password, Confirmations, Fee);
         }
 
         [TestMethod]
@@ -250,12 +251,11 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
         public void TestBtcNullPassword()
         {
             string password = null;
-            Manager.Blockchains.PaymentForwarding.CreatePayment(
-                Coin, Network, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), password, Confirmations, Fee);
+            Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
+                NetworkCoin, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), password, Confirmations, Fee);
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         private string CallbackUrl { get; } = "http://myaddress.com/paymet_forwarding_hook";
         private string Password { get; } = "SECRET123456";
         private int Confirmations { get; } = 2;
@@ -272,7 +272,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             {
                 if (_fromAddress == null)
                 {
-                    _fromAddress = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+                    _fromAddress = Manager.Blockchains.Address.GenerateAddress<GenerateBtcAddressResponse>(NetworkCoin).Payload.Address;
                     Assert.IsNotNull(_fromAddress);
                 }
                 return _fromAddress;
@@ -285,7 +285,7 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.CreateGetDelete
             {
                 if (_toAddress == null)
                 {
-                    _toAddress = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+                    _toAddress = Manager.Blockchains.Address.GenerateAddress<GenerateBtcAddressResponse>(NetworkCoin).Payload.Address;
                     Assert.IsNotNull(_toAddress);
                 }
                 return _toAddress;

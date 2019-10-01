@@ -8,91 +8,90 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
 {
     internal partial class BlockchainWalletModule
     {
-        public Task<WalletInfoResponse> CreateWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, IEnumerable<string> addresses)
+        public Task<T> CreateWalletAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
+            where T : WalletInfoResponse, new()
         {
-            var request = Requests.CreateWallet(coin, network, walletName, addresses);
-            return GetAsyncResponse<WalletInfoResponse>(request, cancellationToken);
+            var request = Requests.CreateWallet(networkCoin, walletName, addresses);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<HdWalletInfoResponse> CreateHdWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, int addressCount, string password)
+        public Task<T> CreateHdWalletAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, int addressCount, string password)
+            where T : HdWalletInfoResponse, new()
         {
-            var request = Requests.CreateHdWallet(coin, network, walletName, addressCount, password);
-            return GetAsyncResponse<HdWalletInfoResponse>(request, cancellationToken);
+            var request = Requests.CreateHdWallet(networkCoin, walletName, addressCount, password);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetWalletsResponse> GetWalletsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public Task<T> GetWalletsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetWalletsResponse, new()
         {
-            var request = Requests.GetWallets(coin, network);
-            return GetAsyncResponse<GetWalletsResponse>(request, cancellationToken);
+            var request = Requests.GetWallets(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetHdWalletsResponse> GetHdWalletsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public Task<T> GetHdWalletsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetHdWalletsResponse, new()
         {
-            var request = Requests.GetHdWallets(coin, network);
-            return GetAsyncResponse<GetHdWalletsResponse>(request, cancellationToken);
+            var request = Requests.GetHdWallets(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<WalletInfoResponse> GetWalletInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public Task<T> GetWalletInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName)
+            where T : WalletInfoResponse, new()
         {
-            var request = Requests.GetWalletInfo(coin, network, walletName);
-            return GetAsyncResponse<WalletInfoResponse>(request, cancellationToken);
+            var request = Requests.GetWalletInfo(networkCoin, walletName);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<HdWalletInfoResponse> GetHdWalletInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public Task<T> GetHdWalletInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName)
+            where T : HdWalletInfoResponse, new()
         {
-            var request = Requests.GetHdWalletInfo(coin, network, walletName);
-            return GetAsyncResponse<HdWalletInfoResponse>(request, cancellationToken);
+            var request = Requests.GetHdWalletInfo(networkCoin, walletName);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<WalletInfoResponse> AddAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses)
+        public Task<T> AddAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
+            where T : WalletInfoResponse, new()
         {
-            var request = Requests.AddAddress(coin, network, walletName, addresses);
-            return GetAsyncResponse<WalletInfoResponse>(request, cancellationToken);
+            var request = Requests.AddAddress(networkCoin, walletName, addresses);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GenerateWalletAddressResponse> GenerateAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public Task<T> GenerateAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName)
+            where T : GenerateWalletAddressResponse, new()
         {
-            var request = Requests.GenerateAddress(coin, network, walletName);
-            return GetAsyncResponse<GenerateWalletAddressResponse>(request, cancellationToken);
+            var request = Requests.GenerateAddress(networkCoin, walletName);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<HdWalletInfoResponse> GenerateHdAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, int addressCount, string encryptedPassword)
+        public Task<T> GenerateHdAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, int addressCount, string encryptedPassword)
+            where T : HdWalletInfoResponse, new()
         {
-            var request = Requests.GenerateHdAddress(coin, network, walletName, addressCount, encryptedPassword);
-            return GetAsyncResponse<HdWalletInfoResponse>(request, cancellationToken);
+            var request = Requests.GenerateHdAddress(networkCoin, walletName, addressCount, encryptedPassword);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<RemoveAddressResponse> RemoveAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, string address)
+        public Task<T> RemoveAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, string address)
+            where T : RemoveAddressResponse, new()
         {
-            var request = Requests.RemoveAddress(coin, network, walletName, address);
-            return GetAsyncResponse<RemoveAddressResponse>(request, cancellationToken);
+            var request = Requests.RemoveAddress(networkCoin, walletName, address);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<DeleteWalletResponse> DeleteWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
+        public Task<T> DeleteWalletAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName)
+            where T : DeleteWalletResponse, new()
         {
-            var request = Requests.DeleteWallet(coin, network, walletName);
-            return GetAsyncResponse<DeleteWalletResponse>(request, cancellationToken);
-        }
-
-        public Task<DeleteWalletResponse> DeleteHdWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName)
-        {
-            var request = Requests.DeleteHdWallet(coin, network, walletName);
-            return GetAsyncResponse<DeleteWalletResponse>(request, cancellationToken);
+            var request = Requests.DeleteWallet(networkCoin, walletName);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
     }
 }

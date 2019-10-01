@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void DeleteHookDash(string hookId)
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.Delete(
-          coin, network, hookId);
+      var response = manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(
+        NetworkCoin.DashMainNet, hookId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "DeleteHookDash executed successfully, Status is \"" +

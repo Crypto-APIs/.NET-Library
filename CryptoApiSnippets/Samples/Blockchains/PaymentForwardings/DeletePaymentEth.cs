@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void DeletePaymentEth(string paymentId)
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Rinkeby;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.DeletePayment(
-        coin, network, paymentId);
+      var response = manager.Blockchains.PaymentForwarding.DeletePayment<DeleteEthPaymentResponse>(
+        NetworkCoin.EthRinkeby, paymentId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "DeletePaymentEth executed successfully, status is " +

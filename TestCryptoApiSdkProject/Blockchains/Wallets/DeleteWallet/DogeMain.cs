@@ -6,7 +6,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.DeleteWallet
     [TestClass]
     public class DogeMain : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Doge;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Mainnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DogeMainNet;
     }
 }

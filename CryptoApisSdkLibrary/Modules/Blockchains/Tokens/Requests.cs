@@ -13,37 +13,37 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
             Request = request;
         }
 
-        public IRestRequest GetBalance(EthSimilarCoin coin, EthSimilarNetwork network, string address, string contract)
+        public IRestRequest GetBalance(NetworkCoin networkCoin, string address, string contract)
         {
             if (string.IsNullOrEmpty(address))
                 throw new ArgumentNullException(nameof(address));
             if (string.IsNullOrEmpty(contract))
                 throw new ArgumentNullException(nameof(contract));
 
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/tokens/{address}/{contract}/balance");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/tokens/{address}/{contract}/balance");
         }
 
-        public IRestRequest Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public IRestRequest Transfer(NetworkCoin networkCoin, string fromAddress, string toAddress,
             string contract, double gasPrice, double gasLimit, string password, double amount)
         {
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password));
 
-            return InternalTransfer(coin, network,
+            return InternalTransfer(networkCoin,
                 new TransferTokensWithPasswordRequest(fromAddress, toAddress, contract, gasPrice, gasLimit, amount, password));
         }
 
-        public IRestRequest Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public IRestRequest Transfer(NetworkCoin networkCoin, string fromAddress, string toAddress,
             string contract, double gasPrice, double gasLimit, double amount, string privateKey)
         {
             if (string.IsNullOrEmpty(privateKey))
                 throw new ArgumentNullException(nameof(privateKey));
 
-            return InternalTransfer(coin, network,
+            return InternalTransfer(networkCoin,
                 new TransferTokensWithPrivateKeyRequest(fromAddress, toAddress, contract, gasPrice, gasLimit, amount, privateKey));
         }
 
-        public IRestRequest GetTokens(EthSimilarCoin coin, EthSimilarNetwork network, string address, int skip, int limit)
+        public IRestRequest GetTokens(NetworkCoin networkCoin, string address, int skip, int limit)
         {
             if (string.IsNullOrEmpty(address))
                 throw new ArgumentNullException(nameof(address));
@@ -52,15 +52,14 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
 
-            var request = Request.Get($"{Consts.Blockchain}/{coin}/{network}/tokens/address/{address}");
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/tokens/address/{address}");
             request.AddQueryParameter("skip", skip.ToString());
             request.AddQueryParameter("limit", limit.ToString());
 
             return request;
         }
 
-        private IRestRequest InternalTransfer(EthSimilarCoin coin, EthSimilarNetwork network,
-            TransferTokensRequest request)
+        private IRestRequest InternalTransfer(NetworkCoin networkCoin, TransferTokensRequest request)
         {
             if (string.IsNullOrEmpty(request.FromAddress))
                 throw new ArgumentNullException(nameof(request.FromAddress));
@@ -75,7 +74,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
             if (request.Amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(request.Amount), request.Amount, "Amount is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/tokens/transfer");
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/tokens/transfer");
         }
 
         private CryptoApiRequest Request { get; }

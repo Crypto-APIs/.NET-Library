@@ -1,6 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateToken
 {
@@ -10,10 +11,10 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateToken
         [TestMethod]
         public void GeneralTest()
         {
-            var address = Manager.Blockchains.Address.GenerateAddress(Coin, Network).Payload.Address;
+            var address = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
             Assert.IsNotNull(address);
 
-            var response = Manager.Blockchains.WebhookNotification.CreateToken(Coin, Network, Url, address);
+            var response = Manager.Blockchains.WebhookNotification.CreateToken<CreateEthAddressWebHookResponse>(NetworkCoin, Url, address);
 
             Assert.IsNotNull(response);
             if (IsAdditionalPackagePlan)
@@ -36,7 +37,7 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateToken
         {
             string url = null;
             var address = "some address";
-            Manager.Blockchains.WebhookNotification.CreateToken(Coin, Network, url, address);
+            Manager.Blockchains.WebhookNotification.CreateToken<CreateEthAddressWebHookResponse>(NetworkCoin, url, address);
         }
 
         [TestMethod]
@@ -44,11 +45,10 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateToken
         public void NullAddress()
         {
             string address = null;
-            Manager.Blockchains.WebhookNotification.CreateToken(Coin, Network, Url, address);
+            Manager.Blockchains.WebhookNotification.CreateToken<CreateEthAddressWebHookResponse>(NetworkCoin, Url, address);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         private string Url { get; } = "http://www.mocky.io/v2/5b0d4b5f3100006e009d55f5";
     }
 }

@@ -7,7 +7,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.AddressTransactions
     public class DashMain : BaseBtcSimilarCoin
     {
         protected override string Address { get; } = "bitcoincash:qqu895wz2c07j0snr7auuyaqel09x28nrcwklyv03w";
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Dash;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Mainnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DashMainNet;
     }
 }

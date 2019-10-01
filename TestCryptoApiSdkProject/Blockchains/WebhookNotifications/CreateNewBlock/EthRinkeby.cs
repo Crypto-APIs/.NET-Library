@@ -6,7 +6,6 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateNewBloc
     [TestClass]
     public class EthRinkeby : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Rinkeby;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRinkeby;
     }
 }

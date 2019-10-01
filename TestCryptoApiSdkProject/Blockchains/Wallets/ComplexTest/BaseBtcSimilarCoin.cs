@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CryptoApisSdkLibrary.DataTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
 {
@@ -12,15 +13,15 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
         [TestMethod]
         public void GeneralTest()
         {
-            var walletName = $"{Coin}{Network}GeneralWallet";
-            var response = Manager.Blockchains.Wallet.CreateWallet(Coin, Network, walletName, Addresses);
+            var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}GeneralWallet";
+            var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.AreEqual(walletName, response.Wallet.Name);
 
             // GetWallets
-            var getWalletsResponse = Manager.Blockchains.Wallet.GetWallets(Coin, Network);
+            var getWalletsResponse = Manager.Blockchains.Wallet.GetWallets<GetWalletsResponse>(NetworkCoin);
 
             Assert.IsNotNull(getWalletsResponse);
             Assert.IsTrue(string.IsNullOrEmpty(getWalletsResponse.ErrorMessage));
@@ -28,7 +29,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
             Assert.AreEqual(1, getWalletsResponse.Wallets.Count(w => w == walletName));
 
             // GetWalletInfo
-            var getResponse = Manager.Blockchains.Wallet.GetWalletInfo(Coin, Network, walletName);
+            var getResponse = Manager.Blockchains.Wallet.GetWalletInfo<WalletInfoResponse>(NetworkCoin, walletName);
 
             Assert.IsNotNull(getResponse);
             Assert.IsTrue(string.IsNullOrEmpty(getResponse.ErrorMessage));
@@ -36,7 +37,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
             Assert.AreEqual(Addresses.Count, getResponse.Wallet.Addresses.Count);
 
             // AddAddress
-            var addResponse = Manager.Blockchains.Wallet.AddAddress(Coin, Network, walletName, AddedAddresses);
+            var addResponse = Manager.Blockchains.Wallet.AddAddress<WalletInfoResponse>(NetworkCoin, walletName, AddedAddresses);
 
             Assert.IsNotNull(addResponse);
             Assert.IsTrue(string.IsNullOrEmpty(addResponse.ErrorMessage));
@@ -44,7 +45,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
             Assert.AreEqual(Addresses.Count + AddedAddresses.Count, addResponse.Wallet.Addresses.Count);
 
             // GenerateAddress
-            var generateResponse = Manager.Blockchains.Wallet.GenerateAddress(Coin, Network, walletName);
+            var generateResponse = Manager.Blockchains.Wallet.GenerateAddress<GenerateWalletAddressResponse>(NetworkCoin, walletName);
 
             Assert.IsNotNull(generateResponse);
             Assert.IsTrue(string.IsNullOrEmpty(generateResponse.ErrorMessage));
@@ -53,14 +54,14 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
 
             // RemoveAddress
             var removingAddress = Addresses[0];
-            var removeResponse = Manager.Blockchains.Wallet.RemoveAddress(Coin, Network, walletName, removingAddress);
+            var removeResponse = Manager.Blockchains.Wallet.RemoveAddress<RemoveAddressResponse>(NetworkCoin, walletName, removingAddress);
 
             Assert.IsNotNull(removeResponse);
             Assert.IsTrue(string.IsNullOrEmpty(removeResponse.ErrorMessage));
             Assert.AreEqual($"address {removingAddress} was successfully deleted!", removeResponse.Payload.Message);
 
             // DeleteWallet
-            var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet(Coin, Network, walletName);
+            var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
 
             Assert.IsNotNull(deleteResponse);
             Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
@@ -70,12 +71,12 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
         [TestMethod]
         public void InvalidAddress()
         {
-            var walletName = $"{Coin}{Network}InvalidAddressWallet";
+            var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}InvalidAddressWallet";
             var addresses = new List<string>
             {
                 "qwe"
             };
-            var response = Manager.Blockchains.Wallet.CreateWallet(Coin, Network, walletName, addresses);
+            var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -86,30 +87,30 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
         [ExpectedException(typeof(ArgumentNullException), "An Addresses was inappropriately allowed.")]
         public void EmptyAddresses()
         {
-            var walletName = $"{Coin}{Network}EmptyAddressesWallet";
-            Manager.Blockchains.Wallet.CreateWallet(Coin, Network, walletName, addresses: new List<string>());
+            var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}EmptyAddressesWallet";
+            Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses: new List<string>());
         }
 
         [TestMethod]
         public void ExistingWallet()
         {
             // Create the first wallet
-            var walletName = $"{Coin}{Network}ExistingWallet";
-            var response = Manager.Blockchains.Wallet.CreateWallet(Coin, Network, walletName, Addresses);
+            var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}ExistingWallet";
+            var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.AreEqual(walletName, response.Wallet.Name);
 
             // Create the second wallet
-            var response2 = Manager.Blockchains.Wallet.CreateWallet(Coin, Network, walletName, Addresses);
+            var response2 = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
 
             Assert.IsNotNull(response2);
             Assert.IsFalse(string.IsNullOrEmpty(response2.ErrorMessage));
             Assert.AreEqual($"Wallet '{walletName}' already exists", response2.ErrorMessage);
 
             // DeleteWallet
-            var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet(Coin, Network, walletName);
+            var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
 
             Assert.IsNotNull(deleteResponse);
             Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
@@ -119,19 +120,18 @@ namespace TestCryptoApiSdkProject.Blockchains.Wallets.ComplexTest
         [TestMethod]
         public void DuplicateAddresses()
         {
-            var walletName = $"{Coin}{Network}DuplicateAddressesWallet";
+            var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}DuplicateAddressesWallet";
             var addresses = new List<string>();
             addresses.AddRange(Addresses);
             addresses.AddRange(Addresses);
 
-            var response = Manager.Blockchains.Wallet.CreateWallet(Coin, Network, walletName, addresses);
+            var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses);
 
             Assert.IsNotNull(response);
             Assert.AreEqual("'addresses' contains duplicate address(es)", response.ErrorMessage);
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract List<string> Addresses { get; }
         protected abstract List<string> AddedAddresses { get; }
     }

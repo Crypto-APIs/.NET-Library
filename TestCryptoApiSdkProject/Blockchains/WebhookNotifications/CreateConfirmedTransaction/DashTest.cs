@@ -6,8 +6,7 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.CreateConfirm
     [TestClass]
     public class DashTest : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Dash;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DashTestNet;
         protected override string TransactionHash { get; } = "9bba7c4a8121f4bf9819ea481f4abd5e501db40815e23a70dfcb9e99eb9ba05e";
     }
 }

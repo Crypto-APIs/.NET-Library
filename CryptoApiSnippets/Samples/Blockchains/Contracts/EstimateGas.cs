@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void EstimateGas()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Rinkeby;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Contract.EstimateGas(coin, network);
+      var response = manager.Blockchains.Contract.EstimateGas<EthEstimateGasContractResponse>(
+        NetworkCoin.EthRinkeby);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "EstimateGas executed successfully, " +

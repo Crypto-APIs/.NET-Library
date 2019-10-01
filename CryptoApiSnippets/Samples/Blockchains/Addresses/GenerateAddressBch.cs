@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GenerateAddressBch()
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GenerateAddress(coin, network);
+      var response = manager.Blockchains.Address.GenerateAddress<GenerateBtcAddressResponse>(
+        NetworkCoin.BchMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GenerateAddressBch executed successfully, " +

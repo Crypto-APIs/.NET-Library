@@ -10,8 +10,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <summary>
         /// Create new payment.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="callbackUrl">Callback url addres that will be called after forwarding is processed.</param>
@@ -19,17 +18,17 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <param name="password">Wallet password.</param>
         /// <param name="confirmations">After how many confirmations to execute the payment forwarding</param>
         /// <param name="fee">What fee should be paid for the transaction (in BTC)</param>
-        CreateBtcPaymentResponse CreatePayment(BtcSimilarCoin coin, BtcSimilarNetwork network,
+        T CreatePayment<T>(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string wallet, string password,
-            int confirmations, double? fee = null);
+            int confirmations, double? fee = null)
+            where T : CreateBtcPaymentResponse, new();
 
         /// <summary>
         /// Create new payment.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="callbackUrl">Callback url addres that will be called after forwarding is processed.</param>
@@ -37,15 +36,15 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <param name="password">Wallet password.</param>
         /// <param name="confirmations">After how many confirmations to execute the payment forwarding</param>
         /// <param name="fee">What fee should be paid for the transaction (in BTC)</param>
-        Task<CreateBtcPaymentResponse> CreatePaymentAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string fromAddress, string toAddress,
-            string callbackUrl, string wallet, string password, int confirmations, double? fee = null);
+        Task<T> CreatePaymentAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string callbackUrl, string wallet, string password, int confirmations, double? fee = null)
+            where T : CreateBtcPaymentResponse, new();
 
         /// <summary>
         /// Create new payment using password.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="callbackUrl">Callback url addres that will be called after forwarding is processed.</param>
@@ -53,17 +52,17 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <param name="confirmations">After how many confirmations to execute the payment forwarding</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        CreateEthPaymentResponse CreatePayment(EthSimilarCoin coin, EthSimilarNetwork network,
+        T CreatePayment<T>(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string password,
-            int confirmations, double? gasPrice = null, double? gasLimit = null);
+            int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new();
 
         /// <summary>
         /// Create new payment using password.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="callbackUrl">Callback url addres that will be called after forwarding is processed.</param>
@@ -71,15 +70,15 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <param name="confirmations">After how many confirmations to execute the payment forwarding</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        Task<CreateEthPaymentResponse> CreatePaymentAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string callbackUrl, string password, int confirmations, double? gasPrice = null, double? gasLimit = null);
+        Task<T> CreatePaymentAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string callbackUrl, string password, 
+            int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new();
 
         /// <summary>
         /// Create new payment using password.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="callbackUrl">Callback url addres that will be called after forwarding is processed.</param>
@@ -87,17 +86,17 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <param name="confirmations">After how many confirmations to execute the payment forwarding</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        CreateEthPaymentResponse CreatePaymentUsingPrivateKey(EthSimilarCoin coin, EthSimilarNetwork network,
+        T CreatePaymentUsingPrivateKey<T>(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string callbackUrl, string privateKey,
-            int confirmations, double? gasPrice = null, double? gasLimit = null);
+            int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new();
 
         /// <summary>
         /// Create new payment using password.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="callbackUrl">Callback url addres that will be called after forwarding is processed.</param>
@@ -105,114 +104,60 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
         /// <param name="confirmations">After how many confirmations to execute the payment forwarding</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        Task<CreateEthPaymentResponse> CreatePaymentUsingPrivateKeyAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string callbackUrl, string privateKey, int confirmations, double? gasPrice = null, double? gasLimit = null);
+        Task<T> CreatePaymentUsingPrivateKeyAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string callbackUrl, string privateKey, int confirmations, double? gasPrice = null, double? gasLimit = null)
+            where T : CreateEthPaymentResponse, new();
 
         /// <summary>
         /// Get detailed list of all associated payments.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        GetBtcPaymentsResponse GetPayments(BtcSimilarCoin coin, BtcSimilarNetwork network);
-
-        /// <summary>
-        /// Get detailed list of all associated payments.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        Task<GetBtcPaymentsResponse> GetPaymentsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network);
-
-        /// <summary>
-        /// Get detailed list of all associated payments.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        GetEthPaymentsResponse GetPayments(EthSimilarCoin coin, EthSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T GetPayments<T>(NetworkCoin networkCoin)
+            where T : GetPaymentsResponse, new();
 
         /// <summary>
         /// Get detailed list of all associated payments.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        Task<GetEthPaymentsResponse> GetPaymentsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> GetPaymentsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetPaymentsResponse, new();
 
         /// <summary>
         /// Get detailed list of the latest payments.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        GetBtcHistoricalPaymentsResponse GetHistoricalPayments(BtcSimilarCoin coin, BtcSimilarNetwork network);
-
-        /// <summary>
-        /// Get detailed list of the latest payments.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        Task<GetBtcHistoricalPaymentsResponse> GetHistoricalPaymentsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network);
-
-        /// <summary>
-        /// Get detailed list of the latest payments.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        GetEthHistoricalPaymentsResponse GetHistoricalPayments(EthSimilarCoin coin, EthSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T GetHistoricalPayments<T>(NetworkCoin networkCoin)
+            where T : GetHistoricalPaymentsResponse, new();
 
         /// <summary>
         /// Get detailed list of the latest payments.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        Task<GetEthHistoricalPaymentsResponse> GetHistoricalPaymentsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> GetHistoricalPaymentsAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin)
+            where T : GetHistoricalPaymentsResponse, new();
 
         /// <summary>
         /// Delete existing payment.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="paymentId">Generated UUID when payment forwarding have been created.</param>
-        DeleteBtcPaymentResponse DeletePayment(BtcSimilarCoin coin, BtcSimilarNetwork network, string paymentId);
-
-        /// <summary>
-        /// Delete existing payment.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        /// <param name="paymentId">Generated UUID when payment forwarding have been created.</param>
-        Task<DeleteBtcPaymentResponse> DeletePaymentAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string paymentId);
-
-        /// <summary>
-        /// Delete existing payment.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="paymentId">Generated UUID when payment forwarding have been created.</param>
-        DeleteEthPaymentResponse DeletePayment(EthSimilarCoin coin, EthSimilarNetwork network, string paymentId);
+        T DeletePayment<T>(NetworkCoin networkCoin, string paymentId)
+            where T : DeletePaymentResponse, new();
 
         /// <summary>
         /// Delete existing payment.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="paymentId">Generated UUID when payment forwarding have been created.</param>
-        Task<DeleteEthPaymentResponse> DeletePaymentAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string paymentId);
+        Task<T> DeletePaymentAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string paymentId)
+            where T : DeletePaymentResponse, new();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdkProject.Blockchains.Contracts.EstimateGas
@@ -9,7 +10,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Contracts.EstimateGas
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Contract.EstimateGas(Coin, Network);
+            var response = Manager.Blockchains.Contract.EstimateGas<EthEstimateGasContractResponse>(NetworkCoin);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -17,7 +18,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Contracts.EstimateGas
             Assert.IsTrue(response.Payload.GasPrice > 0);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
     }
 }

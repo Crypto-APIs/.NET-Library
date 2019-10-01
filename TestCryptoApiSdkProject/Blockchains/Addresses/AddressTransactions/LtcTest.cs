@@ -7,7 +7,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.AddressTransactions
     public class LtcTest : BaseBtcSimilarCoin
     {
         protected override string Address { get; } = "n28CWww8GCm5gQszt77RDKDmomkh48yAS7";
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Ltc;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.LtcTestNet;
     }
 }

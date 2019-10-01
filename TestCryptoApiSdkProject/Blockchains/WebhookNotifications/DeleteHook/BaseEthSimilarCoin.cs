@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.DeleteHook
 {
@@ -14,20 +15,20 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.DeleteHook
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var response = Manager.Blockchains.WebhookNotification.GetHooks(Coin, Network);
+            var response = Manager.Blockchains.WebhookNotification.GetHooks<GetEthHooksResponse>(NetworkCoin);
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
 
             foreach (var hook in response.Hooks)
             {
-                var deleteResponse = Manager.Blockchains.WebhookNotification.Delete(Coin, Network, hook.Id);
+                var deleteResponse = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hook.Id);
                 Assert.IsNotNull(deleteResponse);
                 Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
                 Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
                 Assert.AreEqual($"Webhook with id: {hook.Id} was successfully deleted!", deleteResponse.Payload.Message);
             }
 
-            var secondResponse = Manager.Blockchains.WebhookNotification.GetHooks(Coin, Network);
+            var secondResponse = Manager.Blockchains.WebhookNotification.GetHooks<GetEthHooksResponse>(NetworkCoin);
             Assert.IsNotNull(secondResponse);
             Assert.IsTrue(string.IsNullOrEmpty(secondResponse.ErrorMessage));
             Assert.IsFalse(secondResponse.Hooks.Any());
@@ -38,14 +39,14 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.DeleteHook
         public void DeleteNullHookId()
         {
             string hookId = null;
-            Manager.Blockchains.WebhookNotification.Delete(Coin, Network, hookId);
+            Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hookId);
         }
 
         [TestMethod]
         public void DeleteInvalidHookId()
         {
             var hookId = "qwe";
-            var response = Manager.Blockchains.WebhookNotification.Delete(Coin, Network, hookId);
+            var response = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hookId);
 
             Assert.IsNotNull(response);
             if (IsAdditionalPackagePlan)
@@ -62,7 +63,6 @@ namespace TestCryptoApiSdkProject.Blockchains.WebhookNotifications.DeleteHook
             }
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
     }
 }

@@ -2,7 +2,10 @@
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class DeployContractResponse : BaseResponse
+    public abstract class DeployContractResponse : BaseResponse
+    { }
+
+    public class EthDeployContractResponse : DeployContractResponse
     {
         [DeserializeAs(Name = "payload")]
         public DeployContract Payload { get; protected set; }

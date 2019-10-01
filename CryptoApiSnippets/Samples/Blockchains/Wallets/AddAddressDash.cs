@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 using System.Collections.Generic;
 
@@ -8,12 +9,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void AddAddressDash(string walletName, ICollection<string> addresses)
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Wallet.AddAddress(
-        coin, network, walletName, addresses);
+      var response = manager.Blockchains.Wallet.AddAddress<WalletInfoResponse>(
+        NetworkCoin.DashMainNet, walletName, addresses);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "AddAddressDash executed successfully, " +

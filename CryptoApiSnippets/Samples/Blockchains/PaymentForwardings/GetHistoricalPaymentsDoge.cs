@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,10 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetHistoricalPaymentsDoge()
     {
-      var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Testnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.GetHistoricalPayments(
-        coin, network);
+      var response = manager.Blockchains.PaymentForwarding.
+        GetHistoricalPayments<GetBtcHistoricalPaymentsResponse>(
+          NetworkCoin.DogeTestNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetHistoricalPaymentsDoge executed successfully, " +

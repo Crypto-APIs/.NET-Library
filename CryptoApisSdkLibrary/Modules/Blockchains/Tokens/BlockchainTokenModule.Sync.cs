@@ -5,32 +5,36 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Tokens
 {
     internal partial class BlockchainTokenModule
     {
-        public GetBalanceTokenResponse GetBalance(EthSimilarCoin coin, EthSimilarNetwork network, string address, string contract)
+        public T GetBalance<T>(NetworkCoin networkCoin, string address, string contract)
+            where T : GetBalanceTokenResponse, new()
         {
-            var request = Requests.GetBalance(coin, network, address, contract);
-            return GetSync<GetBalanceTokenResponse>(request);
+            var request = Requests.GetBalance(networkCoin, address, contract);
+            return GetSync<T>(request);
         }
 
-        public TransferTokensResponse Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public T Transfer<T>(NetworkCoin networkCoin, string fromAddress, string toAddress,
             string contract, double gasPrice, double gasLimit, string password, double amount)
+            where T : TransferTokensResponse, new()
         {
-            var request = Requests.Transfer(coin, network, fromAddress, toAddress, contract,
+            var request = Requests.Transfer(networkCoin, fromAddress, toAddress, contract,
                 gasPrice, gasLimit, password, amount);
-            return GetSync<TransferTokensResponse>(request);
+            return GetSync<T>(request);
         }
 
-        public TransferTokensResponse Transfer(EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public T Transfer<T>(NetworkCoin networkCoin, string fromAddress, string toAddress,
             string contract, double gasPrice, double gasLimit, double amount, string privateKey)
+            where T : TransferTokensResponse, new()
         {
-            var request = Requests.Transfer(coin, network, fromAddress, toAddress, contract,
+            var request = Requests.Transfer(networkCoin, fromAddress, toAddress, contract,
                 gasPrice, gasLimit, amount, privateKey);
-            return GetSync<TransferTokensResponse>(request);
+            return GetSync<T>(request);
         }
 
-        public GetTokensResponse GetTokens(EthSimilarCoin coin, EthSimilarNetwork network, string address, int skip = 0, int limit = 50)
+        public T GetTokens<T>(NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetTokensResponse, new()
         {
-            var request = Requests.GetTokens(coin, network, address, skip, limit);
-            return GetSync<GetTokensResponse>(request);
+            var request = Requests.GetTokens(networkCoin, address, skip, limit);
+            return GetSync<T>(request);
         }
     }
 }

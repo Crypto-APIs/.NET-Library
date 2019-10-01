@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void RemoveAddressesBch(string walletName, string address)
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Wallet.RemoveAddress(
-        coin, network, walletName, address);
+      var response = manager.Blockchains.Wallet.RemoveAddress<RemoveAddressResponse>(
+        NetworkCoin.BchMainNet, walletName, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "RemoveAddressesBch executed successfully, "

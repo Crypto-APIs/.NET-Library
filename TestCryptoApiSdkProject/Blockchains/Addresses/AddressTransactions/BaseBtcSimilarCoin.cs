@@ -2,6 +2,7 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.Addresses.AddressTransactions
 {
@@ -10,30 +11,34 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.AddressTransactions
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Blockchains.Address.GetAddressTransactions(Coin, Network, Address);
+            return Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
+                NetworkCoin, Address);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Address.GetAddressTransactions(Coin, Network, Address, skip: skip);
+            return Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
+                NetworkCoin, Address, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Blockchains.Address.GetAddressTransactions(Coin, Network, Address, limit: limit);
+            return Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
+                NetworkCoin, Address, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            return Manager.Blockchains.Address.GetAddressTransactions(Coin, Network, Address, skip, limit);
+            return Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
+                NetworkCoin, Address, skip, limit);
         }
 
         [TestMethod]
         public void InvalidAddress()
         {
             var address = "qwe";
-            var response = Manager.Blockchains.Address.GetAddressTransactions(
-                Coin, Network, address);
+            var response = Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
+                NetworkCoin, address);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -44,11 +49,10 @@ namespace TestCryptoApiSdkProject.Blockchains.Addresses.AddressTransactions
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void NullAddress()
         {
-            Manager.Blockchains.Address.GetAddress(Coin, Network, null);
+            Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(NetworkCoin, null);
         }
 
         protected abstract string Address { get; }
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
     }
 }

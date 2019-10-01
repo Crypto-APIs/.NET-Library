@@ -2,7 +2,10 @@
 
 namespace CryptoApisSdkLibrary.ResponseTypes.Blockchains
 {
-    public class GetEthAddressBalanceResponse : BaseResponse
+    public abstract class GetAddressBalanceResponse : BaseResponse
+    { }
+
+    public class GetEthAddressBalanceResponse : GetAddressBalanceResponse
     {
         [DeserializeAs(Name = "payload")]
         public GetEthAddressPayload Payload { get; protected set; }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,11 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetPaymentsEth()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Ropsten;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.PaymentForwarding.GetPayments(coin, network);
+      var response = manager.Blockchains.PaymentForwarding.
+        GetPayments<GetEthPaymentsResponse>(NetworkCoin.EthRopsten);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetPaymentsEth executed successfully, " +

@@ -13,13 +13,13 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
             Request = request;
         }
 
-        public IRestRequest EstimateGas(EthSimilarCoin coin, EthSimilarNetwork network)
+        public IRestRequest EstimateGas(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/contracts/gas");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/contracts/gas");
         }
 
-        public IRestRequest Deploy(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, double gasPrice, double gasLimit, string privateKey, string byteCode)
+        public IRestRequest Deploy(NetworkCoin networkCoin, string fromAddress,
+            double gasPrice, double gasLimit, string privateKey, string byteCode)
         {
             if (string.IsNullOrEmpty(fromAddress))
                 throw new ArgumentNullException(nameof(fromAddress));
@@ -32,7 +32,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
             if (gasLimit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(gasLimit), gasLimit, "GasLimit is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/contracts",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/contracts",
                 new DeployContractRequest(privateKey, fromAddress, gasPrice, gasLimit, byteCode));
         }
 

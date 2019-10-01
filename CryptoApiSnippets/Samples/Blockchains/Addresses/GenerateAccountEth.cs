@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GenerateAccountEth()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Ropsten;
       var password = "password";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Address.GenerateAccount(
-          coin, network, password);
+      var response = manager.Blockchains.Address.GenerateAccount<GenerateEthAccountResponse>(
+        NetworkCoin.EthRopsten, password);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GenerateAccountEth executed successfully, " +

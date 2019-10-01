@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace CryptoApiSnippets.Samples.Blockchains
 {
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void CreateNewBlockEth()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Ropsten;
       var url = "http://somepoint.point";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.WebhookNotification.CreateNewBlock(
-          coin, network, url);
+      var response = manager.Blockchains.WebhookNotification.CreateNewBlock<EthWebHookResponse>(
+        NetworkCoin.EthRopsten, url);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateNewBlockEth executed successfully, HookId is \"" +

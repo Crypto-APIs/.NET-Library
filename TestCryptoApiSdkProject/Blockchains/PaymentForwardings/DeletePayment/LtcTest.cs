@@ -6,7 +6,6 @@ namespace TestCryptoApiSdkProject.Blockchains.PaymentForwardings.DeletePayment
     [TestClass]
     public class LtcTest : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Ltc;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.LtcTestNet;
     }
 }

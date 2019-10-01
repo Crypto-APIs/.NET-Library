@@ -11,242 +11,214 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Wallets
         /// <summary>
         /// Create normal wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addresses">Array of addresses that will be added to wallet.</param>
-        WalletInfoResponse CreateWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses);
+        T CreateWallet<T>(NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
+            where T : WalletInfoResponse, new();
 
         /// <summary>
         /// Create normal wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addresses">Array of addresses that will be added to wallet.</param>
-        Task<WalletInfoResponse> CreateWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses);
+        Task<T> CreateWalletAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
+            where T : WalletInfoResponse, new();
 
         /// <summary>
         /// Create Hierarchical Deterministic (HD) wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addressCount">Number of addresses that should be generated in new wallet.</param>
         /// <param name="password">Wallet password.</param>
-        HdWalletInfoResponse CreateHdWallet(
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, int addressCount, string password);
+        T CreateHdWallet<T>(NetworkCoin networkCoin, string walletName, int addressCount, string password)
+            where T : HdWalletInfoResponse, new();
 
         /// <summary>
         /// Create Hierarchical Deterministic (HD) wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addressCount">Number of addresses that should be generated in new wallet.</param>
         /// <param name="password">Wallet password.</param>
-        Task<HdWalletInfoResponse> CreateHdWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, int addressCount, string password);
+        Task<T> CreateHdWalletAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, int addressCount, string password)
+            where T : HdWalletInfoResponse, new();
 
         /// <summary>
         /// Get list of all wallets.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        GetWalletsResponse GetWallets(BtcSimilarCoin coin, BtcSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T GetWallets<T>(NetworkCoin networkCoin)
+            where T : GetWalletsResponse, new();
 
         /// <summary>
         /// Get list of all wallets.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        Task<GetWalletsResponse> GetWalletsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> GetWalletsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetWalletsResponse, new();
 
         /// <summary>
         /// Get list of all Hierarchical Deterministic (HD) wallets.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        GetHdWalletsResponse GetHdWallets(BtcSimilarCoin coin, BtcSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T GetHdWallets<T>(NetworkCoin networkCoin)
+            where T : GetHdWalletsResponse, new();
 
         /// <summary>
         /// Get list of all Hierarchical Deterministic (HD) wallets.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        Task<GetHdWalletsResponse> GetHdWalletsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> GetHdWalletsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : GetHdWalletsResponse, new();
 
         /// <summary>
         /// Get information about the wallets.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        WalletInfoResponse GetWalletInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        T GetWalletInfo<T>(NetworkCoin networkCoin, string walletName)
+            where T : WalletInfoResponse, new();
 
         /// <summary>
         /// Get information about the wallets.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        Task<WalletInfoResponse> GetWalletInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        Task<T> GetWalletInfoAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
+            where T : WalletInfoResponse, new();
 
         /// <summary>
         /// Get information about the Hierarchical Deterministic (HD) wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        HdWalletInfoResponse GetHdWalletInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        T GetHdWalletInfo<T>(NetworkCoin networkCoin, string walletName)
+            where T : HdWalletInfoResponse, new();
 
         /// <summary>
         /// Get information about the Hierarchical Deterministic (HD) wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        Task<HdWalletInfoResponse> GetHdWalletInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        Task<T> GetHdWalletInfoAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
+            where T : HdWalletInfoResponse, new();
 
         /// <summary>
         /// Add addresses to the wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addresses">Array of addresses that will be added to wallet.</param>
-        WalletInfoResponse AddAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses);
+        T AddAddress<T>(NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
+            where T : WalletInfoResponse, new();
 
         /// <summary>
         /// Add addresses to the wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addresses">Array of addresses that will be added to wallet.</param>
-        Task<WalletInfoResponse> AddAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, IEnumerable<string> addresses);
+        Task<T> AddAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, IEnumerable<string> addresses)
+            where T : WalletInfoResponse, new();
 
         /// <summary>
         /// Add addresses to the normal wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        GenerateWalletAddressResponse GenerateAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        T GenerateAddress<T>(NetworkCoin networkCoin, string walletName)
+            where T : GenerateWalletAddressResponse, new();
 
         /// <summary>
         /// Add addresses to the normal wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        Task<GenerateWalletAddressResponse> GenerateAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        Task<T> GenerateAddressAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
+            where T : GenerateWalletAddressResponse, new();
 
         /// <summary>
         /// Add addresses to the Hierarchical Deterministic (HD) wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addressCount">Count of generated addresses.</param>
         /// <param name="encryptedPassword">Encrypted password</param>
-        HdWalletInfoResponse GenerateHdAddress(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, int addressCount, string encryptedPassword);
+        T GenerateHdAddress<T>(NetworkCoin networkCoin, string walletName, int addressCount, string encryptedPassword)
+            where T : HdWalletInfoResponse, new();
 
         /// <summary>
         /// Add addresses to the Hierarchical Deterministic (HD) wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="addressCount">Count of generated addresses.</param>
         /// <param name="encryptedPassword">Encrypted password</param>
-        Task<HdWalletInfoResponse> GenerateHdAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string walletName, int addressCount, string encryptedPassword);
+        Task<T> GenerateHdAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, int addressCount, string encryptedPassword)
+            where T : HdWalletInfoResponse, new();
 
         /// <summary>
         /// Remove address from the wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="address">Address which should be deleted.</param>
-        RemoveAddressResponse RemoveAddress(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, string address);
+        T RemoveAddress<T>(NetworkCoin networkCoin, string walletName, string address)
+            where T : RemoveAddressResponse, new();
 
         /// <summary>
         /// Remove address from the wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         /// <param name="address">Address which should be deleted.</param>
-        Task<RemoveAddressResponse> RemoveAddressAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName, string address);
+        Task<T> RemoveAddressAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string walletName, string address)
+            where T : RemoveAddressResponse, new();
 
         /// <summary>
         /// Delete wallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        DeleteWalletResponse DeleteWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        T DeleteWallet<T>(NetworkCoin networkCoin, string walletName)
+            where T : DeleteWalletResponse, new();
 
         /// <summary>
-        /// Delete wallet.
+        /// Delete wallet or Hierarchical Deterministic (HD) wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
-        Task<DeleteWalletResponse> DeleteWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
-
-        /// <summary>
-        /// Delete Hierarchical Deterministic (HD) wallet.
-        /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        /// <param name="walletName">Wallet name.</param>
-        DeleteWalletResponse DeleteHdWallet(BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
-
-        /// <summary>
-        /// Delete Hierarchical Deterministic (HD) wallet.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        /// <param name="walletName">Wallet name.</param>
-        Task<DeleteWalletResponse> DeleteHdWalletAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string walletName);
+        Task<T> DeleteWalletAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
+            where T : DeleteWalletResponse, new();
     }
 }

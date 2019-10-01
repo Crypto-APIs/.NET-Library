@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -10,19 +11,19 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetTokens
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Blockchains.Token.GetTokens(Coin, Network, Address);
+            return Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, Address);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Blockchains.Token.GetTokens(Coin, Network, Address, limit: limit);
+            return Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, Address, limit: limit);
         }
 
         [TestMethod]
         public void InvalidAddress()
         {
             var address = "1'23";
-            var response = Manager.Blockchains.Token.GetTokens(Coin, Network, address);
+            var response = Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, address);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -34,11 +35,10 @@ namespace TestCryptoApiSdkProject.Blockchains.Tokens.GetTokens
         public void NullAddress()
         {
             string address = null;
-            Manager.Blockchains.Token.GetTokens(Coin, Network, address);
+            Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, address);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string Address { get; }
     }
 }
