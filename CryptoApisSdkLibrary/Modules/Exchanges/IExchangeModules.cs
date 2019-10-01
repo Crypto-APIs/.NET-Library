@@ -14,7 +14,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported exchanges.</returns>
-        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges"/>
         GetAllExchangesMetaResponse GetExchangesMeta(int skip = 0, int limit = 50);
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported exchanges.</returns>
-        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges"/>
         Task<GetAllExchangesMetaResponse> GetExchangesMetaAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
 
