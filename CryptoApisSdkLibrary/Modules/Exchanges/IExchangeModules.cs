@@ -15,7 +15,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported exchanges.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
-        GetAllExchangesResponse GetExchanges(int skip = 0, int limit = 50);
+        GetAllExchangesMetaResponse GetExchangesMeta(int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get detailed list of all supported exchanges provided by our system.
@@ -26,8 +26,79 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported exchanges.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
-        Task<GetAllExchangesResponse> GetExchangesAsync(CancellationToken cancellationToken, 
+        Task<GetAllExchangesMetaResponse> GetExchangesMetaAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a list of exchanges and symbols which support the given assets as base/quote or quote/base.
+        /// </summary>
+        /// <param name="assetId">Our identifier (UID) of the asset.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-assets"/>
+        GetExchangesSupportingAssetResponse GetExchangesSupportingAsset(string assetId, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a list of exchanges and symbols which support the given assets as base/quote or quote/base.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="assetId">Our identifier (UID) of the asset.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-assets"/>
+        Task<GetExchangesSupportingAssetResponse> GetExchangesSupportingAssetAsync(CancellationToken cancellationToken,
+            string assetId, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a list of exchanges and symbols which support the given assets as base/quote or quote/base.
+        /// </summary>
+        /// <param name="assetId1">Our identifier (UID) of the asset 1.</param>
+        /// <param name="assetId2">Our identifier (UID) of the asset 2.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-pairs"/>
+        GetExchangesSupportingPairsResponse GetExchangesSupportingPairs(string assetId1, string assetId2, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a list of exchanges and symbols which support the given assets as base/quote or quote/base.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="assetId1">Our identifier (UID) of the asset 1.</param>
+        /// <param name="assetId2">Our identifier (UID) of the asset 2.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-pairs"/>
+        Task<GetExchangesSupportingPairsResponse> GetExchangesSupportingPairsAsync(CancellationToken cancellationToken,
+            string assetId1, string assetId2, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a list of symbols which are supported in the given exchange..
+        /// </summary>
+        /// <param name="exchangeId">Our identifier (UID) of the exchange.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols-supported-in-exchange"/>
+        GetExchangesSupportingPairsResponse GetAllSymbolsInExchange(string exchangeId, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a list of symbols which are supported in the given exchange.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchangeId">Our identifier (UID) of the exchange.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols-supported-in-exchange"/>
+        Task<GetExchangesSupportingPairsResponse> GetAllSymbolsInExchangeAsync(CancellationToken cancellationToken,
+            string exchangeId, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get detailed list of all associated assets.
@@ -35,7 +106,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported assets.</returns>
-        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets-base-data"/>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets"/>
         GetAllAssetsResponse GetAssets(int skip = 0, int limit = 50);
 
         /// <summary>
@@ -46,7 +117,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported assets.</returns>
-        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets-base-data"/>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets"/>
         Task<GetAllAssetsResponse> GetAssetsAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
 
@@ -70,6 +141,50 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols"/>
         Task<GetAllSymbolsResponse> GetSymbolsAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get detailed list of all supported exchanges provided by our system.
+        /// </summary>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported exchanges.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
+        GetAllExchangesResponse GetExchanges(int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get detailed list of all supported exchanges provided by our system.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported exchanges.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data"/>
+        Task<GetAllExchangesResponse> GetExchangesAsync(CancellationToken cancellationToken,
+            int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a detailed information for a single supported exchange provided by our system by ID.
+        /// </summary>
+        /// <param name="exchangeId">Our identifier (UID) of the exchange.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported exchanges.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-exchange-details"/>
+        GetExchangeInfoResponse GetExchangeInfo(string exchangeId, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get a detailed information for a single supported exchange provided by our system by ID.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchangeId">Our identifier (UID) of the exchange.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported exchanges.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-exchange-details"/>
+        Task<GetExchangeInfoResponse> GetExchangeInfo(CancellationToken cancellationToken,
+            string exchangeId, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a current time.
@@ -506,7 +621,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with arbitrage info.</returns>
         /// <see cref=""/>
-        Task<GetArbitrageInfoResponse> GetArbitrageInfoAsync(CancellationToken cancellationToken, 
+        Task<GetArbitrageInfoResponse> GetArbitrageInfoAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
     }
 }

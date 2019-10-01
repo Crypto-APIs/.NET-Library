@@ -8,11 +8,32 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
 {
     internal partial class ExchangeModules
     {
-        public Task<GetAllExchangesResponse> GetExchangesAsync(
-            CancellationToken cancellationToken, int skip = 0, int limit = 50)
+        public Task<GetAllExchangesMetaResponse> GetExchangesMetaAsync(CancellationToken cancellationToken, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchanges(skip, limit);
-            return GetAsyncResponse<GetAllExchangesResponse>(request, cancellationToken);
+            var request = Requests.GetExchangesMeta(skip, limit);
+            return GetAsyncResponse<GetAllExchangesMetaResponse>(request, cancellationToken);
+        }
+
+        public Task<GetExchangesSupportingPairsResponse> GetExchangesSupportingPairsAsync(CancellationToken cancellationToken,
+            string assetId1, string assetId2, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchangesSupportingPairs(assetId1, assetId2, skip, limit);
+            return GetAsyncResponse<GetExchangesSupportingPairsResponse>(request, cancellationToken);
+        }
+
+        public Task<GetExchangesSupportingPairsResponse> GetAllSymbolsInExchangeAsync(CancellationToken cancellationToken,
+            string exchangeId, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetAllSymbolsInExchange(exchangeId, skip, limit);
+            return GetAsyncResponse<GetExchangesSupportingPairsResponse>(request, cancellationToken);
+        }
+
+
+        public Task<GetExchangesSupportingAssetResponse> GetExchangesSupportingAssetAsync(CancellationToken cancellationToken,
+            string assetId, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchangesSupportingAsset(assetId, skip, limit);
+            return GetAsyncResponse<GetExchangesSupportingAssetResponse>(request, cancellationToken);
         }
 
         public Task<GetAllAssetsResponse> GetAssetsAsync(CancellationToken cancellationToken,
@@ -27,6 +48,19 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         {
             var request = Requests.GetSymbols(skip, limit);
             return GetAsyncResponse<GetAllSymbolsResponse>(request, cancellationToken);
+        }
+
+        public Task<GetAllExchangesResponse> GetExchangesAsync(
+            CancellationToken cancellationToken, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchanges(skip, limit);
+            return GetAsyncResponse<GetAllExchangesResponse>(request, cancellationToken);
+        }
+
+        public Task<GetExchangeInfoResponse> GetExchangeInfo(CancellationToken cancellationToken, string exchangeId, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchangeInfo(exchangeId, skip, limit);
+            return GetAsyncResponse<GetExchangeInfoResponse>(request, cancellationToken);
         }
 
         public Task<GetExchangeRateResponse> GetExchangeRateAsync(CancellationToken cancellationToken,

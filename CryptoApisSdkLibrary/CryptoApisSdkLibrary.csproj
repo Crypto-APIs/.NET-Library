@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\ArbitrageInfo.cs" />
+    <Compile Include="DataTypes\ExchangeSupportingAsset.cs" />
+    <Compile Include="DataTypes\ExchangeSupportingPairs.cs" />
     <Compile Include="DataTypes\BtcTransaction.cs" />
     <Compile Include="DataTypes\BtcUnconfirmedTransaction.cs" />
     <Compile Include="DataTypes\NetworkCoin.cs" />
@@ -134,6 +136,10 @@
     <Compile Include="ResponseTypes\Blockchains\DeleteWebhookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetTokensResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetHdWalletsResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetExchangeInfoResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetAllExchangesMetaResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetExchangesSupportingAssetResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetExchangesSupportingPairsResponse.cs" />
     <Compile Include="ResponseTypes\ICollectionResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\TransferTokensResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetBalanceTokenResponse.cs" />

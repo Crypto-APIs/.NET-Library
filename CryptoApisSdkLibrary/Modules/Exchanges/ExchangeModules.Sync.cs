@@ -6,10 +6,28 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
 {
     internal partial class ExchangeModules
     {
-        public GetAllExchangesResponse GetExchanges(int skip = 0, int limit = 50)
+        public GetAllExchangesMetaResponse GetExchangesMeta(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchanges(skip, limit);
-            return GetSync<GetAllExchangesResponse>(request);
+            var request = Requests.GetExchangesMeta(skip, limit);
+            return GetSync<GetAllExchangesMetaResponse>(request);
+        }
+
+        public GetExchangesSupportingAssetResponse GetExchangesSupportingAsset(string assetId, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchangesSupportingAsset(assetId, skip, limit);
+            return GetSync<GetExchangesSupportingAssetResponse>(request);
+        }
+
+        public GetExchangesSupportingPairsResponse GetExchangesSupportingPairs(string assetId1, string assetId2, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchangesSupportingPairs(assetId1, assetId2, skip, limit);
+            return GetSync<GetExchangesSupportingPairsResponse>(request);
+        }
+
+        public GetExchangesSupportingPairsResponse GetAllSymbolsInExchange(string exchangeId, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetAllSymbolsInExchange(exchangeId, skip, limit);
+            return GetSync<GetExchangesSupportingPairsResponse>(request);
         }
 
         public GetAllAssetsResponse GetAssets(int skip = 0, int limit = 50)
@@ -22,6 +40,18 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         {
             var request = Requests.GetSymbols(skip, limit);
             return GetSync<GetAllSymbolsResponse>(request);
+        }
+
+        public GetAllExchangesResponse GetExchanges(int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchanges(skip, limit);
+            return GetSync<GetAllExchangesResponse>(request);
+        }
+
+        public GetExchangeInfoResponse GetExchangeInfo(string exchangeId, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetExchangeInfo(exchangeId, skip, limit);
+            return GetSync<GetExchangeInfoResponse>(request);
         }
 
         public GetAllPeriodsResponse GetPeriods(int skip = 0, int limit = 50)
