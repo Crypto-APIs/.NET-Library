@@ -8,9 +8,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
     [TestClass]
     public class BtcTest : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Btc;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
-
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BtcTestNet;
         protected override Dictionary<string, double> InputAddressesDictionary => _inputAddresses ?? (_inputAddresses = new Dictionary<string, double>
         {
             { "",0.54},

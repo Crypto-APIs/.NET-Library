@@ -1,6 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfoByBlockHeightAndTransactionIndex
 {
@@ -10,7 +11,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfoByBlockHeightA
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.GetInfo(Coin, Network, BlockHeight, TransactionIndex);
+            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, BlockHeight, TransactionIndex);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -22,7 +23,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfoByBlockHeightA
         public void InvalidBlockHash()
         {
             var blockHeight = -6530876;
-            Manager.Blockchains.Transaction.GetInfo(Coin, Network, blockHeight, TransactionIndex);
+            Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, blockHeight, TransactionIndex);
         }
 
         [TestMethod]
@@ -30,11 +31,10 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfoByBlockHeightA
         public void InvalidTransactionIndex()
         {
             var transactionIndex = -79;
-            Manager.Blockchains.Transaction.GetInfo(Coin, Network, BlockHeight, transactionIndex);
+            Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, BlockHeight, transactionIndex);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract int BlockHeight { get; }
         protected abstract int TransactionIndex { get; }
     }

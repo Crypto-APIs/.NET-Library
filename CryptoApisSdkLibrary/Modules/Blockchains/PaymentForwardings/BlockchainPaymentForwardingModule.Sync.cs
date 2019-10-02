@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using System.Threading;
 
 namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
 {
@@ -10,9 +11,8 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             int confirmations, double? fee = null)
             where T : CreateBtcPaymentResponse, new()
         {
-            var request = Requests.CreatePayment(networkCoin, fromAddress, toAddress, callbackUrl,
-                wallet, password, confirmations, fee);
-            return GetSync<T>(request);
+            return CreatePaymentAsync<T>(CancellationToken.None, networkCoin, fromAddress, toAddress, callbackUrl,
+                wallet, password, confirmations, fee).GetAwaiter().GetResult();
         }
 
         public T CreatePayment<T>(NetworkCoin networkCoin,
@@ -20,9 +20,8 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             int confirmations, double? gasPrice = null, double? gasLimit = null)
             where T : CreateEthPaymentResponse, new()
         {
-            var request = Requests.CreatePayment(networkCoin, fromAddress, toAddress, callbackUrl,
-                 password, confirmations, gasPrice, gasLimit);
-            return GetSync<T>(request);
+            return CreatePaymentAsync<T>(CancellationToken.None, networkCoin, fromAddress, toAddress, callbackUrl,
+                password, confirmations, gasPrice, gasLimit).GetAwaiter().GetResult();
         }
 
         public T CreatePaymentUsingPrivateKey<T>(NetworkCoin networkCoin,
@@ -30,31 +29,26 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.PaymentForwardings
             int confirmations, double? gasPrice = null, double? gasLimit = null)
             where T : CreateEthPaymentResponse, new()
         {
-            var request = Requests.CreatePaymentUsingPrivateKey(
-                networkCoin, fromAddress, toAddress, callbackUrl,
-                privateKey, confirmations, gasPrice, gasLimit);
-            return GetSync<T>(request);
+            return CreatePaymentUsingPrivateKeyAsync<T>(CancellationToken.None, networkCoin, fromAddress, toAddress,
+                callbackUrl, privateKey, confirmations, gasPrice, gasLimit).GetAwaiter().GetResult();
         }
 
         public T GetPayments<T>(NetworkCoin networkCoin)
             where T : GetPaymentsResponse, new()
         {
-            var request = Requests.GetPayments(networkCoin);
-            return GetSync<T>(request);
+            return GetPaymentsAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
         }
 
         public T GetHistoricalPayments<T>(NetworkCoin networkCoin)
             where T : GetHistoricalPaymentsResponse, new()
         {
-            var request = Requests.GetHistoricalPayments(networkCoin);
-            return GetSync<T>(request);
+            return GetHistoricalPaymentsAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
         }
 
         public T DeletePayment<T>(NetworkCoin networkCoin, string paymentId)
             where T : DeletePaymentResponse, new()
         {
-            var request = Requests.DeletePayment(networkCoin, paymentId);
-            return GetSync<T>(request);
+            return DeletePaymentAsync<T>(CancellationToken.None, networkCoin, paymentId).GetAwaiter().GetResult();
         }
     }
 }

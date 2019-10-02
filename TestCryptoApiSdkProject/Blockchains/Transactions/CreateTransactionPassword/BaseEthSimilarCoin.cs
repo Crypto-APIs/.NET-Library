@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -11,8 +12,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, Password);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, Password);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -23,8 +24,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void WrongFromAddress()
         {
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, fromAddress, ToAddress, Value, Password);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Value, Password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -35,8 +36,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void WrongToAddress()
         {
             var toAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, toAddress, Value, Password);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Value, Password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -47,8 +48,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void WrongPassword()
         {
             var password = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, password);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -60,16 +61,16 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void InvalidValue()
         {
             var value = -1;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, value, Password);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, value, Password);
         }
 
         [TestMethod]
         public void TestValueMoreThanBalance()
         {
             var value = double.MaxValue;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, value, Password);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, value, Password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -81,8 +82,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void NullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, fromAddress, ToAddress, Value, Password);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Value, Password);
         }
 
         [TestMethod]
@@ -90,8 +91,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void NullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, toAddress, Value, Password);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Value, Password);
         }
 
         [TestMethod]
@@ -99,12 +100,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void NullPassword()
         {
             string password = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, password);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, password);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
         protected abstract double Value { get; }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,10 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetUnconfirmedTransactionsDash()
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.GetUnconfirmedTransactions(
-        coin, network, skip:0, limit:50);
+      var response = manager.Blockchains.Transaction.
+        GetUnconfirmedTransactions<GetUnconfirmedTransactionsResponse>(
+          NetworkCoin.DashMainNet, skip:0, limit:50);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetUnconfirmedTransactionsDash executed successfully, " +

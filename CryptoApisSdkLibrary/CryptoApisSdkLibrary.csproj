@@ -52,10 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\ArbitrageInfo.cs" />
+    <Compile Include="DataTypes\AssetMeta.cs" />
+    <Compile Include="DataTypes\ExchangeMeta.cs" />
     <Compile Include="DataTypes\ExchangeSupportingAsset.cs" />
     <Compile Include="DataTypes\ExchangeSupportingPairs.cs" />
     <Compile Include="DataTypes\BtcTransaction.cs" />
     <Compile Include="DataTypes\BtcUnconfirmedTransaction.cs" />
+    <Compile Include="DataTypes\Logo.cs" />
     <Compile Include="DataTypes\NetworkCoin.cs" />
     <Compile Include="DataTypes\EthTransaction.cs" />
     <Compile Include="DataTypes\Fee.cs" />
@@ -89,15 +92,13 @@
     <Compile Include="RequestTypes\NewHdBtcTransactionRequest.cs" />
     <Compile Include="RequestTypes\NewBtcTransactionRequest.cs" />
     <Compile Include="ResponseTypes\Blockchains\NewBtcTransactionResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\BtcTransactionsFeeResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\EthTransactionsFeeResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\TransactionsFeeResponse.cs" />
     <Compile Include="RequestTypes\SignTransactionRequest.cs" />
     <Compile Include="ResponseTypes\Blockchains\SignBtcTransactionResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\BtcDecodeTransactionResponse.cs" />
     <Compile Include="ResponseTypes\BaseCollectionResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\CreateConfirmedTransactionWebHookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\BtcWebHookResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\EthTransactionInfoResponse.cs" />
     <Compile Include="DataTypes\Exceptions\UndefineMatchTypeException.cs" />
     <Compile Include="DataTypes\MatchType.cs" />
     <Compile Include="Misc\GetFilenameProvider.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="DataTypes\Exceptions\UndefineTradeTypeException.cs" />
     <Compile Include="DataTypes\Exceptions\UndefineTradeDirectionException.cs" />
     <Compile Include="DataTypes\Exceptions\UndefineQuoteTradeDirectionException.cs" />
-    <Compile Include="ResponseTypes\Blockchains\BtcTransactionInfoResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\TransactionInfoResponse.cs" />
     <Compile Include="Misc\Tools.cs" />
     <Compile Include="Modules\Blockchains\Contracts\BlockchainContractModule.cs" />
     <Compile Include="Modules\Blockchains\Contracts\IBlockchainContractModule.cs" />
@@ -136,6 +137,9 @@
     <Compile Include="ResponseTypes\Blockchains\DeleteWebhookResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetTokensResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetHdWalletsResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetSymbolInfoResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetAssetsMetaResponse.cs" />
+    <Compile Include="ResponseTypes\Exchanges\GetAssetInfoResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetExchangeInfoResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetAllExchangesMetaResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\GetExchangesSupportingAssetResponse.cs" />
@@ -147,7 +151,6 @@
     <Compile Include="ResponseTypes\Blockchains\EstimateGasContractResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\QueuedTransactionsResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\PendingTransactionsResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetEthTransactionInfosResponse.cs" />
     <Compile Include="DataTypes\EthTransactionInfo.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetBtcPaymentsResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\CreateBtcPaymentResponse.cs" />
@@ -157,7 +160,7 @@
     <Compile Include="RequestTypes\GetTransactionInfosRequest.cs" />
     <Compile Include="ResponseTypes\Blockchains\CreateBtcTransactionResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetUnconfirmedTransactionsResponse.cs" />
-    <Compile Include="ResponseTypes\Blockchains\GetBtcTransactionInfosResponse.cs" />
+    <Compile Include="ResponseTypes\Blockchains\GetTransactionInfosResponse.cs" />
     <Compile Include="RequestTypes\GenerateHdWalletAddressRequest.cs" />
     <Compile Include="RequestTypes\AddAddressToWalletRequest.cs" />
     <Compile Include="RequestTypes\CreateHdWalletRequest.cs" />

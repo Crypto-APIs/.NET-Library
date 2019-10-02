@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 using System.Collections.Generic;
 
@@ -8,8 +9,6 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void NewTransactionBtc()
     {
-      var coin = BtcSimilarCoin.Btc;
-      var network = BtcSimilarNetwork.Mainnet;
       IEnumerable<TransactionAddress> inputs = new[]
       {
         new TransactionAddress("mtFYoSowT3i649wnBDYjCjewenh8AuofQb", 0.00009),
@@ -29,8 +28,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       };
             
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.NewTransaction(
-        coin, network, inputs, outputs, fee, wifs);
+      var response = manager.Blockchains.Transaction.NewTransaction<NewBtcTransactionResponse>(
+        NetworkCoin.BtcMainNet, inputs, outputs, fee, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "NewTransactionBtc executed successfully, " +

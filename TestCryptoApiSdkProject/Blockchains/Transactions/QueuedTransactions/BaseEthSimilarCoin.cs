@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
@@ -10,14 +11,13 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.QueuedTransactions
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.QueuedTransactions(Coin, Network);
+            var response = Manager.Blockchains.Transaction.QueuedTransactions<QueuedTransactionsResponse>(NetworkCoin);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
             Assert.IsTrue(response.Transactions.Any());
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
     }
 }

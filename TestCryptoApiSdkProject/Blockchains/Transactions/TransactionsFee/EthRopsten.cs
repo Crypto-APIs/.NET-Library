@@ -6,7 +6,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.TransactionsFee
     [TestClass]
     public class EthRopsten : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Ropsten;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRopsten;
     }
 }

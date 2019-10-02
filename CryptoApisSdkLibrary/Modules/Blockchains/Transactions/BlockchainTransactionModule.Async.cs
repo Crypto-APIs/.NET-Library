@@ -8,203 +8,205 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
 {
     internal partial class BlockchainTransactionModule
     {
-        public Task<BtcTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string transactionId)
+        public Task<T> GetInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string transactionId)
+            where T : BtcTransactionInfoResponse, new()
         {
-            var request = Requests.GetInfo(coin, network, transactionId);
-            return GetAsyncResponse<BtcTransactionInfoResponse>(request, cancellationToken);
+            var request = Requests.GetInfo(networkCoin, transactionId);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<EthTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string transactionHash)
+        public Task<T> GetInfoByBlockHashAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string transactionHash)
+            where T : EthTransactionInfoResponse, new()
         {
-            var request = Requests.GetInfo(coin, network, transactionHash);
-            return GetAsyncResponse<EthTransactionInfoResponse>(request, cancellationToken);
+            var request = Requests.GetInfoByBlockHash(networkCoin, transactionHash);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<EthTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string blockHash, int transactionIndex)
+        public Task<T> GetInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string blockHash, int transactionIndex)
+            where T : EthTransactionInfoResponse, new()
         {
-            var request = Requests.GetInfo(coin, network, blockHash, transactionIndex);
-            return GetAsyncResponse<EthTransactionInfoResponse>(request, cancellationToken);
+            var request = Requests.GetInfo(networkCoin, blockHash, transactionIndex);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<EthTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight, int transactionIndex)
+        public Task<T> GetInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, int blockHeight, int transactionIndex)
+            where T : EthTransactionInfoResponse, new()
         {
-            var request = Requests.GetInfo(coin, network, blockHeight, transactionIndex);
-            return GetAsyncResponse<EthTransactionInfoResponse>(request, cancellationToken);
+            var request = Requests.GetInfo(networkCoin, blockHeight, transactionIndex);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetBtcTransactionInfosResponse> GetInfosAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, int blockHeight, int skip = 0, int limit = 50)
+        public Task<T> GetInfosAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, int blockHeight, int skip = 0, int limit = 50)
+            where T : GetTransactionInfosResponse, new()
         {
-            var request = Requests.GetInfos(coin, network, blockHeight, skip, limit);
-            return GetAsyncResponse<GetBtcTransactionInfosResponse>(request, cancellationToken);
+            var request = Requests.GetInfos(networkCoin, blockHeight, skip, limit);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetBtcTransactionInfosResponse> GetInfosAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string blockHash, int skip = 0, int limit = 50)
+        public Task<T> GetInfosAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string blockHash, int skip = 0, int limit = 50)
+            where T : GetBtcTransactionInfosResponse, new()
         {
-            var request = Requests.GetInfos(coin, network, blockHash, skip, limit);
-            return GetAsyncResponse<GetBtcTransactionInfosResponse>(request, cancellationToken);
+            var request = Requests.GetInfos(networkCoin, blockHash, skip, limit);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetEthTransactionInfosResponse> GetInfosAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight, int skip = 0, int limit = 50)
+        public Task<T> GetUnconfirmedTransactionsAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, int skip = 0, int limit = 50)
+            where T : GetUnconfirmedTransactionsResponse, new()
         {
-            var request = Requests.GetInfos(coin, network, blockHeight, skip, limit);
-            return GetAsyncResponse<GetEthTransactionInfosResponse>(request, cancellationToken);
+            var request = Requests.GetUnconfirmedTransactions(networkCoin, skip, limit);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<GetUnconfirmedTransactionsResponse> GetUnconfirmedTransactionsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, int skip = 0, int limit = 50)
+        public Task<T> DecodeTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : BtcDecodeTransactionResponse, new()
         {
-            var request = Requests.GetUnconfirmedTransactions(coin, network, skip, limit);
-            return GetAsyncResponse<GetUnconfirmedTransactionsResponse>(request, cancellationToken);
+            var request = Requests.DecodeTransaction(networkCoin, hexEncodedInfo);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<BtcDecodeTransactionResponse> DecodeTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo)
-        {
-            var request = Requests.DecodeTransaction(coin, network, hexEncodedInfo);
-            return GetAsyncResponse<BtcDecodeTransactionResponse>(request, cancellationToken);
-        }
-
-        public Task<CreateBtcTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee)
+            where T : CreateBtcTransactionResponse, new()
         {
-            var request = Requests.CreateTransaction(coin, network, inputAddresses, outputAddresses, fee);
-            return GetAsyncResponse<CreateBtcTransactionResponse>(request, cancellationToken);
+            var request = Requests.CreateTransaction(networkCoin, inputAddresses, outputAddresses, fee);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value, string password)
+        public Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string password)
+            where T : CreateEthTransactionResponse, new()
         {
-            var request = Requests.CreateTransaction(coin, network, fromAddress, toAddress, value, password);
-            return GetAsyncResponse<CreateEthTransactionResponse>(request, cancellationToken);
+            var request = Requests.CreateTransaction(networkCoin, fromAddress, toAddress, value, password);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
             double value, string password, double gasPrice, double gasLimit)
+            where T : CreateEthTransactionResponse, new()
         {
-            var request = Requests.CreateTransaction(coin, network, fromAddress, toAddress, value, password, gasPrice, gasLimit);
-            return GetAsyncResponse<CreateEthTransactionResponse>(request, cancellationToken);
+            var request = Requests.CreateTransaction(networkCoin, fromAddress, toAddress, value, password, gasPrice, gasLimit);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string privateKey, double value)
+        public Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string privateKey, double value)
+            where T : CreateEthTransactionResponse, new()
         {
-            var request = Requests.CreateTransaction(coin, network, fromAddress, toAddress, privateKey, value);
-            return GetAsyncResponse<CreateEthTransactionResponse>(request, cancellationToken);
+            var request = Requests.CreateTransaction(networkCoin, fromAddress, toAddress, privateKey, value);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
+        public Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
             string privateKey, double value, double gasPrice, double gasLimit)
+            where T : CreateEthTransactionResponse, new()
         {
-            var request = Requests.CreateTransaction(coin, network, fromAddress, toAddress, privateKey, value, gasPrice, gasLimit);
-            return GetAsyncResponse<CreateEthTransactionResponse>(request, cancellationToken);
+            var request = Requests.CreateTransaction(networkCoin, fromAddress, toAddress, privateKey, value, gasPrice, gasLimit);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthTransactionResponse> SendAllAmountUsingPasswordAsync(CancellationToken cancellationToken, EthSimilarCoin coin,
-            EthSimilarNetwork network, string fromAddress, string toAddress, string password)
+        public Task<T> SendAllAmountUsingPasswordAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string password)
+            where T : CreateEthTransactionResponse, new()
         {
-            var request = Requests.SendAllAmountUsingPassword(coin, network, fromAddress, toAddress, password);
-            return GetAsyncResponse<CreateEthTransactionResponse>(request, cancellationToken);
+            var request = Requests.SendAllAmountUsingPassword(networkCoin, fromAddress, toAddress, password);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<CreateEthTransactionResponse> SendAllAmountUsingPrivateKeyAsync(CancellationToken cancellationToken, EthSimilarCoin coin,
-            EthSimilarNetwork network, string fromAddress, string toAddress, string privateKey)
+        public Task<T> SendAllAmountUsingPrivateKeyAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string privateKey)
+            where T : CreateEthTransactionResponse, new()
         {
-            var request = Requests.SendAllAmountUsingPrivateKey(coin, network, fromAddress, toAddress, privateKey);
-            return GetAsyncResponse<CreateEthTransactionResponse>(request, cancellationToken);
+            var request = Requests.SendAllAmountUsingPrivateKey(networkCoin, fromAddress, toAddress, privateKey);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<SignBtcTransactionResponse> SignTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo, IEnumerable<string> wifs)
+        public Task<T> SignTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo, IEnumerable<string> wifs)
+            where T : SignBtcTransactionResponse, new()
         {
-            var request = Requests.SignTransaction(coin, network, hexEncodedInfo, wifs);
-            return GetAsyncResponse<SignBtcTransactionResponse>(request, cancellationToken);
+            var request = Requests.SignTransaction(networkCoin, hexEncodedInfo, wifs);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<SendBtcTransactionResponse> SendTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo)
+        public Task<T> SendTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : SendBtcTransactionResponse, new()
         {
-            var request = Requests.SendTransaction(coin, network, hexEncodedInfo);
-            return GetAsyncResponse<SendBtcTransactionResponse>(request, cancellationToken);
+            var request = Requests.SendTransaction(networkCoin, hexEncodedInfo);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<LocallySignTransactionResponse> LocallySignTransactionAsync(CancellationToken cancellationToken, EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value)
+        public Task<T> LocallySignTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value)
+            where T : LocallySignTransactionResponse, new()
         {
-            var request = Requests.LocallySignTransaction(coin, network, fromAddress, toAddress, value);
-            return GetAsyncResponse<LocallySignTransactionResponse>(request, cancellationToken);
+            var request = Requests.LocallySignTransaction(networkCoin, fromAddress, toAddress, value);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<NewBtcTransactionResponse> NewTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public Task<T> NewTransactionAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses,
             Fee fee, IEnumerable<string> wifs)
+            where T : NewBtcTransactionResponse, new()
         {
-            var request = Requests.NewTransaction(coin, network, inputAddresses, outputAddresses, fee, wifs);
-            return GetAsyncResponse<NewBtcTransactionResponse>(request, cancellationToken);
+            var request = Requests.NewTransaction(networkCoin, inputAddresses, outputAddresses, fee, wifs);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<NewBtcTransactionResponse> NewHdTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public Task<T> NewHdTransactionAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
             string wallet, string password, IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses,
             Fee fee, long lockTime = 0)
+            where T : NewBtcTransactionResponse, new()
         {
-            var request = Requests.NewHdTransaction(coin, network, wallet, password, inputAddresses, outputAddresses, fee, lockTime);
-            return GetAsyncResponse<NewBtcTransactionResponse>(request, cancellationToken);
+            var request = Requests.NewHdTransaction(networkCoin, wallet, password, inputAddresses, outputAddresses, fee, lockTime);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<PushTransactionResponse> PushTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string hexEncodedInfo)
+        public Task<T> PushTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : PushTransactionResponse, new()
         {
-            var request = Requests.PushTransaction(coin, network, hexEncodedInfo);
-            return GetAsyncResponse<PushTransactionResponse>(request, cancellationToken);
+            var request = Requests.PushTransaction(networkCoin, hexEncodedInfo);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<EstimateTransactionGasResponse> EstimateTransactionGasAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value, string data = null)
+        public Task<T> EstimateTransactionGasAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
+            where T : EstimateTransactionGasResponse, new()
         {
-            var request = Requests.EstimateTransactionGas(coin, network, fromAddress, toAddress, value, data);
-            return GetAsyncResponse<EstimateTransactionGasResponse>(request, cancellationToken);
+            var request = Requests.EstimateTransactionGas(networkCoin, fromAddress, toAddress, value, data);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<PendingTransactionsResponse> PendingTransactionsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network)
+        public Task<T> PendingTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : PendingTransactionsResponse, new()
         {
-            var request = Requests.PendingTransactions(coin, network);
-            return GetAsyncResponse<PendingTransactionsResponse>(request, cancellationToken);
+            var request = Requests.PendingTransactions(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<QueuedTransactionsResponse> QueuedTransactionsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network)
+        public Task<T> QueuedTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : QueuedTransactionsResponse, new()
         {
-            var request = Requests.QueuedTransactions(coin, network);
-            return GetAsyncResponse<QueuedTransactionsResponse>(request, cancellationToken);
+            var request = Requests.QueuedTransactions(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<BtcTransactionsFeeResponse> TransactionsFeeAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public Task<T> TransactionsFeeAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : TransactionsFeeResponse, new()
         {
-            var request = Requests.TransactionsFee(coin, network);
-            return GetAsyncResponse<BtcTransactionsFeeResponse>(request, cancellationToken);
-        }
-
-        public Task<EthTransactionsFeeResponse> TransactionsFeeAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            var request = Requests.TransactionsFee(coin, network);
-            return GetAsyncResponse<EthTransactionsFeeResponse>(request, cancellationToken);
+            var request = Requests.TransactionsFee(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
         }
     }
 }

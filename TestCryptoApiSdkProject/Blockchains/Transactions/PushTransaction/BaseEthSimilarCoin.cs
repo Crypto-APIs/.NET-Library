@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -11,7 +12,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.PushTransaction
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.PushTransaction(Coin, Network, HexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, HexEncodedInfo);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -22,7 +23,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.PushTransaction
         public void WrongHexEncodedInfo()
         {
             var hexEncodedInfo = "qwe";
-            var response = Manager.Blockchains.Transaction.PushTransaction(Coin, Network, hexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -33,7 +34,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.PushTransaction
         public void WrongHexEncodedInfo2()
         {
             var hexEncodedInfo = "0xqwe";
-            var response = Manager.Blockchains.Transaction.PushTransaction(Coin, Network, hexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -44,7 +45,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.PushTransaction
         public void WrongHexEncodedInfo3()
         {
             var hexEncodedInfo = "0xqwer";
-            var response = Manager.Blockchains.Transaction.PushTransaction(Coin, Network, hexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -55,11 +56,10 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.PushTransaction
         [ExpectedException(typeof(ArgumentNullException), "A HexEncodedInfo was inappropriately allowed.")]
         public void NullHexEncodedInfo()
         {
-            Manager.Blockchains.Transaction.PushTransaction(Coin, Network, hexEncodedInfo: null);
+            Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo: null);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string HexEncodedInfo { get; }
     }
 }

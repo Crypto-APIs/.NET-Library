@@ -2,6 +2,7 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
 {
@@ -11,7 +12,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
         [TestMethod]
         public void InvalidBlockHeight()
         {
-            var response = Manager.Blockchains.Transaction.GetInfos(Coin, Network, blockHeight: int.MaxValue);
+            var response = Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHeight: int.MaxValue);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -33,31 +34,30 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A BlockHeight was inappropriately allowed.")]
         public void TestBlockHeightOutOfRange()
         {
-            Manager.Blockchains.Transaction.GetInfos(Coin, Network, blockHeight: -552875);
+            Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHeight: -552875);
         }
 
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight);
+            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHeight);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight, skip: skip);
+            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHeight, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight, limit: limit);
+            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHeight, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight, skip, limit);
+            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHeight, skip, limit);
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract int BlockHeight { get; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 using System.Collections.Generic;
 
@@ -8,8 +9,6 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void CreateTransactionDash()
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Mainnet;
       IEnumerable<TransactionAddress> inputs = new[]
       {
         new TransactionAddress("yVrjEE1zwXckCMXZoTStJtb9SJ29xr1ZMc", 21.309),
@@ -21,8 +20,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       var fee = new Fee(0.00023141);
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.CreateTransaction(
-        coin, network, inputs, outputs, fee);
+      var response = manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+        NetworkCoin.DashMainNet, inputs, outputs, fee);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateTransactionDash executed successfully, " +

@@ -11,437 +11,399 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// <summary>
         /// Returns detailed information about a given transaction based on its id.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        /// <param name="transactionId">Id of the transaction in blockchain.</param>
-        BtcTransactionInfoResponse GetInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string transactionId);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="transactionId">Id (block hash) of the transaction in blockchain.</param>
+        T GetInfo<T>(NetworkCoin networkCoin, string transactionId)
+            where T : BtcTransactionInfoResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given transaction based on its id.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        /// <param name="transactionId">Id of the transaction in blockchain.</param>
-        Task<BtcTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string transactionId);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="transactionId">Id (block hash) of the transaction in blockchain.</param>
+        Task<T> GetInfoAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string transactionId)
+            where T : BtcTransactionInfoResponse, new();
 
         /// <summary>
-        /// Returns detailed information about a given transaction based on its hash.
+        /// Returns detailed information about a given transaction based on its block hash.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
-        EthTransactionInfoResponse GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, string transactionHash);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="blockHash">Id (block hash) of the transaction in blockchain.</param>
+        T GetInfoByBlockHash<T>(NetworkCoin networkCoin, string blockHash)
+            where T : EthTransactionInfoResponse, new();
 
         /// <summary>
-        /// Returns detailed information about a given transaction based on its hash.
+        /// Returns detailed information about a given transaction based on its block hash.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
-        Task<EthTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string transactionHash);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="blockHash">Block hash of the transaction in blockchain.</param>
+        Task<T> GetInfoByBlockHashAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string blockHash)
+            where T : EthTransactionInfoResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given transaction based on its index and block hash.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHash">Blockhash in blockchain.</param>
         /// <param name="transactionIndex">Index of the transaction in block.</param>
-        EthTransactionInfoResponse GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, string blockHash, int transactionIndex);
+        T GetInfo<T>(NetworkCoin networkCoin, string blockHash, int transactionIndex)
+            where T : EthTransactionInfoResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given transaction based on its index and block hash.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHash">Blockhash in blockchain.</param>
         /// <param name="transactionIndex">Index of the transaction in block.</param>
-        Task<EthTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string blockHash, int transactionIndex);
+        Task<T> GetInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string blockHash, int transactionIndex)
+            where T : EthTransactionInfoResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given transaction based on its index and block height.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHeight">Block height.</param>
         /// <param name="transactionIndex">Index of the transaction in block.</param>
-        EthTransactionInfoResponse GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight, int transactionIndex);
+        T GetInfo<T>(NetworkCoin networkCoin, int blockHeight, int transactionIndex)
+            where T : EthTransactionInfoResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given transaction based on its index and block height.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHeight">Block height.</param>
         /// <param name="transactionIndex">Index of the transaction in block.</param>
-        Task<EthTransactionInfoResponse> GetInfoAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight, int transactionIndex);
+        Task<T> GetInfoAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, int blockHeight, int transactionIndex)
+            where T : EthTransactionInfoResponse, new();
 
         /// <summary>
         /// Returns detailed information about transactions for the block height defined, starting from the index defined up to the limit defined.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHeight">Block height.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        GetBtcTransactionInfosResponse GetInfos(BtcSimilarCoin coin, BtcSimilarNetwork network, int blockHeight,
-            int skip = 0, int limit = 50);
+        T GetInfos<T>(NetworkCoin networkCoin, int blockHeight, int skip = 0, int limit = 50)
+            where T : GetTransactionInfosResponse, new();
 
         /// <summary>
         /// Returns detailed information about transactions for the block height defined, starting from the index defined up to the limit defined.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHeight">Block height.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        Task<GetBtcTransactionInfosResponse> GetInfosAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, int blockHeight, int skip = 0, int limit = 50);
+        Task<T> GetInfosAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, int blockHeight, int skip = 0, int limit = 50)
+            where T : GetTransactionInfosResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given set of transactions based on theirs hashes.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHash">Hash of block.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        GetBtcTransactionInfosResponse GetInfos(BtcSimilarCoin coin, BtcSimilarNetwork network, string blockHash,
-            int skip = 0, int limit = 50);
+        T GetInfos<T>(NetworkCoin networkCoin, string blockHash, int skip = 0, int limit = 50)
+            where T : GetBtcTransactionInfosResponse, new();
 
         /// <summary>
         /// Returns detailed information about a given set of transactions based on theirs hashes.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="blockHash">Hash of block.</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        Task<GetBtcTransactionInfosResponse> GetInfosAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string blockHash, int skip = 0, int limit = 50);
-
-        /// <summary>
-        /// Returns detailed information about transactions for the block height defined, starting from the index defined up to the limit defined.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="blockHeight">Block height.</param>
-        /// <param name="skip">The offset of items to start from.</param>
-        /// <param name="limit">Amount of items to return.</param>
-        GetEthTransactionInfosResponse GetInfos(EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight,
-            int skip = 0, int limit = 50);
-
-        /// <summary>
-        /// Returns detailed information about transactions for the block height defined, starting from the index defined up to the limit defined.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="blockHeight">Block height.</param>
-        /// <param name="skip">The offset of items to start from.</param>
-        /// <param name="limit">Amount of items to return.</param>
-        Task<GetEthTransactionInfosResponse> GetInfosAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, int blockHeight, int skip = 0, int limit = 50);
+        Task<T> GetInfosAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string blockHash, int skip = 0, int limit = 50)
+            where T : GetBtcTransactionInfosResponse, new();
 
         /// <summary>
         /// Returns an array of the latest transactions relayed by nodes in a blockchain that haven’t been included in any blocks.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        GetUnconfirmedTransactionsResponse GetUnconfirmedTransactions(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            int skip = 0, int limit = 50);
+        T GetUnconfirmedTransactions<T>(NetworkCoin networkCoin, int skip = 0, int limit = 50)
+            where T : GetUnconfirmedTransactionsResponse, new();
 
         /// <summary>
         /// Returns an array of the latest transactions relayed by nodes in a blockchain that haven’t been included in any blocks.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
-        Task<GetUnconfirmedTransactionsResponse> GetUnconfirmedTransactionsAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, int skip = 0, int limit = 50);
+        Task<T> GetUnconfirmedTransactionsAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, int skip = 0, int limit = 50)
+            where T : GetUnconfirmedTransactionsResponse, new();
 
         /// <summary>
         /// Decode raw transactions without sending propagating them to the network.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
-        BtcDecodeTransactionResponse DecodeTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo);
+        T DecodeTransaction<T>(NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : BtcDecodeTransactionResponse, new();
 
         /// <summary>
         /// Decode raw transactions without sending propagating them to the network.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
-        Task<BtcDecodeTransactionResponse> DecodeTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo);
+        Task<T> DecodeTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : BtcDecodeTransactionResponse, new();
 
         /// <summary>
         /// Create the transactions.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
-        CreateBtcTransactionResponse CreateTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee);
+        T CreateTransaction<T>(NetworkCoin networkCoin,
+            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee)
+            where T : CreateBtcTransactionResponse, new();
 
         /// <summary>
         /// Create the transactions.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
-        Task<CreateBtcTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
-            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee);
+        Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
+            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee)
+            where T : CreateBtcTransactionResponse, new();
 
         /// <summary>
         /// Create the transactions.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
-        CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value, string password);
-
-        /// <summary>
-        /// Create the transactions.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="fromAddress">Output address.</param>
-        /// <param name="toAddress">Input address.</param>
-        /// <param name="value">Value to transfer (in Ether).</param>
-        /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
-        Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            double value, string password);
-
-        /// <summary>
-        /// Create the transactions.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        /// <param name="fromAddress">Output address.</param>
-        /// <param name="toAddress">Input address.</param>
-        /// <param name="value">Value to transfer (in Ether).</param>
-        /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
-        /// <param name="gasPrice">Gas price.</param>
-        /// <param name="gasLimit">Gas limit.</param>
-        CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value, string password, double gasPrice, double gasLimit);
+        T CreateTransaction<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string password)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Create the transactions.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="fromAddress">Output address.</param>
+        /// <param name="toAddress">Input address.</param>
+        /// <param name="value">Value to transfer (in Ether).</param>
+        /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
+        Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string password)
+            where T : CreateEthTransactionResponse, new();
+
+        /// <summary>
+        /// Create the transactions.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            double value, string password, double gasPrice, double gasLimit);
+        T CreateTransaction<T>(NetworkCoin networkCoin, string fromAddress, string toAddress,
+            double value, string password, double gasPrice, double gasLimit)
+            where T : CreateEthTransactionResponse, new();
+
+        /// <summary>
+        /// Create the transactions.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="fromAddress">Output address.</param>
+        /// <param name="toAddress">Input address.</param>
+        /// <param name="value">Value to transfer (in Ether).</param>
+        /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
+        /// <param name="gasPrice">Gas price.</param>
+        /// <param name="gasLimit">Gas limit.</param>
+        Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
+            double value, string password, double gasPrice, double gasLimit)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Sending transactions for address that are not hold on our servers.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="privateKey">Private key.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
-        CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, string privateKey, double value);
+        T CreateTransaction<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, string privateKey, double value)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Sending transactions for address that are not hold on our servers.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="privateKey">Private key.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
-        Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string privateKey, double value);
+        Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string privateKey, double value)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Sending transactions for address that are not hold on our servers.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="privateKey">Private key.</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        CreateEthTransactionResponse CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, string privateKey, double value, double gasPrice, double gasLimit);
+        T CreateTransaction<T>(NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string privateKey, double value, double gasPrice, double gasLimit)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Sending transactions for address that are not hold on our servers.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="privateKey">Private key.</param>
         /// <param name="gasPrice">Gas price.</param>
         /// <param name="gasLimit">Gas limit.</param>
-        Task<CreateEthTransactionResponse> CreateTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress,
-            string privateKey, double value, double gasPrice, double gasLimit);
+        Task<T> CreateTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress,
+            string privateKey, double value, double gasPrice, double gasLimit)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Send All Amount Endpoint using keystore file stored on our server.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
-        CreateEthTransactionResponse SendAllAmountUsingPassword(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, string password);
+        T SendAllAmountUsingPassword<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, string password)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Send All Amount Endpoint using keystore file stored on our server.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
-        Task<CreateEthTransactionResponse> SendAllAmountUsingPasswordAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress, string password);
+        Task<T> SendAllAmountUsingPasswordAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string password)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Send All Amount Endpoint using keystore file stored on our server.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="privateKey">Private key.</param>
-        CreateEthTransactionResponse SendAllAmountUsingPrivateKey(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, string privateKey);
+        T SendAllAmountUsingPrivateKey<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, string privateKey)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// Send All Amount Endpoint using keystore file stored on our server.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="privateKey">Private key.</param>
-        Task<CreateEthTransactionResponse> SendAllAmountUsingPrivateKeyAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress, string privateKey);
+        Task<T> SendAllAmountUsingPrivateKeyAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, string privateKey)
+            where T : CreateEthTransactionResponse, new();
 
         /// <summary>
         /// The Sign Transactions Endpoint allows users to sign a raw transaction.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
         /// <param name="wifs">wifs</param>
-        SignBtcTransactionResponse SignTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string hexEncodedInfo, IEnumerable<string> wifs);
+        T SignTransaction<T>(NetworkCoin networkCoin, string hexEncodedInfo, IEnumerable<string> wifs)
+            where T : SignBtcTransactionResponse, new();
 
         /// <summary>
         /// The Sign Transactions Endpoint allows users to sign a raw transaction.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
         /// <param name="wifs">wifs</param>
-        Task<SignBtcTransactionResponse> SignTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo, IEnumerable<string> wifs);
+        Task<T> SignTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo, IEnumerable<string> wifs)
+            where T : SignBtcTransactionResponse, new();
 
         /// <summary>
         /// Send Transaction Endpoint.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
-        SendBtcTransactionResponse SendTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo);
+        T SendTransaction<T>(NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : SendBtcTransactionResponse, new();
 
         /// <summary>
         /// Send Transaction Endpoint.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction.</param>
-        Task<SendBtcTransactionResponse> SendTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo);
+        Task<T> SendTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : SendBtcTransactionResponse, new();
 
         /// <summary>
         /// Crypto APIs provides the opportunity to locally sign your transaction.
         /// If you want to use third-pary tools for signing your raw transactions you can send to the Locally Sign Your Transaction Endpoint.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
-        LocallySignTransactionResponse LocallySignTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value);
+        T LocallySignTransaction<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, double value)
+            where T : LocallySignTransactionResponse, new();
 
         /// <summary>
         /// Crypto APIs provides the opportunity to locally sign your transaction.
@@ -449,191 +411,162 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
-        Task<LocallySignTransactionResponse> LocallySignTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress, double value);
+        Task<T> LocallySignTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value)
+            where T : LocallySignTransactionResponse, new();
 
         /// <summary>
         /// This endpoint combines the other three endpoints: Create, Sign and Send Endpoints.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
         /// <param name="wifs">Private ECDSA keys.</param>
-        NewBtcTransactionResponse NewTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee,
-            IEnumerable<string> wifs);
+        T NewTransaction<T>(NetworkCoin networkCoin, IEnumerable<TransactionAddress> inputAddresses,
+            IEnumerable<TransactionAddress> outputAddresses, Fee fee, IEnumerable<string> wifs)
+            where T : NewBtcTransactionResponse, new();
 
         /// <summary>
         /// This endpoint combines the other three endpoints: Create, Sign and Send Endpoints.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
         /// <param name="wifs">Private ECDSA keys.</param>
-        Task<NewBtcTransactionResponse> NewTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network,
-            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee,
-            IEnumerable<string> wifs);
+        Task<T> NewTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, IEnumerable<TransactionAddress> inputAddresses,
+            IEnumerable<TransactionAddress> outputAddresses, Fee fee, IEnumerable<string> wifs)
+            where T : NewBtcTransactionResponse, new();
 
         /// <summary>
         /// Provides the possibility to create, sign and send new transactions using your HDWallet.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="wallet">HD wallet name</param>
         /// <param name="password"></param>
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
         /// <param name="lockTime">Use locktime if a transaction should be delayed to a specific time.</param>
-        NewBtcTransactionResponse NewHdTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string wallet, string password,
+        T NewHdTransaction<T>(NetworkCoin networkCoin, string wallet, string password,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses,
-            Fee fee, long lockTime = 0);
+            Fee fee, long lockTime = 0)
+            where T : NewBtcTransactionResponse, new();
 
         /// <summary>
         /// Provides the possibility to create, sign and send new transactions using your HDWallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="wallet">HD wallet name</param>
         /// <param name="password"></param>
         /// <param name="inputAddresses">Input address(es).</param>
         /// <param name="outputAddresses">Output address(es).</param>
         /// <param name="fee">Fee.</param>
         /// <param name="lockTime">Use locktime if a transaction should be delayed to a specific time.</param>
-        Task<NewBtcTransactionResponse> NewHdTransactionAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network, string wallet, string password,
-            IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses,
-            Fee fee, long lockTime = 0);
+        Task<T> NewHdTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string wallet, string password, IEnumerable<TransactionAddress> inputAddresses,
+            IEnumerable<TransactionAddress> outputAddresses, Fee fee, long lockTime = 0)
+            where T : NewBtcTransactionResponse, new();
 
         /// <summary>
         /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction</param>
-        PushTransactionResponse PushTransaction(EthSimilarCoin coin, EthSimilarNetwork network, string hexEncodedInfo);
+        T PushTransaction<T>(NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : PushTransactionResponse, new();
 
         /// <summary>
         /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="hexEncodedInfo">Hex of raw transaction</param>
-        Task<PushTransactionResponse> PushTransactionAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string hexEncodedInfo);
+        Task<T> PushTransactionAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string hexEncodedInfo)
+            where T : PushTransactionResponse, new();
 
         /// <summary>
         /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="data"></param>
-        EstimateTransactionGasResponse EstimateTransactionGas(EthSimilarCoin coin, EthSimilarNetwork network,
-            string fromAddress, string toAddress, double value, string data = null);
+        T EstimateTransactionGas<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
+            where T : EstimateTransactionGasResponse, new();
 
         /// <summary>
         /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="fromAddress">Output address.</param>
         /// <param name="toAddress">Input address.</param>
         /// <param name="value">Value to transfer (in Ether).</param>
         /// <param name="data"></param>
-        Task<EstimateTransactionGasResponse> EstimateTransactionGasAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network, string fromAddress, string toAddress, double value,
-            string data = null);
+        Task<T> EstimateTransactionGasAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
+            where T : EstimateTransactionGasResponse, new();
 
         /// <summary>
         /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
         /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        PendingTransactionsResponse PendingTransactions(EthSimilarCoin coin, EthSimilarNetwork network);
-
-        /// <summary>
-        /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        Task<PendingTransactionsResponse> PendingTransactionsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network);
-
-        /// <summary>
-        /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        QueuedTransactionsResponse QueuedTransactions(EthSimilarCoin coin, EthSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T PendingTransactions<T>(NetworkCoin networkCoin)
+            where T : PendingTransactionsResponse, new();
 
         /// <summary>
         /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        Task<QueuedTransactionsResponse> QueuedTransactionsAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> PendingTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : PendingTransactionsResponse, new();
+
+        /// <summary>
+        /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T QueuedTransactions<T>(NetworkCoin networkCoin)
+            where T : QueuedTransactionsResponse, new();
+
+        /// <summary>
+        /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> QueuedTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : QueuedTransactionsResponse, new();
 
         /// <summary>
         /// Gives information about the gas price for the successfull transactions included in the last 1500 blocks.
         /// </summary>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        BtcTransactionsFeeResponse TransactionsFee(BtcSimilarCoin coin, BtcSimilarNetwork network);
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T TransactionsFee<T>(NetworkCoin networkCoin)
+            where T : TransactionsFeeResponse, new();
 
         /// <summary>
         /// Gives information about the gas price for the successfull transactions included in the last 1500 blocks.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">BTC-similar coin (BTC, BCH, LTC, ...)</param>
-        /// <param name="network">Network of BTC-similar coin.</param>
-        Task<BtcTransactionsFeeResponse> TransactionsFeeAsync(CancellationToken cancellationToken,
-            BtcSimilarCoin coin, BtcSimilarNetwork network);
-
-        /// <summary>
-        /// Gives information about the gas price for the successfull transactions included in the last 1500 blocks.
-        /// </summary>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        EthTransactionsFeeResponse TransactionsFee(EthSimilarCoin coin, EthSimilarNetwork network);
-
-        /// <summary>
-        /// Gives information about the gas price for the successfull transactions included in the last 1500 blocks.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="coin">ETH-similar coin (ETH, ...)</param>
-        /// <param name="network">Network of ETH-similar coin.</param>
-        Task<EthTransactionsFeeResponse> TransactionsFeeAsync(CancellationToken cancellationToken,
-            EthSimilarCoin coin, EthSimilarNetwork network);
-
-        // New Transaction Using HDWallet Endpoint
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> TransactionsFeeAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : TransactionsFeeResponse, new();
     }
 }

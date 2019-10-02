@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, OutputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, OutputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -35,8 +36,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
             {
                 new TransactionAddress("qwe", 0.54),
             };
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, inputAddresses, OutputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, inputAddresses, OutputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -50,8 +51,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
             {
                 new TransactionAddress("qwe", 0.54),
             };
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, outputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, outputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -66,8 +67,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
             {
                 new TransactionAddress(output.Key, output.Value * 10),
             };
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, outputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, outputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -82,8 +83,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
             {
                 new TransactionAddress(output.Key, output.Value / 10),
             };
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, outputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, outputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -95,8 +96,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
         public void NullInputAddresses()
         {
             List<TransactionAddress> inputAddresses = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, inputAddresses, OutputAddresses, Fee);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, inputAddresses, OutputAddresses, Fee);
         }
 
         [TestMethod]
@@ -104,8 +105,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
         public void NullOutputAddresses()
         {
             List<TransactionAddress> outputAddresses = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, outputAddresses, Fee);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, outputAddresses, Fee);
         }
 
         [TestMethod]
@@ -113,8 +114,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
         public void EmptyInputAddresses()
         {
             var inputAddresses = new List<TransactionAddress>();
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, inputAddresses, OutputAddresses, Fee);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, inputAddresses, OutputAddresses, Fee);
         }
 
         [TestMethod]
@@ -122,24 +123,24 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
         public void EmptyOutputAddresses()
         {
             var outputAddresses = new List<TransactionAddress>();
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, outputAddresses, Fee);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, outputAddresses, Fee);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A Fee was inappropriately allowed.")]
         public void InvalidFee()
         {
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, OutputAddresses, new Fee(-1));
+            Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, OutputAddresses, new Fee(-1));
         }
 
         [TestMethod]
         public void FeeTooMuch()
         {
             var fee = int.MaxValue;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, InputAddresses, OutputAddresses, new Fee(fee));
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, OutputAddresses, new Fee(fee));
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -160,8 +161,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransaction
         private IEnumerable<TransactionAddress> _inputAddresses;
         private IEnumerable<TransactionAddress> _outputAddresses;
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract Dictionary<string, double> InputAddressesDictionary { get; }
         protected abstract Dictionary<string, double> OutputAddressesDictionary { get; }
         protected Fee Fee { get; } = new Fee(0.00001500);

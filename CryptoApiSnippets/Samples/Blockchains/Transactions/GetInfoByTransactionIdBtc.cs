@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetInfoByTransactionIdBtc()
     {
-      var coin = BtcSimilarCoin.Btc;
-      var network = BtcSimilarNetwork.Mainnet;
       var transactionId = "5a4ebf66822b0b2d56bd9dc64ece0bc38ee7844a23ff1d7320a88c5fdb2ad3e2";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.GetInfo(
-        coin, network, transactionId);
+      var response = manager.Blockchains.Transaction.GetInfo<BtcTransactionInfoResponse>(
+        NetworkCoin.BchMainNet, transactionId);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetInfoByTransactionIdBtc executed successfully, " +

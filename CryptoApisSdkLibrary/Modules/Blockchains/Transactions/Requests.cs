@@ -15,46 +15,43 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             Request = request;
         }
 
-        public IRestRequest GetInfo(BtcSimilarCoin coin, BtcSimilarNetwork network, string transactionId)
+        public IRestRequest GetInfo(NetworkCoin networkCoin, string transactionId)
         {
             if (string.IsNullOrEmpty(transactionId))
                 throw new ArgumentNullException(nameof(transactionId));
 
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/txid/{transactionId}");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/txid/{transactionId}");
         }
 
-        public IRestRequest GetInfo(EthSimilarCoin coin, EthSimilarNetwork network,
-            string blockHash, int transactionIndex)
+        public IRestRequest GetInfoByBlockHash(NetworkCoin networkCoin, string blockHash)
+        {
+            if (string.IsNullOrEmpty(blockHash))
+                throw new ArgumentNullException(nameof(blockHash));
+
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/hash/{blockHash}");
+        }
+
+        public IRestRequest GetInfo(NetworkCoin networkCoin, string blockHash, int transactionIndex)
         {
             if (string.IsNullOrEmpty(blockHash))
                 throw new ArgumentNullException(nameof(blockHash));
             if (transactionIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(transactionIndex), transactionIndex, "TransactionIndex is negative");
 
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/block/{blockHash}/{transactionIndex}");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/block/{blockHash}/{transactionIndex}");
         }
 
-        public IRestRequest GetInfo(EthSimilarCoin coin, EthSimilarNetwork network,
-            int blockHeight, int transactionIndex)
+        public IRestRequest GetInfo(NetworkCoin networkCoin, int blockHeight, int transactionIndex)
         {
             if (blockHeight < 0)
                 throw new ArgumentOutOfRangeException(nameof(blockHeight), blockHeight, "BlockHeight is negative");
             if (transactionIndex < 0)
                 throw new ArgumentOutOfRangeException(nameof(transactionIndex), transactionIndex, "TransactionIndex is negative");
 
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/block/{blockHeight}/{transactionIndex}");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/block/{blockHeight}/{transactionIndex}");
         }
 
-        public IRestRequest GetInfo(EthSimilarCoin coin, EthSimilarNetwork network, string transactionHash)
-        {
-            if (string.IsNullOrEmpty(transactionHash))
-                throw new ArgumentNullException(nameof(transactionHash));
-
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/hash/{transactionHash}");
-        }
-
-        public IRestRequest GetInfos(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            int blockHeight, int skip, int limit)
+        public IRestRequest GetInfos(NetworkCoin networkCoin, int blockHeight, int skip, int limit)
         {
             if (blockHeight < 0)
                 throw new ArgumentOutOfRangeException(nameof(blockHeight), blockHeight, "BlockHeight is negative");
@@ -63,15 +60,14 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
 
-            var request = Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/block/{blockHeight}");
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/block/{blockHeight}");
             request.AddQueryParameter("index", skip.ToString());
             request.AddQueryParameter("limit", limit.ToString());
 
             return request;
         }
 
-        public IRestRequest GetInfos(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string blockHash, int skip, int limit)
+        public IRestRequest GetInfos(NetworkCoin networkCoin, string blockHash, int skip, int limit)
         {
             if (string.IsNullOrEmpty(blockHash))
                 throw new ArgumentOutOfRangeException(nameof(blockHash), blockHash, "BlockHash is null or empty");
@@ -80,46 +76,28 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
 
-            var request = Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/block/{blockHash}");
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/block/{blockHash}");
             request.AddQueryParameter("index", skip.ToString());
             request.AddQueryParameter("limit", limit.ToString());
 
             return request;
         }
 
-        public IRestRequest GetInfos(EthSimilarCoin coin, EthSimilarNetwork network,
-            int blockHeight, int skip, int limit)
-        {
-            if (blockHeight < 0)
-                throw new ArgumentOutOfRangeException(nameof(skip), skip, "BlockHeight is negative");
-            if (skip < 0)
-                throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
-            if (limit <= 0)
-                throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
-
-            var request = Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/block/{blockHeight}");
-            request.AddQueryParameter("index", skip.ToString());
-            request.AddQueryParameter("limit", limit.ToString());
-
-            return request;
-        }
-
-        public IRestRequest GetUnconfirmedTransactions(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            int skip, int limit)
+        public IRestRequest GetUnconfirmedTransactions(NetworkCoin networkCoin, int skip, int limit)
         {
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
 
-            var request = Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/unconfirmed");
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/unconfirmed");
             request.AddQueryParameter("index", skip.ToString());
             request.AddQueryParameter("limit", limit.ToString());
 
             return request;
         }
 
-        public IRestRequest NewTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public IRestRequest NewTransaction(NetworkCoin networkCoin,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses,
             Fee fee, IEnumerable<string> wifs)
         {
@@ -147,11 +125,11 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (fee.Value < 0)
                 throw new ArgumentOutOfRangeException(nameof(fee), fee, "Fee is negative");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/new",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/new",
                 new NewBtcTransactionRequest(inputs, outputs, fee, wifsArray));
         }
 
-        public IRestRequest NewHdTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string wallet,
+        public IRestRequest NewHdTransaction(NetworkCoin networkCoin, string wallet,
             string password, IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses,
             Fee fee, long lockTime)
         {
@@ -177,11 +155,11 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (fee.Value < 0)
                 throw new ArgumentOutOfRangeException(nameof(fee), fee, "Fee is negative");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/new",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/new",
                 new NewHdBtcTransactionRequest(wallet, password, inputs, outputs, fee, lockTime));
         }
 
-        public IRestRequest CreateTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
+        public IRestRequest CreateTransaction(NetworkCoin networkCoin,
             IEnumerable<TransactionAddress> inputAddresses, IEnumerable<TransactionAddress> outputAddresses, Fee fee)
         {
             if (inputAddresses == null)
@@ -202,25 +180,25 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (fee.Value < 0)
                 throw new ArgumentOutOfRangeException(nameof(fee), fee, "Fee is negative");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/create",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/create",
                 new CreateBtcTransactionRequest(inputs, outputs, fee));
         }
 
-        public IRestRequest CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest CreateTransaction(NetworkCoin networkCoin,
             string fromAddress, string toAddress, double value, string password)
         {
-            return InternalCreateTransaction(coin, network,
+            return InternalCreateTransaction(networkCoin,
                 new CreateEthTransactionUsingPasswordRequest(fromAddress, toAddress, value, password));
         }
 
-        public IRestRequest CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest CreateTransaction(NetworkCoin networkCoin,
             string fromAddress, string toAddress, double value, string password, double gasPrice, double gasLimit)
         {
-            return InternalCreateTransaction(coin, network,
+            return InternalCreateTransaction(networkCoin,
                 new CreateEthTransactionUsingPasswordAndGasRequest(fromAddress, toAddress, value, password, gasPrice, gasLimit));
         }
 
-        public IRestRequest SendAllAmountUsingPassword(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest SendAllAmountUsingPassword(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string password)
         {
             if (string.IsNullOrEmpty(fromAddress))
@@ -230,11 +208,11 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (string.IsNullOrEmpty(password))
                 throw new ArgumentNullException(nameof(password));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/new/all",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/new/all",
                 new CreateEthTransactionAllAmountUsingPasswordRequest(fromAddress, toAddress, password));
         }
 
-        public IRestRequest SendAllAmountUsingPrivateKey(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest SendAllAmountUsingPrivateKey(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string privateKey)
         {
             if (string.IsNullOrEmpty(fromAddress))
@@ -244,47 +222,46 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (string.IsNullOrEmpty(privateKey))
                 throw new ArgumentNullException(nameof(privateKey));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/new-pvtkey/all",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/new-pvtkey/all",
                 new CreateEthTransactionAllAmountUsingPrivateKeyRequest(fromAddress, toAddress, privateKey));
         }
 
         // todo: need unit-tests
-        public IRestRequest SignTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network,
-            string hexEncodedInfo, IEnumerable<string> wifs)
+        public IRestRequest SignTransaction(NetworkCoin networkCoin, string hexEncodedInfo, IEnumerable<string> wifs)
         {
             if (string.IsNullOrEmpty(hexEncodedInfo))
                 throw new ArgumentNullException(nameof(hexEncodedInfo));
             if (wifs == null || wifs.Any())
                 throw new ArgumentNullException(nameof(wifs));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/sign",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/sign",
                 new SignTransactionRequest(hexEncodedInfo, wifs));
         }
 
-        public IRestRequest CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest CreateTransaction(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string privateKey, double value)
         {
-            return InternalCreateTransaction(coin, network,
+            return InternalCreateTransaction(networkCoin,
                 new CreateEthTransactionUsingPrivateKeyRequest(fromAddress, toAddress, value, privateKey));
         }
 
-        public IRestRequest CreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest CreateTransaction(NetworkCoin networkCoin,
             string fromAddress, string toAddress, string privateKey, double value, double gasPrice, double gasLimit)
         {
-            return InternalCreateTransaction(coin, network,
+            return InternalCreateTransaction(networkCoin,
                 new CreateEthTransactionUsingPrivateKeyAndGasRequest(fromAddress, toAddress, value, privateKey, gasPrice, gasLimit));
         }
 
-        public IRestRequest SendTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo)
+        public IRestRequest SendTransaction(NetworkCoin networkCoin, string hexEncodedInfo)
         {
             if (string.IsNullOrEmpty(hexEncodedInfo))
                 throw new ArgumentNullException(nameof(hexEncodedInfo));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/send",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/send",
                 new SendBtcTransactionRequest(hexEncodedInfo));
         }
 
-        public IRestRequest LocallySignTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest LocallySignTransaction(NetworkCoin networkCoin,
             string fromAddress, string toAddress, double value)
         {
             if (string.IsNullOrEmpty(fromAddress))
@@ -294,20 +271,20 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (value <= 0)
                 throw new ArgumentOutOfRangeException(nameof(value), value, "Value is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/send",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/send",
                 new SendEthTransactionRequest(fromAddress, toAddress, value));
         }
 
-        public IRestRequest PushTransaction(EthSimilarCoin coin, EthSimilarNetwork network, string hexEncodedInfo)
+        public IRestRequest PushTransaction(NetworkCoin networkCoin, string hexEncodedInfo)
         {
             if (string.IsNullOrEmpty(hexEncodedInfo))
                 throw new ArgumentNullException(nameof(hexEncodedInfo));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/push",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/push",
                 new PushTransactionRequest(hexEncodedInfo));
         }
 
-        public IRestRequest EstimateTransactionGas(EthSimilarCoin coin, EthSimilarNetwork network,
+        public IRestRequest EstimateTransactionGas(NetworkCoin networkCoin,
             string fromAddress, string toAddress, double value, string data)
         {
             if (string.IsNullOrEmpty(fromAddress))
@@ -317,40 +294,35 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (value <= 0)
                 throw new ArgumentOutOfRangeException(nameof(value), value, "Value is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/gas",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/gas",
                 new EstimateTransactionRequest(fromAddress, toAddress, value, data));
         }
 
-        public IRestRequest PendingTransactions(EthSimilarCoin coin, EthSimilarNetwork network)
+        public IRestRequest PendingTransactions(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/pending");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/pending");
         }
 
-        public IRestRequest QueuedTransactions(EthSimilarCoin coin, EthSimilarNetwork network)
+        public IRestRequest QueuedTransactions(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/queued");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/queued");
         }
 
-        public IRestRequest TransactionsFee(BtcSimilarCoin coin, BtcSimilarNetwork network)
+        public IRestRequest TransactionsFee(NetworkCoin networkCoin)
         {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/fee");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/fee");
         }
 
-        public IRestRequest TransactionsFee(EthSimilarCoin coin, EthSimilarNetwork network)
-        {
-            return Request.Get($"{Consts.Blockchain}/{coin}/{network}/txs/fee");
-        }
-
-        public IRestRequest DecodeTransaction(BtcSimilarCoin coin, BtcSimilarNetwork network, string hexEncodedInfo)
+        public IRestRequest DecodeTransaction(NetworkCoin networkCoin, string hexEncodedInfo)
         {
             if (string.IsNullOrEmpty(hexEncodedInfo))
                 throw new ArgumentNullException(nameof(hexEncodedInfo));
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/decode",
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/decode",
                 new DecodeTransactionRequest(hexEncodedInfo));
         }
 
-        private IRestRequest InternalCreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        private IRestRequest InternalCreateTransaction(NetworkCoin networkCoin,
             CreateEthTransactionUsingPasswordRequest request)
         {
             if (string.IsNullOrEmpty(request.FromAddress))
@@ -362,10 +334,10 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (request.Value <= 0)
                 throw new ArgumentOutOfRangeException(nameof(request.Value), request.Value, "Value is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/new", request);
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/new", request);
         }
 
-        private IRestRequest InternalCreateTransaction(EthSimilarCoin coin, EthSimilarNetwork network,
+        private IRestRequest InternalCreateTransaction(NetworkCoin networkCoin,
             CreateEthTransactionUsingPrivateKeyRequest request)
         {
             if (string.IsNullOrEmpty(request.FromAddress))
@@ -377,7 +349,7 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             if (request.Value <= 0)
                 throw new ArgumentOutOfRangeException(nameof(request.Value), request.Value, "Value is negative or zero");
 
-            return Request.Post($"{Consts.Blockchain}/{coin}/{network}/txs/new-pvtkey", request);
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/new-pvtkey", request);
         }
 
         private CryptoApiRequest Request { get; }

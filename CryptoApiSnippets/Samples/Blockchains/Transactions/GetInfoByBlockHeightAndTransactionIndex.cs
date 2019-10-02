@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,14 +8,12 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetInfoByBlockHeightAndTransactionIndex()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Mainnet;
       var blockHeight = 6530876;
       var transactionIndex = 79;
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.GetInfo(
-        coin, network, blockHeight, transactionIndex);
+      var response = manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(
+        NetworkCoin.EthMainNet, blockHeight, transactionIndex);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetInfoByBlockHeightAndTransactionIndex executed successfully, " +

@@ -7,8 +7,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
     [TestClass]
     public class EthRinkeby : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Rinkeby;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRinkeby;
         protected override string FromAddress { get; } = ""; // todo: need corrected addresses
         protected override string ToAddress { get; } = "";
         protected override double Value { get; } = 0.12;

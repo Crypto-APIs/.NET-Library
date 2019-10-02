@@ -41,9 +41,13 @@ namespace CryptoApisSdkLibrary.Modules
             {
                 var response = await Client.ExecuteTaskAsync<T>(
                     request, cancellationToken);
-                return response.IsSuccessful
-                    ? response.Data
-                    : MakeErrorMessage<T>(response);
+                if (!response.IsSuccessful)
+                    return MakeErrorMessage<T>(response);
+
+                var result = response.Data;
+                result.ResponseAsString = response.Content;
+
+                return result;
             }, cancellationToken);
         }
 

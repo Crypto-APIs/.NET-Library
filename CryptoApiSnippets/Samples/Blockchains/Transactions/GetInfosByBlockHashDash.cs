@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,13 +8,11 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetInfosByBlockHashDash()
     {
-      var coin = BtcSimilarCoin.Dash;
-      var network = BtcSimilarNetwork.Testnet;
       var blockHash = "0000000006afa4b398ea157a5c3db94eefe824097c4e8d0e644aaa57e06126b1";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.GetInfos(
-        coin, network, blockHash, skip: 0, limit: 4);
+      var response = manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(
+        NetworkCoin.DashTestNet, blockHash, skip: 0, limit: 4);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetInfosByBlockHashDash executed successfully, " +

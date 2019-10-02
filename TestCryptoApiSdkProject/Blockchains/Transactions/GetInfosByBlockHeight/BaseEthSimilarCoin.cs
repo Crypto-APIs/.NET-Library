@@ -1,7 +1,8 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
 {
@@ -10,22 +11,22 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight);
+            return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight, skip: skip);
+            return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight, limit: limit);
+            return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            return Manager.Blockchains.Transaction.GetInfos(Coin, Network, BlockHeight, skip, limit);
+            return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight, skip, limit);
         }
 
         [TestMethod]
@@ -43,7 +44,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
         public void TestInvalidBlockHeight()
         {
             var blockHeight = int.MaxValue;
-            var response = Manager.Blockchains.Transaction.GetInfos(Coin, Network, blockHeight);
+            var response = Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, blockHeight);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -55,11 +56,10 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
         public void TestBlockHeightOutOfRange()
         {
             var blockHeight = -4173655;
-            Manager.Blockchains.Transaction.GetInfos(Coin, Network, blockHeight);
+            Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, blockHeight);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract int BlockHeight { get; }
     }
 }

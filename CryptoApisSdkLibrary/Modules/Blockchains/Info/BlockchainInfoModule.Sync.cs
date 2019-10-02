@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using System.Threading;
 
 namespace CryptoApisSdkLibrary.Modules.Blockchains.Info
 {
@@ -8,29 +9,25 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Info
         public T GetInfo<T>(NetworkCoin networkCoin)
             where T : GetInfoResponse, new()
         {
-            var request = Requests.GetInfo(networkCoin);
-            return GetSync<T>(request);
+            return GetInfoAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
         }
 
         public T GetBlockHash<T>(NetworkCoin networkCoin, string blockHash)
             where T : GetHashInfoResponse, new()
         {
-            var request = Requests.GetBlockHash(networkCoin, blockHash);
-            return GetSync<T>(request);
+            return GetBlockHashAsync<T>(CancellationToken.None, networkCoin, blockHash).GetAwaiter().GetResult();
         }
 
         public T GetBlockHeight<T>(NetworkCoin networkCoin, int blockHeight)
             where T : GetHashInfoResponse, new()
         {
-            var request = Requests.GetBlockHeight(networkCoin, blockHeight);
-            return GetSync<T>(request);
+            return GetBlockHeightAsync<T>(CancellationToken.None, networkCoin, blockHeight).GetAwaiter().GetResult();
         }
 
         public T GetLatestBlock<T>(NetworkCoin networkCoin)
             where T : GetHashInfoResponse, new()
         {
-            var request = Requests.GetLatestBlock(networkCoin);
-            return GetSync<T>(request);
+            return GetLatestBlockAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
         }
     }
 }

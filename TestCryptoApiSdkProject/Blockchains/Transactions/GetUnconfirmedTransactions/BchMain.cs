@@ -6,7 +6,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetUnconfirmedTransac
     [TestClass]
     public class BchMain : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Bch;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Mainnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BchMainNet;
+
     }
 }

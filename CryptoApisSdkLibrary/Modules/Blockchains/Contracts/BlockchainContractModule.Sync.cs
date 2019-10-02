@@ -1,5 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using System.Threading;
 
 namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
 {
@@ -8,17 +9,15 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Contracts
         public T EstimateGas<T>(NetworkCoin networkCoin)
             where T : EstimateGasContractResponse, new()
         {
-            var request = Requests.EstimateGas(networkCoin);
-            return GetSync<T>(request);
+            return EstimateGasAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
         }
 
         public T Deploy<T>(NetworkCoin networkCoin,
             string fromAddress, double gasPrice, double gasLimit, string privateKey, string byteCode)
             where T : DeployContractResponse, new()
         {
-            var request = Requests.Deploy(networkCoin,
-                fromAddress, gasPrice, gasLimit, privateKey, byteCode);
-            return GetSync<T>(request);
+            return DeployAsync<T>(CancellationToken.None, networkCoin, fromAddress,
+                gasPrice, gasLimit, privateKey, byteCode).GetAwaiter().GetResult();
         }
     }
 }

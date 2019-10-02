@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void PendingTransactions()
     {
-      var coin = EthSimilarCoin.Eth;
-      var network = EthSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.PendingTransactions(
-        coin, network);
+      var response = manager.Blockchains.Transaction.PendingTransactions<PendingTransactionsResponse>(
+        NetworkCoin.EthMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "PendingTransactions executed successfully, " +

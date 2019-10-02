@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -11,8 +12,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         [TestMethod]
         public void TestSimple()
         {
-            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, FromAddress, ToAddress, Password);
+            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Password);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -23,8 +24,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         public void WrongFromAddress()
         {
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, fromAddress, ToAddress, Password);
+            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -35,8 +36,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         public void WrongToAddress()
         {
             var toAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, FromAddress, toAddress, Password);
+            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -47,8 +48,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         public void WrongPassword()
         {
             var password = "qwe";
-            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, FromAddress, ToAddress, password);
+            var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, password);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -60,8 +61,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         public void NullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, fromAddress, ToAddress, Password);
+            Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Password);
         }
 
         [TestMethod]
@@ -69,8 +70,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         public void NullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, FromAddress, toAddress, Password);
+            Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Password);
         }
 
         [TestMethod]
@@ -78,12 +79,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendAllAmountUsingPas
         public void NullPassword()
         {
             string password = null;
-            Manager.Blockchains.Transaction.SendAllAmountUsingPassword(
-                Coin, Network, FromAddress, ToAddress, password);
+            Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, password);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
 

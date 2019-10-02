@@ -28,6 +28,12 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return GetAsyncResponse<GetExchangesSupportingPairsResponse>(request, cancellationToken);
         }
 
+        public Task<GetAssetsMetaResponse> GetAssetsMetaAsync(CancellationToken cancellationToken, int skip = 0, int limit = 50)
+        {
+            var request = Requests.GetAssetsMeta(skip, limit);
+            return GetAsyncResponse<GetAssetsMetaResponse>(request, cancellationToken);
+        }
+
 
         public Task<GetExchangesSupportingAssetResponse> GetExchangesSupportingAssetAsync(CancellationToken cancellationToken,
             string assetId, int skip = 0, int limit = 50)
@@ -41,6 +47,18 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         {
             var request = Requests.GetAssets(skip, limit);
             return GetAsyncResponse<GetAllAssetsResponse>(request, cancellationToken);
+        }
+
+        public Task<GetAssetInfoResponse> GetAssetInfoAsync(CancellationToken cancellationToken, string assetId)
+        {
+            var request = Requests.GetAssetInfo(assetId);
+            return GetAsyncResponse<GetAssetInfoResponse>(request, cancellationToken);
+        }
+
+        public Task<GetSymbolInfoResponse> GetSymbolInfoAsync(CancellationToken cancellationToken, string symbolId)
+        {
+            var request = Requests.GetSymbolInfo(symbolId);
+            return GetAsyncResponse<GetSymbolInfoResponse>(request, cancellationToken);
         }
 
         public Task<GetAllSymbolsResponse> GetSymbolsAsync(CancellationToken cancellationToken,
@@ -57,7 +75,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             return GetAsyncResponse<GetAllExchangesResponse>(request, cancellationToken);
         }
 
-        public Task<GetExchangeInfoResponse> GetExchangeInfo(CancellationToken cancellationToken, string exchangeId, int skip = 0, int limit = 50)
+        public Task<GetExchangeInfoResponse> GetExchangeInfoAsync(CancellationToken cancellationToken, string exchangeId, int skip = 0, int limit = 50)
         {
             var request = Requests.GetExchangeInfo(exchangeId, skip, limit);
             return GetAsyncResponse<GetExchangeInfoResponse>(request, cancellationToken);

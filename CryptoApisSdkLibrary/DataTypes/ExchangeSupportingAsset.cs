@@ -1,8 +1,9 @@
 using RestSharp.Deserializers;
+using System;
 
 namespace CryptoApisSdkLibrary.DataTypes
 {
-    public class ExchangeSupportingAsset //: IEquatable<ExchangeSupportingAsset>
+    public class ExchangeSupportingAsset : IEquatable<ExchangeSupportingAsset>
     {
         /// <summary>
         /// Unique exchange identification string (UID).
@@ -29,7 +30,35 @@ namespace CryptoApisSdkLibrary.DataTypes
 
         #region IEquatable<ExchangeSupportingAsset>
 
-        // !!!!!!!!!!!!!!!!!!!!
+        public bool Equals(ExchangeSupportingAsset other)
+        {
+            if (ReferenceEquals(null, other))
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+            return ExchangeId == other.ExchangeId && PairsAsBaseCount == other.PairsAsBaseCount &&
+                   PairsAsQuoteCount == other.PairsAsQuoteCount;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            return obj.GetType() == this.GetType() && Equals((ExchangeSupportingAsset)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (ExchangeId != null ? ExchangeId.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ PairsAsBaseCount;
+                hashCode = (hashCode * 397) ^ PairsAsQuoteCount;
+                return hashCode;
+            }
+        }
 
         #endregion IEquatable<ExchangeSupportingAsset>
     }

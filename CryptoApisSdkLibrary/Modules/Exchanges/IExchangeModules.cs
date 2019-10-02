@@ -101,16 +101,16 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             string exchangeId, int skip = 0, int limit = 50);
 
         /// <summary>
-        /// Get detailed list of all associated assets.
+        /// Get a list of all associated assets.
         /// </summary>
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported assets.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets"/>
-        GetAllAssetsResponse GetAssets(int skip = 0, int limit = 50);
+        GetAssetsMetaResponse GetAssetsMeta(int skip = 0, int limit = 50);
 
         /// <summary>
-        /// Get detailed list of all associated assets.
+        /// Get a list of all associated assets.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
@@ -118,7 +118,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported assets.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets"/>
-        Task<GetAllAssetsResponse> GetAssetsAsync(CancellationToken cancellationToken,
+        Task<GetAssetsMetaResponse> GetAssetsMetaAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
 
         /// <summary>
@@ -183,8 +183,65 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with collection of supported exchanges.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-exchange-details"/>
-        Task<GetExchangeInfoResponse> GetExchangeInfo(CancellationToken cancellationToken,
+        Task<GetExchangeInfoResponse> GetExchangeInfoAsync(CancellationToken cancellationToken,
             string exchangeId, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get detailed list of all associated assets.
+        /// </summary>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets-base-data"/>
+        GetAllAssetsResponse GetAssets(int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get detailed list of all associated assets.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets-base-data"/>
+        Task<GetAllAssetsResponse> GetAssetsAsync(CancellationToken cancellationToken,
+            int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get detailed information for a specific asset.
+        /// </summary>
+        /// <param name="assetId">Our identifier (UID) of the asset.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-asset-details"/>
+        GetAssetInfoResponse GetAssetInfo(string assetId);
+
+        /// <summary>
+        /// Get detailed information for a specific asset.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="assetId">Our identifier (UID) of the asset.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-asset-details"/>
+        Task<GetAssetInfoResponse> GetAssetInfoAsync(CancellationToken cancellationToken, string assetId);
+
+        /// <summary>
+        /// Get detailed information for a specific asset.
+        /// </summary>
+        /// <param name="symbolId">Symbol identifier used to filter response.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-asset-details"/>
+        GetSymbolInfoResponse GetSymbolInfo(string symbolId);
+
+        /// <summary>
+        /// Get detailed information for a specific asset.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="symbolId">Symbol identifier used to filter response.</param>
+        /// <returns>Response with collection of supported assets.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-asset-details"/>
+        Task<GetSymbolInfoResponse> GetSymbolInfoAsync(CancellationToken cancellationToken, string symbolId);
 
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a current time.
@@ -192,7 +249,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
         /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
         /// <returns>Response with exchange rates.</returns>
-        /// <see cref=""/>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate"/>
         GetExchangeRateResponse GetExchangeRate(Asset baseAsset, Asset quoteAsset);
 
         /// <summary>
@@ -203,7 +260,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
         /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
         /// <returns>Response with exchange rates.</returns>
-        /// <see cref=""/>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate"/>
         Task<GetExchangeRateResponse> GetExchangeRateAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset);
 
@@ -298,6 +355,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-periods"/>
         Task<GetAllPeriodsResponse> GetPeriodsAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
+
 
         /// <summary>
         /// Get OHLCV latest time-series data for requested symbol and period, returned in time descending order.

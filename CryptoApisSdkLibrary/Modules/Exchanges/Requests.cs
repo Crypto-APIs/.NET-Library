@@ -30,7 +30,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         public IRestRequest GetExchangesSupportingAsset(string assetId, int skip, int limit)
         {
             if (string.IsNullOrEmpty(assetId))
-                throw new RequestException("AssetId is null");
+                throw new ArgumentNullException(nameof(assetId));
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
             if (limit <= 0)
@@ -46,9 +46,9 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         public IRestRequest GetExchangesSupportingPairs(string assetId1, string assetId2, int skip, int limit)
         {
             if (string.IsNullOrEmpty(assetId1))
-                throw new RequestException("AssetId1 is null");
+                throw new ArgumentNullException(nameof(assetId1));
             if (string.IsNullOrEmpty(assetId2))
-                throw new RequestException("AssetId2 is null");
+                throw new ArgumentNullException(nameof(assetId2));
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
             if (limit <= 0)
@@ -64,13 +64,27 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         public IRestRequest GetAllSymbolsInExchange(string exchangeId, int skip, int limit)
         {
             if (string.IsNullOrEmpty(exchangeId))
-                throw new RequestException("ExchangeId is null");
+                throw new ArgumentNullException(nameof(exchangeId));
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
 
             var request = Request.Get($"exchanges/{exchangeId}/pairs");
+            request.AddQueryParameter("skip", skip.ToString());
+            request.AddQueryParameter("limit", limit.ToString());
+
+            return request;
+        }
+
+        public IRestRequest GetAssetsMeta(int skip, int limit)
+        {
+            if (skip < 0)
+                throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
+            if (limit <= 0)
+                throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
+
+            var request = Request.Get($"assets/meta");
             request.AddQueryParameter("skip", skip.ToString());
             request.AddQueryParameter("limit", limit.ToString());
 
@@ -87,6 +101,25 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
             var request = Request.Get("assets/meta");
             request.AddQueryParameter("skip", skip.ToString());
             request.AddQueryParameter("limit", limit.ToString());
+
+            return request;
+        }
+        public IRestRequest GetAssetInfo(string assetId)
+        {
+            if (string.IsNullOrEmpty(assetId))
+                throw new ArgumentNullException(nameof(assetId));
+
+            var request = Request.Get($"assets/{assetId}");
+
+            return request;
+        }
+
+        public IRestRequest GetSymbolInfo(string symbolId)
+        {
+            if (string.IsNullOrEmpty(symbolId))
+                throw new ArgumentNullException(nameof(symbolId));
+
+            var request = Request.Get($"mappings/{symbolId}");
 
             return request;
         }
@@ -122,7 +155,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
         public IRestRequest GetExchangeInfo(string exchangeId, int skip, int limit)
         {
             if (string.IsNullOrEmpty(exchangeId))
-                throw new RequestException("ExchangeId is null");
+                throw new ArgumentNullException(nameof(exchangeId));
             if (skip < 0)
                 throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
             if (limit <= 0)

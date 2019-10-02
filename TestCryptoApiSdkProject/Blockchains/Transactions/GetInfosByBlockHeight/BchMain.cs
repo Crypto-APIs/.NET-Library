@@ -6,8 +6,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.GetInfosByBlockHeight
     [TestClass]
     public class BchMain : BaseBtcSimilarCoin
     {
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BchMainNet;
         protected override int BlockHeight { get; } = 80001;
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Bch;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Mainnet;
     }
 }

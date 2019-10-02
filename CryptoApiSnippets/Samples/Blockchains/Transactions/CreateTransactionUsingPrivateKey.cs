@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -17,8 +18,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       double gasLimit = 21000;
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.CreateTransaction(
-          coin, network, fromAddress, toAddress, privateKey, value, gasPrice, gasLimit);
+      var response = manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+          NetworkCoin.EthRopsten, fromAddress, toAddress, privateKey, value, gasPrice, gasLimit);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateTransactionUsingPrivateKey executed successfully, " +

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
 {
@@ -19,8 +20,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, OutputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -34,8 +35,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
             {
                 new TransactionAddress("qwe", 0.54),
             };
-            var response = Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, inputAddresses, OutputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, inputAddresses, OutputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -49,8 +50,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
             {
                 new TransactionAddress("qwe", 0.54),
             };
-            var response = Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, outputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -65,8 +66,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
             {
                 new TransactionAddress(output.Key, output.Value * 10),
             };
-            var response = Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, outputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -81,8 +82,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
             {
                 new TransactionAddress(output.Key, output.Value / 10),
             };
-            var response = Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, outputAddresses, Fee);
+            var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -94,8 +95,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
         public void NullInputAddresses()
         {
             List<TransactionAddress> inputAddresses = null;
-            Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, inputAddresses, OutputAddresses, Fee);
+            Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, inputAddresses, OutputAddresses, Fee);
         }
 
         [TestMethod]
@@ -103,8 +104,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
         public void NullOutputAddresses()
         {
             List<TransactionAddress> outputAddresses = null;
-            Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, outputAddresses, Fee);
+            Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
         }
 
         [TestMethod]
@@ -112,8 +113,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
         public void EmptyInputAddresses()
         {
             var inputAddresses = new List<TransactionAddress>();
-            Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, inputAddresses, OutputAddresses, Fee);
+            Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, inputAddresses, OutputAddresses, Fee);
         }
 
         [TestMethod]
@@ -121,32 +122,32 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
         public void EmptyOutputAddresses()
         {
             var outputAddresses = new List<TransactionAddress>();
-            Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, outputAddresses, Fee);
+            Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A Fee was inappropriately allowed.")]
         public void InvalidFee()
         {
-            Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, OutputAddresses, new Fee(-1));
+            Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, new Fee(-1));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Wifs was inappropriately allowed.")]
         public void NullWifs()
         {
-            Manager.Blockchains.Transaction.NewTransaction(
-                Coin, Network, InputAddresses, OutputAddresses, Fee, wifs: null);
+            Manager.Blockchains.Transaction.NewTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, OutputAddresses, Fee, wifs: null);
         }
 
         [TestMethod]
         public void FeeTooMuch()
         {
             var fee = int.MaxValue;
-            var response = Manager.Blockchains.Transaction.NewHdTransaction(
-                Coin, Network, Wallet, Password, InputAddresses, OutputAddresses, new Fee(fee));
+            var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
+                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, new Fee(fee));
             
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -167,8 +168,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.NewTransactionHd
         private IEnumerable<TransactionAddress> _inputAddresses;
         private IEnumerable<TransactionAddress> _outputAddresses;
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract Dictionary<string, double> InputAddressesDictionary { get; }
         protected abstract Dictionary<string, double> OutputAddressesDictionary { get; }
         protected Fee Fee { get; } = new Fee(0.00001500);

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -11,7 +12,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendTransaction
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.SendTransaction(Coin, Network, HexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
+                NetworkCoin, HexEncodedInfo);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -22,7 +24,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendTransaction
         public void WrongHexEncodedInfo()
         {
             var hexEncodedInfo = "qwe";
-            var response = Manager.Blockchains.Transaction.SendTransaction(Coin, Network, hexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
+                NetworkCoin, hexEncodedInfo);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -33,11 +36,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.SendTransaction
         [ExpectedException(typeof(ArgumentNullException), "A HexEncodedInfo was inappropriately allowed.")]
         public void NullHexEncodedInfo()
         {
-            Manager.Blockchains.Transaction.SendTransaction(Coin, Network, hexEncodedInfo: null);
+            Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
+                NetworkCoin, hexEncodedInfo: null);
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string HexEncodedInfo { get; }
     }
 }

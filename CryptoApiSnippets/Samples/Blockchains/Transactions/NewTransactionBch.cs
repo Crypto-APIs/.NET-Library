@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 using System.Collections.Generic;
 
@@ -8,8 +9,6 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void NewTransactionBch()
     {
-      var coin = BtcSimilarCoin.Bch;
-      var network = BtcSimilarNetwork.Mainnet;
       IEnumerable<TransactionAddress> inputs = new[]
       {
         new TransactionAddress("bchtest:qrqxlge4wjv7kttm0u9srqjttprhylsz6g84fhjgzf", 0.00109),
@@ -25,8 +24,8 @@ namespace CryptoApiSnippets.Samples.Blockchains
       };
             
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.NewTransaction(
-        coin, network, inputs, outputs, fee, wifs);
+      var response = manager.Blockchains.Transaction.NewTransaction<NewBtcTransactionResponse>(
+        NetworkCoin.BchMainNet, inputs, outputs, fee, wifs);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "NewTransactionBch executed successfully, " +

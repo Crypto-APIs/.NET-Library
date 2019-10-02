@@ -1,6 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Exchanges;
 using System;
+using System.Threading;
 
 namespace CryptoApisSdkLibrary.Modules.Exchanges
 {
@@ -8,163 +9,152 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
     {
         public GetAllExchangesMetaResponse GetExchangesMeta(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchangesMeta(skip, limit);
-            return GetSync<GetAllExchangesMetaResponse>(request);
+            return GetExchangesMetaAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetExchangesSupportingAssetResponse GetExchangesSupportingAsset(string assetId, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchangesSupportingAsset(assetId, skip, limit);
-            return GetSync<GetExchangesSupportingAssetResponse>(request);
+            return GetExchangesSupportingAssetAsync(CancellationToken.None, assetId, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetExchangesSupportingPairsResponse GetExchangesSupportingPairs(string assetId1, string assetId2, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchangesSupportingPairs(assetId1, assetId2, skip, limit);
-            return GetSync<GetExchangesSupportingPairsResponse>(request);
+            return GetExchangesSupportingPairsAsync(CancellationToken.None, assetId1, assetId2, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetExchangesSupportingPairsResponse GetAllSymbolsInExchange(string exchangeId, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetAllSymbolsInExchange(exchangeId, skip, limit);
-            return GetSync<GetExchangesSupportingPairsResponse>(request);
+            return GetAllSymbolsInExchangeAsync(CancellationToken.None, exchangeId, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public GetAssetsMetaResponse GetAssetsMeta(int skip = 0, int limit = 50)
+        {
+            return GetAssetsMetaAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetAllAssetsResponse GetAssets(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetAssets(skip, limit);
-            return GetSync<GetAllAssetsResponse>(request);
+            return GetAssetsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public GetAssetInfoResponse GetAssetInfo(string assetId)
+        {
+            return GetAssetInfoAsync(CancellationToken.None, assetId).GetAwaiter().GetResult();
+        }
+
+        public GetSymbolInfoResponse GetSymbolInfo(string symbolId)
+        {
+            return GetSymbolInfoAsync(CancellationToken.None, symbolId).GetAwaiter().GetResult();
         }
 
         public GetAllSymbolsResponse GetSymbols(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetSymbols(skip, limit);
-            return GetSync<GetAllSymbolsResponse>(request);
+            return GetSymbolsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetAllExchangesResponse GetExchanges(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchanges(skip, limit);
-            return GetSync<GetAllExchangesResponse>(request);
+            return GetExchangesAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetExchangeInfoResponse GetExchangeInfo(string exchangeId, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetExchangeInfo(exchangeId, skip, limit);
-            return GetSync<GetExchangeInfoResponse>(request);
+            return GetExchangeInfoAsync(CancellationToken.None, exchangeId, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetAllPeriodsResponse GetPeriods(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetPeriods(skip, limit);
-            return GetSync<GetAllPeriodsResponse>(request);
+            return GetPeriodsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetExchangeRateResponse GetExchangeRate(Asset baseAsset, Asset quoteAsset)
         {
-            var request = Requests.GetExchangeRate(baseAsset, quoteAsset, timeStamp: null);
-            return GetSync<GetExchangeRateResponse>(request);
+            return GetExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset).GetAwaiter().GetResult();
         }
 
         public GetExchangeRateResponse GetExchangeRate(
             Asset baseAsset, Asset quoteAsset, DateTime timeStamp)
         {
-            var request = Requests.GetExchangeRate(baseAsset, quoteAsset, timeStamp);
-            return GetSync<GetExchangeRateResponse>(request);
+            return GetExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset, timeStamp).GetAwaiter().GetResult();
         }
 
         public GetAllCurrentRatesResponse GetCurrentRates(Asset baseAsset, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetCurrentRates(baseAsset, null, skip, limit);
-            return GetSync<GetAllCurrentRatesResponse>(request);
+            return GetCurrentRatesAsync(CancellationToken.None, baseAsset, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetAllCurrentRatesResponse GetCurrentRates(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetCurrentRates(baseAsset, timeStamp, skip, limit);
-            return GetSync<GetAllCurrentRatesResponse>(request);
+            return GetCurrentRatesAsync(CancellationToken.None, baseAsset, timeStamp, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetLatestDataResponse GetLatestData(Symbol symbol, Period period, int limit = 50)
         {
-            var request = Requests.GetLatestData(symbol, period, limit);
-            return GetSync<GetLatestDataResponse>(request);
+            return GetLatestDataAsync(CancellationToken.None, symbol, period, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalDataResponse GetHistoricalData(Symbol symbol, Period period, DateTime startPeriod, int limit = 50)
         {
-            var request = Requests.GetHistoricalData(symbol, period, startPeriod, null, limit);
-            return GetSync<GetHistoricalDataResponse>(request);
+            return GetHistoricalDataAsync(CancellationToken.None, symbol, period, startPeriod, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalDataResponse GetHistoricalData(Symbol symbol, Period period,
             DateTime startPeriod, DateTime endPeriod, int limit = 50)
         {
-            var request = Requests.GetHistoricalData(symbol, period, startPeriod, endPeriod, limit);
-            return GetSync<GetHistoricalDataResponse>(request);
+            return GetHistoricalDataAsync(CancellationToken.None, symbol, period, startPeriod, endPeriod, limit).GetAwaiter().GetResult();
         }
 
         public GetLatestTradesResponse GetLatestTrades(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetLatestTrades(skip, limit);
-            return GetSync<GetLatestTradesResponse>(request);
+            return GetLatestTradesAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetLatestTradesResponse GetLatestTrades(Symbol symbol, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetLatestTrades(symbol, skip, limit);
-            return GetSync<GetLatestTradesResponse>(request);
+            return GetLatestTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalTradesResponse GetHistoricalTrades(Symbol symbol, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetHistoricalTrades(symbol, skip, limit, startPeriod: null, endPeriod: null);
-            return GetSync<GetHistoricalTradesResponse>(request);
+            return GetHistoricalTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalTradesResponse GetHistoricalTrades(Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetHistoricalTrades(symbol, skip, limit, startPeriod, endPeriod: null);
-            return GetSync<GetHistoricalTradesResponse>(request);
+            return GetHistoricalTradesAsync(CancellationToken.None, symbol, startPeriod, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalTradesResponse GetHistoricalTrades(Symbol symbol, DateTime startPeriod, DateTime endPeriod,
             int skip = 0, int limit = 50)
         {
-            var request = Requests.GetHistoricalTrades(symbol, skip, limit, startPeriod, endPeriod);
-            return GetSync<GetHistoricalTradesResponse>(request);
+            return GetHistoricalTradesAsync(CancellationToken.None, symbol, startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetAllLatestQuoteTradesResponse GetLatestQuoteTrades(int limit = 50)
         {
-            var request = Requests.GetLatestQuoteTrades(limit);
-            return GetSync<GetAllLatestQuoteTradesResponse>(request);
+            return GetLatestQuoteTradesAsync(CancellationToken.None, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalQuoteTradesResponse GetHistoricalQuoteTrades(Symbol symbol, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetHistoricalQuoteTrades(symbol, skip, limit, startPeriod: null, endPeriod: null);
-            return GetSync<GetHistoricalQuoteTradesResponse>(request);
+            return GetHistoricalQuoteTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalQuoteTradesResponse GetHistoricalQuoteTrades(
             Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetHistoricalQuoteTrades(symbol, skip, limit, startPeriod, endPeriod: null);
-            return GetSync<GetHistoricalQuoteTradesResponse>(request);
+            return GetHistoricalQuoteTradesAsync(CancellationToken.None, symbol, startPeriod, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetHistoricalQuoteTradesResponse GetHistoricalQuoteTrades(
             Symbol symbol, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50)
         {
-            var request = Requests.GetHistoricalQuoteTrades(symbol, skip, limit, startPeriod, endPeriod);
-            return GetSync<GetHistoricalQuoteTradesResponse>(request);
+            return GetHistoricalQuoteTradesAsync(CancellationToken.None, symbol, startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
         }
 
         public GetArbitrageInfoResponse GetArbitrageInfo(int skip = 0, int limit = 50)
         {
-            var request = Requests.GetArbitrageInfo(skip, limit);
-            return GetSync<GetArbitrageInfoResponse>(request);
+            return GetArbitrageInfoAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,10 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void GetUnconfirmedTransactionsDoge()
     {
-      var coin = BtcSimilarCoin.Doge;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.GetUnconfirmedTransactions(
-        coin, network, skip:0, limit:50);
+      var response = manager.Blockchains.Transaction.
+        GetUnconfirmedTransactions<GetUnconfirmedTransactionsResponse>(
+          NetworkCoin.DogeMainNet, skip:0, limit:50);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetUnconfirmedTransactionsDoge executed successfully, " +

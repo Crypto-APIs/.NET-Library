@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -11,8 +12,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -23,8 +24,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void WrongFromAddress()
         {
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, fromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -35,8 +36,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void WrongToAddress()
         {
             var toAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, toAddress, PrivateKey, Value, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, PrivateKey, Value, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -47,8 +48,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void WrongPrivateKey()
         {
             var privateKey = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, privateKey, Value, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, privateKey, Value, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -60,8 +61,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void InvalidValue()
         {
             var value = -1;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, PrivateKey, value, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, PrivateKey, value, GasPrice, GasLimit);
         }
 
         [Ignore]
@@ -69,8 +70,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void ValueMoreThanBalance()
         {
             var value = double.MaxValue;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, PrivateKey, value, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, PrivateKey, value, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -82,8 +83,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void GasPriceTooLow()
         {
             var gasPrice = 0;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, PrivateKey, Value, gasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, PrivateKey, Value, gasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -95,8 +96,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void GasLimitTooLow()
         {
             var gasLimit = 0;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, PrivateKey, Value, GasPrice, gasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, PrivateKey, Value, GasPrice, gasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -108,8 +109,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void NullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, fromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -117,8 +118,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void NullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, toAddress, PrivateKey, Value, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, PrivateKey, Value, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -126,12 +127,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPriv
         public void NullPrivateKey()
         {
             string privateKey = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, privateKey, Value, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, privateKey, Value, GasPrice, GasLimit);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
         protected abstract double Value { get; }

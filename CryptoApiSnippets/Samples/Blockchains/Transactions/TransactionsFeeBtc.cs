@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using System;
 
 namespace CryptoApiSnippets.Samples.Blockchains
@@ -7,12 +8,9 @@ namespace CryptoApiSnippets.Samples.Blockchains
   {
     public void TransactionsFeeBtc()
     {
-      var coin = BtcSimilarCoin.Btc;
-      var network = BtcSimilarNetwork.Mainnet;
-
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.TransactionsFee(
-        coin, network);
+      var response = manager.Blockchains.Transaction.TransactionsFee<BtcTransactionsFeeResponse>(
+        NetworkCoin.BtcMainNet);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "TransactionsFeeBtc executed successfully, " +

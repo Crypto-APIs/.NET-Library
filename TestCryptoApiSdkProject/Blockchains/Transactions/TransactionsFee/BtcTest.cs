@@ -6,7 +6,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.TransactionsFee
     [TestClass]
     public class BtcTest : BaseBtcSimilarCoin
     {
-        protected override BtcSimilarCoin Coin { get; } = BtcSimilarCoin.Btc;
-        protected override BtcSimilarNetwork Network { get; } = BtcSimilarNetwork.Testnet;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BtcTestNet;
     }
 }

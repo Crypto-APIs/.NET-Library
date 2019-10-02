@@ -3,37 +3,13 @@ using System;
 
 namespace CryptoApisSdkLibrary.DataTypes
 {
-    public class Asset : IEquatable<Asset>
+    public class Asset : AssetMeta, IEquatable<Asset>
     {
-        /// <summary>
-        /// Asset identifier.
-        /// </summary>
-        [DeserializeAs(Name = "assetId")]
-        public string AssetId { get; protected set; }
-
-        /// <summary>
-        /// Original asset name as listed originally by creator / issuer.
-        /// </summary>
-        [DeserializeAs(Name = "originalSymbol")]
-        public string OriginalSymbol { get; protected set; }
-
-        /// <summary>
-        /// Display name of the asset.
-        /// </summary>
-        [DeserializeAs(Name = "name")]
-        public string Name { get; protected set; }
-
         /// <summary>
         /// Lowercase and without whitespaces representation of the name of the asset.
         /// </summary>
         [DeserializeAs(Name = "slug")]
         public string Slug { get; protected set; }
-
-        /// <summary>
-        /// Boolean value transported as integer; True for cryptocurrency assets, False otherwise.
-        /// </summary>
-        [DeserializeAs(Name = "cryptoType")]
-        public bool CryptoType { get; protected set; }
 
         /// <summary>
         /// Approximate total amount of coins in existence right now. Applicable only for currencies of type crypto.
@@ -66,10 +42,46 @@ namespace CryptoApisSdkLibrary.DataTypes
         public double Change { get; protected set; }
 
         /// <summary>
-        /// Unique asset identification string (UID).
+        /// 1 hour trading price percentage change.
         /// </summary>
-        [DeserializeAs(Name = "_id")]
-        public string Id { get; protected set; }
+        [DeserializeAs(Name = "change1Hour")]
+        public double Change1Hour { get; protected set; }
+
+        /// <summary>
+        /// 1 week trading price percentage change.
+        /// </summary>
+        [DeserializeAs(Name = "change1Week")]
+        public double Change1Week { get; protected set; }
+
+        /// <summary>
+        /// The highest trading price in USD.
+        /// </summary>
+        [DeserializeAs(Name = "allTimeHigh")]
+        public double AllTimeHigh { get; protected set; }
+
+        /// <summary>
+        /// The lowest trading price in USD.
+        /// </summary>
+        [DeserializeAs(Name = "allTimeLow")]
+        public double AllTimeLow { get; protected set; }
+
+        /// <summary>
+        /// The first trading price in USD.
+        /// </summary>
+        [DeserializeAs(Name = "earliestKnownPrice")]
+        public double EarliestKnownPrice { get; protected set; }
+
+        /// <summary>
+        /// UNIX Timestamp of the date of the first trade.
+        /// </summary>
+        [DeserializeAs(Name = "earliestTradeDate")]
+        public double EarliestTradeDate { get; protected set; }
+
+        /// <summary>
+        /// Object holding meta information about currency logo e.g. mime type, and base64 encoded image data, etc.
+        /// </summary>
+        [DeserializeAs(Name = "logo")]
+        public Logo Logo { get; protected set; }
 
         public Asset()
         {
@@ -93,10 +105,13 @@ namespace CryptoApisSdkLibrary.DataTypes
                 return false;
             if (ReferenceEquals(this, other))
                 return true;
-            return string.Equals(AssetId, other.AssetId) && string.Equals(OriginalSymbol, other.OriginalSymbol) &&
-                string.Equals(Name, other.Name) && string.Equals(Slug, other.Slug) && CryptoType == other.CryptoType &&
-                Supply.Equals(other.Supply) && MarketCap.Equals(other.MarketCap) && Price.Equals(other.Price) &&
-                Volume.Equals(other.Volume) && Change.Equals(other.Change) && string.Equals(Id, other.Id);
+            return base.Equals(other) && Slug == other.Slug && Supply.Equals(other.Supply) &&
+                   MarketCap.Equals(other.MarketCap) && Price.Equals(other.Price) &&
+                   Volume.Equals(other.Volume) && Change.Equals(other.Change) &&
+                   Change1Hour.Equals(other.Change1Hour) && Change1Week.Equals(other.Change1Week) &&
+                   AllTimeHigh.Equals(other.AllTimeHigh) && AllTimeLow.Equals(other.AllTimeLow) &&
+                   EarliestKnownPrice.Equals(other.EarliestKnownPrice) &&
+                   EarliestTradeDate.Equals(other.EarliestTradeDate) && Equals(Logo, other.Logo);
         }
 
         public override bool Equals(object obj)
@@ -112,17 +127,20 @@ namespace CryptoApisSdkLibrary.DataTypes
         {
             unchecked
             {
-                var hashCode = AssetId != null ? AssetId.GetHashCode() : 0;
-                hashCode = (hashCode * 397) ^ (OriginalSymbol != null ? OriginalSymbol.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
+                int hashCode = base.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Slug != null ? Slug.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ CryptoType.GetHashCode();
                 hashCode = (hashCode * 397) ^ Supply.GetHashCode();
                 hashCode = (hashCode * 397) ^ MarketCap.GetHashCode();
                 hashCode = (hashCode * 397) ^ Price.GetHashCode();
                 hashCode = (hashCode * 397) ^ Volume.GetHashCode();
                 hashCode = (hashCode * 397) ^ Change.GetHashCode();
-                hashCode = (hashCode * 397) ^ (Id != null ? Id.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ Change1Hour.GetHashCode();
+                hashCode = (hashCode * 397) ^ Change1Week.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllTimeHigh.GetHashCode();
+                hashCode = (hashCode * 397) ^ AllTimeLow.GetHashCode();
+                hashCode = (hashCode * 397) ^ EarliestKnownPrice.GetHashCode();
+                hashCode = (hashCode * 397) ^ EarliestTradeDate.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Logo != null ? Logo.GetHashCode() : 0);
                 return hashCode;
             }
         }

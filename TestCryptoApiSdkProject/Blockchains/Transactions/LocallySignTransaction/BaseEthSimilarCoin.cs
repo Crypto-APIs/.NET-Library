@@ -1,5 +1,6 @@
 ﻿using System;
 using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransaction
@@ -10,7 +11,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransactio
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.LocallySignTransaction(Coin, Network, FromAddress, ToAddress, Value);
+            var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -21,7 +23,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransactio
         public void WrongFromAddress()
         {
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.LocallySignTransaction(Coin, Network, fromAddress, ToAddress, Value);
+            var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Value);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -32,7 +35,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransactio
         public void WrongToAddress()
         {
             var toAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.LocallySignTransaction(Coin, Network, FromAddress, toAddress, Value);
+            var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Value);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -44,7 +48,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransactio
         public void NullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.Transaction.LocallySignTransaction(Coin, Network, fromAddress, ToAddress, Value);
+            Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Value);
         }
 
         [TestMethod]
@@ -52,7 +57,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransactio
         public void NullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.Transaction.LocallySignTransaction(Coin, Network, FromAddress, toAddress, Value);
+            Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Value);
         }
 
         [TestMethod]
@@ -60,11 +66,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.LocallySignTransactio
         public void InvalidValue()
         {
             var value = -1.212;
-            Manager.Blockchains.Transaction.LocallySignTransaction(Coin, Network, FromAddress, ToAddress, value);
+            Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, value);
         }
 
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
         protected abstract double Value { get; }

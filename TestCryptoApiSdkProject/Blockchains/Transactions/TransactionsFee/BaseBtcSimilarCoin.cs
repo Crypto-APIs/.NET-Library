@@ -1,4 +1,5 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.TransactionsFee
@@ -9,7 +10,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.TransactionsFee
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.TransactionsFee(Coin, Network);
+            var response = Manager.Blockchains.Transaction.TransactionsFee<BtcTransactionsFeeResponse>(NetworkCoin);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -17,7 +18,6 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.TransactionsFee
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Recommended));
         }
 
-        protected abstract BtcSimilarCoin Coin { get; }
-        protected abstract BtcSimilarNetwork Network { get; }
+        protected abstract NetworkCoin NetworkCoin { get; }
     }
 }

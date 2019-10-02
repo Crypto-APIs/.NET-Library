@@ -7,8 +7,7 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
     [TestClass]
     public class EthRopsten : BaseEthSimilarCoin
     {
-        protected override EthSimilarCoin Coin { get; } = EthSimilarCoin.Eth;
-        protected override EthSimilarNetwork Network { get; } = EthSimilarNetwork.Ropsten;
+        protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRopsten;
         protected override string FromAddress { get; } = ""; // todo: need corrected addresses
         protected override string ToAddress { get; } = "";
         protected override double Value { get; } = 0.12;

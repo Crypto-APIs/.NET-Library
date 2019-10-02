@@ -4,7 +4,7 @@ using System;
 
 namespace CryptoApisSdkLibrary.DataTypes
 {
-    public class ExchangeSupportingPairs //: IEquatable<ExchangeSupportingPairs>
+    public class ExchangeSupportingPairs : IEquatable<ExchangeSupportingPairs>
     {
         /// <summary>
         /// Unique symbol identification string (UID).
@@ -66,7 +66,41 @@ namespace CryptoApisSdkLibrary.DataTypes
         }
 
         #region IEquatable<ExchangeSupportingPairs>
-        // !!!!!!!!!!!!!!!!!!!!
-        #endregion
+
+        public bool Equals(ExchangeSupportingPairs other)
+        {
+            if (ReferenceEquals(null, other))
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+            return SymbolId == other.SymbolId && ExchangeId == other.ExchangeId &&
+                   ExchangeSymbol == other.ExchangeSymbol && BaseAsset == other.BaseAsset &&
+                   quoteAsset == other.quoteAsset && TradeTypeAsString == other.TradeTypeAsString;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            return obj.GetType() == GetType() && Equals((ExchangeSupportingPairs)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (SymbolId != null ? SymbolId.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (ExchangeId != null ? ExchangeId.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (ExchangeSymbol != null ? ExchangeSymbol.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (BaseAsset != null ? BaseAsset.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (quoteAsset != null ? quoteAsset.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (TradeTypeAsString != null ? TradeTypeAsString.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
+
+        #endregion IEquatable<ExchangeSupportingPairs>
     }
 }

@@ -1,6 +1,7 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPasswordWithGas
 {
@@ -10,8 +11,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -22,8 +23,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void WrongFromAddress()
         {
             var fromAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, fromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -34,8 +35,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void WrongToAddress()
         {
             var toAddress = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, toAddress, Value, Password, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Value, Password, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -46,8 +47,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void WrongPassword()
         {
             var password = "qwe";
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, password, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, password, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -59,16 +60,16 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void InvalidValue()
         {
             var value = -1;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, value, Password, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, value, Password, GasPrice, GasLimit);
         }
 
         [TestMethod]
         public void TestValueMoreThanBalance()
         {
             var value = double.MaxValue;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, value, Password, GasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, value, Password, GasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -79,8 +80,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void GasPriceTooLow()
         {
             var gasPrice = 0;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, Password, gasPrice, GasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, Password, gasPrice, GasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -91,8 +92,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void GasLimitTooLow()
         {
             var gasLimit = 0;
-            var response = Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, Password, GasPrice, gasLimit);
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, Password, GasPrice, gasLimit);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -104,8 +105,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void NullFromAddress()
         {
             string fromAddress = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, fromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, fromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -113,8 +114,8 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void NullToAddress()
         {
             string toAddress = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, toAddress, Value, Password, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, toAddress, Value, Password, GasPrice, GasLimit);
         }
 
         [TestMethod]
@@ -122,11 +123,11 @@ namespace TestCryptoApiSdkProject.Blockchains.Transactions.CreateTransactionPass
         public void NullPassword()
         {
             string password = null;
-            Manager.Blockchains.Transaction.CreateTransaction(
-                Coin, Network, FromAddress, ToAddress, Value, password, GasPrice, GasLimit);
+            Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
+                NetworkCoin, FromAddress, ToAddress, Value, password, GasPrice, GasLimit);
         }
-        protected abstract EthSimilarCoin Coin { get; }
-        protected abstract EthSimilarNetwork Network { get; }
+
+        protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }
         protected abstract string ToAddress { get; }
         protected abstract double Value { get; }
