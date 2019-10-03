@@ -7,10 +7,22 @@ namespace CryptoApisSdkLibrary.DataTypes
     public class Symbol : IEquatable<Symbol>
     {
         /// <summary>
+        /// Default constructor need for serialization/deserialization.
+        /// </summary>
+        public Symbol()
+        {
+        }
+
+        public Symbol(string id)
+        {
+            Id = id;
+        }
+
+        /// <summary>
         /// Symbol identifier.
         /// </summary>
         [DeserializeAs(Name = "exchangeSymbol")]
-        public string SymbolId { get; protected set; }
+        public string Name { get; protected set; }
 
         /// <summary>
         /// Identifier of the exchange where symbol is traded.
@@ -63,18 +75,9 @@ namespace CryptoApisSdkLibrary.DataTypes
             }
         }
 
-        public Symbol()
-        {
-        }
-
-        public Symbol(string id)
-        {
-            Id = id;
-        }
-
         public override string ToString()
         {
-            return $"{BaseAsset}/{QuoteAsset}";
+            return $"{Name}";
         }
 
         #region IEquatable<Symbol>
@@ -85,7 +88,7 @@ namespace CryptoApisSdkLibrary.DataTypes
                 return false;
             if (ReferenceEquals(this, other))
                 return true;
-            return string.Equals(SymbolId, other.SymbolId) && string.Equals(ExchangeId, other.ExchangeId) &&
+            return string.Equals(Name, other.Name) && string.Equals(ExchangeId, other.ExchangeId) &&
                 string.Equals(TradeTypeAsString, other.TradeTypeAsString) && string.Equals(BaseAsset, other.BaseAsset) &&
                 string.Equals(QuoteAsset, other.QuoteAsset) && string.Equals(Id, other.Id);
         }
@@ -103,7 +106,7 @@ namespace CryptoApisSdkLibrary.DataTypes
         {
             unchecked
             {
-                var hashCode = SymbolId != null ? SymbolId.GetHashCode() : 0;
+                var hashCode = Name != null ? Name.GetHashCode() : 0;
                 hashCode = (hashCode * 397) ^ (ExchangeId != null ? ExchangeId.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (TradeTypeAsString != null ? TradeTypeAsString.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (BaseAsset != null ? BaseAsset.GetHashCode() : 0);

@@ -28,7 +28,7 @@ test:
   - echo "Starting tests..."
   - cd "$env:TEST_PROJECT_NAME"
   - cd bin\Release
-  - '& "$env:MSTEST_PATH" /testcontainer:"$env:TEST_PROJECT_NAME".dll /resultsfile:"$env:TRX_FILENAME"'
+  - '& "$env:MSTEST_PATH" /testcontainer:"$env:TEST_PROJECT_NAME".dll exchange /resultsfile:"$env:TRX_FILENAME"'
   after_script:
   - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\bin\Release\$env:TRX_FILENAME"'
   dependencies:

@@ -84,4 +84,43 @@ namespace CryptoApisSdkLibrary.DataTypes
 
         #endregion IEquatable<ExchangeRate>
     }
+
+    public class ExchangeRateInSpecificExchange : ExchangeRate, IEquatable<ExchangeRateInSpecificExchange>
+    {
+        /// <summary>
+        /// Exchange identifier.
+        /// </summary>
+        [DeserializeAs(Name = "exchangeId")]
+        public string ExchangeId { get; protected set; }
+
+        #region IEquatable<ExchangeRate>
+
+        public bool Equals(ExchangeRateInSpecificExchange other)
+        {
+            if (ReferenceEquals(null, other))
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+            return base.Equals(other) && ExchangeId == other.ExchangeId;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+                return false;
+            if (ReferenceEquals(this, obj))
+                return true;
+            return obj.GetType() == GetType() && Equals((ExchangeRateInSpecificExchange)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (base.GetHashCode() * 397) ^ (ExchangeId != null ? ExchangeId.GetHashCode() : 0);
+            }
+        }
+
+        #endregion IEquatable<ExchangeRate>
+    }
 }

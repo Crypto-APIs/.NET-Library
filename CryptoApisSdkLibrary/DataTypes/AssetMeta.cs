@@ -6,6 +6,17 @@ namespace CryptoApisSdkLibrary.DataTypes
     public class AssetMeta : IEquatable<AssetMeta>
     {
         /// <summary>
+        /// Default constructor need for serialization/deserialization.
+        /// </summary>
+        public AssetMeta()
+        { }
+
+        public AssetMeta(string id) : this()
+        {
+            Id = id;
+        }
+
+        /// <summary>
         /// Asset identifier.
         /// </summary>
         [DeserializeAs(Name = "assetId")]
@@ -34,6 +45,11 @@ namespace CryptoApisSdkLibrary.DataTypes
         /// </summary>
         [DeserializeAs(Name = "_id")]
         public string Id { get; protected set; }
+
+        public override string ToString()
+        {
+            return AssetId;
+        }
 
         #region IEquatable<Asset>
 

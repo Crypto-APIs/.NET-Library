@@ -3,7 +3,7 @@ using System;
 
 namespace CryptoApisSdkLibrary.DataTypes
 {
-    public class OHLCV : IEquatable<OHLCV>
+    public class Ohlcv : IEquatable<Ohlcv>
     {
         /// <summary>
         /// Exchange where symbol is traded.
@@ -95,9 +95,9 @@ namespace CryptoApisSdkLibrary.DataTypes
         [DeserializeAs(Name = "_id")]
         public string Id { get; protected set; }
 
-        #region IEquatable<OHLCV>
+        #region IEquatable<Ohlcv>
 
-        public bool Equals(OHLCV other)
+        public bool Equals(Ohlcv other)
         {
             if (ReferenceEquals(null, other))
                 return false;
@@ -117,7 +117,7 @@ namespace CryptoApisSdkLibrary.DataTypes
                 return false;
             if (ReferenceEquals(this, obj))
                 return true;
-            return obj.GetType() == GetType() && Equals((OHLCV)obj);
+            return obj.GetType() == GetType() && Equals((Ohlcv)obj);
         }
 
         public override int GetHashCode()
@@ -143,6 +143,6 @@ namespace CryptoApisSdkLibrary.DataTypes
             }
         }
 
-        #endregion IEquatable<OHLCV>
+        #endregion IEquatable<Ohlcv>
     }
 }

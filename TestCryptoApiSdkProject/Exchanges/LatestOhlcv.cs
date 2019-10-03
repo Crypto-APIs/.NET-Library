@@ -1,0 +1,80 @@
+﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
+
+namespace TestCryptoApiSdkProject.Exchanges
+{
+    [TestClass]
+    public class LatestOhlcv : BaseCollectionTestWithoutSkip
+    {
+        protected override ICollectionResponse GetAllList()
+        {
+            return Manager.Exchanges.LatestOhlcv(Symbol, Period);
+        }
+
+        protected override ICollectionResponse GetLimitList(int limit)
+        {
+            return Manager.Exchanges.LatestOhlcv(Symbol, Period, limit: limit);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
+        public void TestNullSymbol()
+        {
+            Manager.Exchanges.LatestOhlcv(symbol: null, period: Period);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
+        public void TestNullSymbolId()
+        {
+            Manager.Exchanges.LatestOhlcv(new Symbol(), Period);
+        }
+
+        [TestMethod]
+        public void TestIncorrectSymbol()
+        {
+            var symbol = new Symbol("QWE'EWQ1");
+            var period = new Period("1day");
+            var response = Manager.Exchanges.LatestOhlcv(symbol, period);
+
+            Assert.IsNotNull(response);
+            Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
+            Assert.AreEqual("Unknown symbol", response.ErrorMessage);
+            Assert.IsNotNull(response.Ohlcv);
+            Assert.IsFalse(response.Ohlcv.Any());
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Period of null was inappropriately allowed.")]
+        public void TestNullPeriod()
+        {
+            Manager.Exchanges.LatestOhlcv(Symbol, period: null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Period.Id of null was inappropriately allowed.")]
+        public void TestNullPeriodId()
+        {
+            Manager.Exchanges.LatestOhlcv(Symbol, new Period());
+        }
+
+        [TestMethod]
+        public void TestIncorrectPeriod()
+        {
+            var period = new Period("QW'E");
+            var response = Manager.Exchanges.LatestOhlcv(Symbol, period);
+
+            Assert.IsNotNull(response);
+            Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
+            Assert.AreEqual("General Error: period must be in {'1sec', '2sec', '3sec', '4sec', '5sec', '6sec', '10sec', '15sec', '20sec', '30sec', '1min', '2min', '3min', '4min', '5min', '6min', '10min', '15min', '20min', '30min', '1hrs', '2hrs', '3hrs', '4hrs', '6hrs', '8hrs', '12hrs', '1day', '2day', '3day', '5day', '7day', '10day', '1mth', '2mth', '3mth', '4mth', '6mth', '1yrs', '2yrs', '3yrs', '4yrs', '5yrs'}", response.ErrorMessage);
+            Assert.IsNotNull(response.Ohlcv);
+            Assert.IsFalse(response.Ohlcv.Any());
+        }
+
+        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0b");
+        private Period Period { get; } = new Period("1day");
+    }
+}

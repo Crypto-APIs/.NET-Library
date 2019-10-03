@@ -6,7 +6,7 @@ namespace CryptoApiSnippets
 {
     internal static class DemoProgram
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             RunExchangesFeatures(new ExchangeSnippets());
             RunBlockchainsFeatures(new BlockchainSnippets());
@@ -19,20 +19,29 @@ namespace CryptoApiSnippets
 
         private static void RunExchangesFeatures(ExchangeSnippets snippets)
         {
-            snippets.GetExchanges();
-            snippets.GetAssets();
-            snippets.GetSymbols();
-            snippets.GetExchangeRate();
-            snippets.GetCurrentRates();
-            snippets.GetPeriods();
-            snippets.GetLatestData();
-            snippets.GetHistoricalData();
-            snippets.GetLatestSymbolTrades();
-            snippets.GetLatestTrades();
-            snippets.GetHistoricalTrades();
-            snippets.GetLatestQuoteTrades();
-            snippets.GetHistoricalQuoteTrades();
-            snippets.GetArbitrageInfo();
+            snippets.ExchangesMeta();
+            snippets.ExchangesSupportingAsset();
+            snippets.ExchangesSupportingPairs();
+            snippets.SymbolsInExchange();
+            snippets.AssetsMeta();
+            snippets.Symbols();
+            snippets.Exchanges();
+            snippets.ExchangeDetails();
+            snippets.Assets();
+            snippets.AssetDetails();
+            snippets.SymbolDetails();
+
+            snippets.ExchangeRate();
+            snippets.ExchangeRates();
+            snippets.ExchangeRateInExchange();
+            snippets.ExchangeRatesInExchange();
+
+            snippets.Periods();
+            snippets.LatestOhlcv();
+            snippets.HistoricalOhlcv();
+            snippets.LatestSymbolTrades();
+            snippets.LatestTrades();
+            snippets.HistoricalTrades();
         }
 
         private static void RunBlockchainsFeatures(BlockchainSnippets snippets)

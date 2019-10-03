@@ -7,154 +7,233 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges
 {
     internal partial class ExchangeModules
     {
-        public GetAllExchangesMetaResponse GetExchangesMeta(int skip = 0, int limit = 50)
+        public ExchangesMetaResponse ExchangesMeta(int skip = 0, int limit = 50)
         {
-            return GetExchangesMetaAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return ExchangesMetaAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetExchangesSupportingAssetResponse GetExchangesSupportingAsset(string assetId, int skip = 0, int limit = 50)
+        public ExchangesSupportingAssetResponse ExchangesSupportingAsset(Asset asset, int skip = 0, int limit = 50)
         {
-            return GetExchangesSupportingAssetAsync(CancellationToken.None, assetId, skip, limit).GetAwaiter().GetResult();
+            return ExchangesSupportingAssetAsync(CancellationToken.None, asset, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetExchangesSupportingPairsResponse GetExchangesSupportingPairs(string assetId1, string assetId2, int skip = 0, int limit = 50)
+        public ExchangesAssetsResponse ExchangesSupportingPairs(Asset asset1, Asset asset2, int skip = 0, int limit = 50)
         {
-            return GetExchangesSupportingPairsAsync(CancellationToken.None, assetId1, assetId2, skip, limit).GetAwaiter().GetResult();
+            return ExchangesSupportingPairsAsync(CancellationToken.None, asset1, asset2, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetExchangesSupportingPairsResponse GetAllSymbolsInExchange(string exchangeId, int skip = 0, int limit = 50)
+        public ExchangesAssetsResponse SymbolsInExchange(Exchange exchange, int skip = 0, int limit = 50)
         {
-            return GetAllSymbolsInExchangeAsync(CancellationToken.None, exchangeId, skip, limit).GetAwaiter().GetResult();
+            return SymbolsInExchangeAsync(CancellationToken.None, exchange, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetAssetsMetaResponse GetAssetsMeta(int skip = 0, int limit = 50)
+        public AssetsMetaResponse AssetsMeta(int skip = 0, int limit = 50)
         {
-            return GetAssetsMetaAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return AssetsMetaAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetAllAssetsResponse GetAssets(int skip = 0, int limit = 50)
+        public AssetsResponse Assets(int skip = 0, int limit = 50)
         {
-            return GetAssetsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return AssetsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetAssetInfoResponse GetAssetInfo(string assetId)
+        public AssetDetailsResponse AssetDetails(Asset asset)
         {
-            return GetAssetInfoAsync(CancellationToken.None, assetId).GetAwaiter().GetResult();
+            return AssetDetailsAsync(CancellationToken.None, asset).GetAwaiter().GetResult();
         }
 
-        public GetSymbolInfoResponse GetSymbolInfo(string symbolId)
+        public SymbolDetailsResponse SymbolDetails(Symbol symbol)
         {
-            return GetSymbolInfoAsync(CancellationToken.None, symbolId).GetAwaiter().GetResult();
+            return SymbolDetailsAsync(CancellationToken.None, symbol).GetAwaiter().GetResult();
         }
 
-        public GetAllSymbolsResponse GetSymbols(int skip = 0, int limit = 50)
+        public SymbolsResponse Symbols(int skip = 0, int limit = 50)
         {
-            return GetSymbolsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return SymbolsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetAllExchangesResponse GetExchanges(int skip = 0, int limit = 50)
+        public ExchangesResponse Exchanges(int skip = 0, int limit = 50)
         {
-            return GetExchangesAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return ExchangesAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetExchangeInfoResponse GetExchangeInfo(string exchangeId, int skip = 0, int limit = 50)
+        public ExchangeDetailsResponse ExchangeDetails(Exchange exchange)
         {
-            return GetExchangeInfoAsync(CancellationToken.None, exchangeId, skip, limit).GetAwaiter().GetResult();
+            return ExchangeDetailsAsync(CancellationToken.None, exchange).GetAwaiter().GetResult();
         }
 
-        public GetAllPeriodsResponse GetPeriods(int skip = 0, int limit = 50)
+        public PeriodsResponse Periods(int skip = 0, int limit = 50)
         {
-            return GetPeriodsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return PeriodsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetExchangeRateResponse GetExchangeRate(Asset baseAsset, Asset quoteAsset)
+        public ExchangeRateResponse ExchangeRate(Asset baseAsset, Asset quoteAsset)
         {
-            return GetExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset).GetAwaiter().GetResult();
+            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset).GetAwaiter().GetResult();
         }
 
-        public GetExchangeRateResponse GetExchangeRate(
-            Asset baseAsset, Asset quoteAsset, DateTime timeStamp)
+        public ExchangeRateResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, DateTime timeStamp)
         {
-            return GetExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset, timeStamp).GetAwaiter().GetResult();
+            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset, timeStamp).GetAwaiter().GetResult();
         }
 
-        public GetAllCurrentRatesResponse GetCurrentRates(Asset baseAsset, int skip = 0, int limit = 50)
+        public ExchangeRatesResponse ExchangeRates(Asset baseAsset, int skip = 0, int limit = 50)
         {
-            return GetCurrentRatesAsync(CancellationToken.None, baseAsset, skip, limit).GetAwaiter().GetResult();
+            return ExchangeRatesAsync(CancellationToken.None, baseAsset, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetAllCurrentRatesResponse GetCurrentRates(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50)
+        public ExchangeRatesResponse ExchangeRates(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50)
         {
-            return GetCurrentRatesAsync(CancellationToken.None, baseAsset, timeStamp, skip, limit).GetAwaiter().GetResult();
+            return ExchangeRatesAsync(CancellationToken.None, baseAsset, timeStamp, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetLatestDataResponse GetLatestData(Symbol symbol, Period period, int limit = 50)
+        public CurrentRateInExchangeResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, Exchange exchange)
         {
-            return GetLatestDataAsync(CancellationToken.None, symbol, period, limit).GetAwaiter().GetResult();
+            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset, exchange).GetAwaiter().GetResult();
         }
 
-        public GetHistoricalDataResponse GetHistoricalData(Symbol symbol, Period period, DateTime startPeriod, int limit = 50)
+        public CurrentRateInExchangeResponse ExchangeRate(Asset baseAsset, Asset quoteAsset,Exchange exchange, DateTime timeStamp)
         {
-            return GetHistoricalDataAsync(CancellationToken.None, symbol, period, startPeriod, limit).GetAwaiter().GetResult();
+            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset,
+                exchange, timeStamp).GetAwaiter().GetResult();
         }
 
-        public GetHistoricalDataResponse GetHistoricalData(Symbol symbol, Period period,
-            DateTime startPeriod, DateTime endPeriod, int limit = 50)
-        {
-            return GetHistoricalDataAsync(CancellationToken.None, symbol, period, startPeriod, endPeriod, limit).GetAwaiter().GetResult();
-        }
-
-        public GetLatestTradesResponse GetLatestTrades(int skip = 0, int limit = 50)
-        {
-            return GetLatestTradesAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
-        }
-
-        public GetLatestTradesResponse GetLatestTrades(Symbol symbol, int skip = 0, int limit = 50)
-        {
-            return GetLatestTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
-        }
-
-        public GetHistoricalTradesResponse GetHistoricalTrades(Symbol symbol, int skip = 0, int limit = 50)
-        {
-            return GetHistoricalTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
-        }
-
-        public GetHistoricalTradesResponse GetHistoricalTrades(Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50)
-        {
-            return GetHistoricalTradesAsync(CancellationToken.None, symbol, startPeriod, skip, limit).GetAwaiter().GetResult();
-        }
-
-        public GetHistoricalTradesResponse GetHistoricalTrades(Symbol symbol, DateTime startPeriod, DateTime endPeriod,
+        public CurrentRatesInExchangeResponse ExchangeRates(Asset baseAsset, Exchange exchange,
             int skip = 0, int limit = 50)
         {
-            return GetHistoricalTradesAsync(CancellationToken.None, symbol, startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+            return ExchangeRatesAsync(CancellationToken.None, baseAsset,
+                exchange, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetAllLatestQuoteTradesResponse GetLatestQuoteTrades(int limit = 50)
+        public CurrentRatesInExchangeResponse ExchangeRates(Asset baseAsset, Exchange exchange,
+            DateTime timeStamp, int skip = 0, int limit = 50)
         {
-            return GetLatestQuoteTradesAsync(CancellationToken.None, limit).GetAwaiter().GetResult();
+            return ExchangeRatesAsync(CancellationToken.None, baseAsset,
+                exchange, timeStamp, skip, limit).GetAwaiter().GetResult();
         }
 
-        public GetHistoricalQuoteTradesResponse GetHistoricalQuoteTrades(Symbol symbol, int skip = 0, int limit = 50)
+        public LatestOhlcvResponse LatestOhlcv(Symbol symbol, Period period, int limit = 50)
         {
-            return GetHistoricalQuoteTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
+            return LatestOhlcvAsync(CancellationToken.None, symbol, period, limit).GetAwaiter().GetResult();
         }
 
-        public GetHistoricalQuoteTradesResponse GetHistoricalQuoteTrades(
-            Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50)
+        public HistoricalOhlcvResponse HistoricalOhlcv(Symbol symbol, Period period, DateTime startPeriod, int limit = 50)
         {
-            return GetHistoricalQuoteTradesAsync(CancellationToken.None, symbol, startPeriod, skip, limit).GetAwaiter().GetResult();
+            return HistoricalOhlcvAsync(CancellationToken.None, symbol, period, startPeriod, limit).GetAwaiter().GetResult();
         }
 
-        public GetHistoricalQuoteTradesResponse GetHistoricalQuoteTrades(
-            Symbol symbol, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50)
+        public HistoricalOhlcvResponse HistoricalOhlcv(Symbol symbol, Period period,
+            DateTime startPeriod, DateTime endPeriod, int limit = 50)
         {
-            return GetHistoricalQuoteTradesAsync(CancellationToken.None, symbol, startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+            return HistoricalOhlcvAsync(CancellationToken.None, symbol, period, startPeriod, endPeriod, limit).GetAwaiter().GetResult();
         }
 
-        public GetArbitrageInfoResponse GetArbitrageInfo(int skip = 0, int limit = 50)
+        public LatestTradesResponse LatestTrades(int skip = 0, int limit = 50)
         {
-            return GetArbitrageInfoAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+            return LatestTradesAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public LatestTradesResponse LatestTrades(Symbol symbol, int skip = 0, int limit = 50)
+        {
+            return LatestTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public LatestTradesResponse LatestTrades(Exchange exchange, int skip = 0, int limit = 50)
+        {
+            return LatestTradesAsync(CancellationToken.None, exchange, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public LatestTradesResponse LatestTrades(Asset baseAsset, int skip = 0, int limit = 50)
+        {
+            return LatestTradesAsync(CancellationToken.None, baseAsset, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public LatestTradesResponse LatestTrades(Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50)
+        {
+            return LatestTradesAsync(CancellationToken.None, baseAsset, quoteAsset, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public LatestTradesResponse LatestTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50)
+        {
+            return LatestTradesAsync(CancellationToken.None, exchange,
+                baseAsset, quoteAsset, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Symbol symbol, int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, symbol, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, symbol,
+                startPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Symbol symbol, DateTime startPeriod, DateTime endPeriod,
+            int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, symbol,
+                startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Exchange exchange, DateTime startPeriod, int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, exchange,
+                startPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Exchange exchange, DateTime startPeriod, DateTime endPeriod, int skip = 0,
+            int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, exchange,
+                startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Asset baseAsset, DateTime startPeriod, int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, baseAsset,
+                startPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Asset baseAsset, DateTime startPeriod, DateTime endPeriod, int skip = 0,
+            int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, baseAsset,
+                startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Asset baseAsset, Asset quoteAsset, DateTime startPeriod, int skip = 0,
+            int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, baseAsset, quoteAsset,
+                startPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Asset baseAsset, Asset quoteAsset, DateTime startPeriod, DateTime endPeriod,
+            int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, baseAsset, quoteAsset,
+                startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset, DateTime startPeriod,
+            int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, exchange, baseAsset, quoteAsset,
+                startPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public HistoricalTradesResponse HistoricalTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset, DateTime startPeriod,
+            DateTime endPeriod, int skip = 0, int limit = 50)
+        {
+            return HistoricalTradesAsync(CancellationToken.None, exchange, baseAsset, quoteAsset,
+                startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+        }
+
+        public OrderBookResponse OrderBook(Exchange exchange, Asset baseAsset, Asset quoteAsset)
+        {
+            return OrderBookAsync(CancellationToken.None, exchange, baseAsset, quoteAsset).GetAwaiter().GetResult();
         }
     }
 }

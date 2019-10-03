@@ -6,6 +6,15 @@ namespace CryptoApisSdkLibrary.DataTypes
     public class Exchange : ExchangeMeta, IEquatable<Exchange>
     {
         /// <summary>
+        /// Default constructor need for serialization/deserialization.
+        /// </summary>
+        public Exchange()
+        { }
+
+        public Exchange(string id) : base(id)
+        { }
+        
+        /// <summary>
         /// Exchange website address.
         /// </summary>
         [DeserializeAs(Name = "website")]

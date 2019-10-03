@@ -6,6 +6,17 @@ namespace CryptoApisSdkLibrary.DataTypes
     public class ExchangeMeta : IEquatable<ExchangeMeta>
     {
         /// <summary>
+        /// Default constructor need for serialization/deserialization.
+        /// </summary>
+        public ExchangeMeta()
+        { }
+
+        public ExchangeMeta(string id) : this()
+        {
+            Id = id;
+        }
+
+        /// <summary>
         /// Exchange identifier.
         /// </summary>
         [DeserializeAs(Name = "exchangeId")]

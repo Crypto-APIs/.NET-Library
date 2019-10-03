@@ -518,21 +518,31 @@
     <Compile Include="Blockchains\WebhookNotifications\CreateToken\BaseEthSimilarCoin.cs" />
     <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BaseBtcSimilarCoin.cs" />
     <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BaseBtcSimilarCoin.cs" />
-    <Compile Include="Exchanges\GetAssets.cs" />
-    <Compile Include="Exchanges\GetLatestQuoteTrades.cs" />
-    <Compile Include="Exchanges\GetHistoricalQuoteTrades.cs" />
-    <Compile Include="Exchanges\GetHistoricalTrades.cs" />
-    <Compile Include="Exchanges\GetLatestSymbolTrades.cs" />
-    <Compile Include="Exchanges\GetArbitrageInfo.cs" />
-    <Compile Include="Exchanges\GetPeriods.cs" />
-    <Compile Include="Exchanges\GetCurrentRates.cs" />
-    <Compile Include="Exchanges\GetLatestTrades.cs" />
-    <Compile Include="Exchanges\GetSymbols.cs" />
-    <Compile Include="Exchanges\GetHistoricalData.cs" />
-    <Compile Include="Exchanges\GetLatestData.cs" />
-    <Compile Include="Exchanges\GetExchangeRates.cs" />
+    <Compile Include="Exchanges\AssetDetails.cs" />
+    <Compile Include="Exchanges\ExchangeRateInExchange.cs" />
+    <Compile Include="Exchanges\ExchangeRatesTimeStamp.cs" />
+    <Compile Include="Exchanges\ExchangeRatesInExchangeTimestamp.cs" />
+    <Compile Include="Exchanges\ExchangeRatesInExchange.cs" />
+    <Compile Include="Exchanges\ExchangeRates.cs" />
+    <Compile Include="Exchanges\AssetsMeta.cs" />
+    <Compile Include="Exchanges\Assets.cs" />
+    <Compile Include="Exchanges\ExchangeRate.cs" />
+    <Compile Include="Exchanges\SymbolDetails.cs" />
+    <Compile Include="Exchanges\ExchangeDetails.cs" />
+    <Compile Include="Exchanges\SymbolsInExchange.cs" />
+    <Compile Include="Exchanges\ExchangesSupportingPairs.cs" />
+    <Compile Include="Exchanges\ExchangesSupportingAsset.cs" />
+    <Compile Include="Exchanges\ExchangesMeta.cs" />
+    <Compile Include="Exchanges\HistoricalTrades.cs" />
+    <Compile Include="Exchanges\LatestSymbolTrades.cs" />
+    <Compile Include="Exchanges\Periods.cs" />
+    <Compile Include="Exchanges\CurrentRates.cs" />
+    <Compile Include="Exchanges\LatestTrades.cs" />
+    <Compile Include="Exchanges\Symbols.cs" />
+    <Compile Include="Exchanges\HistoricalOhlcv.cs" />
+    <Compile Include="Exchanges\LatestOhlcv.cs" />
     <Compile Include="TestMissingApiKey.cs" />
-    <Compile Include="Exchanges\GetExchanges.cs" />
+    <Compile Include="Exchanges\Exchanges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -545,7 +555,9 @@
       <Name>CryptoApisSdkLibrary</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="IncorrectedEndpoints.txt" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

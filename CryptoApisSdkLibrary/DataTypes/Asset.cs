@@ -6,6 +6,16 @@ namespace CryptoApisSdkLibrary.DataTypes
     public class Asset : AssetMeta, IEquatable<Asset>
     {
         /// <summary>
+        /// Default constructor need for serialization/deserialization.
+        /// </summary>
+        public Asset()
+        { }
+
+        public Asset(string id) : base(id)
+        {
+        }
+
+        /// <summary>
         /// Lowercase and without whitespaces representation of the name of the asset.
         /// </summary>
         [DeserializeAs(Name = "slug")]
@@ -82,20 +92,6 @@ namespace CryptoApisSdkLibrary.DataTypes
         /// </summary>
         [DeserializeAs(Name = "logo")]
         public Logo Logo { get; protected set; }
-
-        public Asset()
-        {
-        }
-
-        public Asset(string assetId)
-        {
-            AssetId = assetId;
-        }
-
-        public override string ToString()
-        {
-            return AssetId;
-        }
 
         #region IEquatable<Asset>
 
