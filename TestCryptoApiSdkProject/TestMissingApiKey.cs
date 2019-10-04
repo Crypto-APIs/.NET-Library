@@ -14,7 +14,7 @@ namespace TestCryptoApiSdkProject
         [TestMethod]
         public void Test()
         {
-            var response = Manager.Exchanges.Exchanges();
+            var response = Manager.Exchanges.Info.Exchanges();
             Assert.IsTrue("Invalid or missing API key".Equals(response.ErrorMessage));
             Assert.IsNotNull(response.Exchanges);
             Assert.IsFalse(response.Exchanges.Any());

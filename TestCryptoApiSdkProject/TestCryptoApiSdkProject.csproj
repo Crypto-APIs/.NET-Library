@@ -518,31 +518,32 @@
     <Compile Include="Blockchains\WebhookNotifications\CreateToken\BaseEthSimilarCoin.cs" />
     <Compile Include="Blockchains\WebhookNotifications\CreateNewBlock\BaseBtcSimilarCoin.cs" />
     <Compile Include="Blockchains\WebhookNotifications\CreateConfirmedTransaction\BaseBtcSimilarCoin.cs" />
-    <Compile Include="Exchanges\AssetDetails.cs" />
-    <Compile Include="Exchanges\ExchangeRateInExchange.cs" />
-    <Compile Include="Exchanges\ExchangeRatesTimeStamp.cs" />
-    <Compile Include="Exchanges\ExchangeRatesInExchangeTimestamp.cs" />
-    <Compile Include="Exchanges\ExchangeRatesInExchange.cs" />
-    <Compile Include="Exchanges\ExchangeRates.cs" />
-    <Compile Include="Exchanges\AssetsMeta.cs" />
-    <Compile Include="Exchanges\Assets.cs" />
-    <Compile Include="Exchanges\ExchangeRate.cs" />
-    <Compile Include="Exchanges\SymbolDetails.cs" />
-    <Compile Include="Exchanges\ExchangeDetails.cs" />
-    <Compile Include="Exchanges\SymbolsInExchange.cs" />
-    <Compile Include="Exchanges\ExchangesSupportingPairs.cs" />
-    <Compile Include="Exchanges\ExchangesSupportingAsset.cs" />
-    <Compile Include="Exchanges\ExchangesMeta.cs" />
-    <Compile Include="Exchanges\HistoricalTrades.cs" />
-    <Compile Include="Exchanges\LatestSymbolTrades.cs" />
-    <Compile Include="Exchanges\Periods.cs" />
-    <Compile Include="Exchanges\CurrentRates.cs" />
-    <Compile Include="Exchanges\LatestTrades.cs" />
-    <Compile Include="Exchanges\Symbols.cs" />
-    <Compile Include="Exchanges\HistoricalOhlcv.cs" />
-    <Compile Include="Exchanges\LatestOhlcv.cs" />
+    <Compile Include="Exchanges\Info\AssetDetails.cs" />
+    <Compile Include="Exchanges\OrderBook\OrderBook.cs" />
+    <Compile Include="Exchanges\Rates\ExchangeRateInExchange.cs" />
+    <Compile Include="Exchanges\Rates\ExchangeRatesInExchangeTimestamp.cs" />
+    <Compile Include="Exchanges\Rates\ExchangeRatesInExchange.cs" />
+    <Compile Include="Exchanges\Rates\ExchangeRates.cs" />
+    <Compile Include="Exchanges\Info\AssetsMeta.cs" />
+    <Compile Include="Exchanges\Info\Assets.cs" />
+    <Compile Include="Exchanges\Rates\ExchangeRate.cs" />
+    <Compile Include="Exchanges\Ohlcv\HistoricalOhlcvWithEndPeriod.cs" />
+    <Compile Include="Exchanges\Ohlcv\HistoricalOhlcv.cs" />
+    <Compile Include="Exchanges\Info\SymbolDetails.cs" />
+    <Compile Include="Exchanges\Info\ExchangeDetails.cs" />
+    <Compile Include="Exchanges\Info\SymbolsInExchange.cs" />
+    <Compile Include="Exchanges\Info\ExchangesSupportingPairs.cs" />
+    <Compile Include="Exchanges\Info\ExchangesSupportingAsset.cs" />
+    <Compile Include="Exchanges\Info\ExchangesMeta.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTrades.cs" />
+    <Compile Include="Exchanges\Trades\LatestSymbolTrades.cs" />
+    <Compile Include="Exchanges\Ohlcv\Periods.cs" />
+    <Compile Include="Exchanges\Rates\ExchangeRatesTimeStamp.cs" />
+    <Compile Include="Exchanges\Trades\LatestTrades.cs" />
+    <Compile Include="Exchanges\Info\Symbols.cs" />
+    <Compile Include="Exchanges\Ohlcv\LatestOhlcv.cs" />
     <Compile Include="TestMissingApiKey.cs" />
-    <Compile Include="Exchanges\Exchanges.cs" />
+    <Compile Include="Exchanges\Info\Exchanges.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -558,6 +559,7 @@
   <ItemGroup>
     <Content Include="IncorrectedEndpoints.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

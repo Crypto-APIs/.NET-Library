@@ -300,28 +300,29 @@
     <Compile Include="Samples\Blockchains\WebhookNotifications\CreateConfirmedTransactionBtc.cs" />
     <Compile Include="Samples\Blockchains\WebhookNotifications\CreateAddressBtc.cs" />
     <Compile Include="Samples\Blockchains\WebhookNotifications\CreateNewBlockBtc.cs" />
-    <Compile Include="Samples\Exchanges\AssetsMeta.cs" />
-    <Compile Include="Samples\Exchanges\AssetDetails.cs" />
-    <Compile Include="Samples\Exchanges\ExchangeRateInExchange.cs" />
-    <Compile Include="Samples\Exchanges\ExchangeRatesInExchange.cs" />
-    <Compile Include="Samples\Exchanges\SymbolDetails.cs" />
-    <Compile Include="Samples\Exchanges\ExchangeDetails.cs" />
-    <Compile Include="Samples\Exchanges\SymbolsInExchange.cs" />
-    <Compile Include="Samples\Exchanges\ExchangesSupportingPairs.cs" />
-    <Compile Include="Samples\Exchanges\ExchangesSupportingAsset.cs" />
-    <Compile Include="Samples\Exchanges\ExchangesMeta.cs" />
-    <Compile Include="Samples\Exchanges\HistoricalTrades.cs" />
-    <Compile Include="Samples\Exchanges\LatestSymbolTrades.cs" />
-    <Compile Include="Samples\Exchanges\Periods.cs" />
-    <Compile Include="Samples\Exchanges\ExchangeRates.cs" />
-    <Compile Include="Samples\Exchanges\LatestTrades.cs" />
-    <Compile Include="Samples\Exchanges\HistoricalOhlcv.cs" />
-    <Compile Include="Samples\Exchanges\LatestOhlcv.cs" />
-    <Compile Include="Samples\Exchanges\Symbols.cs" />
-    <Compile Include="Samples\Exchanges\Assets.cs" />
-    <Compile Include="Samples\Exchanges\Exchanges.cs" />
+    <Compile Include="Samples\Exchanges\Info\AssetsMeta.cs" />
+    <Compile Include="Samples\Exchanges\Info\AssetDetails.cs" />
+    <Compile Include="Samples\Exchanges\Rates\ExchangeRateInExchange.cs" />
+    <Compile Include="Samples\Exchanges\Rates\ExchangeRatesInExchange.cs" />
+    <Compile Include="Samples\Exchanges\Info\SymbolDetails.cs" />
+    <Compile Include="Samples\Exchanges\Info\ExchangeDetails.cs" />
+    <Compile Include="Samples\Exchanges\Info\SymbolsInExchange.cs" />
+    <Compile Include="Samples\Exchanges\Info\ExchangesSupportingPairs.cs" />
+    <Compile Include="Samples\Exchanges\Info\ExchangesSupportingAsset.cs" />
+    <Compile Include="Samples\Exchanges\Info\ExchangesMeta.cs" />
+    <Compile Include="Samples\Exchanges\Trades\HistoricalTrades.cs" />
+    <Compile Include="Samples\Exchanges\Trades\LatestSymbolTrades.cs" />
+    <Compile Include="Samples\Exchanges\OrderBook\OrderBook.cs" />
+    <Compile Include="Samples\Exchanges\Ohlcv\Periods.cs" />
+    <Compile Include="Samples\Exchanges\Rates\ExchangeRates.cs" />
+    <Compile Include="Samples\Exchanges\Trades\LatestTrades.cs" />
+    <Compile Include="Samples\Exchanges\Ohlcv\HistoricalOhlcv.cs" />
+    <Compile Include="Samples\Exchanges\Ohlcv\LatestOhlcv.cs" />
+    <Compile Include="Samples\Exchanges\Info\Symbols.cs" />
+    <Compile Include="Samples\Exchanges\Info\Assets.cs" />
+    <Compile Include="Samples\Exchanges\Info\Exchanges.cs" />
     <Compile Include="DemoProgram.cs" />
-    <Compile Include="Samples\Exchanges\ExchangeRate.cs" />
+    <Compile Include="Samples\Exchanges\Rates\ExchangeRate.cs" />
     <Compile Include="Samples\ExchangeSnippets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -343,6 +344,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
