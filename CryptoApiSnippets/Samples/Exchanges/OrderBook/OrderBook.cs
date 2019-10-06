@@ -12,7 +12,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
             var quoteAsset = new Asset();
 
       var manager = new CryptoManager(ApiKey);
-      var orderBook = manager.Exchanges.OrderBook.OrderBook(
+      var orderBook = manager.Exchanges.OrderBook.Get(
           exchange, baseAsset, quoteAsset);
       Console.WriteLine(string.IsNullOrEmpty(orderBook.ErrorMessage)
         ? "OrderBook executed successfully, " +

@@ -3,6 +3,7 @@ using CryptoApisSdkLibrary.DataTypes.Exceptions;
 using CryptoApisSdkLibrary.Misc;
 using RestSharp;
 using System;
+using System.Text;
 
 namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
 {
@@ -183,10 +184,6 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
             request.AddQueryParameter("limit", limit.ToString());
             if (startPeriod.HasValue)
             {
-                if (startPeriod > DateTime.Now)
-                {
-                    throw new RequestException("StartPeriod is from future.");
-                }
                 request.AddQueryParameter("timeStart", Tools.ToUnixTimestamp(startPeriod.Value));
             }
             if (endPeriod.HasValue)

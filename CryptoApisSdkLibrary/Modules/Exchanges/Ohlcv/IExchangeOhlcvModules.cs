@@ -37,7 +37,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest time-series data.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data"/>
-        LatestOhlcvResponse LatestOhlcv(Symbol symbol, Period period, int limit = 50);
+        LatestOhlcvResponse Latest(Symbol symbol, Period period, int limit = 50);
 
         /// <summary>
         /// Get OHLCV latest time-series data for requested symbol and period, returned in time descending order.
@@ -49,7 +49,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest time-series data.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data"/>
-        Task<LatestOhlcvResponse> LatestOhlcvAsync(CancellationToken cancellationToken,
+        Task<LatestOhlcvResponse> LatestAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, int limit = 50);
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical time-series data.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data"/>
-        HistoricalOhlcvResponse HistoricalOhlcv(Symbol symbol, Period period,
+        HistoricalOhlcvResponse Historical(Symbol symbol, Period period,
             DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical time-series data.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data"/>
-        Task<HistoricalOhlcvResponse> HistoricalOhlcvAsync(CancellationToken cancellationToken,
+        Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical time-series data.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data"/>
-        HistoricalOhlcvResponse HistoricalOhlcv(Symbol symbol, Period period,
+        HistoricalOhlcvResponse Historical(Symbol symbol, Period period,
             DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical time-series data.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data"/>
-        Task<HistoricalOhlcvResponse> HistoricalOhlcvAsync(CancellationToken cancellationToken,
+        Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
     }
 }

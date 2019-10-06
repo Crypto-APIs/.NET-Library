@@ -11,26 +11,26 @@ namespace TestCryptoApiSdkProject.Exchanges.Ohlcv
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Exchanges.Ohlcv.LatestOhlcv(Symbol, Period);
+            return Manager.Exchanges.Ohlcv.Latest(Symbol, Period);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Exchanges.Ohlcv.LatestOhlcv(Symbol, Period, limit: limit);
+            return Manager.Exchanges.Ohlcv.Latest(Symbol, Period, limit: limit);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
         public void TestNullSymbol()
         {
-            Manager.Exchanges.Ohlcv.LatestOhlcv(symbol: null, period: Period);
+            Manager.Exchanges.Ohlcv.Latest(symbol: null, period: Period);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
         public void TestNullSymbolId()
         {
-            Manager.Exchanges.Ohlcv.LatestOhlcv(new Symbol(), Period);
+            Manager.Exchanges.Ohlcv.Latest(new Symbol(), Period);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace TestCryptoApiSdkProject.Exchanges.Ohlcv
         {
             var symbol = new Symbol("QWE'EWQ1");
             var period = new Period("1day");
-            var response = Manager.Exchanges.Ohlcv.LatestOhlcv(symbol, period);
+            var response = Manager.Exchanges.Ohlcv.Latest(symbol, period);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -51,21 +51,21 @@ namespace TestCryptoApiSdkProject.Exchanges.Ohlcv
         [ExpectedException(typeof(ArgumentNullException), "A Period of null was inappropriately allowed.")]
         public void TestNullPeriod()
         {
-            Manager.Exchanges.Ohlcv.LatestOhlcv(Symbol, period: null);
+            Manager.Exchanges.Ohlcv.Latest(Symbol, period: null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Period.Id of null was inappropriately allowed.")]
         public void TestNullPeriodId()
         {
-            Manager.Exchanges.Ohlcv.LatestOhlcv(Symbol, new Period());
+            Manager.Exchanges.Ohlcv.Latest(Symbol, new Period());
         }
 
         [TestMethod]
         public void TestIncorrectPeriod()
         {
             var period = new Period("QW'E");
-            var response = Manager.Exchanges.Ohlcv.LatestOhlcv(Symbol, period);
+            var response = Manager.Exchanges.Ohlcv.Latest(Symbol, period);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));

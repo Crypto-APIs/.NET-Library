@@ -12,20 +12,20 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
             return PeriodsAsync(CancellationToken.None, skip, limit).GetAwaiter().GetResult();
         }
 
-        public LatestOhlcvResponse LatestOhlcv(Symbol symbol, Period period, int limit = 50)
+        public LatestOhlcvResponse Latest(Symbol symbol, Period period, int limit = 50)
         {
-            return LatestOhlcvAsync(CancellationToken.None, symbol, period, limit).GetAwaiter().GetResult();
+            return LatestAsync(CancellationToken.None, symbol, period, limit).GetAwaiter().GetResult();
         }
 
-        public HistoricalOhlcvResponse HistoricalOhlcv(Symbol symbol, Period period, DateTime startPeriod, int skip = 0, int limit = 50)
+        public HistoricalOhlcvResponse Historical(Symbol symbol, Period period, DateTime startPeriod, int skip = 0, int limit = 50)
         {
-            return HistoricalOhlcvAsync(CancellationToken.None, symbol, period, startPeriod, skip, limit).GetAwaiter().GetResult();
+            return HistoricalAsync(CancellationToken.None, symbol, period, startPeriod, skip, limit).GetAwaiter().GetResult();
         }
 
-        public HistoricalOhlcvResponse HistoricalOhlcv(Symbol symbol, Period period,
+        public HistoricalOhlcvResponse Historical(Symbol symbol, Period period,
             DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50)
         {
-            return HistoricalOhlcvAsync(CancellationToken.None, symbol, period, startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
+            return HistoricalAsync(CancellationToken.None, symbol, period, startPeriod, endPeriod, skip, limit).GetAwaiter().GetResult();
         }
     }
 }

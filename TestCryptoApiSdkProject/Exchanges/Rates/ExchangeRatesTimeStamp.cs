@@ -11,29 +11,29 @@ namespace TestCryptoApiSdkProject.Exchanges.Rates
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, TimeStamp);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, TimeStamp);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, TimeStamp, skip: skip);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, TimeStamp, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, TimeStamp, limit: limit);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, TimeStamp, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, TimeStamp, skip, limit);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, TimeStamp, skip, limit);
         }
 
         [TestMethod]
         public void TestWrongTimestampFromFuture()
         {
             var timeStamp = new DateTime(DateTime.Now.Year + 1, 01, 01);
-            var response = Manager.Exchanges.Rates.ExchangeRates(BaseAsset, timeStamp);
+            var response = Manager.Exchanges.Rates.GetAny(BaseAsset, timeStamp);
 
             Assert.IsNotNull(response);
             Assert.IsTrue(string.IsNullOrEmpty(response.ErrorMessage));
@@ -45,7 +45,7 @@ namespace TestCryptoApiSdkProject.Exchanges.Rates
         public void TestWrongTimestampFromPast()
         {
             var timeStamp = new DateTime(1960, 01, 01);
-            var response = Manager.Exchanges.Rates.ExchangeRates(BaseAsset, timeStamp);
+            var response = Manager.Exchanges.Rates.GetAny(BaseAsset, timeStamp);
 
             Assert.IsNotNull(response);
             Assert.AreEqual("Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.", response.ErrorMessage);

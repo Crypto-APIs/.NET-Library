@@ -15,7 +15,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
         /// <returns>Response with exchange rate.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate"/>
-        ExchangeRateResponse ExchangeRate(Asset baseAsset, Asset quoteAsset);
+        ExchangeRateResponse GetOne(Asset baseAsset, Asset quoteAsset);
 
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a current time.
@@ -26,7 +26,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
         /// <returns>Response with exchange rate.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate"/>
-        Task<ExchangeRateResponse> ExchangeRateAsync(CancellationToken cancellationToken,
+        Task<ExchangeRateResponse> GetOneAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="timeStamp">Time (in UNIX Timestamp) of the market data used to calculate exchange rate.</param>
         /// <returns>Response with exchange rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate"/>
-        ExchangeRateResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, DateTime timeStamp);
+        ExchangeRateResponse GetOne(Asset baseAsset, Asset quoteAsset, DateTime timeStamp);
 
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a specific time.
@@ -49,7 +49,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="timeStamp">Time (in UNIX Timestamp) of the market data used to calculate exchange rate.</param>
         /// <returns>Response with exchange rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate"/>
-        Task<ExchangeRateResponse> ExchangeRateAsync(CancellationToken cancellationToken,
+        Task<ExchangeRateResponse> GetOneAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset, DateTime timeStamp);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates"/>
-        ExchangeRatesResponse ExchangeRates(Asset baseAsset, int skip = 0, int limit = 50);
+        ExchangeRatesResponse GetAny(Asset baseAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get the current exchange rate between requested asset and all other assets at a current time.
@@ -72,7 +72,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates"/>
-        Task<ExchangeRatesResponse> ExchangeRatesAsync(CancellationToken cancellationToken,
+        Task<ExchangeRatesResponse> GetAnyAsync(CancellationToken cancellationToken,
             Asset baseAsset, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates"/>
-        ExchangeRatesResponse ExchangeRates(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50);
+        ExchangeRatesResponse GetAny(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get the current exchange rate between requested asset and all other assets at a specific time.
@@ -97,7 +97,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates"/>
-        Task<ExchangeRatesResponse> ExchangeRatesAsync(CancellationToken cancellationToken,
+        Task<ExchangeRatesResponse> GetAnyAsync(CancellationToken cancellationToken,
             Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="exchange">Exchange.</param>
         /// <returns>Response with current rate.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate-in-a-specific-exchange"/>
-        CurrentRateInExchangeResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, Exchange exchange);
+        CurrentRateInExchangeResponse GetOne(Asset baseAsset, Asset quoteAsset, Exchange exchange);
 
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a specific or current time in a specific Exchange.
@@ -120,7 +120,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="exchange">Exchange.</param>
         /// <returns>Response with current rate.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate-in-a-specific-exchange"/>
-        Task<CurrentRateInExchangeResponse> ExchangeRateAsync(CancellationToken cancellationToken,
+        Task<CurrentRateInExchangeResponse> GetOneAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset, Exchange exchange);
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="timeStamp">Time (in UNIX Timestamp) of the market data used to calculate exchange rate.</param>
         /// <returns>Response with current rate.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate-in-a-specific-exchange"/>
-        CurrentRateInExchangeResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, Exchange exchange, DateTime timeStamp);
+        CurrentRateInExchangeResponse GetOne(Asset baseAsset, Asset quoteAsset, Exchange exchange, DateTime timeStamp);
 
         /// <summary>
         /// Get exchange rates between pair of requested assets pointing at a specific or current time in a specific Exchange.
@@ -145,7 +145,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="timeStamp">Time (in UNIX Timestamp) of the market data used to calculate exchange rate.</param>
         /// <returns>Response with current rate.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate-in-a-specific-exchange"/>
-        Task<CurrentRateInExchangeResponse> ExchangeRateAsync(CancellationToken cancellationToken,
+        Task<CurrentRateInExchangeResponse> GetOneAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset, Exchange exchange, DateTime timeStamp);
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange"/>
-        CurrentRatesInExchangeResponse ExchangeRates(Asset baseAsset, Exchange exchange, int skip = 0, int limit = 50);
+        CurrentRatesInExchangeResponse GetAny(Asset baseAsset, Exchange exchange, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get the current exchange rate between requested asset and all other assets in a specific Exchange.
@@ -170,7 +170,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange"/>
-        Task<CurrentRatesInExchangeResponse> ExchangeRatesAsync(CancellationToken cancellationToken,
+        Task<CurrentRatesInExchangeResponse> GetAnyAsync(CancellationToken cancellationToken,
             Asset baseAsset, Exchange exchange, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange"/>
-        CurrentRatesInExchangeResponse ExchangeRates(Asset baseAsset, Exchange exchange, DateTime timeStamp, int skip = 0, int limit = 50);
+        CurrentRatesInExchangeResponse GetAny(Asset baseAsset, Exchange exchange, DateTime timeStamp, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get the current exchange rate between requested asset and all other assets in a specific Exchange.
@@ -197,7 +197,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with current rates.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange"/>
-        Task<CurrentRatesInExchangeResponse> ExchangeRatesAsync(CancellationToken cancellationToken,
+        Task<CurrentRatesInExchangeResponse> GetAnyAsync(CancellationToken cancellationToken,
             Asset baseAsset, Exchange exchange, DateTime timeStamp, int skip = 0, int limit = 50);
     }
 }

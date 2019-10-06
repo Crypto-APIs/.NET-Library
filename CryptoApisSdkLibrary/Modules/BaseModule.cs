@@ -2,6 +2,7 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Errors;
 using RestSharp;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -45,6 +46,7 @@ namespace CryptoApisSdkLibrary.Modules
                     return MakeErrorMessage<T>(response);
 
                 var result = response.Data;
+                result.RequestAsString = request.Resource;
                 result.ResponseAsString = response.Content;
 
                 return result;
@@ -56,9 +58,9 @@ namespace CryptoApisSdkLibrary.Modules
             errorMessage = string.Empty;
 
             var responseObject1 = Client.Deserialize<ErrorResponseVariant1>(response);
-            if (!string.IsNullOrEmpty(responseObject1.Data?.Message?.Message))
+            if (!string.IsNullOrEmpty(responseObject1.Data?.Meta?.Message))
             {
-                errorMessage = responseObject1.Data.Message.Message;
+                errorMessage = responseObject1.Data.Meta.Message;
             }
             else
             {
@@ -76,7 +78,15 @@ namespace CryptoApisSdkLibrary.Modules
                     }
                     else
                     {
-                        errorMessage = !string.IsNullOrEmpty(response.ErrorMessage) ? response.ErrorMessage : response.StatusDescription;
+                        var responseObject4 = Client.Deserialize<ErrorResponseVariant4>(response);
+                        if (responseObject4.Data?.Meta?.Errors != null && responseObject4.Data.Meta.Errors.Any())
+                        {
+                            errorMessage = string.Join("; ", responseObject4.Data.Meta.Errors.Select(e => e.Message));
+                        }
+                        else
+                        {
+                            errorMessage = !string.IsNullOrEmpty(response.ErrorMessage) ? response.ErrorMessage : response.StatusDescription;
+                        }
                     }
                 }
             }

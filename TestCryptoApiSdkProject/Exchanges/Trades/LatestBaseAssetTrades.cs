@@ -1,0 +1,65 @@
+﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Diagnostics;
+using System.Linq;
+
+namespace TestCryptoApiSdkProject.Exchanges.Trades
+{
+    [TestClass]
+    public class LatestBaseAssetTrades : BaseCollectionTest
+    {
+        protected override ICollectionResponse GetAllList()
+        {
+            return Manager.Exchanges.Trades.Latest(BaseAsset);
+        }
+
+        protected override ICollectionResponse GetSkipList(int skip)
+        {
+            return Manager.Exchanges.Trades.Latest(BaseAsset, skip: skip);
+        }
+
+        protected override ICollectionResponse GetLimitList(int limit)
+        {
+            return Manager.Exchanges.Trades.Latest(BaseAsset, limit: limit);
+        }
+
+        protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
+        {
+            Debug.Assert(Skip.HasValue);
+            Debug.Assert(Limit.HasValue);
+            return Manager.Exchanges.Trades.Latest(BaseAsset, skip, limit);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Asset of null was inappropriately allowed.")]
+        public void TestNullAsset()
+        {
+            Manager.Exchanges.Trades.Latest(baseAsset: null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Asset.Id of null was inappropriately allowed.")]
+        public void TestNullAssetId()
+        {
+            Manager.Exchanges.Trades.Latest(new Asset());
+        }
+
+        [TestMethod]
+        public void TestIncorrectBaseAsset()
+        {
+            var baseAsset = new Asset("QWE'EWQ1");
+
+            var response = Manager.Exchanges.Trades.Latest(baseAsset);
+
+            Assert.IsNotNull(response);
+            Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
+            Assert.AreEqual("We are facing technical issues, please try again later", response.ErrorMessage);
+            Assert.IsNotNull(response.Trades);
+            Assert.IsFalse(response.Trades.Any());
+        }
+
+        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612");
+    }
+}

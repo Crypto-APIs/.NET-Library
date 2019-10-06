@@ -6,9 +6,9 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.OrderBook
 {
     internal partial class ExchangeOrderBookModules
     {
-        public OrderBookResponse OrderBook(Exchange exchange, Asset baseAsset, Asset quoteAsset)
+        public OrderBookResponse Get(Exchange exchange, Asset baseAsset, Asset quoteAsset)
         {
-            return OrderBookAsync(CancellationToken.None, exchange, baseAsset, quoteAsset).GetAwaiter().GetResult();
+            return GetAsync(CancellationToken.None, exchange, baseAsset, quoteAsset).GetAwaiter().GetResult();
         }
     }
 }

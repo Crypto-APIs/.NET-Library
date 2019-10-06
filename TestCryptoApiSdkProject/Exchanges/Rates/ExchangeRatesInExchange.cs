@@ -11,43 +11,43 @@ namespace TestCryptoApiSdkProject.Exchanges.Rates
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, Exchange);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, Exchange);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, Exchange, skip: skip);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, Exchange, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, Exchange, limit: limit);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, Exchange, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, Exchange, skip, limit);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, Exchange, skip, limit);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Asset of null was inappropriately allowed.")]
         public void TestNullAsset()
         {
-            Manager.Exchanges.Rates.ExchangeRates(baseAsset: null, exchange: Exchange);
+            Manager.Exchanges.Rates.GetAny(baseAsset: null, exchange: Exchange);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Asset.Id of null was inappropriately allowed.")]
         public void TestNullAssetId()
         {
-            Manager.Exchanges.Rates.ExchangeRates(new Asset(), Exchange);
+            Manager.Exchanges.Rates.GetAny(new Asset(), Exchange);
         }
 
         [TestMethod]
         public void TestIncorrectBaseAsset()
         {
             var timeStamp = new DateTime(2019, 02, 03);
-            var response = Manager.Exchanges.Rates.ExchangeRates(new Asset("QWEE'WQ"), Exchange, timeStamp);
+            var response = Manager.Exchanges.Rates.GetAny(new Asset("QWEE'WQ"), Exchange, timeStamp);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
@@ -60,20 +60,20 @@ namespace TestCryptoApiSdkProject.Exchanges.Rates
         [ExpectedException(typeof(ArgumentNullException), "A Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
-            Manager.Exchanges.Rates.ExchangeRates(BaseAsset, null);
+            Manager.Exchanges.Rates.GetAny(BaseAsset, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Exchange.Id of null was inappropriately allowed.")]
         public void TestNullExchangeId()
         {
-            Manager.Exchanges.Rates.ExchangeRates(BaseAsset, new Exchange());
+            Manager.Exchanges.Rates.GetAny(BaseAsset, new Exchange());
         }
 
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var response = Manager.Exchanges.Rates.ExchangeRates(BaseAsset, new Exchange("QWE'EWQ"));
+            var response = Manager.Exchanges.Rates.GetAny(BaseAsset, new Exchange("QWE'EWQ"));
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));

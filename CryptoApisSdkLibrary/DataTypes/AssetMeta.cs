@@ -20,7 +20,7 @@ namespace CryptoApisSdkLibrary.DataTypes
         /// Asset identifier.
         /// </summary>
         [DeserializeAs(Name = "assetId")]
-        public string AssetId { get; protected set; }
+        public string AssetId { get; set; }
 
         /// <summary>
         /// Original asset name as listed originally by creator / issuer.

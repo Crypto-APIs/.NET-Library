@@ -13,7 +13,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var endPeriod = new DateTime(2019, 02, 05);
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Exchanges.Ohlcv.HistoricalOhlcv(
+      var response = manager.Exchanges.Ohlcv.Historical(
         symbol, period, startPeriod, endPeriod, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)

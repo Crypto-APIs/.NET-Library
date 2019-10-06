@@ -7,7 +7,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.OrderBook
 {
     internal partial class ExchangeOrderBookModules
     {
-        public Task<OrderBookResponse> OrderBookAsync(CancellationToken cancellationToken,
+        public Task<OrderBookResponse> GetAsync(CancellationToken cancellationToken,
             Exchange exchange, Asset baseAsset, Asset quoteAsset)
         {
             var request = Requests.OrderBook(exchange, baseAsset, quoteAsset);

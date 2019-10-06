@@ -35,6 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.0.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTest.TestFramework.2.0.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MSTest.TestFramework.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MSTestEx.1.0.4\lib\netstandard1.0\MSTest.TestFramework.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
@@ -44,11 +56,7 @@
         <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
       </ItemGroup>
     </When>
-    <Otherwise>
-      <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
-      </ItemGroup>
-    </Otherwise>
+    <Otherwise />
   </Choose>
   <ItemGroup>
     <Compile Include="BaseCollectionTestWithoutSkip.cs" />
@@ -535,7 +543,25 @@
     <Compile Include="Exchanges\Info\ExchangesSupportingPairs.cs" />
     <Compile Include="Exchanges\Info\ExchangesSupportingAsset.cs" />
     <Compile Include="Exchanges\Info\ExchangesMeta.cs" />
-    <Compile Include="Exchanges\Trades\HistoricalTrades.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByAssetPairAndExchange.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByAssetPair.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByAssetPairAndExchangeStartDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByAssetPairAndExchangeStartDateEndDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByBaseAsset.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByAssetPairStartDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByAssetPairStartDateEndDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByExchange.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByBaseAssetStartDateEndDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByBaseAssetStartDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByExchangeStartDateEndDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesByExchangeStartDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesBySymbolStartDateEndDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesBySymbolStartDate.cs" />
+    <Compile Include="Exchanges\Trades\HistoricalTradesBySymbol.cs" />
+    <Compile Include="Exchanges\Trades\LatestExchangeAssetsPairTrades.cs" />
+    <Compile Include="Exchanges\Trades\LatestAssetsPairTrades.cs" />
+    <Compile Include="Exchanges\Trades\LatestBaseAssetTrades.cs" />
+    <Compile Include="Exchanges\Trades\LatestExchangeTrades.cs" />
     <Compile Include="Exchanges\Trades\LatestSymbolTrades.cs" />
     <Compile Include="Exchanges\Ohlcv\Periods.cs" />
     <Compile Include="Exchanges\Rates\ExchangeRatesTimeStamp.cs" />
@@ -559,7 +585,9 @@
   <ItemGroup>
     <Content Include="IncorrectedEndpoints.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

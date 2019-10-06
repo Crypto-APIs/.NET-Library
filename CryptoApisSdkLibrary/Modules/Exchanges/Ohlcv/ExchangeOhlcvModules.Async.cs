@@ -15,21 +15,21 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Ohlcv
             return GetAsyncResponse<PeriodsResponse>(request, cancellationToken);
         }
 
-        public Task<LatestOhlcvResponse> LatestOhlcvAsync(CancellationToken cancellationToken,
+        public Task<LatestOhlcvResponse> LatestAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, int limit = 50)
         {
             var request = Requests.LatestOhlcv(symbol, period, limit);
             return GetAsyncResponse<LatestOhlcvResponse>(request, cancellationToken);
         }
 
-        public Task<HistoricalOhlcvResponse> HistoricalOhlcvAsync(CancellationToken cancellationToken,
+        public Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, DateTime startPeriod, int skip = 0, int limit = 50)
         {
             var request = Requests.HistoricalOhlcv(symbol, period, startPeriod, null, skip, limit);
             return GetAsyncResponse<HistoricalOhlcvResponse>(request, cancellationToken);
         }
 
-        public Task<HistoricalOhlcvResponse> HistoricalOhlcvAsync(CancellationToken cancellationToken,
+        public Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50)
         {
             var request = Requests.HistoricalOhlcv(symbol, period, startPeriod, endPeriod, skip, limit);

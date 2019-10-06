@@ -7,48 +7,48 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Rates
 {
     internal partial class ExchangeRatesModules
     {
-        public ExchangeRateResponse ExchangeRate(Asset baseAsset, Asset quoteAsset)
+        public ExchangeRateResponse GetOne(Asset baseAsset, Asset quoteAsset)
         {
-            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset).GetAwaiter().GetResult();
+            return GetOneAsync(CancellationToken.None, baseAsset, quoteAsset).GetAwaiter().GetResult();
         }
 
-        public ExchangeRateResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, DateTime timeStamp)
+        public ExchangeRateResponse GetOne(Asset baseAsset, Asset quoteAsset, DateTime timeStamp)
         {
-            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset, timeStamp).GetAwaiter().GetResult();
+            return GetOneAsync(CancellationToken.None, baseAsset, quoteAsset, timeStamp).GetAwaiter().GetResult();
         }
 
-        public ExchangeRatesResponse ExchangeRates(Asset baseAsset, int skip = 0, int limit = 50)
+        public ExchangeRatesResponse GetAny(Asset baseAsset, int skip = 0, int limit = 50)
         {
-            return ExchangeRatesAsync(CancellationToken.None, baseAsset, skip, limit).GetAwaiter().GetResult();
+            return GetAnyAsync(CancellationToken.None, baseAsset, skip, limit).GetAwaiter().GetResult();
         }
 
-        public ExchangeRatesResponse ExchangeRates(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50)
+        public ExchangeRatesResponse GetAny(Asset baseAsset, DateTime timeStamp, int skip = 0, int limit = 50)
         {
-            return ExchangeRatesAsync(CancellationToken.None, baseAsset, timeStamp, skip, limit).GetAwaiter().GetResult();
+            return GetAnyAsync(CancellationToken.None, baseAsset, timeStamp, skip, limit).GetAwaiter().GetResult();
         }
 
-        public CurrentRateInExchangeResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, Exchange exchange)
+        public CurrentRateInExchangeResponse GetOne(Asset baseAsset, Asset quoteAsset, Exchange exchange)
         {
-            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset, exchange).GetAwaiter().GetResult();
+            return GetOneAsync(CancellationToken.None, baseAsset, quoteAsset, exchange).GetAwaiter().GetResult();
         }
 
-        public CurrentRateInExchangeResponse ExchangeRate(Asset baseAsset, Asset quoteAsset, Exchange exchange, DateTime timeStamp)
+        public CurrentRateInExchangeResponse GetOne(Asset baseAsset, Asset quoteAsset, Exchange exchange, DateTime timeStamp)
         {
-            return ExchangeRateAsync(CancellationToken.None, baseAsset, quoteAsset,
+            return GetOneAsync(CancellationToken.None, baseAsset, quoteAsset,
                 exchange, timeStamp).GetAwaiter().GetResult();
         }
 
-        public CurrentRatesInExchangeResponse ExchangeRates(Asset baseAsset, Exchange exchange,
+        public CurrentRatesInExchangeResponse GetAny(Asset baseAsset, Exchange exchange,
             int skip = 0, int limit = 50)
         {
-            return ExchangeRatesAsync(CancellationToken.None, baseAsset,
+            return GetAnyAsync(CancellationToken.None, baseAsset,
                 exchange, skip, limit).GetAwaiter().GetResult();
         }
 
-        public CurrentRatesInExchangeResponse ExchangeRates(Asset baseAsset, Exchange exchange,
+        public CurrentRatesInExchangeResponse GetAny(Asset baseAsset, Exchange exchange,
             DateTime timeStamp, int skip = 0, int limit = 50)
         {
-            return ExchangeRatesAsync(CancellationToken.None, baseAsset,
+            return GetAnyAsync(CancellationToken.None, baseAsset,
                 exchange, timeStamp, skip, limit).GetAwaiter().GetResult();
         }
     }

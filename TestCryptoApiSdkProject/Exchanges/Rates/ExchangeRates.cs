@@ -11,43 +11,43 @@ namespace TestCryptoApiSdkProject.Exchanges.Rates
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, skip: skip);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, limit: limit);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            return Manager.Exchanges.Rates.ExchangeRates(BaseAsset, skip, limit);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, skip, limit);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Asset of null was inappropriately allowed.")]
         public void TestNull()
         {
-            Manager.Exchanges.Rates.ExchangeRates(baseAsset: null);
+            Manager.Exchanges.Rates.GetAny(baseAsset: null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Asset.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
-            Manager.Exchanges.Rates.ExchangeRates(new Asset());
+            Manager.Exchanges.Rates.GetAny(new Asset());
         }
 
         [TestMethod]
         public void TestUndefineAsset()
         {
             var baseAsset = new Asset("QWEW'WQ");
-            var response = Manager.Exchanges.Rates.ExchangeRates(baseAsset);
+            var response = Manager.Exchanges.Rates.GetAny(baseAsset);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));

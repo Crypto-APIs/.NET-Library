@@ -4,5 +4,6 @@ namespace CryptoApisSdkLibrary.ResponseTypes
     {
         public string ErrorMessage { get; set; }
         public string ResponseAsString { get; set; }
+        public string RequestAsString { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace CryptoApisSdkLibrary.DataTypes
         /// Exchange identifier.
         /// </summary>
         [DeserializeAs(Name = "exchangeId")]
-        public string ExchangeId { get; protected set; }
+        public string ExchangeId { get; set; }
 
         /// <summary>
         /// Display name of the exchange.

@@ -15,7 +15,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data"/>
-        LatestTradesResponse LatestTrades(int skip = 0, int limit = 50);
+        LatestTradesResponse Latest(int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get latest trades from all symbols up to 1 hour ago. Latest data is always returned in time descending order.
@@ -26,7 +26,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data"/>
-        Task<LatestTradesResponse> LatestTradesAsync(CancellationToken cancellationToken,
+        Task<LatestTradesResponse> LatestAsync(CancellationToken cancellationToken,
             int skip = 0, int limit = 50);
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-symbol"/>
-        LatestTradesResponse LatestTrades(Symbol symbol, int skip = 0, int limit = 50);
+        LatestTradesResponse Latest(Symbol symbol, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get latest trades from a specific symbol up to 1 hour ago. Latest data is always returned in time descending order.
@@ -49,7 +49,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-symbol"/>
-        Task<LatestTradesResponse> LatestTradesAsync(CancellationToken cancellationToken,
+        Task<LatestTradesResponse> LatestAsync(CancellationToken cancellationToken,
             Symbol symbol, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-exchange"/>
-        LatestTradesResponse LatestTrades(Exchange exchange, int skip = 0, int limit = 50);
+        LatestTradesResponse Latest(Exchange exchange, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get latest trades from a specific exchange up to 1 hour ago. Latest data is always returned in time descending order.
@@ -72,7 +72,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-exchange"/>
-        Task<LatestTradesResponse> LatestTradesAsync(CancellationToken cancellationToken,
+        Task<LatestTradesResponse> LatestAsync(CancellationToken cancellationToken,
             Exchange exchange, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-base-asset"/>
-        LatestTradesResponse LatestTrades(Asset baseAsset, int skip = 0, int limit = 50);
+        LatestTradesResponse Latest(Asset baseAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get latest trades from a specific base asset up to 1 hour ago. Latest data is always returned in time descending order.
@@ -95,7 +95,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-base-asset"/>
-        Task<LatestTradesResponse> LatestTradesAsync(CancellationToken cancellationToken,
+        Task<LatestTradesResponse> LatestAsync(CancellationToken cancellationToken,
             Asset baseAsset, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-pair"/>
-        LatestTradesResponse LatestTrades(Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
+        LatestTradesResponse Latest(Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get latest trades from a specific assets pair (exp. BTC / USD) up to 1 hour ago. Latest data is always returned in time descending order.
@@ -120,7 +120,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-pair"/>
-        Task<LatestTradesResponse> LatestTradesAsync(CancellationToken cancellationToken,
+        Task<LatestTradesResponse> LatestAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-exchange-pair"/>
-        LatestTradesResponse LatestTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
+        LatestTradesResponse Latest(Exchange exchange, Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get latest trades from a specific assets pair (exp. BTC / USD) in a specific exchange up to 1 hour ago. Latest data is always returned in time descending order.
@@ -147,7 +147,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with latest trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-exchange-pair"/>
-        Task<LatestTradesResponse> LatestTradesAsync(CancellationToken cancellationToken,
+        Task<LatestTradesResponse> LatestAsync(CancellationToken cancellationToken,
             Exchange exchange, Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data"/>
-        HistoricalTradesResponse HistoricalTrades(Symbol symbol, int skip = 0, int limit = 50);
+        HistoricalTradesResponse Historical(Symbol symbol, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific symbol, returned in time ascending order.
@@ -172,7 +172,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data"/>
-        HistoricalTradesResponse HistoricalTrades(Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50);
+        HistoricalTradesResponse Historical(Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific symbol, returned in time ascending order.
@@ -199,7 +199,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data"/>
-        HistoricalTradesResponse HistoricalTrades(Symbol symbol, DateTime startPeriod, DateTime endPeriod,
+        HistoricalTradesResponse Historical(Symbol symbol, DateTime startPeriod, DateTime endPeriod,
             int skip = 0, int limit = 50);
 
         /// <summary>
@@ -229,8 +229,33 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific exchange, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <param name="exchange">Exchange.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
+        HistoricalTradesResponse Historical(Exchange exchange, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific exchange, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Exchange exchange, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific exchange, returned in time ascending order.
@@ -242,7 +267,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
-        HistoricalTradesResponse HistoricalTrades(Exchange exchange, DateTime startPeriod, int skip = 0, int limit = 50);
+        HistoricalTradesResponse Historical(Exchange exchange, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific exchange, returned in time ascending order.
@@ -256,7 +281,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Exchange exchange, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -270,7 +295,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
-        HistoricalTradesResponse HistoricalTrades(Exchange exchange, DateTime startPeriod, DateTime endPeriod,
+        HistoricalTradesResponse Historical(Exchange exchange, DateTime startPeriod, DateTime endPeriod,
             int skip = 0, int limit = 50);
 
         /// <summary>
@@ -286,8 +311,33 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Exchange exchange, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific base asset, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
+        HistoricalTradesResponse Historical(Asset baseAsset, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific base asset, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Asset baseAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific base asset, returned in time ascending order.
@@ -299,7 +349,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
-        HistoricalTradesResponse HistoricalTrades(Asset baseAsset, DateTime startPeriod, int skip = 0, int limit = 50);
+        HistoricalTradesResponse Historical(Asset baseAsset, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific base asset, returned in time ascending order.
@@ -313,7 +363,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Asset baseAsset, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -327,7 +377,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
-        HistoricalTradesResponse HistoricalTrades(Asset baseAsset, DateTime startPeriod, DateTime endPeriod,
+        HistoricalTradesResponse Historical(Asset baseAsset, DateTime startPeriod, DateTime endPeriod,
             int skip = 0, int limit = 50);
 
         /// <summary>
@@ -343,8 +393,35 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Asset baseAsset, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific assets pair (exp. BTC/USD), returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
+        /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-pair"/>
+        HistoricalTradesResponse Historical(Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific base asset, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
+        /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset"/>
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific assets pair (exp. BTC/USD), returned in time ascending order.
@@ -357,7 +434,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-pair"/>
-        HistoricalTradesResponse HistoricalTrades(Asset baseAsset, Asset quoteAsset, DateTime startPeriod, int skip = 0, int limit = 50);
+        HistoricalTradesResponse Historical(Asset baseAsset, Asset quoteAsset, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific assets pair (exp. BTC/USD), returned in time ascending order.
@@ -372,7 +449,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-pair"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -387,7 +464,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-pair"/>
-        HistoricalTradesResponse HistoricalTrades(Asset baseAsset, Asset quoteAsset,
+        HistoricalTradesResponse Historical(Asset baseAsset, Asset quoteAsset,
             DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -404,8 +481,38 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-pair"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken,
             Asset baseAsset, Asset quoteAsset, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific assets pair (exp. BTC/USD) in a specific exchange, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <param name="exchange">Exchange.</param>
+        /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
+        /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair"/>
+        HistoricalTradesResponse Historical(Exchange exchange, Asset baseAsset, Asset quoteAsset,
+            int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get history transactions from specific assets pair (exp. BTC/USD) in a specific exchange, returned in time ascending order.
+        /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange.</param>
+        /// <param name="baseAsset">FX Spot base asset identifier, for derivatives it’s contact underlying (e.g. Btc for Btc/USD).</param>
+        /// <param name="quoteAsset">FX Spot quote asset identifier, for derivatives it’s contract underlying (e.g. USD for Btc/USD).</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical trades.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair"/>
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken, Exchange exchange,
+            Asset baseAsset, Asset quoteAsset, int skip = 0, int limit = 50);
 
         /// <summary>
         /// Get history transactions from specific assets pair (exp. BTC/USD) in a specific exchange, returned in time ascending order.
@@ -419,7 +526,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair"/>
-        HistoricalTradesResponse HistoricalTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset,
+        HistoricalTradesResponse Historical(Exchange exchange, Asset baseAsset, Asset quoteAsset,
             DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -436,7 +543,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken, Exchange exchange,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken, Exchange exchange,
             Asset baseAsset, Asset quoteAsset, DateTime startPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -452,7 +559,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair"/>
-        HistoricalTradesResponse HistoricalTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset,
+        HistoricalTradesResponse Historical(Exchange exchange, Asset baseAsset, Asset quoteAsset,
             DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
 
         /// <summary>
@@ -470,7 +577,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
         /// <param name="limit">Amount of items to return.</param>
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair"/>
-        Task<HistoricalTradesResponse> HistoricalTradesAsync(CancellationToken cancellationToken, Exchange exchange,
+        Task<HistoricalTradesResponse> HistoricalAsync(CancellationToken cancellationToken, Exchange exchange,
             Asset baseAsset, Asset quoteAsset, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestCryptoApiSdkProject.Exchanges.Info
 {
     [TestClass]
+    [TestCategory("Exchanges")]
     public class Assets : BaseCollectionTest
     {
         protected override ICollectionResponse GetAllList()

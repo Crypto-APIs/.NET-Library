@@ -10,7 +10,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var symbol = new Symbol("5b3a4d343d8cea0001653d1d");
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Exchanges.Trades.LatestTrades(symbol, limit: 10);
+      var response = manager.Exchanges.Trades.Latest(symbol, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "GetLatestSymbolTrades executed successfully, " +

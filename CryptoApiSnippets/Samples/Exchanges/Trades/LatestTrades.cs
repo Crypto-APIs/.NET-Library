@@ -7,7 +7,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
     public void LatestTrades()
     {
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Exchanges.Trades.LatestTrades(limit: 10);
+      var response = manager.Exchanges.Trades.Latest(limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "LatestTrades executed successfully, " +

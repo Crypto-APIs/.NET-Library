@@ -11,7 +11,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var exchange = new Exchange("5b4366dab98b280001540e16");
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Exchanges.Rates.ExchangeRates(baseAsset, exchange, skip: 0, limit: 10);
+      var response = manager.Exchanges.Rates.GetAny(baseAsset, exchange, skip: 0, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "ExchangeRatesInExchange executed successfully, " +

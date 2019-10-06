@@ -11,7 +11,7 @@ namespace CryptoApiSnippets.Samples.Exchanges
       var period = new Period("1day");
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Exchanges.Ohlcv.LatestOhlcv(symbol, period, limit: 10);
+      var response = manager.Exchanges.Ohlcv.Latest(symbol, period, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "LatestOhlcv executed successfully, " +

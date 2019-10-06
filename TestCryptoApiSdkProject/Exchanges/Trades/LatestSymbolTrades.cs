@@ -1,7 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.DataTypes.Exceptions;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics;
 using System.Linq;
 
@@ -12,39 +12,46 @@ namespace TestCryptoApiSdkProject.Exchanges.Trades
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Exchanges.Trades.LatestTrades(Symbol);
+            return Manager.Exchanges.Trades.Latest(Symbol);
         }
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.LatestTrades(Symbol, skip: skip);
+            return Manager.Exchanges.Trades.Latest(Symbol, skip: skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Exchanges.Trades.LatestTrades(Symbol, limit: limit);
+            return Manager.Exchanges.Trades.Latest(Symbol, limit: limit);
         }
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
             Debug.Assert(Skip.HasValue);
             Debug.Assert(Limit.HasValue);
-            return Manager.Exchanges.Trades.LatestTrades(Symbol, skip, limit);
+            return Manager.Exchanges.Trades.Latest(Symbol, skip, limit);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(RequestException), "A Symbol of null was inappropriately allowed.")]
-        public void TestUndefinedSymbol()
+        [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
+        public void TestNullSymbol()
         {
-            Manager.Exchanges.Trades.LatestTrades(symbol: null);
+            Manager.Exchanges.Trades.Latest(symbol: null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "A Symbol.Id of null was inappropriately allowed.")]
+        public void TestNullSymbolId()
+        {
+            Manager.Exchanges.Trades.Latest(new Symbol());
         }
 
         [TestMethod]
         public void TestIncorrectSymbol()
         {
-            var symbol = new Symbol("QWEEWQ1");
+            var symbol = new Symbol("QWE'EWQ1");
 
-            var response = Manager.Exchanges.Trades.LatestTrades(symbol);
+            var response = Manager.Exchanges.Trades.Latest(symbol);
 
             Assert.IsNotNull(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.ErrorMessage));
