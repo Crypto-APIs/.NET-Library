@@ -1,2 +1,0 @@
-﻿https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange
-message=Asset not found

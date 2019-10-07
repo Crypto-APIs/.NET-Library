@@ -21,3 +21,5 @@
 /TestResults
 /CryptoApisSdkLibrary.sln.DotSettings.user
 /Credentials
+bin
+obj
