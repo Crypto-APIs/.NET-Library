@@ -27,27 +27,31 @@ namespace CryptoApisSdkLibrary.Modules
             };
         }
 
-        protected T GetSync<T>(IRestRequest request) where T : BaseResponse, new()
+        /*protected T GetSync<T>(IRestRequest request) where T : BaseResponse, new()
         {
             var response = Client.Execute<T>(request);
             return response.IsSuccessful
                 ? response.Data
                 : MakeErrorMessage<T>(response);
-        }
+        }*/
 
         protected Task<T> GetAsyncResponse<T>(IRestRequest request, CancellationToken cancellationToken)
             where T : BaseResponse, new()
         {
             return Task.Run(async () =>
             {
-                var response = await Client.ExecuteTaskAsync<T>(
+                _logger?.RegisterRequest(Client, request);
+
+                 var response = await Client.ExecuteTaskAsync<T>(
                     request, cancellationToken);
                 if (!response.IsSuccessful)
                     return MakeErrorMessage<T>(response);
 
                 var result = response.Data;
-                result.RequestAsString = request.Resource;
+                //result.RequestAsString = request.Resource;
                 result.ResponseAsString = response.Content;
+
+                _logger?.RegisterResponse(response);
 
                 return result;
             }, cancellationToken);
@@ -94,7 +98,13 @@ namespace CryptoApisSdkLibrary.Modules
             return !string.IsNullOrEmpty(errorMessage);
         }
 
+        public void SetResponseRequestLogger(IResponseRequestLogger logger)
+        {
+            _logger = logger;
+        }
+
         protected readonly CryptoApiRequest Request;
         protected readonly IRestClient Client;
+        private IResponseRequestLogger _logger;
     }
 }

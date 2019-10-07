@@ -15,8 +15,8 @@ namespace CryptoApisSdkLibrary
 
             var request = new CryptoApiRequest();
 
-            Exchanges = new ExchangeModules(_client, request);
-            Blockchains = new BlockchainModules(_client, request);
+            _exchanges = new ExchangeModules(_client, request);
+            _blockchains = new BlockchainModules(_client, request);
         }
 
         public CryptoManager(string apiKey, ProxyCredentials credentials) : this(apiKey)
@@ -36,9 +36,18 @@ namespace CryptoApisSdkLibrary
             };
         }
 
-        public IExchangeModules Exchanges { get; }
-        public IBlockchainModules Blockchains { get; }
+        public void SetResponseRequestLogger(IResponseRequestLogger logger)
+        {
+            _exchanges.SetResponseRequestLogger(logger);
+            _blockchains.SetResponseRequestLogger(logger);
+        }
+
+        public IExchangeModules Exchanges => _exchanges;
+
+        public IBlockchainModules Blockchains => _blockchains;
 
         private readonly IRestClient _client;
+        private readonly ExchangeModules _exchanges;
+        private readonly BlockchainModules _blockchains;
     }
 }

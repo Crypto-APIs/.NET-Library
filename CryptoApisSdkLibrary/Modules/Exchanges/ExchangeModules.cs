@@ -8,21 +8,36 @@ using RestSharp;
 
 namespace CryptoApisSdkLibrary.Modules.Exchanges
 {
-    internal class ExchangeModules : BaseModule, IExchangeModules
+    internal class ExchangeModules : IExchangeModules
     {
-        public ExchangeModules(IRestClient client, CryptoApiRequest request) : base(client, request)
+        public ExchangeModules(IRestClient client, CryptoApiRequest request)
         {
-            Info = new ExchangeInfoModules(client, request);
-            Rates = new ExchangeRatesModules(client, request);
-            Ohlcv = new ExchangeOhlcvModules(client, request);
-            Trades = new ExchangeTradesModules(client, request);
-            OrderBook = new ExchangeOrderBookModules(client, request);
+            _info = new ExchangeInfoModules(client, request);
+            _rates = new ExchangeRatesModules(client, request);
+            _ohlcv = new ExchangeOhlcvModules(client, request);
+            _trades = new ExchangeTradesModules(client, request);
+            _orderBook = new ExchangeOrderBookModules(client, request);
         }
 
-        public IExchangeInfoModules Info { get; }
-        public IExchangeRatesModules Rates { get; }
-        public IExchangeOhlcvModules Ohlcv { get; }
-        public IExchangeTradesModules Trades { get; }
-        public IExchangeOrderBookModules OrderBook { get; }
+        public void SetResponseRequestLogger(IResponseRequestLogger logger)
+        {
+            _info.SetResponseRequestLogger(logger);
+            _rates.SetResponseRequestLogger(logger);
+            _ohlcv.SetResponseRequestLogger(logger);
+            _trades.SetResponseRequestLogger(logger);
+            _orderBook.SetResponseRequestLogger(logger);
+        }
+
+        public IExchangeInfoModules Info => _info;
+        public IExchangeRatesModules Rates => _rates;
+        public IExchangeOhlcvModules Ohlcv => _ohlcv;
+        public IExchangeTradesModules Trades => _trades;
+        public IExchangeOrderBookModules OrderBook => _orderBook;
+
+        private readonly ExchangeInfoModules _info;
+        private readonly ExchangeRatesModules _rates;
+        private readonly ExchangeOhlcvModules _ohlcv;
+        private readonly ExchangeTradesModules _trades;
+        private readonly ExchangeOrderBookModules _orderBook;
     }
 }

@@ -11,27 +11,48 @@ using RestSharp;
 
 namespace CryptoApisSdkLibrary.Modules.Blockchains
 {
-    internal class BlockchainModules : BaseModule, IBlockchainModules
+    internal class BlockchainModules : IBlockchainModules
     {
-        public BlockchainModules(IRestClient client, CryptoApiRequest request) : base(client, request)
+        public BlockchainModules(IRestClient client, CryptoApiRequest request)
         {
-            Info = new BlockchainInfoModule(client, request);
-            Address = new BlockchainAddressModule(client, request);
-            Wallet = new BlockchainWalletModule(client, request);
-            Transaction = new BlockchainTransactionModule(client, request);
-            PaymentForwarding = new BlockchainPaymentForwardingModule(client, request);
-            WebhookNotification = new BlockchainWebhookNotificationModule(client, request);
-            Contract = new BlockchainContractModule(client, request);
-            Token = new BlockchainTokenModule(client, request);
+            _info = new BlockchainInfoModule(client, request);
+            _address = new BlockchainAddressModule(client, request);
+            _wallet = new BlockchainWalletModule(client, request);
+            _transaction = new BlockchainTransactionModule(client, request);
+            _paymentForwarding = new BlockchainPaymentForwardingModule(client, request);
+            _webhookNotification = new BlockchainWebhookNotificationModule(client, request);
+            _contract = new BlockchainContractModule(client, request);
+            _token = new BlockchainTokenModule(client, request);
         }
 
-        public IBlockchainInfoModule Info { get; }
-        public IBlockchainAddressModule Address { get; }
-        public IBlockchainWalletModule Wallet { get; }
-        public IBlockchainTransactionModule Transaction { get; }
-        public IBlockchainPaymentForwardingModule PaymentForwarding { get; }
-        public IBlockchainWebhookNotificationModule WebhookNotification { get; }
-        public IBlockchainContractModule Contract { get; }
-        public IBlockchainTokenModule Token { get; }
+        public IBlockchainInfoModule Info => _info;
+        public IBlockchainAddressModule Address => _address;
+        public IBlockchainWalletModule Wallet => _wallet;
+        public IBlockchainTransactionModule Transaction => _transaction;
+        public IBlockchainPaymentForwardingModule PaymentForwarding => _paymentForwarding;
+        public IBlockchainWebhookNotificationModule WebhookNotification => _webhookNotification;
+        public IBlockchainContractModule Contract => _contract;
+        public IBlockchainTokenModule Token => _token;
+
+        public void SetResponseRequestLogger(IResponseRequestLogger logger)
+        {
+            _info.SetResponseRequestLogger(logger);
+            _address.SetResponseRequestLogger(logger);
+            _wallet.SetResponseRequestLogger(logger);
+            _transaction.SetResponseRequestLogger(logger);
+            _paymentForwarding.SetResponseRequestLogger(logger);
+            _webhookNotification.SetResponseRequestLogger(logger);
+            _contract.SetResponseRequestLogger(logger);
+            _token.SetResponseRequestLogger(logger);
+        }
+
+        private readonly BlockchainInfoModule _info;
+        private readonly BlockchainAddressModule _address;
+        private readonly BlockchainWalletModule _wallet;
+        private readonly BlockchainTransactionModule _transaction;
+        private readonly BlockchainPaymentForwardingModule _paymentForwarding;
+        private readonly BlockchainWebhookNotificationModule _webhookNotification;
+        private readonly BlockchainContractModule _contract;
+        private readonly BlockchainTokenModule _token;
     }
 }

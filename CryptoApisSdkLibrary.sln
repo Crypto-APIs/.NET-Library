@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCryptoApiSdkProject", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoApiSnippets", "CryptoApiSnippets\CryptoApiSnippets.csproj", "{97ECB02B-D77E-412F-AB7C-357D404EA628}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCryptoApiSdk", "TestCryptoApiSdk\TestCryptoApiSdk.csproj", "{7A8E6FCD-2807-4410-8689-3E171ED234A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{97ECB02B-D77E-412F-AB7C-357D404EA628}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97ECB02B-D77E-412F-AB7C-357D404EA628}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97ECB02B-D77E-412F-AB7C-357D404EA628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A8E6FCD-2807-4410-8689-3E171ED234A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A8E6FCD-2807-4410-8689-3E171ED234A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A8E6FCD-2807-4410-8689-3E171ED234A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A8E6FCD-2807-4410-8689-3E171ED234A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,12 +37,12 @@ namespace CryptoApisSdkLibrary.Modules.Blockchains.Transactions
             where T : GetTransactionInfosResponse, new()
         {
             return GetInfosAsync<T>(CancellationToken.None, networkCoin, blockHeight, skip, limit).GetAwaiter().GetResult();
-            var request = Requests.GetInfos(networkCoin, blockHeight, skip, limit);
+            /*var request = Requests.GetInfos(networkCoin, blockHeight, skip, limit);
             var result = GetSync<T>(request);
             // todo: Eth need to sort
             //result.Transactions?.Sort((info1, info2) => info1.Index.CompareTo(info2.Index));
 
-            return result;
+            return result;*/
         }
 
         public T GetInfos<T>(NetworkCoin networkCoin,

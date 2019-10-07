@@ -48,7 +48,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -573,10 +572,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CryptoApiSnippets\CryptoApiSnippets.csproj">
-      <Project>{97ecb02b-d77e-412f-ab7c-357d404ea628}</Project>
-      <Name>CryptoApiSnippets</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CryptoApisSdkLibrary\CryptoApisSdkLibrary.csproj">
       <Project>{ed367eb1-65c9-4637-b6f1-3ffe39ad0de4}</Project>
       <Name>CryptoApisSdkLibrary</Name>
