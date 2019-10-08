@@ -15,7 +15,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, Password);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -27,7 +26,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value, Password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -38,7 +36,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Value, Password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress} is not a valid Ethereum address");
         }
 
@@ -49,7 +46,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -69,7 +65,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, value, Password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 

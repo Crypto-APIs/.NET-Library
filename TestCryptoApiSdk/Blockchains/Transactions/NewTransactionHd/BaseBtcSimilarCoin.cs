@@ -23,7 +23,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid));
         }
@@ -38,7 +37,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, inputAddresses, OutputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 
@@ -52,7 +50,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 
@@ -67,7 +64,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Sum of input values is different then sum of output values");
         }
 
@@ -82,7 +78,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -145,7 +140,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, new Fee(fee));
             
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 

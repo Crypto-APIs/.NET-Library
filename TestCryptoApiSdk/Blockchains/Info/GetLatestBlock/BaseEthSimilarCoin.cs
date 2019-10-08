@@ -12,9 +12,9 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetLatestBlock
         {
             var response = Manager.Blockchains.Info.GetLatestBlock<GetEthHashInfoResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.HashInfo.Chain));
+            Assert.IsFalse(string.IsNullOrEmpty(response.HashInfo.Chain),
+                $"'{nameof(response.HashInfo.Chain)}' must not be null");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

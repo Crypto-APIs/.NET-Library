@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
@@ -11,10 +10,9 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
         {
             var response = Manager.Exchanges.Ohlcv.Periods();
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.Periods, "Response.Periods must not be null");
-            Assert.IsTrue(response.Periods.Any(), "Collection must not be empty");
+            Assert.IsNotNull(response.Periods, $"{nameof(response.Periods)} must not be null");
+            AssertNotEmptyCollection(nameof(response.Periods), response.Periods);
         }
     }
 }

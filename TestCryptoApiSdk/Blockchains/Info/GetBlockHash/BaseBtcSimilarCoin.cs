@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
         {
             var response = Manager.Blockchains.Info.GetBlockHash<GetBtcHashInfoResponse>(NetworkCoin, BlockHash);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(BlockHash, response.HashInfo.Hash);
         }
@@ -23,7 +22,6 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
         {
             var response = Manager.Blockchains.Info.GetBlockHash<GetBtcHashInfoResponse>(NetworkCoin, blockHash: "qwe");
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Blockchain connection error: ");
         }
 

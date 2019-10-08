@@ -15,7 +15,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -27,7 +26,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual("Balance is not enough", response.ErrorMessage);
         }
@@ -39,7 +37,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, PrivateKey);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -50,7 +47,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, PrivateKey);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress} is not a valid Ethereum address");
         }
 
@@ -62,7 +58,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Bad Request"); // todo: "Bad Request" on Ropsten, "Balance is not enoug" on Mainnet and RinkenBy
         }
 

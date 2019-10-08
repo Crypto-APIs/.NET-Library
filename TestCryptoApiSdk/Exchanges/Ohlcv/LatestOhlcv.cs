@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
@@ -40,7 +39,6 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var period = new Period("1day");
             var response = Manager.Exchanges.Ohlcv.Latest(symbol, period);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Unknown symbol");
             AssertEmptyCollection(nameof(response.Ohlcv), response.Ohlcv);
         }
@@ -65,7 +63,6 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var period = new Period("QW'E");
             var response = Manager.Exchanges.Ohlcv.Latest(Symbol, period);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "General Error: period must be in {'1sec', '2sec', '3sec', '4sec', '5sec', '6sec', '10sec', '15sec', '20sec', '30sec', '1min', '2min', '3min', '4min', '5min', '6min', '10min', '15min', '20min', '30min', '1hrs', '2hrs', '3hrs', '4hrs', '6hrs', '8hrs', '12hrs', '1day', '2day', '3day', '5day', '7day', '10day', '1mth', '2mth', '3mth', '4mth', '6mth', '1yrs', '2yrs', '3yrs', '4yrs', '5yrs'}");
             AssertEmptyCollection(nameof(response.Ohlcv), response.Ohlcv);
         }

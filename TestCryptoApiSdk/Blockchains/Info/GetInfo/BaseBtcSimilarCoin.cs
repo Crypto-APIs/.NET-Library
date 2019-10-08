@@ -1,7 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Blockchains.Info.GetInfo
 {
@@ -13,9 +12,8 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetInfo
         {
             var response = Manager.Blockchains.Info.GetInfo<GetBtcInfoResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsTrue(NetworkCoin.Coin.ToString().Equals(response.Info.Currency, StringComparison.OrdinalIgnoreCase));
+            Assert.AreEqual(NetworkCoin.Coin.ToString(), response.Info.Currency, true);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

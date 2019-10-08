@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, Data);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded));
         }
@@ -26,7 +25,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value, Data);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -37,7 +35,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, toAddress, Value, Data);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress} is not a valid Ethereum address");
         }
 
@@ -48,7 +45,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, data);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Gas limit is not a valid integer number");
         }
 
@@ -59,7 +55,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, value, Data);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded));
         }
@@ -88,7 +83,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, data: null);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Internal Server Error");
         }
 

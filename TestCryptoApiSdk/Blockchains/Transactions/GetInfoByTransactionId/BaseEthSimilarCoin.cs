@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
         {
             var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, TransactionHash);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(TransactionHash, response.Payload.TransactionHash);
         }
@@ -23,7 +22,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
         {
             var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, blockHash: "qwe");
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Transaction not found");
         }
 

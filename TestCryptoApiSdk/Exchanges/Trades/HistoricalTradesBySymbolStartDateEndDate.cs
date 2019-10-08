@@ -3,7 +3,6 @@ using CryptoApisSdkLibrary.DataTypes.Exceptions;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
@@ -37,7 +36,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var endPeriod = new DateTime(1960, 02, 01);
             var response = Manager.Exchanges.Trades.Historical(Symbol, startPeriod, endPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
@@ -56,7 +54,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var endPeriod = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Trades.Historical(Symbol, StartPeriod, endPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertNullErrorMessage(response);

@@ -13,10 +13,11 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.GetBalance
         {
             var response = Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, Address, Contract);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Symbol));
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Name));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Symbol), 
+                $"'{nameof(response.Payload.Symbol)}' must not be null");
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Name), 
+                $"'{nameof(response.Payload.Name)}' must not be null");
         }
 
         [TestMethod]
@@ -25,7 +26,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.GetBalance
             var address = "1'23";
             var response = Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, address, Contract);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Invalid address or contract");
         }
 
@@ -35,7 +35,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.GetBalance
             var contract = "1'23";
             var response = Manager.Blockchains.Token.GetBalance<GetBalanceTokenResponse>(NetworkCoin, Address, contract);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Invalid address or contract");
         }
 

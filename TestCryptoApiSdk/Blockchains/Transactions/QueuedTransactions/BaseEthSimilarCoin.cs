@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.QueuedTransactions
         {
             var response = Manager.Blockchains.Transaction.QueuedTransactions<QueuedTransactionsResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsTrue(response.Transactions.Any(), "Collection must not be empty");
         }

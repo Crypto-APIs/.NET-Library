@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
         {
             var response = Manager.Blockchains.Info.GetBlockHash<GetEthHashInfoResponse>(NetworkCoin, BlockHash);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(BlockHash, response.HashInfo.Hash);
         }
@@ -23,7 +22,6 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
         {
             var response = Manager.Blockchains.Info.GetBlockHash<GetEthHashInfoResponse>(NetworkCoin, blockHash: "qwe");
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Block not found");
         }
 

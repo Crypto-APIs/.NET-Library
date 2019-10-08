@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.DecodeTransaction
         {
             var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, HexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Transaction.Hash));
         }
@@ -24,7 +23,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.DecodeTransaction
             var hexEncodedInfo = "qwe";
             var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Can not decode transaction");
         }
 

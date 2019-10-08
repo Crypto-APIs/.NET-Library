@@ -3,7 +3,6 @@ using CryptoApisSdkLibrary.DataTypes.Exceptions;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
@@ -45,12 +44,11 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var endPeriod = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Ohlcv.Historical(Symbol, Period, StartPeriod, endPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertNullErrorMessage(response);
-                Assert.IsNotNull(response.Ohlcv, "Response.Ohlcv must not be null");
-                Assert.IsTrue(response.Ohlcv.Any(), "Collection must not be empty");
+                Assert.IsNotNull(response.Ohlcv, $"{nameof(response.Ohlcv)} must not be null");
+                AssertNotEmptyCollection(nameof(response.Ohlcv), response.Ohlcv);
             }
             else
             {

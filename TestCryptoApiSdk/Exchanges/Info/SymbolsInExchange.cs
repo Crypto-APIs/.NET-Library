@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
@@ -37,7 +36,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Exchange.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Exchange.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
             Manager.Exchanges.Info.SymbolsInExchange(new Exchange());
@@ -47,10 +46,8 @@ namespace TestCryptoApiSdk.Exchanges.Info
         public void TestIncorrectExchange()
         {
             var exchange = new Exchange("QWEE'WQ1");
-
             var response = Manager.Exchanges.Info.SymbolsInExchange(exchange);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }

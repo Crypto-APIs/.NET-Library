@@ -19,41 +19,36 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             var paymentId = response.Payload.Id;
             Assert.IsFalse(string.IsNullOrEmpty(paymentId));
 
             var doubleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
-            Assert.IsNotNull(doubleResponse);
-            Assert.IsFalse(string.IsNullOrEmpty(doubleResponse.ErrorMessage));
-            Assert.AreEqual($"Payment Forwarding from address '{FromAddress}' already created", doubleResponse.ErrorMessage);
+            AssertErrorMessage(doubleResponse, $"Payment Forwarding from address '{FromAddress}' already created");
 
             var tripleResponse = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, ToAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
-            Assert.IsNotNull(tripleResponse);
-            Assert.IsFalse(string.IsNullOrEmpty(tripleResponse.ErrorMessage));
-            Assert.AreEqual($"'to' address must be different from 'from' address", tripleResponse.ErrorMessage);
+            AssertErrorMessage(tripleResponse, "'to' address must be different from 'from' address");
 
             try
             {
                 var getResponse = Manager.Blockchains.PaymentForwarding.GetPayments<GetEthPaymentsResponse>(NetworkCoin);
-                Assert.IsTrue(string.IsNullOrEmpty(getResponse.ErrorMessage));
-                Assert.IsTrue(getResponse.Payments.Any(), "Collection must not be empty");
+                AssertNullErrorMessage(getResponse);
+                AssertNotEmptyCollection(nameof(getResponse.Payments), getResponse.Payments);
                 Assert.IsNotNull(getResponse.Payments.FirstOrDefault(h =>
                     h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)));
 
                 var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments<GetEthHistoricalPaymentsResponse>(NetworkCoin);
-                Assert.IsTrue(string.IsNullOrEmpty(getHistoricalResponse.ErrorMessage));
-                Assert.IsTrue(getHistoricalResponse.Payments.Any(), "Collection must not be empty");
+                AssertNullErrorMessage(getHistoricalResponse);
+                AssertNotEmptyCollection(nameof(getHistoricalResponse.Payments), getHistoricalResponse.Payments);
                 Assert.IsNotNull(getHistoricalResponse.Payments.FirstOrDefault(h =>
                     h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)));
             }
             finally
             {
                 var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteEthPaymentResponse>(NetworkCoin, paymentId);
-                Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
+                AssertNullErrorMessage(deleteResponse);
                 Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
                 Assert.AreEqual("ok", deleteResponse.Payload.Message);
             }
@@ -69,7 +64,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, fromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress}  is not a valid Ethereum address");
         }
 
@@ -83,7 +77,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, toAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress}  is not a valid Ethereum address");
         }
 
@@ -98,7 +91,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, callbackUrl, Password, Confirmations, GasPrice, GasLimit); // todo: I don't know what password
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -112,7 +104,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, password, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Wrong password");
         }
 

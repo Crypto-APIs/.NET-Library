@@ -19,23 +19,23 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDele
             Assert.IsNotNull(address);
             var response = Manager.Blockchains.WebhookNotification.CreateAddress<CreateBtcAddressWebHookResponse>(NetworkCoin, Url, address);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id), $"'{nameof(response.Payload.Id)}' must not be null");
             var hookId = response.Payload.Id;
 
             try
             {
                 var getHookResponse = Manager.Blockchains.WebhookNotification.GetHooks<GetBtcHooksResponse>(NetworkCoin);
-                Assert.IsTrue(string.IsNullOrEmpty(getHookResponse.ErrorMessage));
-                Assert.IsTrue(getHookResponse.Hooks.Any(), "Collection must not be empty");
+                AssertNullErrorMessage(getHookResponse);
+                AssertNotEmptyCollection(nameof(getHookResponse.Hooks), getHookResponse.Hooks);
                 Assert.IsNotNull(getHookResponse.Hooks.FirstOrDefault(h => h.Id.Equals(hookId, StringComparison.OrdinalIgnoreCase)));
             }
             finally
             {
                 var deleteResponse = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hookId);
-                Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
-                Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
+                AssertNullErrorMessage(deleteResponse);
+                Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message),
+                    $"'{nameof(deleteResponse.Payload.Message)}' must not be null");
                 Assert.AreEqual($"Webhook with id: {hookId} was successfully deleted!", deleteResponse.Payload.Message);
             }
         }
@@ -46,19 +46,13 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDele
             var address = "qwe";
             var response = Manager.Blockchains.WebhookNotification.CreateAddress<CreateBtcAddressWebHookResponse>(NetworkCoin, Url, address);
 
-            AssertNotNullResponse(response);
-            if (IsAdditionalPackagePlan)
-            {
-                AssertErrorMessage(response, "Field 'address' is not valid");
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
-            }
+            AssertErrorMessage(response, IsAdditionalPackagePlan
+                ? "Field 'address' is not valid"
+                : "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Url of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Url of null was inappropriately allowed.")]
         public void NullUrl()
         {
             string nullUrl = null;
@@ -67,7 +61,7 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDele
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Address of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void NullAddress()
         {
             string address = null;

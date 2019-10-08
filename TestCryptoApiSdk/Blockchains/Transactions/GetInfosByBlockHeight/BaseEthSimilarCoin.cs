@@ -48,7 +48,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
             var blockHeight = int.MaxValue;
             var response = Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, blockHeight);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Transactions not found!");
         }
 

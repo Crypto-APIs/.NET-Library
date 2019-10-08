@@ -15,7 +15,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Password);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -27,7 +26,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -38,7 +36,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"There is no registry for address: {FromAddress}");
         }
 
@@ -49,7 +46,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"There is no registry for address: { FromAddress }");
         }
 

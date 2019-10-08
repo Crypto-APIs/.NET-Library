@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
             var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(FromAddress, response.Payload.FromAddress);
         }
@@ -26,7 +25,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
             var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -37,7 +35,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
             var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Value);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress} is not a valid Ethereum address");
         }
 

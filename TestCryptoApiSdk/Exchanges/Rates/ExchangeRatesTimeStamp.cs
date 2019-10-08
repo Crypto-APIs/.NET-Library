@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
@@ -35,7 +34,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Rates.GetAny(BaseAsset, timeStamp);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }
@@ -46,7 +44,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(1960, 01, 01);
             var response = Manager.Exchanges.Rates.GetAny(BaseAsset, timeStamp);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }

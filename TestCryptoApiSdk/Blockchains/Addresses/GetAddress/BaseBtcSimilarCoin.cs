@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GetAddress
         {
             var response = Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address: "qwe");
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 

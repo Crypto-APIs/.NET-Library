@@ -15,7 +15,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -27,7 +26,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, PrivateKey, Value, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -38,7 +36,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, PrivateKey, Value, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress} is not a valid Ethereum address");
         }
 
@@ -49,7 +46,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey, Value, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Bad Request");
         }
 
@@ -70,7 +66,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, value, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "insufficient funds for gas * price + value");
         }
 
@@ -82,7 +77,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, Value, gasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "insufficient funds for gas * price + value");
         }
 
@@ -94,7 +88,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKeyW
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, Value, GasPrice, gasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "insufficient funds for gas * price + value");
         }
 

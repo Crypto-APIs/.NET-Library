@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
@@ -47,10 +46,8 @@ namespace TestCryptoApiSdk.Exchanges.Info
         public void TestIncorrectAsset()
         {
             var asset = new Asset("QWEEWQ1");
-
             var response = Manager.Exchanges.Info.ExchangesSupportingAsset(asset);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }

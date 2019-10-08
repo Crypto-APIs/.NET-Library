@@ -12,10 +12,9 @@ namespace TestCryptoApiSdk.Blockchains.Contracts.EstimateGas
         {
             var response = Manager.Blockchains.Contract.EstimateGas<EthEstimateGasContractResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsTrue(response.Payload.GasLimit > 0);
-            Assert.IsTrue(response.Payload.GasPrice > 0);
+            Assert.IsTrue(response.Payload.GasLimit > 0, $"{response.Payload.GasLimit} must be greater than 0");
+            Assert.IsTrue(response.Payload.GasPrice > 0, $"{response.Payload.GasPrice} must be greater than 0");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

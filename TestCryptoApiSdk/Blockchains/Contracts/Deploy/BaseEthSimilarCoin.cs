@@ -15,9 +15,9 @@ namespace TestCryptoApiSdk.Blockchains.Contracts.Deploy
             var response = Manager.Blockchains.Contract.Deploy<EthDeployContractResponse>(
                 NetworkCoin, FromAddress, GasPrice, GasLimit, PrivateKey, ByteCode);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex), 
+                $"'{nameof(response.Payload.Hex)}' must not be null");
         }
 
         [TestMethod]
@@ -26,9 +26,8 @@ namespace TestCryptoApiSdk.Blockchains.Contracts.Deploy
             var response = Manager.Blockchains.Contract.Deploy<EthDeployContractResponse>(
                 NetworkCoin, FromAddress, GasPrice, GasLimit, PrivateKey, ByteCode);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "insufficient funds for gas * price + value");
-            }
+        }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
@@ -82,7 +81,6 @@ namespace TestCryptoApiSdk.Blockchains.Contracts.Deploy
             var response = Manager.Blockchains.Contract.Deploy<EthDeployContractResponse>(
                 NetworkCoin, FromAddress, GasPrice, GasLimit, PrivateKey, byteCode);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Byte code is not in the correct format");
         }
 
@@ -93,7 +91,6 @@ namespace TestCryptoApiSdk.Blockchains.Contracts.Deploy
             var response = Manager.Blockchains.Contract.Deploy<EthDeployContractResponse>(
                 NetworkCoin, fromAddress, GasPrice, GasLimit, PrivateKey, ByteCode);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress}  is not a valid Ethereum address");
         }
 
@@ -104,7 +101,6 @@ namespace TestCryptoApiSdk.Blockchains.Contracts.Deploy
             var response = Manager.Blockchains.Contract.Deploy<EthDeployContractResponse>(
                 NetworkCoin, FromAddress, GasPrice, GasLimit, privateKey, ByteCode);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Could not sign the transaction");
         }
 

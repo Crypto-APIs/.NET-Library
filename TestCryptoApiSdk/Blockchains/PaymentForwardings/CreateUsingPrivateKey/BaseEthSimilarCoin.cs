@@ -17,7 +17,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
         }
@@ -32,7 +31,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, fromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress}  is not a valid Ethereum address");
         }
 
@@ -46,7 +44,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, toAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress}  is not a valid Ethereum address");
         }
 
@@ -60,7 +57,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(callbackUrl, response.Payload.Callback);
         }
@@ -75,7 +71,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "For input string: \"qwe\"");
         }
 

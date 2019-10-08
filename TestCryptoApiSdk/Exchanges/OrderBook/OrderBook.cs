@@ -13,10 +13,9 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
         {
             var response = Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.OrderBook, "Response.OrderBook must not be null");
-            Assert.IsNotNull(response.OrderBook.Depth, "Response.OrderBook.Depth must not be null");
+            Assert.IsNotNull(response.OrderBook, $"{nameof(response.OrderBook)} must not be null");
+            Assert.IsNotNull(response.OrderBook.Depth, $"{nameof(response.OrderBook.Depth)} must not be null");
             Assert.IsTrue(response.OrderBook.Depth.Asks.Any() || response.OrderBook.Depth.Bids.Any(), "Collection must not be empty");
         }
 
@@ -25,9 +24,8 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
         {
             var response = Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, BaseAsset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "error Record is not found");
-            Assert.IsNull(response.OrderBook, "Response.OrderBook must be null");
+            Assert.IsNull(response.OrderBook, $"{nameof(response.OrderBook)} must be null");
         }
 
         [TestMethod]
@@ -78,11 +76,10 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
             var baseAsset = new Asset { AssetId = "QWE'EWQ1" };
             var response = Manager.Exchanges.OrderBook.Get(Exchange, baseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
-                Assert.AreEqual("error Record is not found", response.ErrorMessage);
-                Assert.IsNull(response.OrderBook, "Response.OrderBook must be null");
+                AssertErrorMessage(response, "error Record is not found");
+                Assert.IsNull(response.OrderBook, $"{nameof(response.OrderBook)} must be null");
             }
             else
             {
@@ -96,11 +93,10 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
             var quoteAsset = new Asset { AssetId = "QWE'EWQ1" };
             var response = Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, quoteAsset);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
-                Assert.AreEqual("error Record is not found", response.ErrorMessage);
-                Assert.IsNull(response.OrderBook, "Response.OrderBook must be null");
+                AssertErrorMessage(response, "error Record is not found");
+                Assert.IsNull(response.OrderBook, $"{nameof(response.OrderBook)} must be null");
             }
             else
             {
@@ -114,11 +110,10 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
             var exchange = new Exchange { ExchangeId = "QWE'EWQ1" };
             var response = Manager.Exchanges.OrderBook.Get(exchange, BaseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
-                Assert.AreEqual("error Record is not found", response.ErrorMessage);
-                Assert.IsNull(response.OrderBook, "Response.OrderBook must be null");
+                AssertErrorMessage(response, "error Record is not found");
+                Assert.IsNull(response.OrderBook, $"{nameof(response.OrderBook)} must be null");
             }
             else
             {

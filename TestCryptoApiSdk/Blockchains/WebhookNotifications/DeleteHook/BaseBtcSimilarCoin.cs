@@ -16,20 +16,18 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.DeleteHook
                 return;
 
             var response = Manager.Blockchains.WebhookNotification.GetHooks<GetBtcHooksResponse>(NetworkCoin);
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
 
             foreach (var hook in response.Hooks)
             {
                 var deleteResponse = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hook.Id);
-                Assert.IsNotNull(deleteResponse);
-                AssertNullErrorMessage(response);
-                Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
+                AssertNullErrorMessage(deleteResponse);
+                Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message),
+                    $"'{nameof(deleteResponse.Payload.Message)}' must not be null");
                 Assert.AreEqual($"Webhook with id: {hook.Id} was successfully deleted!", deleteResponse.Payload.Message);
             }
 
             var secondResponse = Manager.Blockchains.WebhookNotification.GetHooks<GetBtcHooksResponse>(NetworkCoin);
-            AssertNotNullResponse(secondResponse);
             AssertNullErrorMessage(secondResponse);
             AssertEmptyCollection(nameof(secondResponse.Hooks), secondResponse.Hooks);
         }
@@ -48,15 +46,9 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.DeleteHook
             var hookId = "qwe";
             var response = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hookId);
 
-            AssertNotNullResponse(response);
-            if (IsAdditionalPackagePlan)
-            {
-                AssertErrorMessage(response, $"Could not delete webhook with id: {hookId}");
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
-            }
+            AssertErrorMessage(response, IsAdditionalPackagePlan
+                ? $"Could not delete webhook with id: {hookId}"
+                : "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

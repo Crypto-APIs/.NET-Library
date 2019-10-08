@@ -14,11 +14,11 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateConfirmedTrans
             var response = Manager.Blockchains.WebhookNotification.CreateConfirmedTransaction<CreateEthConfirmedTransactionWebHookResponse>(
                 NetworkCoin, Url, TransactionHash, ConfirmationCount);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertNullErrorMessage(response);
-                Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
+                Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id),
+                    $"'{nameof(response.Payload.Id)}' must not be null");
             }
             else
             {

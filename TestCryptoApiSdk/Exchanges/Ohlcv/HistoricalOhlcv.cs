@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
@@ -49,7 +48,6 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var symbol = new Symbol("QWEE'WQ1");
             var response = Manager.Exchanges.Ohlcv.Historical(symbol, Period, StartPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Unknown symbol");
@@ -67,7 +65,6 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var period = new Period("QWEE'WQ");
             var response = Manager.Exchanges.Ohlcv.Historical(Symbol, period, StartPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "General Error: period must be in {'1sec', '2sec', '3sec', '4sec', '5sec', '6sec', '10sec', '15sec', '20sec', '30sec', '1min', '2min', '3min', '4min', '5min', '6min', '10min', '15min', '20min', '30min', '1hrs', '2hrs', '3hrs', '4hrs', '6hrs', '8hrs', '12hrs', '1day', '2day', '3day', '5day', '7day', '10day', '1mth', '2mth', '3mth', '4mth', '6mth', '1yrs', '2yrs', '3yrs', '4yrs', '5yrs'}");
@@ -99,7 +96,6 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var startPeriod = new DateTime(1960, 01, 01);
             var response = Manager.Exchanges.Ohlcv.Historical(Symbol, Period, startPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
@@ -117,7 +113,6 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             var startPeriod = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Ohlcv.Historical(Symbol, Period, startPeriod);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertNullErrorMessage(response);

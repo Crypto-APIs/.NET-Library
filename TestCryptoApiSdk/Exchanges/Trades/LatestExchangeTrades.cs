@@ -3,7 +3,6 @@ using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
@@ -33,14 +32,14 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Exchange of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
             Manager.Exchanges.Trades.Latest(exchange: null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Exchange.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Exchange.Id of null was inappropriately allowed.")]
         public void TestNullExchangeId()
         {
             Manager.Exchanges.Trades.Latest(new Exchange());
@@ -50,10 +49,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         public void TestIncorrectExchange()
         {
             var exchange = new Exchange("QWE'EWQ1");
-
             var response = Manager.Exchanges.Trades.Latest(exchange);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "We are facing technical issues, please try again later");
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }

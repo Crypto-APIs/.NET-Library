@@ -16,55 +16,42 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}GeneralWallet";
             var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(walletName, response.Wallet.Name);
 
             // GetWallets
             var getWalletsResponse = Manager.Blockchains.Wallet.GetWallets<GetWalletsResponse>(NetworkCoin);
-
-            Assert.IsNotNull(getWalletsResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(getWalletsResponse.ErrorMessage));
-            Assert.IsTrue(getWalletsResponse.Wallets.Any(), "Collection must not be empty");
+            AssertNullErrorMessage(getWalletsResponse);
+            AssertNotEmptyCollection(nameof(getWalletsResponse.Wallets), getWalletsResponse.Wallets);
             Assert.AreEqual(1, getWalletsResponse.Wallets.Count(w => w == walletName));
 
             // GetWalletInfo
             var getResponse = Manager.Blockchains.Wallet.GetWalletInfo<WalletInfoResponse>(NetworkCoin, walletName);
-
-            Assert.IsNotNull(getResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(getResponse.ErrorMessage));
+            AssertNullErrorMessage(getResponse);
             Assert.AreEqual(walletName, getResponse.Wallet.Name);
             Assert.AreEqual(Addresses.Count, getResponse.Wallet.Addresses.Count);
 
             // AddAddress
             var addResponse = Manager.Blockchains.Wallet.AddAddress<WalletInfoResponse>(NetworkCoin, walletName, AddedAddresses);
-
-            Assert.IsNotNull(addResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(addResponse.ErrorMessage));
+            AssertNullErrorMessage(addResponse);
             Assert.AreEqual(walletName, addResponse.Wallet.Name);
             Assert.AreEqual(Addresses.Count + AddedAddresses.Count, addResponse.Wallet.Addresses.Count);
 
             // GenerateAddress
             var generateResponse = Manager.Blockchains.Wallet.GenerateAddress<GenerateWalletAddressResponse>(NetworkCoin, walletName);
-
-            Assert.IsNotNull(generateResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(generateResponse.ErrorMessage));
+            AssertNullErrorMessage(generateResponse);
             Assert.AreEqual(walletName, generateResponse.Payload.Wallet.Name);
             Assert.AreEqual(Addresses.Count + AddedAddresses.Count + 1, generateResponse.Payload.Wallet.Addresses.Count);
 
             // RemoveAddress
             var removingAddress = Addresses[0];
             var removeResponse = Manager.Blockchains.Wallet.RemoveAddress<RemoveAddressResponse>(NetworkCoin, walletName, removingAddress);
-
-            Assert.IsNotNull(removeResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(removeResponse.ErrorMessage));
+            AssertNullErrorMessage(removeResponse);
             Assert.AreEqual($"address {removingAddress} was successfully deleted!", removeResponse.Payload.Message);
 
             // DeleteWallet
             var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
-
-            Assert.IsNotNull(deleteResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
+            AssertNullErrorMessage(deleteResponse);
             Assert.AreEqual($"Wallet {walletName} was successfully deleted!", deleteResponse.Payload.Message);
         }
 
@@ -77,8 +64,6 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexTest
                 "qwe"
             };
             var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses);
-
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "'addresses' contains invalid address(es): qwe");
         }
 
@@ -97,22 +82,16 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}ExistingWallet";
             var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(walletName, response.Wallet.Name);
 
             // Create the second wallet
             var response2 = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
-
-            Assert.IsNotNull(response2);
-            Assert.IsFalse(string.IsNullOrEmpty(response2.ErrorMessage));
-            Assert.AreEqual($"Wallet '{walletName}' already exists", response2.ErrorMessage);
+            AssertErrorMessage(response2, $"Wallet '{walletName}' already exists");
 
             // DeleteWallet
             var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
-
-            Assert.IsNotNull(deleteResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
+            AssertNullErrorMessage(deleteResponse);
             Assert.AreEqual($"Wallet {walletName} was successfully deleted!", deleteResponse.Payload.Message);
         }
 
@@ -126,7 +105,6 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexTest
 
             var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses);
 
-            AssertNotNullResponse(response);
             Assert.AreEqual("'addresses' contains duplicate address(es)", response.ErrorMessage);
         }
 

@@ -13,9 +13,8 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var symbol = new Symbol("5bfc325c9c40a100014db8ff");
             var response = Manager.Exchanges.Info.SymbolDetails(symbol);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.Symbol, "Response.Symbol must not be null");
+            Assert.IsNotNull(response.Symbol, $"{nameof(response.Symbol)} must not be null");
             Assert.AreEqual("etheur", response.Symbol.Name);
         }
 
@@ -39,9 +38,8 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var symbol = new Symbol("QWE'EWQ");
             var response = Manager.Exchanges.Info.SymbolDetails(symbol);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Entity not found");
-            Assert.IsNull(response.Symbol, "Response.Symbol must be null");
+            Assert.IsNull(response.Symbol, $"{nameof(response.Symbol)} must be null");
         }
     }
 }

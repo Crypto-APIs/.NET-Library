@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var exchange = new Exchange("5b1ea9d21090c200146f7366");
             var response = Manager.Exchanges.Info.ExchangeDetails(exchange);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Exchange, $"'{nameof(response.Exchange)}' must not be null");
             Assert.AreEqual("Bittrex", response.Exchange.Name);
@@ -39,7 +38,6 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var exchange = new Exchange("QWE'EWQ");
             var response = Manager.Exchanges.Info.ExchangeDetails(exchange);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Entity not found");
             Assert.IsNull(response.Exchange, $"'{nameof(response.Exchange)}' must be null");
         }

@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
@@ -49,7 +48,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var symbol = new Symbol("QWE'EWQ1");
             var response = Manager.Exchanges.Trades.Historical(symbol);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Unknown symbol");
@@ -62,7 +60,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-//        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+        //        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0a");
     }

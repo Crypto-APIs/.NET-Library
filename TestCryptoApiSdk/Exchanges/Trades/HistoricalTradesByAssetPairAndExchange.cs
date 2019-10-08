@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
@@ -77,7 +76,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var baseAsset = new Asset("QWE'EWQ1");
             var response = Manager.Exchanges.Trades.Historical(Exchange, baseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "We are facing technical issues, please try again later");
@@ -95,7 +93,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var quoteAsset = new Asset("QWE'EWQ1");
             var response = Manager.Exchanges.Trades.Historical(Exchange, BaseAsset, quoteAsset);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "We are facing technical issues, please try again later");
@@ -113,7 +110,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var exchange = new Exchange("QWE'EWQ1");
             var response = Manager.Exchanges.Trades.Historical(exchange, BaseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "We are facing technical issues, please try again later");

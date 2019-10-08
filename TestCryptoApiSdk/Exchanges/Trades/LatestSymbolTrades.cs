@@ -3,7 +3,6 @@ using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
@@ -50,10 +49,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         public void TestIncorrectSymbol()
         {
             var symbol = new Symbol("QWE'EWQ1");
-
             var response = Manager.Exchanges.Trades.Latest(symbol);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Unknown symbol");
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }

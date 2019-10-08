@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
         {
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, HexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -25,7 +24,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
             var hexEncodedInfo = "qwe";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "invalid argument 0: json: cannot unmarshal hex string without 0x prefix into Go value of type hexutil.Bytes");
         }
 
@@ -35,7 +33,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
             var hexEncodedInfo = "0xqwe";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "invalid argument 0: json: cannot unmarshal hex string of odd length into Go value of type hexutil.Bytes");
         }
 
@@ -45,7 +42,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
             var hexEncodedInfo = "0xqwer";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "invalid argument 0: json: cannot unmarshal invalid hex string into Go value of type hexutil.Bytes");
         }
 

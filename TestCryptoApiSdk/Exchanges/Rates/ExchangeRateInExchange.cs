@@ -1,5 +1,4 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.DataTypes.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -13,9 +12,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         {
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.Rate, "Rresponse.Rate must not be null");
+            Assert.IsNotNull(response.Rate, $"{nameof(response.Rate)} must not be null");
             Assert.AreEqual("5b1ea92e584bf50020130612", response.Rate.BaseAssetId);
         }
 
@@ -25,7 +23,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(2019, 02, 03);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange, timeStamp);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Rate);
         }
@@ -36,7 +33,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(1960, 01, 01);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange, timeStamp);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
@@ -54,7 +50,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange, timeStamp);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertNullErrorMessage(response);
@@ -100,7 +95,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var baseAsset = new Asset("QWE'EWQ");
             var response = Manager.Exchanges.Rates.GetOne(baseAsset, QuoteAsset, Exchange);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Exchange rate not found for the pair");
             Assert.IsNull(response.Rate);
         }
@@ -111,20 +105,19 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var quoteAsset = new Asset("QWE'EWQ");
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, quoteAsset, Exchange);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Exchange rate not found for the pair");
             Assert.IsNull(response.Rate);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Exchange of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
             Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Exchange.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Exchange.Id of null was inappropriately allowed.")]
         public void TestNullExchangeId()
         {
             Manager.Exchanges.Rates.GetAny(BaseAsset, new Exchange());
@@ -135,7 +128,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         {
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, new Exchange("QWE'EWQ"));
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Exchange rate not found for the pair");
             Assert.IsNull(response.Rate);
         }

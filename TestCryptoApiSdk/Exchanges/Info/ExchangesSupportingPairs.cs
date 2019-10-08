@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
@@ -44,14 +43,14 @@ namespace TestCryptoApiSdk.Exchanges.Info
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Asset1.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Asset1.Id of null was inappropriately allowed.")]
         public void TestNullId1()
         {
             Manager.Exchanges.Info.ExchangesSupportingPairs(new Asset(), Asset2);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Asset2.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Asset2.Id of null was inappropriately allowed.")]
         public void TestNullId2()
         {
             Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, new Asset());
@@ -61,10 +60,8 @@ namespace TestCryptoApiSdk.Exchanges.Info
         public void TestIncorrectAsset1()
         {
             var asset = new Asset("QWEE'WQ1");
-
             var response = Manager.Exchanges.Info.ExchangesSupportingPairs(asset, Asset2);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }
@@ -73,10 +70,8 @@ namespace TestCryptoApiSdk.Exchanges.Info
         public void TestIncorrectAsset2()
         {
             var asset = new Asset("QWEEW'Q1");
-
             var response = Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, asset);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }

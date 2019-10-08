@@ -3,7 +3,6 @@ using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
@@ -33,14 +32,14 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Asset of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Asset of null was inappropriately allowed.")]
         public void TestNullAsset()
         {
             Manager.Exchanges.Trades.Latest(baseAsset: null, quoteAsset: QuoteAsset);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Asset.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Asset.Id of null was inappropriately allowed.")]
         public void TestNullAssetId()
         {
             Manager.Exchanges.Trades.Latest(new Asset(), QuoteAsset);
@@ -50,10 +49,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         public void TestIncorrectBaseAsset()
         {
             var baseAsset = new Asset("QWE'EWQ1");
-
             var response = Manager.Exchanges.Trades.Latest(baseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "We are facing technical issues, please try again later");
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }
@@ -76,10 +73,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         public void TestIncorrectQuoteAsset()
         {
             var quoteAsset = new Asset("QWE'EWQ1");
-
             var response = Manager.Exchanges.Trades.Latest(BaseAsset, quoteAsset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "We are facing technical issues, please try again later");
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }

@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using CryptoApisSdkLibrary;
+﻿using CryptoApisSdkLibrary;
 using CryptoApisSdkLibrary.Misc;
+using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using CryptoApisSdkLibrary.ResponseTypes;
 
 namespace TestCryptoApiSdk
 {
@@ -57,8 +56,9 @@ namespace TestCryptoApiSdk
 
         protected void AssertNullErrorMessage(BaseResponse response)
         {
+            AssertNotNullResponse(response);
             Assert.IsTrue(
-                string.IsNullOrEmpty(response.ErrorMessage), 
+                string.IsNullOrEmpty(response.ErrorMessage),
                 $"'{nameof(response.ErrorMessage)}' must be null");
         }
 
@@ -68,28 +68,20 @@ namespace TestCryptoApiSdk
             Assert.IsFalse(collection.Any(), "Collection must be empty");
         }
 
-        /*protected void AssertNullErrorMessage(ICollectionResponse response)
+        protected void AssertNotEmptyCollection(string collectionName, IEnumerable<object> collection)
         {
-            Assert.IsTrue(
-                string.IsNullOrEmpty(response.ErrorMessage),
-                $"'{nameof(response.ErrorMessage)}' must be null");
-        }*/
+            Assert.IsNotNull(collection, $"'{collectionName}' must not be null");
+            Assert.IsTrue(collection.Any(), "Collection must not be empty");
+        }
 
         protected void AssertErrorMessage(BaseResponse response, string etalonErrorMessage)
         {
+            AssertNotNullResponse(response);
             Assert.IsFalse(
                 string.IsNullOrEmpty(response.ErrorMessage),
                 $"'{nameof(response.ErrorMessage)}' must not be null");
             Assert.AreEqual(etalonErrorMessage, response.ErrorMessage);
         }
-
-        /*protected void AssertErrorMessage(ICollectionResponse response, string etalonErrorMessage)
-        {
-            Assert.IsFalse(
-                string.IsNullOrEmpty(response.ErrorMessage),
-                $"'{nameof(response.ErrorMessage)}' must not be null");
-            Assert.AreEqual(etalonErrorMessage, response.ErrorMessage);
-        }*/
 
         private ProxyCredentials LoadCredentials()
         {

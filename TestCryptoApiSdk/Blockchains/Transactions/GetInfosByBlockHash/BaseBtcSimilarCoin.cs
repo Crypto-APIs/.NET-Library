@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
         {
             var response = Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHash: "qwe");
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Transaction not found");
         }
 

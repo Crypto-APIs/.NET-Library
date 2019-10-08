@@ -30,7 +30,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
                 var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                     NetworkCoin, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, Password, Confirmations, Fee);
 
-                AssertNotNullResponse(response);
                 AssertNullErrorMessage(response);
                 Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
                 var paymentId = response.Payload.Id;
@@ -89,7 +88,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                 NetworkCoin, fromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "'from' address is not valid");
         }
 
@@ -103,7 +101,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                 NetworkCoin, FromAddress, toAddress, CallbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "'to' address is not valid");
         }
 
@@ -117,7 +114,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, callbackUrl, GetRandomWalletName(), Password, Confirmations, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "'callback' url is not valid");
         }
 
@@ -131,7 +127,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, wallet, Password, Confirmations, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"Wallet '{wallet}' does not exist");
         }
 
@@ -169,7 +164,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, GetRandomWalletName(), password, Confirmations, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "'password' is too weak. Min size is 10 characters, actual is 3");
         }
 
@@ -192,7 +186,6 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
                 var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                     NetworkCoin, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, wrongPassword, Confirmations, Fee);
 
-                AssertNotNullResponse(response);
                 AssertErrorMessage(response, "'wallet' can not be decrypted with this 'password'");
             }
             finally

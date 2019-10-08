@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, Value);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -26,7 +25,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, PrivateKey, Value);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -37,7 +35,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, PrivateKey, Value);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress} is not a valid Ethereum address");
         }
 
@@ -48,7 +45,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey, Value);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Bad Request");
         }
 
@@ -59,7 +55,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, value);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 

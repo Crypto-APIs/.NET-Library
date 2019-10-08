@@ -24,7 +24,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, OutputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -39,7 +38,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, inputAddresses, OutputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 
@@ -53,7 +51,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, outputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 
@@ -68,7 +65,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, outputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Sum of input values is different then sum of output values");
         }
 
@@ -83,7 +79,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, outputAddresses, Fee);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Sum of input values is different then sum of output values");
         }
 
@@ -138,7 +133,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, OutputAddresses, new Fee(fee));
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"Not enough balance in '{InputAddressesDictionary.First().Key}' available '0.00000000', but needed is '753013747.08000000' (including fee)");
         }
 

@@ -12,9 +12,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         {
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.ExchangeRate, "Response.ExchangeRate must not be null");
+            Assert.IsNotNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must not be null");
             Assert.AreEqual(BaseAsset.Id, response.ExchangeRate.BaseAssetId);
         }
 
@@ -23,9 +22,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         {
             var response = Manager.Exchanges.Rates.GetOne(QuoteAsset, BaseAsset);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.ExchangeRate, "Response.ExchangeRate must not be null");
+            Assert.IsNotNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must not be null");
             Assert.AreEqual(QuoteAsset.Id, response.ExchangeRate.BaseAssetId);
         }
 
@@ -35,9 +33,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(2019, 02, 03);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, timeStamp);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.ExchangeRate, "Response.ExchangeRate must not be null");
+            Assert.IsNotNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must not be null");
             Assert.AreEqual(BaseAsset.Id, response.ExchangeRate.BaseAssetId);
             Assert.AreEqual(timeStamp, response.ExchangeRate.Timestamp);
         }
@@ -76,9 +73,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var baseAsset = new Asset("QWE'EWQ");
             var response = Manager.Exchanges.Rates.GetOne(baseAsset, QuoteAsset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Exchange rate not found for the pair");
-            Assert.IsNull(response.ExchangeRate, "Response.ExchangeRate must be null");
+            Assert.IsNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must be null");
         }
 
         [TestMethod]
@@ -87,9 +83,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var quoteAsset = new Asset("QWEE'WQ");
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, quoteAsset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Exchange rate not found for the pair");
-            Assert.IsNull(response.ExchangeRate, "Response.ExchangeRate must be null");
+            Assert.IsNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must be null");
         }
 
         [TestMethod]
@@ -98,11 +93,10 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(1960, 01, 01);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, timeStamp);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
-                Assert.IsNull(response.ExchangeRate, "Response.ExchangeRate must be null");
+                Assert.IsNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must be null");
             }
             else
             {
@@ -116,11 +110,10 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, timeStamp);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertErrorMessage(response, "Exchange rate not found for the pair");
-                Assert.IsNull(response.ExchangeRate, "Response.ExchangeRate must be null");
+                Assert.IsNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must be null");
             }
             else
             {

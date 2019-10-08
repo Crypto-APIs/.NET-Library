@@ -40,7 +40,6 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.AddressTransactions
             var response = Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
                 NetworkCoin, address);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 

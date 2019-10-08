@@ -25,7 +25,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.GetTokens
             var address = "1'23";
             var response = Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, address);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{address} is not a valid Ethereum address");
         }
 

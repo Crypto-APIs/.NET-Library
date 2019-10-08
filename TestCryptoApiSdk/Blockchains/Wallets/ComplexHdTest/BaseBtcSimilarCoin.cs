@@ -17,7 +17,6 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
             var password = "0123456789";
             var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(walletName, response.Wallet.Name);
             Assert.AreEqual(addressCount, response.Wallet.Addresses.Count);
@@ -25,16 +24,14 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
             // GetWallets
             var getWalletsResponse = Manager.Blockchains.Wallet.GetHdWallets<GetHdWalletsResponse>(NetworkCoin);
 
-            Assert.IsNotNull(getWalletsResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(getWalletsResponse.ErrorMessage));
-            Assert.IsTrue(getWalletsResponse.Wallets.Any(), "Collection must not be empty");
+            AssertNullErrorMessage(getWalletsResponse);
+            AssertNotEmptyCollection(nameof(getWalletsResponse.Wallets), getWalletsResponse.Wallets);
             Assert.AreEqual(1, getWalletsResponse.Wallets.Count(w => w == walletName));
 
             // GetWalletInfo
             var getResponse = Manager.Blockchains.Wallet.GetHdWalletInfo<HdWalletInfoResponse>(NetworkCoin, walletName);
 
-            Assert.IsNotNull(getResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(getResponse.ErrorMessage));
+            AssertNullErrorMessage(getResponse);
             Assert.AreEqual(walletName, getResponse.Wallet.Name);
             Assert.AreEqual(addressCount, getResponse.Wallet.Addresses.Count);
 
@@ -43,16 +40,14 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
             var generateResponse = Manager.Blockchains.Wallet.GenerateHdAddress<HdWalletInfoResponse>(
                 NetworkCoin, walletName, newAddressCount, password);
 
-            Assert.IsNotNull(generateResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(generateResponse.ErrorMessage));
+            AssertNullErrorMessage(generateResponse);
             Assert.AreEqual(walletName, generateResponse.Wallet.Name);
             Assert.AreEqual(addressCount + newAddressCount, generateResponse.Wallet.Addresses.Count);
 
             // DeleteHdWallet
             var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
 
-            Assert.IsNotNull(deleteResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
+            AssertNullErrorMessage(deleteResponse);
             Assert.AreEqual($"Wallet {walletName} was successfully deleted!", deleteResponse.Payload.Message);
         }
 
@@ -64,7 +59,6 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
             var password = "123456";
             var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "'password' is too weak. Min size is 10 characters, actual is 6");
         }
 
@@ -77,23 +71,16 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
 
             // Create the first wallet
             var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
-
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(walletName, response.Wallet.Name);
 
             // Create the second wallet
             var response2 = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
-
-            Assert.IsNotNull(response2);
-            Assert.IsFalse(string.IsNullOrEmpty(response2.ErrorMessage));
-            Assert.AreEqual($"Wallet '{walletName}' already exists", response2.ErrorMessage);
+            AssertErrorMessage(response2, $"Wallet '{walletName}' already exists");
 
             // DeleteWallet
             var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
-
-            Assert.IsNotNull(deleteResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(deleteResponse.ErrorMessage));
+            AssertNullErrorMessage(deleteResponse);
             Assert.AreEqual($"Wallet {walletName} was successfully deleted!", deleteResponse.Payload.Message);
         }
 

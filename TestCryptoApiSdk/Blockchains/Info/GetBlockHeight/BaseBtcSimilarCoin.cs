@@ -11,7 +11,6 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHeight
         public void GeneralTest()
         {
             var response = Manager.Blockchains.Info.GetBlockHeight<GetBtcHashInfoResponse>(NetworkCoin, BlockHeight);
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.AreEqual(BlockHeight, response.HashInfo.Height);
         }
@@ -21,7 +20,6 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHeight
         {
             var response = Manager.Blockchains.Info.GetBlockHeight<GetBtcHashInfoResponse>(NetworkCoin, blockHeight: -123);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Block not found");
         }
 

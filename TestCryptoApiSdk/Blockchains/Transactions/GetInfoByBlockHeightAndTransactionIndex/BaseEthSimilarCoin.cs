@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByBlockHeightAndTrans
         {
             var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, BlockHeight, TransactionIndex);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.TransactionHash));
         }

@@ -12,9 +12,9 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetInfo
         {
             var response = Manager.Blockchains.Info.GetInfo<GetEthInfoResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Info.Chain));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Info.Chain), 
+                $"'{nameof(response.Info.Chain)}' must not be null");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

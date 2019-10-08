@@ -13,7 +13,6 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var asset = new Asset("5b755dacd5dd99000b3d92b2");
             var response = Manager.Exchanges.Info.AssetDetails(asset);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Asset, $"'{nameof(response.Asset)}' must not be null");
             Assert.AreEqual("Ethereum", response.Asset.Name);
@@ -39,7 +38,6 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var asset = new Asset("QWEE'WQ");
             var response = Manager.Exchanges.Info.AssetDetails(asset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Entity not found");
             Assert.IsNull(response.Asset, $"'{nameof(response.Asset)}' must be null");
         }

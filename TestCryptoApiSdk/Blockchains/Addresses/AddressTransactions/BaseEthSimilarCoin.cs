@@ -40,7 +40,6 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.AddressTransactions
             var response = Manager.Blockchains.Address.GetAddressTransactions<GetEthAddressTransactionsResponse>(
                 NetworkCoin, address);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{address}  is not a valid Ethereum address");
         }
 

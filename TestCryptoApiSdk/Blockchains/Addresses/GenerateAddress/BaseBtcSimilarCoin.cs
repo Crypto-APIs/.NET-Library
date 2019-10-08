@@ -12,17 +12,16 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAddress
         {
             var response = Manager.Blockchains.Address.GenerateAddress<GenerateBtcAddressResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
 
             var address = response.Payload.Bch ?? response.Payload.Address;
-            Assert.IsFalse(string.IsNullOrEmpty(address));
+            Assert.IsFalse(string.IsNullOrEmpty(address), $"'{nameof(address)}' must not be null");
 
             var getAddressResponse = Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address);
 
-            Assert.IsNotNull(getAddressResponse);
-            Assert.IsTrue(string.IsNullOrEmpty(getAddressResponse.ErrorMessage));
-            Assert.IsFalse(string.IsNullOrEmpty(getAddressResponse.Payload.Address));
+            AssertNullErrorMessage(getAddressResponse);
+            Assert.IsFalse(string.IsNullOrEmpty(getAddressResponse.Payload.Address),
+                $"'{nameof(getAddressResponse.Payload.Address)}' must not be null");
             Assert.AreEqual(address, getAddressResponse.Payload.Address);
         }
 

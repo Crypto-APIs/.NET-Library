@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GetAddress
             var address = "qwe";
             var response = Manager.Blockchains.Address.GetAddress<GetEthAddressResponse>(NetworkCoin, address);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"0x{address}  is not a valid Ethereum address");
         }
 

@@ -1,14 +1,14 @@
 variables:
   NUGET_PATH: 'D:\Program Files (x86)\nuget.exe'
   MSBUILD_PATH: 'c:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe'
-  MSTEST_PATH: 'c:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe'
   PROJECT_NAME: 'CryptoApisSdkLibrary'
-  TEST_PROJECT_NAME: 'TestCryptoApiSdkProject'
+  TEST_PROJECT_NAME: 'TestCryptoApiSdk'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
-  TRX_FILENAME: 'results.trx'
 before_script:
+  - Remove-Item "$env:TEST_PROJECT_NAME"\TestResults -Recurse
 stages:
   - build
+  - test
 build:
   stage: build
   only:
@@ -26,8 +26,7 @@ test:
   script:
   - echo "Starting tests..."
   - cd "$env:TEST_PROJECT_NAME"
-  - cd bin\Release
-  - '& "$env:MSTEST_PATH" /testcontainer:"$env:TEST_PROJECT_NAME".dll exchange /resultsfile:"$env:TRX_FILENAME"'
+  - dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory TestResults --configuration Release --logger trx --verbosity quiet
   after_script:
   - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\bin\Release\$env:TRX_FILENAME"'
   dependencies:

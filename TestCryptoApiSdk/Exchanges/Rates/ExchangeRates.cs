@@ -2,7 +2,6 @@
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
@@ -30,14 +29,14 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Asset of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Asset of null was inappropriately allowed.")]
         public void TestNull()
         {
             Manager.Exchanges.Rates.GetAny(baseAsset: null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Asset.Id of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Asset.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
             Manager.Exchanges.Rates.GetAny(new Asset());
@@ -49,7 +48,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var baseAsset = new Asset("QWEW'WQ");
             var response = Manager.Exchanges.Rates.GetAny(baseAsset);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Asset not found");
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }

@@ -12,7 +12,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.TransactionsFee
         {
             var response = Manager.Blockchains.Transaction.TransactionsFee<EthTransactionsFeeResponse>(NetworkCoin);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Payload);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Recommended));

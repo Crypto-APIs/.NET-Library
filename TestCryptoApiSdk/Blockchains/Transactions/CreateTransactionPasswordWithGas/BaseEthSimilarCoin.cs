@@ -14,7 +14,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
         }
@@ -26,7 +25,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value, Password, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress} is not a valid Ethereum address");
         }
 
@@ -37,7 +35,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Value, Password, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -48,7 +45,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, password, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -68,7 +64,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, value, Password, GasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -79,7 +74,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, Password, gasPrice, GasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 
@@ -90,7 +84,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPasswordWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, Password, GasPrice, gasLimit);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "");
         }
 

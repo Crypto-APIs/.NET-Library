@@ -16,7 +16,6 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.MultisignatureAddress
             var response = Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
                 NetworkCoin, address);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Address is not valid");
         }
 

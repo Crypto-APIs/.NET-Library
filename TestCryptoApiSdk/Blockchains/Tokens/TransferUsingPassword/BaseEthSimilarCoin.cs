@@ -19,9 +19,9 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex),
+                $"'{nameof(response.Payload.Hex)}' must not be null");
         }
 
         [Ignore] // todo: set correct password
@@ -35,7 +35,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Not enough tokens");
         }
 
@@ -50,7 +49,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, fromAddress, ToAddress, Contract, gasPrice, gasLimit, Password, amount);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{fromAddress}  is not a valid Ethereum address");
         }
 
@@ -65,7 +63,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, FromAddress, toAddress, Contract, gasPrice, gasLimit, Password, amount);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{toAddress}  is not a valid Ethereum address");
         }
 
@@ -80,7 +77,6 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, FromAddress, ToAddress, contract, gasPrice, gasLimit, Password, amount);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, $"{contract}  is not a valid Ethereum address");
         }
 
@@ -95,12 +91,11 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, FromAddress, ToAddress, Contract, gasPrice, gasLimit, password, amount);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Wrong password");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "An FromAddress of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "A FromAddress of null was inappropriately allowed.")]
         public void NullFromAddress()
         {
             string fromAddress = null;
@@ -113,7 +108,7 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "An ToAddress of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "A ToAddress of null was inappropriately allowed.")]
         public void NullToAddress()
         {
             string toAddress = null;
@@ -126,7 +121,7 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "An Contract of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "A Contract of null was inappropriately allowed.")]
         public void NullContract()
         {
             string contract = null;
@@ -139,7 +134,7 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "An Contract of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "A Contract of null was inappropriately allowed.")]
         public void NullPassword()
         {
             double gasPrice = 11500000000;
@@ -152,7 +147,7 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPassword
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), "An GasPrice was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentOutOfRangeException), "A GasPrice was inappropriately allowed.")]
         public void InvalidGasPrice()
         {
             double gasPrice = 0;

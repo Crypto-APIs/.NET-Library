@@ -13,11 +13,11 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateNewBlock
         {
             var response = Manager.Blockchains.WebhookNotification.CreateNewBlock<EthWebHookResponse>(NetworkCoin, Url);
 
-            AssertNotNullResponse(response);
             if (IsAdditionalPackagePlan)
             {
                 AssertNullErrorMessage(response);
-                Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
+                Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id),
+                    $"'{nameof(response.Payload.Id)}' must not be null");
             }
             else
             {

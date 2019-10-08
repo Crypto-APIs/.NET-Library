@@ -15,7 +15,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendTransaction
             var response = Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
                 NetworkCoin, HexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid));
         }
@@ -27,7 +26,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendTransaction
             var response = Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
                 NetworkCoin, hexEncodedInfo);
 
-            AssertNotNullResponse(response);
             AssertErrorMessage(response, "Can not send transaction: TX decode failed");
         }
 
