@@ -4,8 +4,6 @@ variables:
   PROJECT_NAME: 'CryptoApisSdkLibrary'
   TEST_PROJECT_NAME: 'TestCryptoApiSdk'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
-before_script:
-  - Remove-Item "$env:TEST_PROJECT_NAME"\TestResults -Recurse
 stages:
   - build
   - test
@@ -23,6 +21,8 @@ build:
     expire_in: 2 days
 test:
   stage: test
+  before_script:
+  - Remove-Item "$env:TEST_PROJECT_NAME"\TestResults -Recurse
   script:
   - echo "Starting tests..."
   - cd "$env:TEST_PROJECT_NAME"
