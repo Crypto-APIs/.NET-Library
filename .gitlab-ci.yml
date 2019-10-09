@@ -14,7 +14,7 @@ build:
     - branches  
   script:
   - echo "Restoring NuGet Packages... "
-  # wwwww
+  # wwwww1
   - '& "$env:NUGET_PATH" restore'
   - echo "Release build..."
   - '& "$env:MSBUILD_PATH" /p:Configuration=Release /clp:ErrorsOnly'
