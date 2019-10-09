@@ -4,6 +4,7 @@ variables:
   PROJECT_NAME: 'CryptoApisSdkLibrary'
   TEST_PROJECT_NAME: 'TestCryptoApiSdk'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
+  TEST_RESULT_DIR: 'TestResults'
 stages:
   - build
   - test
@@ -13,6 +14,7 @@ build:
     - branches  
   script:
   - echo "Restoring NuGet Packages... "
+  # wwwww
   - '& "$env:NUGET_PATH" restore'
   - echo "Release build..."
   - '& "$env:MSBUILD_PATH" /p:Configuration=Release /clp:ErrorsOnly'
@@ -22,12 +24,14 @@ build:
 test:
   stage: test
   before_script:
-  - Remove-Item "$env:TEST_PROJECT_NAME"\TestResults -Recurse
+  - echo "Removing old session results..."
+  - if (Test-Path "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR") { Remove-Item "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR" -Recurse -Force }
   script:
   - echo "Starting tests..."
   - cd "$env:TEST_PROJECT_NAME"
-  - dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory TestResults --configuration Release --logger trx --verbosity quiet
+  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --configuration Release --logger trx --verbosity quiet'
   after_script:
-  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\bin\Release\$env:TRX_FILENAME"'
+  - echo "Starting publishing test results..."
+  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR"'
   dependencies:
   - build
