@@ -13,7 +13,7 @@ build:
     - branches  
   script:
   - echo "Restoring NuGet Packages... "
-  # wwwww1
+  # wwwww
   - '& "$env:NUGET_PATH" restore'
   - echo "Release build..."
   - '& dotnet build --configuration Release /clp:ErrorsOnly'
