@@ -1,6 +1,5 @@
 variables:
   NUGET_PATH: 'D:\Program Files (x86)\nuget.exe'
-  MSBUILD_PATH: 'c:\Program Files (x86)\MSBuild\14.0\Bin\msbuild.exe'
   PROJECT_NAME: 'CryptoApisSdkLibrary'
   TEST_PROJECT_NAME: 'TestCryptoApiSdk'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
@@ -17,7 +16,7 @@ build:
   # wwwww1
   - '& "$env:NUGET_PATH" restore'
   - echo "Release build..."
-  - '& "$env:MSBUILD_PATH" /p:Configuration=Release /clp:ErrorsOnly'
+  - '& dotnet build --configuration Release /clp:ErrorsOnly'
   artifacts:
     untracked: true
     expire_in: 2 days
