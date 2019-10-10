@@ -35,7 +35,7 @@ test:
   dependencies:
   - build
   artifacts:
-    path:
+    paths:
     - TestResults/
     expire_in: 5 mins
 publishing:
