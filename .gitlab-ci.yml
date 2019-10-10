@@ -30,8 +30,8 @@ test:
   - echo "Starting tests..."
   - cd "$env:TEST_PROJECT_NAME"
   #- '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --configuration Release --logger trx --verbosity quiet'
-  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet'
-  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test2 --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet'
+  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
+  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test2 --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   dependencies:
   - build
   artifacts:
