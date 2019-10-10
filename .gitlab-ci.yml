@@ -32,16 +32,6 @@ test:
   - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   dependencies:
   - build
-  artifacts:
-    untracked: true  
-    paths:
-    - TestResults/
-    expire_in: 2 days
-publishing:
-  stage: publishing
-  script:
+  after_script:
   - echo "Starting publishing test results..."
   - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_RESULT_DIR"'
-  dependencies:
-  - test
-  when: always
