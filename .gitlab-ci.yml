@@ -33,9 +33,10 @@ test:
   dependencies:
   - build
   artifacts:
+    untracked: true  
     paths:
     - TestResults/
-    expire_in: 5 mins
+    expire_in: 2 days
 publishing:
   stage: publishing
   script:
