@@ -42,6 +42,6 @@ publishing:
   stage: publishing
   script:
   - echo "Starting publishing test results..."
-  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR"'
+  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_RESULT_DIR"'
   dependencies:
   - test
