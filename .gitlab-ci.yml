@@ -7,6 +7,7 @@ variables:
 stages:
   - build
   - test
+  - publishing
 build:
   stage: build
   only:
@@ -28,9 +29,19 @@ test:
   script:
   - echo "Starting tests..."
   - cd "$env:TEST_PROJECT_NAME"
-  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --configuration Release --logger trx --verbosity quiet'
-  after_script:
+  #- '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --configuration Release --logger trx --verbosity quiet'
+  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet'
+  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test2 --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet'
+  dependencies:
+  - build
+  artifacts:
+    path:
+    - TestResults/
+    expire_in: 5 mins
+publishing:
+  stage: publishing
+  script:
   - echo "Starting publishing test results..."
   - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR"'
   dependencies:
-  - build
+  - test
