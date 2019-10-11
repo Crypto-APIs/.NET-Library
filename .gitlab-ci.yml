@@ -7,30 +7,33 @@ variables:
 stages:
   - build
   - test
+  - publishing
 build:
   stage: build
   only:
     - branches  
   script:
-  - echo "Restoring NuGet Packages... "
-  # wwwww
-  - '& "$env:NUGET_PATH" restore'
-  - echo "Release build..."
-  - '& dotnet build --configuration Release /clp:ErrorsOnly'
+    - echo "Restoring NuGet Packages... "
+    # wwwww
+    - '& "$env:NUGET_PATH" restore'
+    - echo "Release build..."
+    - '& dotnet build --configuration Release /clp:ErrorsOnly'
   artifacts:
     untracked: true
     expire_in: 2 days
+    paths: 
+      - TestResults/
 test:
   stage: test
   before_script:
-  - echo "Removing old session results..."
-  - if (Test-Path "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR") { Remove-Item "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR" -Recurse -Force }
+    - echo "Removing old session results..."
+    - if (Test-Path "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR") { Remove-Item "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR" -Recurse -Force }
   script:
-  - echo "Starting tests..."
-  - cd "$env:TEST_PROJECT_NAME"
-  - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges.Test --no-build --results-directory "$env:TEST_RESULT_DIR" --configuration Release --logger trx --verbosity quiet'
-  after_script:
-  - echo "Starting publishing test results..."
-  - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_PROJECT_NAME\$env:TEST_RESULT_DIR"'
+    - echo "Starting tests..."
+    - cd "$env:TEST_PROJECT_NAME"
+    - '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   dependencies:
-  - build
+    - build
+  after_script:
+    - echo "Starting publishing test results..."
+    - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_RESULT_DIR"'
