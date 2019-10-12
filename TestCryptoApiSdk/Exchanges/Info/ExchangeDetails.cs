@@ -1,6 +1,6 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System;
+using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {

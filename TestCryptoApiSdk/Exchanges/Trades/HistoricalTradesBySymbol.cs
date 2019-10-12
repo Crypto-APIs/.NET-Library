@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System;
+using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
