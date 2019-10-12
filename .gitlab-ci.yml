@@ -27,3 +27,4 @@ test:
     - build
   after_script:
     - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_RESULT_DIR"'
+#
