@@ -21,3 +21,4 @@ namespace CryptoApisSdkLibrary.ResponseTypes.Errors
         public string Message { get; protected set; }
     }
 }
+// {"meta":{"errors":[{"error":"error Record is not found"}]},"payload":[]}

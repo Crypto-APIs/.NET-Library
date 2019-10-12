@@ -127,7 +127,7 @@ namespace TestCryptoApiSdk.BugsExchanges.Ohlcv
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0a");
+        private Symbol Symbol { get; } = new Symbol("5bfc32a29c40a100014dc5f6");
         private Period Period { get; } = new Period("1day");
         private DateTime StartPeriod { get; } = new DateTime(2019, 04, 15);
     }

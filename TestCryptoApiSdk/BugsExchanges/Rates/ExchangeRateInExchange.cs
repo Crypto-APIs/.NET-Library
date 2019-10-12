@@ -52,7 +52,7 @@ namespace TestCryptoApiSdk.BugsExchanges.Rates
 
             if (IsAdditionalPackagePlan)
             {
-                AssertNullErrorMessage(response);
+                AssertErrorMessage(response, "Exchange rate not found for the pair");
                 Assert.IsNull(response.Rate);
             }
             else

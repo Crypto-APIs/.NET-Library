@@ -3,7 +3,7 @@ using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.BugsExchanges.Ohlcv
+namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
     [TestClass]
     public class LatestOhlcv : BaseCollectionTestWithoutSkip
@@ -66,6 +66,8 @@ namespace TestCryptoApiSdk.BugsExchanges.Ohlcv
             AssertErrorMessage(response, "General Error: period must be in {'1sec', '2sec', '3sec', '4sec', '5sec', '6sec', '10sec', '15sec', '20sec', '30sec', '1min', '2min', '3min', '4min', '5min', '6min', '10min', '15min', '20min', '30min', '1hrs', '2hrs', '3hrs', '4hrs', '6hrs', '8hrs', '12hrs', '1day', '2day', '3day', '5day', '7day', '10day', '1mth', '2mth', '3mth', '4mth', '6mth', '1yrs', '2yrs', '3yrs', '4yrs', '5yrs'}");
             AssertEmptyCollection(nameof(response.Ohlcv), response.Ohlcv);
         }
+
+        protected override bool IsPerhapsNotAnExactMatch => true;
 
         private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0b");
         private Period Period { get; } = new Period("1day");

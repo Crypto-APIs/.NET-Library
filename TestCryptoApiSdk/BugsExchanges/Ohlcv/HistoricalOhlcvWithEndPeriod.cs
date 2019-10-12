@@ -56,9 +56,9 @@ namespace TestCryptoApiSdk.BugsExchanges.Ohlcv
             }
         }
 
-        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0a");
+        private Symbol Symbol { get; } = new Symbol("5bfc32a29c40a100014dc5f6");
         private Period Period { get; } = new Period("1day");
         private DateTime StartPeriod { get; } = new DateTime(2019, 04, 15);
-        private DateTime EndPeriod { get; } = new DateTime(2019, 05, 01);
+        private DateTime EndPeriod { get; } = new DateTime(2019, 10, 01);
     }
 }

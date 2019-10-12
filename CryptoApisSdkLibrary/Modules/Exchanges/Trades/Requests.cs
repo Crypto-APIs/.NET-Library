@@ -135,7 +135,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
                 throw new ArgumentNullException($"{nameof(quoteAsset)}.{nameof(quoteAsset.Id)}");
 
             return HistoricalTrades(skip, limit, startPeriod, endPeriod,
-                () => $"{Consts.TradesPoint}/baseAsset/{baseAsset.Id}/quoteAsset/{quoteAsset}/history");
+                () => $"{Consts.TradesPoint}/baseAsset/{baseAsset.Id}/quoteAsset/{quoteAsset.Id}/history");
         }
 
         public IRestRequest HistoricalTrades(Exchange exchange, Asset baseAsset, Asset quoteAsset,
@@ -155,7 +155,7 @@ namespace CryptoApisSdkLibrary.Modules.Exchanges.Trades
                 throw new ArgumentNullException($"{nameof(quoteAsset)}.{nameof(quoteAsset.Id)}");
 
             return HistoricalTrades(skip, limit, startPeriod, endPeriod,
-                () => $"{Consts.TradesPoint}/exchange/{exchange.Id}/baseAsset/{baseAsset.Id}/quoteAsset/{quoteAsset}/history");
+                () => $"{Consts.TradesPoint}/exchange/{exchange.Id}/baseAsset/{baseAsset.Id}/quoteAsset/{quoteAsset.Id}/history");
         }
 
         private IRestRequest LatestTrades(int skip, int limit, Func<string> url)
