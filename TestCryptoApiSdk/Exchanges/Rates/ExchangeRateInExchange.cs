@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
+    [Ignore]
     [TestClass]
     public class ExchangeRateInExchange : BaseTest
     {

@@ -38,7 +38,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
             var exchange = new Exchange("QWE'EWQ");
             var response = Manager.Exchanges.Info.ExchangeDetails(exchange);
 
-            AssertErrorMessage(response, "Entity not found");
+            AssertErrorMessage(response, "Exchange not found");
             Assert.IsNull(response.Exchange, $"'{nameof(response.Exchange)}' must be null");
         }
     }

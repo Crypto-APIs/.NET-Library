@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
+    [Ignore]
     [TestClass]
     public class HistoricalOhlcvWithEndPeriod : BaseCollectionTest
     {

@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
+    [Ignore]
     [TestClass]
     public class SymbolsInExchange : BaseCollectionTest
     {

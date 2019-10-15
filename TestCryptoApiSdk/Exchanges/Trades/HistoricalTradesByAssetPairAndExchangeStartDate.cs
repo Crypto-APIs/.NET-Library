@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
+    [Ignore]
     [TestClass]
     public class HistoricalTradesByAssetPairAndExchangeStartDate : BaseCollectionTest
     {
