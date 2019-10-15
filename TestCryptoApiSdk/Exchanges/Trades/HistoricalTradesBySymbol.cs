@@ -58,6 +58,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0a");
+        private Symbol Symbol { get; } = new Symbol("5bfc325d9c40a100014db900");
     }
 }

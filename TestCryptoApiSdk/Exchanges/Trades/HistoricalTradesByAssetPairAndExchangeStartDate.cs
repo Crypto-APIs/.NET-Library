@@ -57,9 +57,9 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7362");
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612");
-        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130615");
+        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7366"); // Bittrex
+        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612"); // BTC
+        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130616"); // LTC
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
     }
 }

@@ -57,7 +57,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
 
-        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0a");
+        private Symbol Symbol { get; } = new Symbol("5bfc325d9c40a100014db900");
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
     }
 }
