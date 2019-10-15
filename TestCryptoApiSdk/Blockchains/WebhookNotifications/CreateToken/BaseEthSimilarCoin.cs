@@ -12,19 +12,15 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateToken
         public void GeneralTest()
         {
             var address = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
-            Assert.IsNotNull(address);
+            Assert.IsNotNull(address, "Address must not be null");
 
             var response = Manager.Blockchains.WebhookNotification.CreateToken<CreateEthAddressWebHookResponse>(NetworkCoin, Url, address);
 
-            if (IsAdditionalPackagePlan)
+            if (AssertAdditionalPackagePlan(response))
             {
                 AssertNullErrorMessage(response);
                 Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id),
                     $"'{nameof(response.Payload.Id)}' must not be null");
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 

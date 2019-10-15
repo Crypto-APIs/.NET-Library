@@ -18,7 +18,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id), "'Payload.Id' must not be null");
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
                 NetworkCoin, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(callbackUrl, response.Payload.Callback);
+            Assert.AreEqual(callbackUrl, response.Payload.Callback, "'Callback' must not be null");
         }
 
         [TestMethod]
@@ -160,7 +160,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
                 if (_fromAddress == null)
                 {
                     _fromAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
-                    Assert.IsNotNull(_fromAddress);
+                    Assert.IsNotNull(_fromAddress, $"'{nameof(_fromAddress)}' must not be null");
                 }
                 return _fromAddress;
             }
@@ -173,7 +173,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
                 if (_toAddress == null)
                 {
                     _toAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
-                    Assert.IsNotNull(_toAddress);
+                    Assert.IsNotNull(_toAddress, $"'{nameof(_toAddress)}' must not be null");
                 }
                 return _toAddress;
             }

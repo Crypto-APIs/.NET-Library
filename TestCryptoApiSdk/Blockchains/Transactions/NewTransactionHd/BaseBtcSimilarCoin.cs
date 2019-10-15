@@ -12,9 +12,10 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
     {
         protected override void BeforeTest()
         {
-            Assert.AreEqual(2, InputAddresses.Count());
-            Assert.AreEqual(1, OutputAddresses.Count());
-            Assert.AreEqual(InputAddresses.Sum(a => a.Value), OutputAddresses.Sum(a => a.Value));
+            Assert.AreEqual(2, InputAddresses.Count(), "'InputAddress' count is wrong");
+            Assert.AreEqual(1, OutputAddresses.Count(), "'OutputAddress' count is wrong");
+            Assert.AreEqual(InputAddresses.Sum(a => a.Value), OutputAddresses.Sum(a => a.Value),
+                "Sum of 'inputAddresses' is not equal the sum of 'outputAddresses'");
         }
 
         [TestMethod]
@@ -24,7 +25,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
                 NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, Fee);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid), "'Txid' must not be null");
         }
 
         [TestMethod]
@@ -140,7 +141,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, new Fee(fee));
             
-            AssertErrorMessage(response, "");
+            AssertErrorMessage(response, "todo: set corrected value");
         }
 
         private IEnumerable<TransactionAddress> GetTransactionAddresses(Dictionary<string, double> addresses)

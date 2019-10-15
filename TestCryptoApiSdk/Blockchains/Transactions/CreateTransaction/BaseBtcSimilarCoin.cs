@@ -12,9 +12,10 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
     {
         protected override void BeforeTest()
         {
-            Assert.AreEqual(2, InputAddresses.Count());
-            Assert.AreEqual(1, OutputAddresses.Count());
-            Assert.AreEqual(InputAddresses.Sum(a => a.Value), OutputAddresses.Sum(a => a.Value));
+            Assert.AreEqual(2, InputAddresses.Count(), "'InputAddresses' count is wrong");
+            Assert.AreEqual(1, OutputAddresses.Count(), "'OutputAddresses' count is wrong");
+            Assert.AreEqual(InputAddresses.Sum(a => a.Value), OutputAddresses.Sum(a => a.Value),
+                "Sum of 'inputAddresses' is not equals sum of 'outputAddresses'");
         }
 
         [Ignore]
@@ -133,7 +134,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, OutputAddresses, new Fee(fee));
 
-            AssertErrorMessage(response, $"Not enough balance in '{InputAddressesDictionary.First().Key}' available '0.00000000', but needed is '753013747.08000000' (including fee)");
+            AssertErrorMessage(response, 
+                $"Not enough balance in '{InputAddressesDictionary.First().Key}' available '0.00000000', but needed is '753013747.08000000' (including fee)");
         }
 
         private IEnumerable<TransactionAddress> GetTransactionAddresses(Dictionary<string, double> addresses)

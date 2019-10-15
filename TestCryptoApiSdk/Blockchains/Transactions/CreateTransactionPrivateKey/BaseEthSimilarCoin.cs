@@ -15,7 +15,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
                 NetworkCoin, FromAddress, ToAddress, PrivateKey, Value);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex),
+                $"'{nameof(response.Payload.Hex)}' must not be null");
         }
 
         [TestMethod]

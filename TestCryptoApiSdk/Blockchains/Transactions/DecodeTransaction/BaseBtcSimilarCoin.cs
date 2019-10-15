@@ -14,7 +14,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.DecodeTransaction
             var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, HexEncodedInfo);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Transaction.Hash));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Transaction.Hash),
+                $"'{nameof(response.Transaction.Hash)}' must not be null");
         }
 
         [TestMethod]

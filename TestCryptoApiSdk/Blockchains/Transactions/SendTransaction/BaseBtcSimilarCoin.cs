@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendTransaction
                 NetworkCoin, HexEncodedInfo);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid), "'Txid' must not be null");
         }
 
         [TestMethod]

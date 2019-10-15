@@ -48,14 +48,10 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             var symbol = new Symbol("QWE'EWQ1");
             var response = Manager.Exchanges.Trades.Historical(symbol);
 
-            if (IsAdditionalPackagePlan)
+            if (AssertAdditionalPackagePlan(response))
             {
                 AssertErrorMessage(response, "Unknown symbol");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 

@@ -14,7 +14,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
             var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, TransactionHash);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(TransactionHash, response.Payload.TransactionHash);
+            Assert.AreEqual(TransactionHash, response.Payload.TransactionHash, "'TransactionHash' is wrong");
         }
 
         [TestMethod]

@@ -14,7 +14,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
             var response = Manager.Blockchains.Transaction.GetInfo<BtcTransactionInfoResponse>(NetworkCoin, TransactionId);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(TransactionId, response.Transaction.Id);
+            Assert.AreEqual(TransactionId, response.Transaction.Id, "'TransactionId' is wrong");
         }
 
         [TestMethod]

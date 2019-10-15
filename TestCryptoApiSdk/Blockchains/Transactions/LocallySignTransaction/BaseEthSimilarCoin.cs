@@ -15,7 +15,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
                 NetworkCoin, FromAddress, ToAddress, Value);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(FromAddress, response.Payload.FromAddress);
+            Assert.AreEqual(FromAddress, response.Payload.FromAddress, 
+                $"'{nameof(FromAddress)}' is wrong");
         }
 
         [TestMethod]

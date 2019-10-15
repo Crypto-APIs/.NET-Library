@@ -1,7 +1,6 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace TestCryptoApiSdk.Blockchains.Transactions.PendingTransactions
 {
@@ -13,7 +12,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PendingTransactions
         {
             var response = Manager.Blockchains.Transaction.PendingTransactions<PendingTransactionsResponse>(NetworkCoin);
 
-            Assert.IsTrue(response.Transactions.Any(), "Collection must not be empty");
+            AssertNotEmptyCollection(nameof(response.Transactions), response.Transactions);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

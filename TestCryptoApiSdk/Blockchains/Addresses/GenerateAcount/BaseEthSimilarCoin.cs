@@ -15,9 +15,9 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAcount
                 NetworkCoin, AccountPassword);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Address), 
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Address),
                 $"'{nameof(response.Payload.Address)}' must not be null");
-            Assert.AreEqual("keystore saved", response.Payload.Success);
+            Assert.AreEqual("keystore saved", response.Payload.Success, "SuccessMessage is wrong");
         }
 
         [TestMethod]
@@ -26,7 +26,8 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAcount
             var response = Manager.Blockchains.Address.GenerateAccount<GenerateEthAccountResponse>(
                 NetworkCoin, password: "qwe");
 
-            AssertErrorMessage(response, "Password is too weak! It should be at least 7 characters and should contain at least one letter and one digit");
+            AssertErrorMessage(response,
+                "Password is too weak! It should be at least 7 characters and should contain at least one letter and one digit");
         }
 
         [TestMethod]

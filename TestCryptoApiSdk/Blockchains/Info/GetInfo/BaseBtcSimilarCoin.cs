@@ -13,7 +13,8 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetInfo
             var response = Manager.Blockchains.Info.GetInfo<GetBtcInfoResponse>(NetworkCoin);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(NetworkCoin.Coin.ToString(), response.Info.Currency, true);
+            Assert.AreEqual(NetworkCoin.Coin.ToString(), response.Info.Currency, true, 
+                "'Currency' is wrong");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

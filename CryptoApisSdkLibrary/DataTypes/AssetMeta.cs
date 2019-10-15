@@ -1,5 +1,5 @@
-using System;
 using RestSharp.Deserializers;
+using System;
 
 namespace CryptoApisSdkLibrary.DataTypes
 {

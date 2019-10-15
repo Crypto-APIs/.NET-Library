@@ -13,15 +13,11 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateNewBlock
         {
             var response = Manager.Blockchains.WebhookNotification.CreateNewBlock<EthWebHookResponse>(NetworkCoin, Url);
 
-            if (IsAdditionalPackagePlan)
+            if (AssertAdditionalPackagePlan(response))
             {
                 AssertNullErrorMessage(response);
                 Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Id),
                     $"'{nameof(response.Payload.Id)}' must not be null");
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 

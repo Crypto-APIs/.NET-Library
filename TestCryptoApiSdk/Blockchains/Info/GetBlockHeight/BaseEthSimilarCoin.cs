@@ -13,7 +13,7 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHeight
             var response = Manager.Blockchains.Info.GetBlockHeight<GetEthHashInfoResponse>(NetworkCoin, BlockHeight);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(BlockHeight, response.HashInfo.Height);
+            Assert.AreEqual(BlockHeight, response.HashInfo.Height, $"'{nameof(BlockHeight)}' is wrong");
         }
 
         [TestMethod]

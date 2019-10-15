@@ -22,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAddress
             AssertNullErrorMessage(getAddressResponse);
             Assert.IsFalse(string.IsNullOrEmpty(getAddressResponse.Payload.Address),
                 $"'{nameof(getAddressResponse.Payload.Address)}' must not be null");
-            Assert.AreEqual(address, getAddressResponse.Payload.Address);
+            Assert.AreEqual(address, getAddressResponse.Payload.Address, "'Address' is wrong");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

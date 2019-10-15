@@ -54,7 +54,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
             Assert.IsFalse(
                 string.IsNullOrEmpty(response.ErrorMessage),
                 $"'{nameof(response.ErrorMessage)}' must not be null");
-            Assert.AreEqual("Transaction not found", response.ErrorMessage);
+            Assert.AreEqual("Transaction not found", response.ErrorMessage, "'ErrorMessage' is wrong");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

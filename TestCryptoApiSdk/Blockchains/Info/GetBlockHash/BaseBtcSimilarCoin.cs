@@ -14,7 +14,7 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
             var response = Manager.Blockchains.Info.GetBlockHash<GetBtcHashInfoResponse>(NetworkCoin, BlockHash);
 
             AssertNullErrorMessage(response);
-            Assert.AreEqual(BlockHash, response.HashInfo.Hash);
+            Assert.AreEqual(BlockHash, response.HashInfo.Hash, $"'{nameof(BlockHash)}' is wrong");
         }
 
         [TestMethod]

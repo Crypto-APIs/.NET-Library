@@ -27,7 +27,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
             Assert.IsFalse(
                 string.IsNullOrEmpty(response.ErrorMessage),
                 $"'{nameof(response.ErrorMessage)}' must not be null");
-            Assert.AreEqual("Transaction not found", response.ErrorMessage);
+            Assert.AreEqual("Transaction not found", response.ErrorMessage, "'ErrorMessage' is wrong");
         }
 
         [TestMethod]

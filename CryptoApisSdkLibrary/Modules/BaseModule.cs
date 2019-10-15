@@ -1,4 +1,5 @@
-﻿using CryptoApisSdkLibrary.Misc;
+﻿using System.Diagnostics;
+using CryptoApisSdkLibrary.Misc;
 using CryptoApisSdkLibrary.ResponseTypes;
 using CryptoApisSdkLibrary.ResponseTypes.Errors;
 using RestSharp;
@@ -59,12 +60,11 @@ namespace CryptoApisSdkLibrary.Modules
 
         private bool TryParseErrorMessage(IRestResponse response, out string errorMessage)
         {
-            errorMessage = string.Empty;
-
             var responseObject1 = Client.Deserialize<ErrorResponseVariant1>(response);
             if (!string.IsNullOrEmpty(responseObject1.Data?.Meta?.Message))
             {
                 errorMessage = responseObject1.Data.Meta.Message;
+                Trace.Assert(false, "ErrorResponseVariant1");
             }
             else
             {
@@ -78,19 +78,13 @@ namespace CryptoApisSdkLibrary.Modules
                     var responseObject3 = Client.Deserialize<ErrorResponseVariant3>(response);
                     if (!string.IsNullOrEmpty(responseObject3.Data?.Error))
                     {
+                        Trace.Assert(false, "ErrorResponseVariant3");
                         errorMessage = responseObject3.Data.Error;
                     }
                     else
                     {
-                        var responseObject4 = Client.Deserialize<ErrorResponseVariant4>(response);
-                        if (responseObject4.Data?.Meta?.Errors != null && responseObject4.Data.Meta.Errors.Any())
-                        {
-                            errorMessage = string.Join("; ", responseObject4.Data.Meta.Errors.Select(e => e.Message));
-                        }
-                        else
-                        {
-                            errorMessage = !string.IsNullOrEmpty(response.ErrorMessage) ? response.ErrorMessage : response.StatusDescription;
-                        }
+                        Trace.Assert(false, "ErrorResponseVariant7");
+                        errorMessage = !string.IsNullOrEmpty(response.ErrorMessage) ? response.ErrorMessage : response.StatusDescription;
                     }
                 }
             }

@@ -15,7 +15,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
                 NetworkCoin, FromAddress, ToAddress, Value, Data);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded),
+                $"'{nameof(response.Payload.GasNeeded)}' must not be null");
         }
 
         [TestMethod]
@@ -56,7 +57,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
                 NetworkCoin, FromAddress, ToAddress, value, Data);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded),
+                $"'{nameof(response.Payload.GasNeeded)}' must not be null");
         }
 
         [TestMethod]

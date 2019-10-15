@@ -150,7 +150,6 @@
     <Compile Include="ResponseTypes\Blockchains\GetTokensResponse.cs" />
     <Compile Include="ResponseTypes\Blockchains\GetHdWalletsResponse.cs" />
     <Compile Include="DataTypes\OrderBook.cs" />
-    <Compile Include="ResponseTypes\Errors\ErrorResponseVariant4.cs" />
     <Compile Include="ResponseTypes\Exchanges\OrderBookResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\CurrentRatesInExchangeResponse.cs" />
     <Compile Include="ResponseTypes\Exchanges\CurrentRateInExchangeResponse.cs" />

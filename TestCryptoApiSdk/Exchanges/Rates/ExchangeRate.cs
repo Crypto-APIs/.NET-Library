@@ -93,14 +93,10 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(1960, 01, 01);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, timeStamp);
 
-            if (IsAdditionalPackagePlan)
+            if (AssertAdditionalPackagePlan(response))
             {
                 AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
                 Assert.IsNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must be null");
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 
@@ -110,14 +106,10 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(DateTime.Now.Year + 1, 01, 01);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, timeStamp);
 
-            if (IsAdditionalPackagePlan)
+            if (AssertAdditionalPackagePlan(response))
             {
                 AssertErrorMessage(response, "Exchange rate not found for the pair");
                 Assert.IsNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must be null");
-            }
-            else
-            {
-                AssertErrorMessage(response, "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 

@@ -80,40 +80,27 @@ namespace TestCryptoApiSdk
             Assert.IsFalse(
                 string.IsNullOrEmpty(response.ErrorMessage),
                 $"'{nameof(response.ErrorMessage)}' must not be null");
-            Assert.AreEqual(etalonErrorMessage, response.ErrorMessage);
+            Assert.AreEqual(etalonErrorMessage, response.ErrorMessage, "'ErrorMessage' is wrong");
+        }
+
+        protected bool AssertAdditionalPackagePlan(BaseResponse response)
+        {
+            if (!IsAdditionalPackagePlan)
+            {
+                AssertErrorMessage(response, 
+                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
+            }
+
+            return IsAdditionalPackagePlan;
         }
 
         private ProxyCredentials LoadCredentials()
         {
-            ProxyCredentials credentials = null;
             var filename = ProxyCredentialsFilenameProvider.Filename;
-            if (File.Exists(filename))
-            {
-                var reader = new StreamReader(File.OpenRead(filename));
-                //var reader = new StreamReader(File.OpenRead(filename), Encoding.GetEncoding(1251));
-                var fileContent = new List<string>();
-
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-                    fileContent.Add(line);
-                }
-
-                credentials = new ProxyCredentials(
-                    host: fileContent[0], port: int.Parse(fileContent[1]),
-                    username: fileContent[2], password: fileContent[3], domain: fileContent[4]);
-            }
-            return credentials;
-        }
-
-        private string LoadAccountPassword()
-        {
-            var filename = AccountCredentialsFilenameProvider.Filename;
-            if (!File.Exists(filename))
+            if (!File.Exists(filename)) 
                 return null;
 
             var reader = new StreamReader(File.OpenRead(filename));
-            //var reader = new StreamReader(File.OpenRead(filename), Encoding.GetEncoding(1251));
             var fileContent = new List<string>();
 
             while (!reader.EndOfStream)
@@ -122,7 +109,29 @@ namespace TestCryptoApiSdk
                 fileContent.Add(line);
             }
 
-            return fileContent[0];
+            return new ProxyCredentials(
+                host: fileContent[0], port: int.Parse(fileContent[1]),
+                username: fileContent[2], password: fileContent[3], domain: fileContent[4]);
+        }
+
+        private string LoadAccountPassword()
+        {
+            var filename = AccountCredentialsFilenameProvider.Filename;
+            if (!File.Exists(filename))
+                return null;
+
+            using (var reader = new StreamReader(File.OpenRead(filename)))
+            {
+                var fileContent = new List<string>();
+
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    fileContent.Add(line);
+                }
+
+                return fileContent[0];
+            }
         }
 
         protected virtual string LoadApiKey()
@@ -131,9 +140,10 @@ namespace TestCryptoApiSdk
             if (!File.Exists(apiKeyFilename))
                 throw new FileNotFoundException($"File with api key \"{apiKeyFilename}\" not found");
 
-            var reader = new StreamReader(File.OpenRead(apiKeyFilename));
-            //var reader = new StreamReader(File.OpenRead(apiKeyFilename), Encoding.GetEncoding(1251));
-            return reader.ReadLine();
+            using (var reader = new StreamReader(File.OpenRead(apiKeyFilename)))
+            {
+                return reader.ReadLine();
+            }
         }
 
         protected CryptoManager Manager { get; private set; }

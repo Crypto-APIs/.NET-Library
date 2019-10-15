@@ -15,7 +15,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, HexEncodedInfo);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex), "'Hex' must not be null");
         }
 
         [TestMethod]

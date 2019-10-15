@@ -23,7 +23,8 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.DeletePayment
                 AssertNullErrorMessage(response);
                 Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message),
                     $"'{nameof(deleteResponse.Payload.Message)}' must not be null");
-                Assert.AreEqual($"Payment Forwarding with uuid {payment.Id} was successfully deleted", deleteResponse.Payload.Message);
+                Assert.AreEqual($"Payment Forwarding with uuid {payment.Id} was successfully deleted", 
+                    deleteResponse.Payload.Message, "'Message' is wrong");
             }
 
             var secondResponse = Manager.Blockchains.PaymentForwarding.GetPayments<GetBtcPaymentsResponse>(NetworkCoin);

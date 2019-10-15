@@ -12,9 +12,10 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransaction
     {
         protected override void BeforeTest()
         {
-            Assert.AreEqual(2, InputAddresses.Count());
-            Assert.AreEqual(1, OutputAddresses.Count());
-            Assert.AreEqual(InputAddresses.Sum(a => a.Value), OutputAddresses.Sum(a => a.Value));
+            Assert.AreEqual(2, InputAddresses.Count(), "'InputAddress' count is wrong");
+            Assert.AreEqual(1, OutputAddresses.Count(), "'OutputAddress' count is wrong");
+            Assert.AreEqual(InputAddresses.Sum(a => a.Value), OutputAddresses.Sum(a => a.Value),
+                "Sum of 'inputAddresses' is not equal the sum of 'outputAddresses'");
         }
 
         [TestMethod]
@@ -24,7 +25,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransaction
                 NetworkCoin, InputAddresses, OutputAddresses, Fee, Wifs);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Txid),
+                "'Txid' must not be null");
         }
 
         [TestMethod]
@@ -78,7 +80,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransaction
             var response = Manager.Blockchains.Transaction.NewTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, outputAddresses, Fee, Wifs);
 
-            AssertErrorMessage(response, "");
+            AssertErrorMessage(response, "todo: set corrected value");
         }
 
         [TestMethod]
@@ -140,7 +142,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransaction
             var response = Manager.Blockchains.Transaction.NewTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, OutputAddresses, new Fee(fee), Wifs);
 
-            AssertErrorMessage(response, "");
+            AssertErrorMessage(response, "todo: set corrected value");
         }
 
         private IEnumerable<TransactionAddress> GetTransactionAddresses(Dictionary<string, double> addresses)

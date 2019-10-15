@@ -37,20 +37,24 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
                 AssertNullErrorMessage(getResponse);
                 AssertNotEmptyCollection(nameof(getResponse.Payments), getResponse.Payments);
                 Assert.IsNotNull(getResponse.Payments.FirstOrDefault(h =>
-                    h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)));
+                    h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)),
+                    $"Collection must contains paymentId='{paymentId}'");
 
                 var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments<GetEthHistoricalPaymentsResponse>(NetworkCoin);
                 AssertNullErrorMessage(getHistoricalResponse);
                 AssertNotEmptyCollection(nameof(getHistoricalResponse.Payments), getHistoricalResponse.Payments);
                 Assert.IsNotNull(getHistoricalResponse.Payments.FirstOrDefault(h =>
-                    h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)));
+                    h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)), 
+                    $"Collection must contain paymentId='{paymentId}'");
             }
             finally
             {
                 var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteEthPaymentResponse>(NetworkCoin, paymentId);
                 AssertNullErrorMessage(deleteResponse);
-                Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message));
-                Assert.AreEqual("ok", deleteResponse.Payload.Message);
+                Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message), 
+                    "'Message' must not be null");
+                Assert.AreEqual("ok", deleteResponse.Payload.Message, 
+                    "'Message' after deleting payment is wrong");
             }
         }
 
@@ -193,7 +197,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
                 if (_fromAddress == null)
                 {
                     _fromAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
-                    Assert.IsNotNull(_fromAddress);
+                    Assert.IsNotNull(_fromAddress, $"'{nameof(_fromAddress)}' must not be null");
                 }
                 return _fromAddress;
             }
@@ -206,7 +210,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
                 if (_toAddress == null)
                 {
                     _toAddress = Manager.Blockchains.Address.GenerateAddress<GenerateEthAddressResponse>(NetworkCoin).Payload.Address;
-                    Assert.IsNotNull(_toAddress);
+                    Assert.IsNotNull(_toAddress, $"'{nameof(_toAddress)}' must not be null");
                 }
                 return _toAddress;
             }

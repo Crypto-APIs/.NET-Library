@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
                 NetworkCoin, FromAddress, ToAddress, PrivateKey);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex), "'Hex' must not be null");
         }
 
         [Ignore]
@@ -26,8 +26,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, PrivateKey);
 
-            AssertNullErrorMessage(response);
-            Assert.AreEqual("Balance is not enough", response.ErrorMessage);
+            AssertErrorMessage(response, "Balance is not enough");
         }
 
         [TestMethod]

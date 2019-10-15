@@ -47,12 +47,14 @@ namespace TestCryptoApiSdk
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(SkipList.ErrorMessage));
+                Assert.IsTrue(string.IsNullOrEmpty(SkipList.ErrorMessage), 
+                    $"'{nameof(SkipList.ErrorMessage)}' must not be null");
                 CheckSkip(AllList.Items, SkipList.Items, SkipList.Meta, Skip.Value, DefaultLimit);
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(SkipList.ErrorMessage));
+                Assert.IsFalse(string.IsNullOrEmpty(SkipList.ErrorMessage),
+                    $"'{nameof(SkipList.ErrorMessage)}' must be null");
                 Assert.AreEqual(
                     "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
                     SkipList.ErrorMessage);
@@ -68,12 +70,14 @@ namespace TestCryptoApiSdk
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(SkipAndLimitList.ErrorMessage));
+                Assert.IsTrue(string.IsNullOrEmpty(SkipAndLimitList.ErrorMessage),
+                    $"'{nameof(SkipAndLimitList.ErrorMessage)}' must not be null");
                 CheckSkipAndLimit(AllList.Items, SkipAndLimitList.Items, SkipAndLimitList.Meta, Skip.Value, Limit.Value);
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(SkipAndLimitList.ErrorMessage));
+                Assert.IsFalse(string.IsNullOrEmpty(SkipAndLimitList.ErrorMessage),
+                    $"'{nameof(SkipAndLimitList.ErrorMessage)}' must be null");
                 Assert.AreEqual(
                     "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
                     SkipAndLimitList.ErrorMessage);
@@ -132,11 +136,11 @@ namespace TestCryptoApiSdk
             var all = allList as IList<T> ?? allList.ToList();
             var actual = actualList as IList<T> ?? actualList.ToList();
 
-            Assert.AreEqual(Math.Min(all.Count - skip, limit), actual.Count);
+            Assert.AreEqual(Math.Min(all.Count - skip, limit), actual.Count, "Skip and Limit count failed");
 
             for (var i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(all[i + skip], actual[i]);
+                Assert.AreEqual(all[i + skip], actual[i], $"Skip and Limit item not equal");
             }
         }
 

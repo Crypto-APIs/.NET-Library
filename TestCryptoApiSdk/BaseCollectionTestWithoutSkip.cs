@@ -29,12 +29,13 @@ namespace TestCryptoApiSdk
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(AllList.ErrorMessage));
+                Assert.IsTrue(string.IsNullOrEmpty(AllList.ErrorMessage),
+                    $"'{nameof(AllList.ErrorMessage)}' must be null");
                 CheckMeta(AllList.Meta, DefaultLimit);
 
                 if (AllList.Meta.Results > 0)
                 {
-                    Assert.IsNotNull(AllList.Items);
+                    Assert.IsNotNull(AllList.Items, $"'{nameof(AllList.Items)}' must not be null");
                     Assert.IsTrue(AllList.Items.Any(), "Collection must not be empty");
                 }
                 else
@@ -44,7 +45,8 @@ namespace TestCryptoApiSdk
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(AllList.ErrorMessage));
+                Assert.IsFalse(string.IsNullOrEmpty(AllList.ErrorMessage),
+                    $"'{nameof(AllList.ErrorMessage)}' must be null");
                 Assert.AreEqual(
                     "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
                     AllList.ErrorMessage);
@@ -56,16 +58,18 @@ namespace TestCryptoApiSdk
             if (Limit == null)
                 return;
 
-            Assert.IsNotNull(LimitList);
+            Assert.IsNotNull(LimitList, $"'{nameof(LimitList)}' must not be null");
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(LimitList.ErrorMessage));
+                Assert.IsTrue(string.IsNullOrEmpty(LimitList.ErrorMessage),
+                    $"'{nameof(LimitList.ErrorMessage)}' must not be null");
                 CheckLimit(AllList.Items, LimitList.Items, LimitList.Meta, Limit.Value);
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(LimitList.ErrorMessage));
+                Assert.IsFalse(string.IsNullOrEmpty(LimitList.ErrorMessage),
+                    $"'{nameof(LimitList.ErrorMessage)}' must be null");
                 Assert.AreEqual(
                     "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
                     LimitList.ErrorMessage);
@@ -74,8 +78,8 @@ namespace TestCryptoApiSdk
 
         protected static void CheckMeta(MetaCollection meta, int limit)
         {
-            Assert.IsNotNull(meta);
-            Assert.AreEqual(limit, meta.Limit);
+            Assert.IsNotNull(meta, $"'{nameof(meta)}' must not be null");
+            Assert.AreEqual(limit, meta.Limit, $"'Limit' in meta is wrong");
         }
 
         protected abstract ICollectionResponse GetAllList();
@@ -91,7 +95,7 @@ namespace TestCryptoApiSdk
         protected void CheckLimit<T>(IEnumerable<T> allList, IEnumerable<T> actualList,
             MetaCollection meta, int limit)
         {
-            Assert.IsNotNull(actualList);
+            Assert.IsNotNull(actualList, $"'{nameof(actualList)}' must not be null");
             CheckMeta(meta, limit);
 
             if (IsPerhapsNotAnExactMatch)
@@ -100,11 +104,11 @@ namespace TestCryptoApiSdk
             var all = allList as IList<T> ?? allList.ToList();
             var actual = actualList as IList<T> ?? actualList.ToList();
 
-            Assert.AreEqual(Math.Min(all.Count, limit), actual.Count);
+            Assert.AreEqual(Math.Min(all.Count, limit), actual.Count, $"Limit count is wrong");
 
             for (var i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(all[i], actual[i]);
+                Assert.AreEqual(all[i], actual[i], $"Limit failed");
             }
         }
 

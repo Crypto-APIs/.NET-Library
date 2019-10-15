@@ -16,7 +16,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
                 NetworkCoin, FromAddress, ToAddress, Value, Password);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex), 
+                $"'{nameof(response.Payload.Hex)}' must not be null");
         }
 
         [TestMethod]

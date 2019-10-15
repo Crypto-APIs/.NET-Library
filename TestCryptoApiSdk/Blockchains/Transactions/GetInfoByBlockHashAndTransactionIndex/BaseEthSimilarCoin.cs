@@ -14,7 +14,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByBlockHashAndTransac
             var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, BlockHash, TransactionIndex);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.TransactionHash));
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.TransactionHash),
+                $"'{nameof(response.Payload.TransactionHash)}' must not be null");
         }
 
         [TestMethod]
