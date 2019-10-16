@@ -22,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
         [TestMethod]
         public void WrongFromAddress()
         {
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value, Data);
 
@@ -32,7 +32,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
         [TestMethod]
         public void WrongToAddress()
         {
-            var toAddress = "qwe";
+            var toAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, toAddress, Value, Data);
 
@@ -42,7 +42,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
         [TestMethod]
         public void WrongData()
         {
-            var data = "qwe";
+            var data = "qw'e";
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, data);
 
@@ -82,8 +82,9 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
         [TestMethod]
         public void NullData()
         {
+            string data = null;
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
-                NetworkCoin, FromAddress, ToAddress, Value, data: null);
+                NetworkCoin, FromAddress, ToAddress, Value, data);
 
             AssertErrorMessage(response, "Internal Server Error");
         }

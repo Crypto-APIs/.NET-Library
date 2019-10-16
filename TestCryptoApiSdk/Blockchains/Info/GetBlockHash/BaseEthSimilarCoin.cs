@@ -1,7 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
 {
@@ -20,7 +20,8 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
         [TestMethod]
         public void IncorrectedBlock()
         {
-            var response = Manager.Blockchains.Info.GetBlockHash<GetEthHashInfoResponse>(NetworkCoin, blockHash: "qwe");
+            var blockHash = "qwe'asd";
+            var response = Manager.Blockchains.Info.GetBlockHash<GetEthHashInfoResponse>(NetworkCoin, blockHash);
 
             AssertErrorMessage(response, "Block not found");
         }
@@ -29,7 +30,8 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
         [ExpectedException(typeof(ArgumentNullException), "A BlockHash of null was inappropriately allowed.")]
         public void NullBlockHash()
         {
-            Manager.Blockchains.Info.GetBlockHash<GetEthHashInfoResponse>(NetworkCoin, blockHash: null);
+            string blockHash = null;
+            Manager.Blockchains.Info.GetBlockHash<GetEthHashInfoResponse>(NetworkCoin, blockHash);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

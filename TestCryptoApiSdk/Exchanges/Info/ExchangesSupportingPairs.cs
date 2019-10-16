@@ -1,11 +1,10 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
-    [Ignore]
     [TestClass]
     public class ExchangesSupportingPairs : BaseCollectionTest
     {
@@ -16,7 +15,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, Asset2, skip: skip);
+            return Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, Asset2, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,35 +32,39 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [ExpectedException(typeof(ArgumentNullException), "An Asset1 of null was inappropriately allowed.")]
         public void TestNullAsset1()
         {
-            Manager.Exchanges.Info.ExchangesSupportingPairs(asset1: null, asset2: Asset2);
+            Asset asset1 = null;
+            Manager.Exchanges.Info.ExchangesSupportingPairs(asset1, Asset2);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Asset2 of null was inappropriately allowed.")]
         public void TestNullAsset2()
         {
-            Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, asset2: null);
+            Asset asset2 = null;
+            Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, asset2);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Asset1.Id of null was inappropriately allowed.")]
         public void TestNullId1()
         {
-            Manager.Exchanges.Info.ExchangesSupportingPairs(new Asset(), Asset2);
+            var asset1 = new Asset();
+            Manager.Exchanges.Info.ExchangesSupportingPairs(asset1, Asset2);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Asset2.Id of null was inappropriately allowed.")]
         public void TestNullId2()
         {
-            Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, new Asset());
+            var asset2 = new Asset();
+            Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, asset2);
         }
 
         [TestMethod]
         public void TestIncorrectAsset1()
         {
-            var asset = new Asset("QWEE'WQ1");
-            var response = Manager.Exchanges.Info.ExchangesSupportingPairs(asset, Asset2);
+            var asset1 = Features.UnexistingAsset;
+            var response = Manager.Exchanges.Info.ExchangesSupportingPairs(asset1, Asset2);
 
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
@@ -70,14 +73,14 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [TestMethod]
         public void TestIncorrectAsset2()
         {
-            var asset = new Asset("QWEEW'Q1");
-            var response = Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, asset);
+            var asset2 = Features.UnexistingAsset;
+            var response = Manager.Exchanges.Info.ExchangesSupportingPairs(Asset1, asset2);
 
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }
 
-        private Asset Asset1 { get; } = new Asset("5b1ea92e584bf50020130612");
-        private Asset Asset2 { get; } = new Asset("5b755dacd5dd99000b3d92b2");
+        private Asset Asset1 { get; } = Features.Btc;
+        private Asset Asset2 { get; } = Features.Eth;
     }
 }

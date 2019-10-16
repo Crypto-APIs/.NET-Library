@@ -1,5 +1,4 @@
 ﻿using CryptoApisSdkLibrary;
-using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 

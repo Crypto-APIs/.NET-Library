@@ -41,8 +41,8 @@ namespace CryptoApisSdkLibrary.DataTypes
         public static NetworkCoin EthMainNet => new NetworkCoin(EthSimilarCoin.Eth, EthSimilarNetwork.Mainnet);
         public static NetworkCoin EthRinkeby => new NetworkCoin(EthSimilarCoin.Eth, EthSimilarNetwork.Rinkeby);
         public static NetworkCoin EthRopsten => new NetworkCoin(EthSimilarCoin.Eth, EthSimilarNetwork.Ropsten);
-        //public static NetworkCoin EtcMainNet => new NetworkCoin(EthSimilarCoin.Etc, EthSimilarNetwork.Mainnet);
-        //public static NetworkCoin EtcMorden => new NetworkCoin(EthSimilarCoin.Etc, EthSimilarNetwork.Morden);
+        public static NetworkCoin EtcMainNet => new NetworkCoin(EthSimilarCoin.Etc, EthSimilarNetwork.Mainnet);
+        public static NetworkCoin EtcMorden => new NetworkCoin(EthSimilarCoin.Etc, EthSimilarNetwork.Morden);
 
         #region IEquatable<MarketCoin>
 

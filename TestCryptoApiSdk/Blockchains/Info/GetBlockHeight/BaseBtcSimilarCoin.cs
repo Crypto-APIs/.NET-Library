@@ -18,7 +18,8 @@ namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHeight
         [TestMethod]
         public void IncorrectedBlock()
         {
-            var response = Manager.Blockchains.Info.GetBlockHeight<GetBtcHashInfoResponse>(NetworkCoin, blockHeight: -123);
+            var blockHeight = -123;
+            var response = Manager.Blockchains.Info.GetBlockHeight<GetBtcHashInfoResponse>(NetworkCoin, blockHeight);
 
             AssertErrorMessage(response, "Block not found");
         }

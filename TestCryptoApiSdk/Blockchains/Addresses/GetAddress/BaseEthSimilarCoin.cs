@@ -11,7 +11,7 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GetAddress
         [TestMethod]
         public void InvalidAddress()
         {
-            var address = "qwe";
+            var address = "qw'e";
             var response = Manager.Blockchains.Address.GetAddress<GetEthAddressResponse>(NetworkCoin, address);
 
             AssertErrorMessage(response, $"0x{address}  is not a valid Ethereum address");
@@ -21,7 +21,8 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GetAddress
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void NullAddress()
         {
-            Manager.Blockchains.Address.GetAddress<GetEthAddressResponse>(NetworkCoin, address: null);
+            string address = null;
+            Manager.Blockchains.Address.GetAddress<GetEthAddressResponse>(NetworkCoin, address);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

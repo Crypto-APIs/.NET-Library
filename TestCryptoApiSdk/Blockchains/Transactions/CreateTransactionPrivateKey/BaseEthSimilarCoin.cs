@@ -1,7 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
 {
@@ -22,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
         [TestMethod]
         public void WrongFromAddress()
         {
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, PrivateKey, Value);
 
@@ -32,7 +32,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
         [TestMethod]
         public void WrongToAddress()
         {
-            var toAddress = "qwe";
+            var toAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, PrivateKey, Value);
 
@@ -42,7 +42,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
         [TestMethod]
         public void WrongPrivateKey()
         {
-            var privateKey = "qwe";
+            var privateKey = "qw'e";
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey, Value);
 
@@ -94,7 +94,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
             Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey, Value);
         }
-
 
         protected abstract NetworkCoin NetworkCoin { get; }
         protected abstract string FromAddress { get; }

@@ -11,7 +11,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.DecodeTransaction
         [TestMethod]
         public void GeneralTestTestSimple()
         {
-            var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, HexEncodedInfo);
+            var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(
+                NetworkCoin, HexEncodedInfo);
 
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Transaction.Hash),
@@ -21,8 +22,9 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.DecodeTransaction
         [TestMethod]
         public void WrongHexEncodedInfo()
         {
-            var hexEncodedInfo = "qwe";
-            var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, hexEncodedInfo);
+            var hexEncodedInfo = "qw'e";
+            var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(
+                NetworkCoin, hexEncodedInfo);
 
             AssertErrorMessage(response, "Can not decode transaction");
         }
@@ -31,7 +33,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.DecodeTransaction
         [ExpectedException(typeof(ArgumentNullException), "A HexEncodedInfo was inappropriately allowed.")]
         public void TestNullHexEncodedInfo()
         {
-            Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, hexEncodedInfo: null);
+            string hexEncodedInfo = null;
+            Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(NetworkCoin, hexEncodedInfo);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

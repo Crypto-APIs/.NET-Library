@@ -11,7 +11,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByBlockHeightAndTrans
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, BlockHeight, TransactionIndex);
+            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(
+                NetworkCoin, BlockHeight, TransactionIndex);
 
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.TransactionHash),

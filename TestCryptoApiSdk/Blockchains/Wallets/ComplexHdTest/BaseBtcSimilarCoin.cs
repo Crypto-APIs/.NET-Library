@@ -15,7 +15,8 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}GeneralWallet";
             var addressCount = 3;
             var password = "0123456789";
-            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
+            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(
+                NetworkCoin, walletName, addressCount, password);
 
             AssertNullErrorMessage(response);
             Assert.AreEqual(walletName, response.Wallet.Name);
@@ -57,7 +58,8 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}WeakPasswordWallet";
             var addressCount = 3;
             var password = "123456";
-            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
+            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(
+                NetworkCoin, walletName, addressCount, password);
 
             AssertErrorMessage(response, "'password' is too weak. Min size is 10 characters, actual is 6");
         }
@@ -90,7 +92,8 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
         {
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}EmptyAddressesWallet";
             var password = "0123456789";
-            Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, -1, password);
+            var addressCount = -1;
+            Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
         }
 
         [TestMethod]
@@ -98,7 +101,9 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexHdTest
         public void NullPassword()
         {
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}NullPasswordWallet";
-            Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, 3, password: null);
+            string password = null;
+            var addressCount = 3;
+            Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

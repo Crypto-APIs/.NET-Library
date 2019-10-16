@@ -72,7 +72,8 @@ namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexTest
         public void EmptyAddresses()
         {
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}EmptyAddressesWallet";
-            Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses: new List<string>());
+            var addresses = new List<string>();
+            Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, addresses);
         }
 
         [TestMethod]

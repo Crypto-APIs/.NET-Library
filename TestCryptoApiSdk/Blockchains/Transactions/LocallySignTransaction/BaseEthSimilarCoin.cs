@@ -22,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
         [TestMethod]
         public void WrongFromAddress()
         {
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value);
 
@@ -32,7 +32,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
         [TestMethod]
         public void WrongToAddress()
         {
-            var toAddress = "qwe";
+            var toAddress = "q'we";
             var response = Manager.Blockchains.Transaction.LocallySignTransaction<LocallySignTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Value);
 

@@ -23,8 +23,9 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAcount
         [TestMethod]
         public void WrongPassword()
         {
+            var password = "qw'e";
             var response = Manager.Blockchains.Address.GenerateAccount<GenerateEthAccountResponse>(
-                NetworkCoin, password: "qwe");
+                NetworkCoin, password);
 
             AssertErrorMessage(response,
                 "Password is too weak! It should be at least 7 characters and should contain at least one letter and one digit");
@@ -34,7 +35,8 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAcount
         [ExpectedException(typeof(ArgumentNullException), "A Password of null was inappropriately allowed.")]
         public void NullPassword()
         {
-            Manager.Blockchains.Address.GenerateAccount<GenerateEthAccountResponse>(NetworkCoin, password: null);
+            string password = null;
+            Manager.Blockchains.Address.GenerateAccount<GenerateEthAccountResponse>(NetworkCoin, password);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

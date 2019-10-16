@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight, skip: skip);
+            return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,7 +33,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
         public override void SkipTooLarge()
         {
             var skip = 20000000;
-            var response = GetSkipList(skip: skip);
+            var response = GetSkipList(skip);
 
             Assert.IsNotNull(response, $"'{nameof(response)}' must not be null");
             Assert.IsFalse(

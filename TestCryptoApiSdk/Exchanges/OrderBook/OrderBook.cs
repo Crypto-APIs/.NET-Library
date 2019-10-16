@@ -32,48 +32,54 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset of null was inappropriately allowed.")]
         public void TestNullBaseAsset()
         {
-            Manager.Exchanges.OrderBook.Get(Exchange, baseAsset: null, quoteAsset: QuoteAsset);
+            Asset baseAsset = null;
+            Manager.Exchanges.OrderBook.Get(Exchange, baseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Quote of null was inappropriately allowed.")]
         public void TestNullQuoteAsset()
         {
-            Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, quoteAsset: null);
+            Asset quoteAsset = null;
+            Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, quoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
-            Manager.Exchanges.OrderBook.Get(exchange: null, baseAsset: BaseAsset, quoteAsset: QuoteAsset);
+            Exchange exchange = null;
+            Manager.Exchanges.OrderBook.Get(exchange, BaseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset.Id of null was inappropriately allowed.")]
         public void TestNullBaseAssetId()
         {
-            Manager.Exchanges.OrderBook.Get(Exchange, new Asset(), QuoteAsset);
+            var baseAsset = new Asset();
+            Manager.Exchanges.OrderBook.Get(Exchange, baseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A QuoteAsset.Id of null was inappropriately allowed.")]
         public void TestNullQuoteAssetId()
         {
-            Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, new Asset());
+            var quoteAsset = new Asset();
+            Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, quoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Exchange.Id of null was inappropriately allowed.")]
         public void TestNullExchangeId()
         {
-            Manager.Exchanges.OrderBook.Get(new Exchange(), BaseAsset, QuoteAsset);
+            var exchange = new Exchange();
+            Manager.Exchanges.OrderBook.Get(exchange, BaseAsset, QuoteAsset);
         }
 
         [TestMethod]
         public void TestIncorrectBaseAsset()
         {
-            var baseAsset = new Asset { AssetId = "QWE'EWQ1" };
+            var baseAsset = new Asset {AssetId = "qw'e"};
             var response = Manager.Exchanges.OrderBook.Get(Exchange, baseAsset, QuoteAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -86,7 +92,7 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
         [TestMethod]
         public void TestIncorrectQuoteAsset()
         {
-            var quoteAsset = new Asset { AssetId = "QWE'EWQ1" };
+            var quoteAsset = new Asset { AssetId = "qw'e" };
             var response = Manager.Exchanges.OrderBook.Get(Exchange, BaseAsset, quoteAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -99,7 +105,7 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var exchange = new Exchange { ExchangeId = "QWE'EWQ1" };
+            var exchange = new Exchange { ExchangeId = "qw'e" };
             var response = Manager.Exchanges.OrderBook.Get(exchange, BaseAsset, QuoteAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -109,8 +115,8 @@ namespace TestCryptoApiSdk.Exchanges.OrderBook
             }
         }
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7362") { ExchangeId = "BITFINEX" };
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612") { AssetId = "EOS" };
-        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130615") { AssetId = "BTC" };
+        private Exchange Exchange { get; } = new Exchange { ExchangeId = "BITFINEX" };
+        private Asset BaseAsset { get; } = new Asset { AssetId = "EOS" };
+        private Asset QuoteAsset { get; } = new Asset { AssetId = "BTC" };
     }
 }

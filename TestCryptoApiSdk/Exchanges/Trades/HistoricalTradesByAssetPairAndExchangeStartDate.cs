@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] // todo: note #8
     [TestClass]
     public class HistoricalTradesByAssetPairAndExchangeStartDate : BaseCollectionTest
     {
@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(Exchange, BaseAsset, QuoteAsset, StartPeriod, skip: skip);
+            return Manager.Exchanges.Trades.Historical(Exchange, BaseAsset, QuoteAsset, StartPeriod, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -58,9 +58,9 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7366"); // Bittrex
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612"); // BTC
-        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130616"); // LTC
+        private Exchange Exchange { get; } = Features.Bittrex;
+        private Asset BaseAsset { get; } = Features.Bch;
+        private Asset QuoteAsset { get; } = Features.Ltc;
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
     }
 }

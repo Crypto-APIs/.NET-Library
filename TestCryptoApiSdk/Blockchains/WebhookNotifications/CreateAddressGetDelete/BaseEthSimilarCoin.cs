@@ -45,7 +45,7 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDele
         [TestMethod]
         public void InvalidAddress()
         {
-            var address = "qwe";
+            var address = "qw'e";
             var response = Manager.Blockchains.WebhookNotification.CreateAddress<CreateEthAddressWebHookResponse>(NetworkCoin, Url, address);
 
             AssertErrorMessage(response, IsAdditionalPackagePlan

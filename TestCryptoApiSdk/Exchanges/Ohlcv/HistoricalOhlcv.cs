@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
-    [Ignore]
+    [Ignore] // todo: note #1
     [TestClass]
     public class HistoricalOhlcv : BaseCollectionTest
     {
@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Ohlcv.Historical(Symbol, Period, StartPeriod, skip: skip);
+            return Manager.Exchanges.Ohlcv.Historical(Symbol, Period, StartPeriod, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,20 +33,22 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
         [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
         public void TestNullSymbol()
         {
-            Manager.Exchanges.Ohlcv.Historical(symbol: null, period: Period, startPeriod: StartPeriod);
+            Symbol symbol = null;
+            Manager.Exchanges.Ohlcv.Historical(symbol, Period, StartPeriod);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Symbol.Id of null was inappropriately allowed.")]
         public void TestNullSymbolId()
         {
-            Manager.Exchanges.Ohlcv.Historical(new Symbol(), Period, StartPeriod);
+            var symbol = new Symbol();
+            Manager.Exchanges.Ohlcv.Historical(symbol, Period, StartPeriod);
         }
 
         [TestMethod]
         public void TestIncorrectSymbol()
         {
-            var symbol = new Symbol("QWEE'WQ1");
+            var symbol = Features.UnexistingSymbol;
             var response = Manager.Exchanges.Ohlcv.Historical(symbol, Period, StartPeriod);
 
             if (AssertAdditionalPackagePlan(response))
@@ -73,14 +75,16 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
         [ExpectedException(typeof(ArgumentNullException), "A Period of null was inappropriately allowed.")]
         public void TestNullPeriod()
         {
-            Manager.Exchanges.Ohlcv.Historical(Symbol, period: null, startPeriod: StartPeriod);
+            Period period = null;
+            Manager.Exchanges.Ohlcv.Historical(Symbol, period, StartPeriod);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Period.Id of null was inappropriately allowed.")]
         public void TestNullPeriodId()
         {
-            Manager.Exchanges.Ohlcv.Historical(Symbol, new Period(), StartPeriod);
+            var period = new Period();
+            Manager.Exchanges.Ohlcv.Historical(Symbol, period, StartPeriod);
         }
 
         [TestMethod]
@@ -91,7 +95,8 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
+                AssertErrorMessage(response, 
+                    "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
                 AssertEmptyCollection(nameof(response.Ohlcv), response.Ohlcv);
             }
         }
@@ -112,7 +117,7 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Symbol Symbol { get; } = new Symbol("5bfc32a29c40a100014dc5f6");
+        private Symbol Symbol { get; } = Features.BtcLtc;
         private Period Period { get; } = new Period("1day");
         private DateTime StartPeriod { get; } = new DateTime(2019, 04, 15);
     }

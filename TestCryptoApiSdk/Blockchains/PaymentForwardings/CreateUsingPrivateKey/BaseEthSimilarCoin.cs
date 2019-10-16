@@ -27,7 +27,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var fromAddress = "qwe";
+            var fromAddress = "q'we";
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, fromAddress, ToAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
@@ -40,7 +40,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var toAddress = "qwe";
+            var toAddress = "qw'e";
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, toAddress, CallbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
@@ -53,7 +53,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var callbackUrl = "qwe";
+            var callbackUrl = "q'we";
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, callbackUrl, PrivateKey, Confirmations, GasPrice, GasLimit);
 
@@ -67,7 +67,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var privateKey = "qwe";
+            var privateKey = "q'we";
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
 

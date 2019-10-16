@@ -88,7 +88,7 @@ namespace TestCryptoApiSdk
         {
             CheckMeta(meta, limit);
 
-            Assert.AreEqual(skip, meta.Index);
+            Assert.AreEqual(skip, meta.Index, "'Skip' in 'meta' is wrong");
         }
 
         protected abstract ICollectionResponse GetSkipList(int skip);

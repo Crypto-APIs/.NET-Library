@@ -11,7 +11,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, TransactionHash);
+            var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(
+                NetworkCoin, TransactionHash);
 
             AssertNullErrorMessage(response);
             Assert.AreEqual(TransactionHash, response.Payload.TransactionHash, "'TransactionHash' is wrong");
@@ -20,7 +21,9 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
         [TestMethod]
         public void InvalidBlockHash()
         {
-            var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, blockHash: "qwe");
+            var blockHash = "q'we";
+            var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(
+                NetworkCoin, blockHash);
 
             AssertErrorMessage(response, "Transaction not found");
         }
@@ -29,7 +32,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByTransactionId
         [ExpectedException(typeof(ArgumentNullException), "A TransactionHash of null was inappropriately allowed.")]
         public void NullBlockHash()
         {
-            Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, blockHash: null);
+            string blockHash = null;
+            Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, blockHash);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

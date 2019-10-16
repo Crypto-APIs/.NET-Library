@@ -1,11 +1,10 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
-    [Ignore]
     [TestClass]
     public class ExchangesSupportingAsset : BaseCollectionTest
     {
@@ -16,7 +15,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Info.ExchangesSupportingAsset(Asset, skip: skip);
+            return Manager.Exchanges.Info.ExchangesSupportingAsset(Asset, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,26 +32,28 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [ExpectedException(typeof(ArgumentNullException), "An Asset of null was inappropriately allowed.")]
         public void TestNullAsset()
         {
-            Manager.Exchanges.Info.ExchangesSupportingAsset(asset: null);
+            Asset asset = null;
+            Manager.Exchanges.Info.ExchangesSupportingAsset(asset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Asset.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
-            Manager.Exchanges.Info.ExchangesSupportingAsset(new Asset());
+            var asset = new Asset();
+            Manager.Exchanges.Info.ExchangesSupportingAsset(asset);
         }
 
         [TestMethod]
         public void TestIncorrectAsset()
         {
-            var asset = new Asset("QWEEWQ1");
+            var asset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Info.ExchangesSupportingAsset(asset);
 
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }
 
-        private Asset Asset { get; } = new Asset("5b1ea92e584bf50020130612");
+        private Asset Asset { get; } = Features.Dash;
     }
 }

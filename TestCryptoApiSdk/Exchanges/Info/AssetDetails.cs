@@ -1,6 +1,6 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
@@ -10,7 +10,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [TestMethod]
         public void TestCorrect()
         {
-            var asset = new Asset("5b755dacd5dd99000b3d92b2");
+            var asset = Features.Eth;
             var response = Manager.Exchanges.Info.AssetDetails(asset);
 
             AssertNullErrorMessage(response);
@@ -22,20 +22,22 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [ExpectedException(typeof(ArgumentNullException), "An Asset of null was inappropriately allowed.")]
         public void TestNull()
         {
-            Manager.Exchanges.Info.AssetDetails(asset: null);
+            Asset asset = null;
+            Manager.Exchanges.Info.AssetDetails(asset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Asset.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
-            Manager.Exchanges.Info.AssetDetails(new Asset());
+            var asset = new Asset();
+            Manager.Exchanges.Info.AssetDetails(asset);
         }
 
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var asset = new Asset("QWEE'WQ");
+            var asset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Info.AssetDetails(asset);
 
             AssertErrorMessage(response, "Asset not found");

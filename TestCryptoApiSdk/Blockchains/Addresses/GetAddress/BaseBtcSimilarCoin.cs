@@ -11,7 +11,8 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GetAddress
         [TestMethod]
         public void InvalidAddress()
         {
-            var response = Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address: "qwe");
+            var address = "qw'e";
+            var response = Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address);
 
             AssertErrorMessage(response, "Address is not valid");
         }
@@ -20,7 +21,8 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.GetAddress
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void NullAddress()
         {
-            Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address: null);
+            string address = null;
+            Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

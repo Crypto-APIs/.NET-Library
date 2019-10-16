@@ -11,7 +11,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByBlockHashAndTransac
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, BlockHash, TransactionIndex);
+            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(
+                NetworkCoin, BlockHash, TransactionIndex);
 
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.TransactionHash),
@@ -21,8 +22,9 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByBlockHashAndTransac
         [TestMethod]
         public void InvalidBlockHash()
         {
-            var blockHash = "qwe";
-            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(NetworkCoin, blockHash, TransactionIndex);
+            var blockHash = "qw'e";
+            var response = Manager.Blockchains.Transaction.GetInfo<EthTransactionInfoResponse>(
+                NetworkCoin, blockHash, TransactionIndex);
 
             AssertErrorMessage(response, "Transaction not found");
         }

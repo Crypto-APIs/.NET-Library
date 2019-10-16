@@ -12,7 +12,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
         [TestMethod]
         public void InvalidBlockHeight()
         {
-            var response = Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHeight: int.MaxValue);
+            var blockHeight = int.MaxValue;
+            var response = Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHeight);
 
             AssertErrorMessage(response, "Transaction not found");
         }
@@ -21,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
         public override void SkipTooLarge()
         {
             var skip = 20000000;
-            var response = GetSkipList(skip: skip);
+            var response = GetSkipList(skip);
 
             Assert.IsNotNull(response, $"'{nameof(response)}' must not be null");
             Assert.IsFalse(
@@ -34,7 +35,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A BlockHeight was inappropriately allowed.")]
         public void TestBlockHeightOutOfRange()
         {
-            Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHeight: -552875);
+            var blockHeight = -552875;
+            Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHeight);
         }
 
         protected override ICollectionResponse GetAllList()
@@ -44,7 +46,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHeight, skip: skip);
+            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHeight, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)

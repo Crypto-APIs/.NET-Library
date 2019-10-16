@@ -19,7 +19,8 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.DeletePayment
 
             foreach (var payment in response.Payments)
             {
-                var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteBtcPaymentResponse>(NetworkCoin, payment.Id);
+                var deleteResponse = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteBtcPaymentResponse>(
+                    NetworkCoin, payment.Id);
                 AssertNullErrorMessage(response);
                 Assert.IsFalse(string.IsNullOrEmpty(deleteResponse.Payload.Message),
                     $"'{nameof(deleteResponse.Payload.Message)}' must not be null");
@@ -43,7 +44,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.DeletePayment
         [TestMethod]
         public void TestBtcDeleteInvalidPaymentId()
         {
-            var paymentId = "qwe";
+            var paymentId = "qw'e";
             var response = Manager.Blockchains.PaymentForwarding.DeletePayment<DeleteBtcPaymentResponse>(NetworkCoin, paymentId);
 
             AssertErrorMessage(response, IsAdditionalPackagePlan

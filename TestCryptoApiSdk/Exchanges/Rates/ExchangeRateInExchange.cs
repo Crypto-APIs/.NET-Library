@@ -1,26 +1,26 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
-    [Ignore]
     [TestClass]
     public class ExchangeRateInExchange : BaseTest
     {
+        [Ignore] // todo: note #2
         [TestMethod]
-        public void TestUsdBtc()
+        public void TestBtcLtc()
         {
-            //var exc = Manager.Exchanges.Info.ExchangesSupportingPairs(BaseAsset, QuoteAsset);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange);
 
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Rate, $"{nameof(response.Rate)} must not be null");
-            Assert.AreEqual("5b1ea92e584bf50020130612", response.Rate.BaseAssetId);
+            Assert.AreEqual(BaseAsset.Id, response.Rate.BaseAssetId);
         }
 
+        [Ignore] // todo: note #2
         [TestMethod]
-        public void TestUsdBtcTimeStamp()
+        public void TestBtcLtcTimeStamp()
         {
             var timeStamp = new DateTime(2019, 02, 03);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange, timeStamp);
@@ -59,34 +59,38 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset of null was inappropriately allowed.")]
         public void TestNullBaseAsset()
         {
-            Manager.Exchanges.Rates.GetOne(baseAsset: null, quoteAsset: QuoteAsset);
+            Asset baseAsset = null;
+            Manager.Exchanges.Rates.GetOne(baseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A QuoteAsset of null was inappropriately allowed.")]
         public void TestNullQuoteAsset()
         {
-            Manager.Exchanges.Rates.GetOne(BaseAsset, quoteAsset: null);
+            Asset quoteAsset = null;
+            Manager.Exchanges.Rates.GetOne(BaseAsset, quoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset.Id of null was inappropriately allowed.")]
         public void TestNullBaseAssetId()
         {
-            Manager.Exchanges.Rates.GetOne(new Asset(), quoteAsset: QuoteAsset);
+            var baseAsset = new Asset();
+            Manager.Exchanges.Rates.GetOne(baseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A QuoteAsset.Id of null was inappropriately allowed.")]
         public void TestNullQuoteAssetId()
         {
-            Manager.Exchanges.Rates.GetOne(BaseAsset, new Asset());
+            var quoteAsset = new Asset();
+            Manager.Exchanges.Rates.GetOne(BaseAsset, quoteAsset);
         }
 
         [TestMethod]
         public void TestIncorrectBaseAsset()
         {
-            var baseAsset = new Asset("QWE'EWQ");
+            var baseAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Rates.GetOne(baseAsset, QuoteAsset, Exchange);
 
             AssertErrorMessage(response, "Exchange rate not found for the pair");
@@ -96,7 +100,7 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         [TestMethod]
         public void TestIncorrectQuoteAsset()
         {
-            var quoteAsset = new Asset("QWE'EWQ");
+            var quoteAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, quoteAsset, Exchange);
 
             AssertErrorMessage(response, "Exchange rate not found for the pair");
@@ -107,27 +111,29 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         [ExpectedException(typeof(ArgumentNullException), "An Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
-            Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, null);
+            Exchange exchange = null;
+            Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, exchange);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Exchange.Id of null was inappropriately allowed.")]
         public void TestNullExchangeId()
         {
-            Manager.Exchanges.Rates.GetAny(BaseAsset, new Exchange());
+            var exchange = new Exchange();
+            Manager.Exchanges.Rates.GetAny(BaseAsset, exchange);
         }
 
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, new Exchange("QWE'EWQ"));
+            var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Features.UnexistingExchange);
 
             AssertErrorMessage(response, "Exchange rate not found for the pair");
             Assert.IsNull(response.Rate);
         }
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612"); // BTC
-        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130616"); // LTC
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7366"); // Bittrex
+        private Asset BaseAsset { get; } = Features.Btc;
+        private Asset QuoteAsset { get; } = Features.Ltc;
+        private Exchange Exchange { get; } = Features.Bittrex;
     }
 }

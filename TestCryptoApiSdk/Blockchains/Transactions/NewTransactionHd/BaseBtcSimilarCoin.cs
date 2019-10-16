@@ -33,7 +33,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
         {
             var inputAddresses = new List<TransactionAddress>
             {
-                new TransactionAddress("qwe", 0.54),
+                new TransactionAddress("q'we", 0.54),
             };
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, inputAddresses, OutputAddresses, Fee);
@@ -46,7 +46,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
         {
             var outputAddresses = new List<TransactionAddress>
             {
-                new TransactionAddress("qwe", 0.54),
+                new TransactionAddress("q'we", 0.54),
             };
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
                 NetworkCoin, Wallet, Password, InputAddresses, outputAddresses, Fee);
@@ -122,24 +122,26 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A Fee was inappropriately allowed.")]
         public void InvalidFee()
         {
+            var fee = new Fee(-1);
             Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
-                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, new Fee(-1));
+                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, fee);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Wifs was inappropriately allowed.")]
         public void NullWifs()
         {
+            IEnumerable<string> wifs = null;
             Manager.Blockchains.Transaction.NewTransaction<NewBtcTransactionResponse>(
-                NetworkCoin, InputAddresses, OutputAddresses, Fee, wifs: null);
+                NetworkCoin, InputAddresses, OutputAddresses, Fee, wifs);
         }
 
         [TestMethod]
         public void FeeTooMuch()
         {
-            var fee = int.MaxValue;
+            var fee = new Fee(int.MaxValue);
             var response = Manager.Blockchains.Transaction.NewHdTransaction<NewBtcTransactionResponse>(
-                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, new Fee(fee));
+                NetworkCoin, Wallet, Password, InputAddresses, OutputAddresses, fee);
             
             AssertErrorMessage(response, "todo: set corrected value");
         }

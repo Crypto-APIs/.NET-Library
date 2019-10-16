@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] // todo: check IsPerhapsNotAnExactMatch flag
     [TestClass]
     public class LatestBaseAssetTrades : BaseCollectionTest
     {
@@ -17,7 +17,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Latest(BaseAsset, skip: skip);
+            return Manager.Exchanges.Trades.Latest(BaseAsset, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -27,8 +27,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipAndLimitList(int skip, int limit)
         {
-            Debug.Assert(Skip.HasValue);
-            Debug.Assert(Limit.HasValue);
             return Manager.Exchanges.Trades.Latest(BaseAsset, skip, limit);
         }
 
@@ -36,26 +34,28 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         [ExpectedException(typeof(ArgumentNullException), "An Asset of null was inappropriately allowed.")]
         public void TestNullAsset()
         {
-            Manager.Exchanges.Trades.Latest(baseAsset: null);
+            Asset baseAsset = null;
+            Manager.Exchanges.Trades.Latest(baseAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Asset.Id of null was inappropriately allowed.")]
         public void TestNullAssetId()
         {
-            Manager.Exchanges.Trades.Latest(new Asset());
+            var baseAsset = new Asset();
+            Manager.Exchanges.Trades.Latest(baseAsset);
         }
 
         [TestMethod]
         public void TestIncorrectBaseAsset()
         {
-            var baseAsset = new Asset("QWE'EWQ1");
+            var baseAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Trades.Latest(baseAsset);
 
             AssertErrorMessage(response, "We are facing technical issues, please try again later");
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612");
+        private Asset BaseAsset { get; } = Features.Btc;
     }
 }

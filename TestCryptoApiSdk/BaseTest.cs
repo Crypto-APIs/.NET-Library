@@ -59,7 +59,7 @@ namespace TestCryptoApiSdk
             AssertNotNullResponse(response);
             Assert.IsTrue(
                 string.IsNullOrEmpty(response.ErrorMessage),
-                $"'{nameof(response.ErrorMessage)}' must be null");
+                $"'{nameof(response.ErrorMessage)}' must be null, but is was '{response.ErrorMessage}'");
         }
 
         protected void AssertEmptyCollection(string collectionName, IEnumerable<object> collection)

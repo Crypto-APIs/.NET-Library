@@ -1,7 +1,7 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
@@ -15,7 +15,7 @@ namespace TestCryptoApiSdk.Exchanges.Rates
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Rates.GetAny(BaseAsset, skip: skip);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -32,27 +32,30 @@ namespace TestCryptoApiSdk.Exchanges.Rates
         [ExpectedException(typeof(ArgumentNullException), "An Asset of null was inappropriately allowed.")]
         public void TestNull()
         {
-            Manager.Exchanges.Rates.GetAny(baseAsset: null);
+            Asset baseAsset = null;
+            Manager.Exchanges.Rates.GetAny(baseAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Asset.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
-            Manager.Exchanges.Rates.GetAny(new Asset());
+            var baseAsset = new Asset();
+            Manager.Exchanges.Rates.GetAny(baseAsset);
         }
 
         [TestMethod]
         public void TestUndefineAsset()
         {
-            var baseAsset = new Asset("QWEW'WQ");
+            var baseAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Rates.GetAny(baseAsset);
 
             AssertErrorMessage(response, "Asset not found");
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130615");
         protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+
+        private Asset BaseAsset { get; } = Features.Ltc;
     }
 }

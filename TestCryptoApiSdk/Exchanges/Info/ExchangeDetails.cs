@@ -1,6 +1,6 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
@@ -10,7 +10,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [TestMethod]
         public void TestCorrect()
         {
-            var exchange = new Exchange("5b1ea9d21090c200146f7366");
+            var exchange = Features.Bittrex;
             var response = Manager.Exchanges.Info.ExchangeDetails(exchange);
 
             AssertNullErrorMessage(response);
@@ -22,20 +22,22 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [ExpectedException(typeof(ArgumentNullException), "A Exchange of null was inappropriately allowed.")]
         public void TestNull()
         {
-            Manager.Exchanges.Info.ExchangeDetails(exchange: null);
+            Exchange exchange = null;
+            Manager.Exchanges.Info.ExchangeDetails(exchange);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Exchange.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
-            Manager.Exchanges.Info.ExchangeDetails(new Exchange());
+            var exchange = new Exchange();
+            Manager.Exchanges.Info.ExchangeDetails(exchange);
         }
 
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var exchange = new Exchange("QWE'EWQ");
+            var exchange = Features.UnexistingExchange;
             var response = Manager.Exchanges.Info.ExchangeDetails(exchange);
 
             AssertErrorMessage(response, "Exchange not found");

@@ -13,7 +13,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Info.Symbols(skip: skip);
+            return Manager.Exchanges.Info.Symbols(skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)

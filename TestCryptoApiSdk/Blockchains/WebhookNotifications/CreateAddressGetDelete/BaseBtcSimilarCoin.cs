@@ -43,8 +43,9 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDele
         [TestMethod]
         public void InvalidAddress()
         {
-            var address = "qwe";
-            var response = Manager.Blockchains.WebhookNotification.CreateAddress<CreateBtcAddressWebHookResponse>(NetworkCoin, Url, address);
+            var address = "qw'e";
+            var response = Manager.Blockchains.WebhookNotification.CreateAddress<CreateBtcAddressWebHookResponse>(
+                NetworkCoin, Url, address);
 
             AssertErrorMessage(response, IsAdditionalPackagePlan
                 ? "Field 'address' is not valid"

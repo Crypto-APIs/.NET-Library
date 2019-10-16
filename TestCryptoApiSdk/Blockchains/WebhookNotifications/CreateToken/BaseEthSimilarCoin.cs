@@ -29,7 +29,7 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateToken
         public void NullUrl()
         {
             string url = null;
-            var address = "some address";
+            var address = "some add'ress";
             Manager.Blockchains.WebhookNotification.CreateToken<CreateEthAddressWebHookResponse>(NetworkCoin, url, address);
         }
 

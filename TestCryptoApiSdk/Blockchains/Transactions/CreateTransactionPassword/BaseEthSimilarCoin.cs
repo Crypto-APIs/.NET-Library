@@ -23,7 +23,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
         [TestMethod]
         public void WrongFromAddress()
         {
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Value, Password);
 
@@ -33,7 +33,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
         [TestMethod]
         public void WrongToAddress()
         {
-            var toAddress = "qwe";
+            var toAddress = "q'we";
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Value, Password);
 
@@ -43,7 +43,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
         [TestMethod]
         public void WrongPassword()
         {
-            var password = "qwe";
+            var password = "q'we";
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, password);
 
@@ -101,6 +101,6 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPassword
         protected abstract string ToAddress { get; }
         protected abstract double Value { get; }
 
-        private string Password { get; } = "123456";
+        private string Password { get; } = "1234'56";
     }
 }

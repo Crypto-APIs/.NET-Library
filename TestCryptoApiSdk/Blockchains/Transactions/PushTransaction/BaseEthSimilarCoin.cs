@@ -21,7 +21,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
         [TestMethod]
         public void WrongHexEncodedInfo()
         {
-            var hexEncodedInfo = "qwe";
+            var hexEncodedInfo = "q'we";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
 
             AssertErrorMessage(response, "invalid argument 0: json: cannot unmarshal hex string without 0x prefix into Go value of type hexutil.Bytes");
@@ -49,7 +49,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
         [ExpectedException(typeof(ArgumentNullException), "A HexEncodedInfo was inappropriately allowed.")]
         public void NullHexEncodedInfo()
         {
-            Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo: null);
+            string hexEncodedInfo = null;
+            Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

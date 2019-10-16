@@ -32,7 +32,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
         [TestMethod]
         public void WrongFromAddress()
         {
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, PrivateKey);
 
@@ -42,7 +42,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
         [TestMethod]
         public void WrongToAddress()
         {
-            var toAddress = "qwe";
+            var toAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, PrivateKey);
 
@@ -53,7 +53,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPrivateKey
         [TestMethod]
         public void TestWrongPrivateKey()
         {
-            var privateKey = "qwe";
+            var privateKey = "qw'e";
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPrivateKey<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey);
 

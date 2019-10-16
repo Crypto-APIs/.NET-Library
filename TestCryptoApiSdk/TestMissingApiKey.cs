@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 
 namespace TestCryptoApiSdk
 {
@@ -15,7 +14,7 @@ namespace TestCryptoApiSdk
         public void Test()
         {
             var response = Manager.Exchanges.Info.Exchanges();
-            AssertErrorMessage(response,"Invalid or missing API key");
+            AssertErrorMessage(response, "Invalid or missing API key");
             AssertEmptyCollection(nameof(response.Exchanges), response.Exchanges);
         }
     }

@@ -1,8 +1,7 @@
 ﻿using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Linq;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
 namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.DeleteHook
 {
@@ -43,7 +42,7 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.DeleteHook
         [TestMethod]
         public void DeleteInvalidHookId()
         {
-            var hookId = "qwe";
+            var hookId = "qw'e";
             var response = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hookId);
 
             AssertErrorMessage(response, IsAdditionalPackagePlan

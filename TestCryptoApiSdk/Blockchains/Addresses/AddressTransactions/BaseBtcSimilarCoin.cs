@@ -18,7 +18,7 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.AddressTransactions
         protected override ICollectionResponse GetSkipList(int skip)
         {
             return Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
-                NetworkCoin, Address, skip: skip);
+                NetworkCoin, Address, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -36,7 +36,7 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.AddressTransactions
         [TestMethod]
         public void InvalidAddress()
         {
-            var address = "qwe";
+            var address = "q'we";
             var response = Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
                 NetworkCoin, address);
 
@@ -47,7 +47,9 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.AddressTransactions
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void NullAddress()
         {
-            Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(NetworkCoin, null);
+            string address = null;
+            Manager.Blockchains.Address.GetAddressTransactions<GetBtcAddressTransactionsResponse>(
+                NetworkCoin, address);
         }
 
         protected abstract string Address { get; }

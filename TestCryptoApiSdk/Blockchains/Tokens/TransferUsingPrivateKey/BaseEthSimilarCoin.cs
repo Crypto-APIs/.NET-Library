@@ -55,7 +55,7 @@ namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPrivateKey
         [TestMethod]
         public void InvalidToAddress()
         {
-            var toAddress = "123";
+            var toAddress = "12'3";
             double gasPrice = 11500000000;
             double gasLimit = 60000;
             double amount = 115;

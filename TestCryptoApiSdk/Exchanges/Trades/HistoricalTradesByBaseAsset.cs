@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(BaseAsset, skip: skip);
+            return Manager.Exchanges.Trades.Historical(BaseAsset, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,20 +33,22 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset of null was inappropriately allowed.")]
         public void TestNullBaseAsset()
         {
-            Manager.Exchanges.Trades.Historical(baseAsset: null);
+            Asset baseAsset = null;
+            Manager.Exchanges.Trades.Historical(baseAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset.Id of null was inappropriately allowed.")]
         public void TestNullBaseAssetId()
         {
-            Manager.Exchanges.Trades.Historical(new Asset());
+            var baseAsset = new Asset();
+            Manager.Exchanges.Trades.Historical(baseAsset);
         }
 
         [TestMethod]
         public void TestIncorrectBaseAsset()
         {
-            var baseAsset = new Asset("QWE'EWQ1");
+            var baseAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Trades.Historical(baseAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -59,6 +61,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612");
+        private Asset BaseAsset { get; } = Features.Bch;
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] //todo: note #7
     [TestClass]
     public class HistoricalTradesByAssetPair : BaseCollectionTest
     {
@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(BaseAsset, QuoteAsset, skip: skip);
+            return Manager.Exchanges.Trades.Historical(BaseAsset, QuoteAsset, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,34 +33,38 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset of null was inappropriately allowed.")]
         public void TestNullBaseAsset()
         {
-            Manager.Exchanges.Trades.Historical(baseAsset: null, quoteAsset: QuoteAsset);
+            Asset baseAsset = null;
+            Manager.Exchanges.Trades.Historical(baseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Quote of null was inappropriately allowed.")]
         public void TestNullQuoteAsset()
         {
-            Manager.Exchanges.Trades.Historical(BaseAsset, quoteAsset: null);
+            Asset quoteAsset = null;
+            Manager.Exchanges.Trades.Historical(BaseAsset, quoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A BaseAsset.Id of null was inappropriately allowed.")]
         public void TestNullBaseAssetId()
         {
-            Manager.Exchanges.Trades.Historical(new Asset(), QuoteAsset);
+            var baseAsset = new Asset();
+            Manager.Exchanges.Trades.Historical(baseAsset, QuoteAsset);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A QuoteAsset.Id of null was inappropriately allowed.")]
         public void TestNullQuoteAssetId()
         {
-            Manager.Exchanges.Trades.Historical(BaseAsset, new Asset());
+            var quoteAsset = new Asset();
+            Manager.Exchanges.Trades.Historical(BaseAsset, quoteAsset);
         }
 
         [TestMethod]
         public void TestIncorrectBaseAsset()
         {
-            var baseAsset = new Asset("QWE'EWQ1");
+            var baseAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Trades.Historical(baseAsset, QuoteAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -73,7 +77,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         [TestMethod]
         public void TestIncorrectQuoteAsset()
         {
-            var quoteAsset = new Asset("QWE'EWQ1");
+            var quoteAsset = Features.UnexistingAsset;
             var response = Manager.Exchanges.Trades.Historical(BaseAsset, quoteAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -86,7 +90,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612");
-        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130615");
+        private Asset BaseAsset { get; } = Features.Btc;
+        private Asset QuoteAsset { get; } = Features.Doge;
     }
 }

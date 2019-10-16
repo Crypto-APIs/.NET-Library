@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] // todo: note #8
     [TestClass]
     public class HistoricalTradesByAssetPairAndExchangeStartDateEndDate : BaseCollectionTest
     {
@@ -17,7 +17,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(Exchange, BaseAsset, QuoteAsset, StartPeriod, EndPeriod, skip: skip);
+            return Manager.Exchanges.Trades.Historical(Exchange, BaseAsset, QuoteAsset, StartPeriod, EndPeriod, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -39,7 +39,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
+                AssertErrorMessage(response, 
+                    "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
@@ -69,9 +70,9 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7366"); // Bittrex
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612"); // BTC
-        private Asset QuoteAsset { get; } = new Asset("5b1ea92e584bf50020130616"); // LTC
+        private Exchange Exchange { get; } = Features.Bittrex;
+        private Asset BaseAsset { get; } = Features.Bch;
+        private Asset QuoteAsset { get; } = Features.Ltc;
         private DateTime StartPeriod { get; } = new DateTime(2019, 06, 01);
         private DateTime EndPeriod { get; } = new DateTime(2019, 06, 10);
     }

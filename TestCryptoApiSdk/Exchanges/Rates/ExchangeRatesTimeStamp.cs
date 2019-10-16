@@ -1,11 +1,11 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
-    [Ignore]
+    [Ignore] // todo: note #4
     [TestClass]
     public class ExchangeRatesTimeStamp : BaseCollectionTest
     {
@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Rates
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Rates.GetAny(BaseAsset, TimeStamp, skip: skip);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, TimeStamp, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -45,11 +45,12 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var timeStamp = new DateTime(1960, 01, 01);
             var response = Manager.Exchanges.Rates.GetAny(BaseAsset, timeStamp);
 
-            AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
+            AssertErrorMessage(response,
+                "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130615");
+        private Asset BaseAsset { get; } = Features.Ltc;
         private DateTime TimeStamp { get; } = new DateTime(2019, 02, 03);
     }
 }

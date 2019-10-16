@@ -1,11 +1,11 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Rates
 {
-    [Ignore]
+    [Ignore] // todo: note #3
     [TestClass]
     public class ExchangeRatesInExchangeTimestamp : BaseCollectionTest
     {
@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Rates
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Rates.GetAny(BaseAsset, Exchange, TimeStamp, skip: skip);
+            return Manager.Exchanges.Rates.GetAny(BaseAsset, Exchange, TimeStamp, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -49,8 +49,8 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }
 
-        private Asset BaseAsset { get; } = new Asset("5b755dacd5dd99000b3d92b2");
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7366");
+        private Asset BaseAsset { get; } = Features.Ltc;
+        private Exchange Exchange { get; } = Features.Bittrex;
         private DateTime TimeStamp { get; } = new DateTime(2019, 02, 03);
     }
 }

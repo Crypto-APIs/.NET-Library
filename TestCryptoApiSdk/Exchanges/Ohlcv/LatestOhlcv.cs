@@ -22,20 +22,22 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
         [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
         public void TestNullSymbol()
         {
-            Manager.Exchanges.Ohlcv.Latest(symbol: null, period: Period);
+            Symbol symbol = null;
+            Manager.Exchanges.Ohlcv.Latest(symbol, Period);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
         public void TestNullSymbolId()
         {
-            Manager.Exchanges.Ohlcv.Latest(new Symbol(), Period);
+            var symbol = new Symbol();
+            Manager.Exchanges.Ohlcv.Latest(symbol, Period);
         }
 
         [TestMethod]
         public void TestIncorrectSymbol()
         {
-            var symbol = new Symbol("QWE'EWQ1");
+            var symbol = Features.UnexistingSymbol;
             var period = new Period("1day");
             var response = Manager.Exchanges.Ohlcv.Latest(symbol, period);
 
@@ -47,14 +49,16 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
         [ExpectedException(typeof(ArgumentNullException), "A Period of null was inappropriately allowed.")]
         public void TestNullPeriod()
         {
-            Manager.Exchanges.Ohlcv.Latest(Symbol, period: null);
+            Period period = null;
+            Manager.Exchanges.Ohlcv.Latest(Symbol, period);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Period.Id of null was inappropriately allowed.")]
         public void TestNullPeriodId()
         {
-            Manager.Exchanges.Ohlcv.Latest(Symbol, new Period());
+            var period = new Period();
+            Manager.Exchanges.Ohlcv.Latest(Symbol, period);
         }
 
         [TestMethod]
@@ -69,7 +73,7 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
 
         protected override bool IsPerhapsNotAnExactMatch => true;
 
-        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0b");
+        private Symbol Symbol { get; } = Features.BtcLtc;
         private Period Period { get; } = new Period("1day");
     }
 }

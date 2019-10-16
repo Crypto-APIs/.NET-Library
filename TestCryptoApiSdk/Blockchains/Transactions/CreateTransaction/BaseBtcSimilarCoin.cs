@@ -34,7 +34,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
         {
             var inputAddresses = new List<TransactionAddress>
             {
-                new TransactionAddress("qwe", 0.54),
+                new TransactionAddress("qw'e", 0.54),
             };
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, inputAddresses, OutputAddresses, Fee);
@@ -47,7 +47,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
         {
             var outputAddresses = new List<TransactionAddress>
             {
-                new TransactionAddress("qwe", 0.54),
+                new TransactionAddress("q'we", 0.54),
             };
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, outputAddresses, Fee);
@@ -123,16 +123,17 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransaction
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A Fee was inappropriately allowed.")]
         public void InvalidFee()
         {
+            var fee = new Fee(-1);
             Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
-                NetworkCoin, InputAddresses, OutputAddresses, new Fee(-1));
+                NetworkCoin, InputAddresses, OutputAddresses, fee);
         }
 
         [TestMethod]
         public void FeeTooMuch()
         {
-            var fee = int.MaxValue;
+            var fee = new Fee(int.MaxValue);
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
-                NetworkCoin, InputAddresses, OutputAddresses, new Fee(fee));
+                NetworkCoin, InputAddresses, OutputAddresses, fee);
 
             AssertErrorMessage(response, 
                 $"Not enough balance in '{InputAddressesDictionary.First().Key}' available '0.00000000', but needed is '753013747.08000000' (including fee)");

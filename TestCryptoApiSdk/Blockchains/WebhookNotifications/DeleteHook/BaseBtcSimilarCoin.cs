@@ -43,7 +43,7 @@ namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.DeleteHook
         [TestMethod]
         public void DeleteInvalidHookId()
         {
-            var hookId = "qwe";
+            var hookId = "qw'e";
             var response = Manager.Blockchains.WebhookNotification.Delete<DeleteWebhookResponse>(NetworkCoin, hookId);
 
             AssertErrorMessage(response, IsAdditionalPackagePlan

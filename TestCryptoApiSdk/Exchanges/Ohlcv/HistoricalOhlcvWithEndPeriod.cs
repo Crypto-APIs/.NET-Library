@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApiSdk.Exchanges.Ohlcv
 {
-    [Ignore]
+    [Ignore] // todo: note #1
     [TestClass]
     public class HistoricalOhlcvWithEndPeriod : BaseCollectionTest
     {
@@ -53,7 +53,7 @@ namespace TestCryptoApiSdk.Exchanges.Ohlcv
             }
         }
 
-        private Symbol Symbol { get; } = new Symbol("5bfc32a29c40a100014dc5f6");
+        private Symbol Symbol { get; } = Features.BtcLtc;
         private Period Period { get; } = new Period("1day");
         private DateTime StartPeriod { get; } = new DateTime(2019, 04, 15);
         private DateTime EndPeriod { get; } = new DateTime(2019, 10, 01);

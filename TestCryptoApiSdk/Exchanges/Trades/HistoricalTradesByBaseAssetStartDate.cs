@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(BaseAsset, StartPeriod, skip: skip);
+            return Manager.Exchanges.Trades.Historical(BaseAsset, StartPeriod, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -58,7 +58,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Asset BaseAsset { get; } = new Asset("5b1ea92e584bf50020130612");
+        private Asset BaseAsset { get; } = Features.Bch;
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
     }
 }

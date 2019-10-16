@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(Exchange, skip: skip);
+            return Manager.Exchanges.Trades.Historical(Exchange, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,20 +33,22 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         [ExpectedException(typeof(ArgumentNullException), "An Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
-            Manager.Exchanges.Trades.Historical(exchange: null);
+            Exchange exchange = null;
+            Manager.Exchanges.Trades.Historical(exchange);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Exchange.Id of null was inappropriately allowed.")]
         public void TestNullExchangeId()
         {
-            Manager.Exchanges.Trades.Historical(new Exchange());
+            var exchange = new Exchange();
+            Manager.Exchanges.Trades.Historical(exchange);
         }
 
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var exchange = new Exchange("QWE'EWQ1");
+            var exchange = Features.UnexistingExchange;
             var response = Manager.Exchanges.Trades.Historical(exchange);
 
             if (AssertAdditionalPackagePlan(response))
@@ -59,6 +61,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7362");
+        private Exchange Exchange { get; } = Features.Poloniex;
     }
 }

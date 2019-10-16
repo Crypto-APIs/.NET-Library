@@ -16,7 +16,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(Exchange, StartPeriod, skip: skip);
+            return Manager.Exchanges.Trades.Historical(Exchange, StartPeriod, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -37,7 +37,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
+                AssertErrorMessage(response, 
+                    "Your package plan includes only 365 days historical data. Please contact us if you need more or upgrade your plan.");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
@@ -58,7 +59,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7362");
+        private Exchange Exchange { get; } = Features.Bitstamp;
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
     }
 }

@@ -40,7 +40,8 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
                     h.Id.Equals(paymentId, StringComparison.OrdinalIgnoreCase)),
                     $"Collection must contains paymentId='{paymentId}'");
 
-                var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments<GetEthHistoricalPaymentsResponse>(NetworkCoin);
+                var getHistoricalResponse = Manager.Blockchains.PaymentForwarding.GetHistoricalPayments<GetEthHistoricalPaymentsResponse>(
+                    NetworkCoin);
                 AssertNullErrorMessage(getHistoricalResponse);
                 AssertNotEmptyCollection(nameof(getHistoricalResponse.Payments), getHistoricalResponse.Payments);
                 Assert.IsNotNull(getHistoricalResponse.Payments.FirstOrDefault(h =>
@@ -64,7 +65,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, fromAddress, ToAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
@@ -77,7 +78,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var toAddress = "qwe";
+            var toAddress = "q'we";
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, toAddress, CallbackUrl, Password, Confirmations, GasPrice, GasLimit);
 
@@ -91,7 +92,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var callbackUrl = "qwe";
+            var callbackUrl = "q'we";
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, callbackUrl, Password, Confirmations, GasPrice, GasLimit); // todo: I don't know what password
 
@@ -104,7 +105,7 @@ namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
             if (!IsAdditionalPackagePlan)
                 return;
 
-            var password = "qwe";
+            var password = "q'we";
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, password, Confirmations, GasPrice, GasLimit);
 

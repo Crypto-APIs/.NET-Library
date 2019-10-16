@@ -17,7 +17,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(Symbol, StartPeriod, EndPeriod, skip: skip);
+            return Manager.Exchanges.Trades.Historical(Symbol, StartPeriod, EndPeriod, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -69,7 +69,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
 
-        private Symbol Symbol { get; } = new Symbol("5b7add17b2fc9a000157cc0a");
+        private Symbol Symbol { get; } = Features.BtcLtc;
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
         private DateTime EndPeriod { get; } = new DateTime(2019, 05, 10);
     }

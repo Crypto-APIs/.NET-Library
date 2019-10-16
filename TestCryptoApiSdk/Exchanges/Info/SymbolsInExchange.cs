@@ -1,11 +1,10 @@
-﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisSdkLibrary.DataTypes;
 using CryptoApisSdkLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApiSdk.Exchanges.Info
 {
-    [Ignore]
     [TestClass]
     public class SymbolsInExchange : BaseCollectionTest
     {
@@ -16,7 +15,7 @@ namespace TestCryptoApiSdk.Exchanges.Info
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Info.SymbolsInExchange(Exchange, skip: skip);
+            return Manager.Exchanges.Info.SymbolsInExchange(Exchange, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -33,26 +32,28 @@ namespace TestCryptoApiSdk.Exchanges.Info
         [ExpectedException(typeof(ArgumentNullException), "An Exchange of null was inappropriately allowed.")]
         public void TestNullExchange()
         {
-            Manager.Exchanges.Info.SymbolsInExchange(exchange: null);
+            Exchange exchange = null;
+            Manager.Exchanges.Info.SymbolsInExchange(exchange);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "An Exchange.Id of null was inappropriately allowed.")]
         public void TestNullId()
         {
-            Manager.Exchanges.Info.SymbolsInExchange(new Exchange());
+            var exchange = new Exchange();
+            Manager.Exchanges.Info.SymbolsInExchange(exchange);
         }
 
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var exchange = new Exchange("QWEE'WQ1");
+            var exchange = Features.UnexistingExchange;
             var response = Manager.Exchanges.Info.SymbolsInExchange(exchange);
 
             AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Infos), response.Infos);
         }
 
-        private Exchange Exchange { get; } = new Exchange("5b1ea9d21090c200146f7366");
+        private Exchange Exchange { get; } = Features.Bittrex;
     }
 }

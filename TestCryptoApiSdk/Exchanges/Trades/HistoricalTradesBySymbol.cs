@@ -15,7 +15,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Exchanges.Trades.Historical(Symbol, skip: skip);
+            return Manager.Exchanges.Trades.Historical(Symbol, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -32,20 +32,22 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         [ExpectedException(typeof(ArgumentNullException), "A Symbol of null was inappropriately allowed.")]
         public void TestNullSymbol()
         {
-            Manager.Exchanges.Trades.Historical(symbol: null);
+            Symbol symbol = null;
+            Manager.Exchanges.Trades.Historical(symbol);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Symbol.Id of null was inappropriately allowed.")]
         public void TestNullSymbolId()
         {
-            Manager.Exchanges.Trades.Historical(new Symbol());
+            var symbol = new Symbol();
+            Manager.Exchanges.Trades.Historical(symbol);
         }
 
         [TestMethod]
         public void TestIncorrectSymbol()
         {
-            var symbol = new Symbol("QWE'EWQ1");
+            var symbol = Features.UnexistingSymbol;
             var response = Manager.Exchanges.Trades.Historical(symbol);
 
             if (AssertAdditionalPackagePlan(response))
@@ -58,6 +60,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
         //        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
-        private Symbol Symbol { get; } = new Symbol("5bfc325d9c40a100014db900");
+        private Symbol Symbol { get; } = Features.BtcLtc;
     }
 }

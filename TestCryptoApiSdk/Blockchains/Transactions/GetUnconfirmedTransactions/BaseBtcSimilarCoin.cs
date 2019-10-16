@@ -13,7 +13,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetUnconfirmedTransactions
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Transaction.GetUnconfirmedTransactions<GetUnconfirmedTransactionsResponse>(NetworkCoin, skip: skip);
+            return Manager.Blockchains.Transaction.GetUnconfirmedTransactions<GetUnconfirmedTransactionsResponse>(NetworkCoin, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)

@@ -12,7 +12,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
         [TestMethod]
         public void InvalidBlockHeight()
         {
-            var response = Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHash: "qwe");
+            var blockHash = "qw'e";
+            var response = Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHash);
 
             AssertErrorMessage(response, "Transaction not found");
         }
@@ -21,7 +22,8 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
         [ExpectedException(typeof(ArgumentOutOfRangeException), "A BlockHash was inappropriately allowed.")]
         public void BlockHashOutOfRange()
         {
-            Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHash: "");
+            string blockHash = null;
+            Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, blockHash);
         }
 
         protected override ICollectionResponse GetAllList()
@@ -31,7 +33,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
 
         protected override ICollectionResponse GetSkipList(int skip)
         {
-            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHash, skip: skip);
+            return Manager.Blockchains.Transaction.GetInfos<GetBtcTransactionInfosResponse>(NetworkCoin, BlockHash, skip);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
@@ -48,7 +50,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
         public override void SkipTooLarge()
         {
             var skip = 20000000;
-            var response = GetSkipList(skip: skip);
+            var response = GetSkipList(skip);
 
             Assert.IsNotNull(response, $"'{nameof(response)}' must not be null");
             Assert.IsFalse(

@@ -30,6 +30,7 @@ namespace CryptoApisSdkLibrary.DataTypes
         public static EthSimilarNetwork Mainnet => new EthSimilarNetwork("mainnet");
         public static EthSimilarNetwork Ropsten => new EthSimilarNetwork("ropsten");
         public static EthSimilarNetwork Rinkeby => new EthSimilarNetwork("rinkeby");
+        public static EthSimilarNetwork Morden => new EthSimilarNetwork("morden");
 
         private EthSimilarNetwork(string value) : base(value)
         {

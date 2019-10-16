@@ -12,7 +12,7 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.MultisignatureAddress
         [TestMethod]
         public void TestInvalidAddress()
         {
-            var address = "qwe";
+            var address = "qw'e";
             var response = Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
                 NetworkCoin, address);
 
@@ -23,8 +23,9 @@ namespace TestCryptoApiSdk.Blockchains.Addresses.MultisignatureAddress
         [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
         public void TestBtcNullAddress()
         {
+            string address = null;
             Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
-                NetworkCoin, null);
+                NetworkCoin, address);
         }
 
         protected override ICollectionResponse GetAllList()

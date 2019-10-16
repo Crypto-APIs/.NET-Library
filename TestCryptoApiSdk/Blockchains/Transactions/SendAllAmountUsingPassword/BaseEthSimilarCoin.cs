@@ -22,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
         [TestMethod]
         public void WrongFromAddress()
         {
-            var fromAddress = "qwe";
+            var fromAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, fromAddress, ToAddress, Password);
 
@@ -32,7 +32,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
         [TestMethod]
         public void WrongToAddress()
         {
-            var toAddress = "qwe";
+            var toAddress = "qw'e";
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, toAddress, Password);
 
@@ -42,7 +42,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
         [TestMethod]
         public void WrongPassword()
         {
-            var password = "qwe";
+            var password = "qw'e";
             var response = Manager.Blockchains.Transaction.SendAllAmountUsingPassword<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, password);
 

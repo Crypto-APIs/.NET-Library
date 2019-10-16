@@ -22,7 +22,7 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendTransaction
         [TestMethod]
         public void WrongHexEncodedInfo()
         {
-            var hexEncodedInfo = "qwe";
+            var hexEncodedInfo = "qw'e";
             var response = Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
                 NetworkCoin, hexEncodedInfo);
 
@@ -33,8 +33,9 @@ namespace TestCryptoApiSdk.Blockchains.Transactions.SendTransaction
         [ExpectedException(typeof(ArgumentNullException), "A HexEncodedInfo was inappropriately allowed.")]
         public void NullHexEncodedInfo()
         {
+            string hexEncodedInfo = null;
             Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
-                NetworkCoin, hexEncodedInfo: null);
+                NetworkCoin, hexEncodedInfo);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }
