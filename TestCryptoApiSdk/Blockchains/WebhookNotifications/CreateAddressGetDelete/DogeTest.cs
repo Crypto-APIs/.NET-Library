@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDelete
+namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateAddressGetDelete
 {
     [TestClass]
     public class DogeTest : BaseBtcSimilarCoin

@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHash
+namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHash
 {
     [TestClass]
     public class LtcTest : BaseBtcSimilarCoin

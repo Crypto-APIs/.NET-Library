@@ -1,11 +1,11 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] //todo: note #7
+    [Ignore] //todo: note #10
     [TestClass]
     public class HistoricalTradesByAssetPair : BaseCollectionTest
     {
@@ -91,6 +91,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Asset BaseAsset { get; } = Features.Btc;
-        private Asset QuoteAsset { get; } = Features.Doge;
+        private Asset QuoteAsset { get; } = Features.Usd;
     }
 }

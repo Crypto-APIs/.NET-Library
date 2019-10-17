@@ -1,9 +1,9 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Info
+namespace TestCryptoApis.Exchanges.Info
 {
     [TestClass]
     public class ExchangesSupportingPairs : BaseCollectionTest

@@ -1,12 +1,12 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.DataTypes.Exceptions;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.DataTypes.Exceptions;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] // todo: note #9
     [TestClass]
     public class HistoricalTradesByBaseAssetStartDateEndDate : BaseCollectionTest
     {

@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
+namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHeight
 {
     [TestClass]
     public class DashTest : BaseBtcSimilarCoin

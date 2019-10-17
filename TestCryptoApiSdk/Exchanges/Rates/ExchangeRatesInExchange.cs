@@ -1,11 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Rates
+namespace TestCryptoApis.Exchanges.Rates
 {
-    [Ignore] // todo: note #3
     [TestClass]
     public class ExchangeRatesInExchange : BaseCollectionTest
     {
@@ -78,7 +77,7 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             var exchange = Features.UnexistingExchange;
             var response = Manager.Exchanges.Rates.GetAny(BaseAsset, exchange);
 
-            AssertErrorMessage(response, "Asset not found");
+            AssertErrorMessage(response, "We are facing technical issues, please try again later");
             AssertEmptyCollection(nameof(response.Rates), response.Rates);
         }
 

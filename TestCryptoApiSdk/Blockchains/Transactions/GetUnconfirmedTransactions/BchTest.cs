@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.GetUnconfirmedTransactions
+namespace TestCryptoApis.Blockchains.Transactions.GetUnconfirmedTransactions
 {
     [Ignore]
     [TestClass]

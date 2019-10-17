@@ -1,11 +1,11 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransactionHd
+namespace TestCryptoApis.Blockchains.Transactions.NewTransactionHd
 {
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest

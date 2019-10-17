@@ -1,6 +1,6 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 
-namespace TestCryptoApiSdk
+namespace TestCryptoApis
 {
     internal static class Features
     {

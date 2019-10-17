@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.GetUnconfirmedTransactions
+namespace TestCryptoApis.Blockchains.Transactions.GetUnconfirmedTransactions
 {
     public abstract class BaseBtcSimilarCoin : BaseCollectionTest
     {

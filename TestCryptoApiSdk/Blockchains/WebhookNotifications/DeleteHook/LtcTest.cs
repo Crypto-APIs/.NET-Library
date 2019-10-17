@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.DeleteHook
+namespace TestCryptoApis.Blockchains.WebhookNotifications.DeleteHook
 {
     [TestClass]
     public class LtcTest : BaseBtcSimilarCoin

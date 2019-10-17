@@ -1,10 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Blockchains.Addresses.MultisignatureAddress
+namespace TestCryptoApis.Blockchains.Addresses.MultisignatureAddress
 {
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseCollectionTestWithoutSkip

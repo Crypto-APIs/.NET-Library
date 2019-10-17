@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPrivateKey
+namespace TestCryptoApis.Blockchains.Tokens.TransferUsingPrivateKey
 {
     [TestClass]
     public class EtcMorden : TransferUsingPassword.BaseEthSimilarCoin

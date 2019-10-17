@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Rates
+namespace TestCryptoApis.Exchanges.Rates
 {
     [TestClass]
     public class ExchangeRate : BaseTest
@@ -29,7 +29,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
             Assert.AreEqual(QuoteAsset.Id, response.ExchangeRate.BaseAssetId);
         }
 
-        [Ignore] //todo: note #5
         [TestMethod]
         public void TestUsdBtcTimeStamp()
         {

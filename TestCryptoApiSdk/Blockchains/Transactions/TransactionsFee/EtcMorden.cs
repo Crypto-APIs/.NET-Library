@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.TransactionsFee
+namespace TestCryptoApis.Blockchains.Transactions.TransactionsFee
 {
     [TestClass]
     public class EtcMorden : BaseEthSimilarCoin

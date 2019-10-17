@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: check IsPerhapsNotAnExactMatch flag
     [TestClass]
     public class LatestBaseAssetTrades : BaseCollectionTest
     {
@@ -55,6 +53,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             AssertErrorMessage(response, "We are facing technical issues, please try again later");
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }
+
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Asset BaseAsset { get; } = Features.Btc;
     }

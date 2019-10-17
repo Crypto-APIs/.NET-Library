@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAddress
+namespace TestCryptoApis.Blockchains.Addresses.GenerateAddress
 {
     [TestClass]
     public class DogeTest : BaseBtcSimilarCoin

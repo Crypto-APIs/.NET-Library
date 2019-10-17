@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Tokens.GetBalance
+namespace TestCryptoApis.Blockchains.Tokens.GetBalance
 {
     [TestClass]
     public class EtcMorden : BaseEthSimilarCoin

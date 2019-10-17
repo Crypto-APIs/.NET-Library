@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.SendAllAmountUsingPassword
+namespace TestCryptoApis.Blockchains.Transactions.SendAllAmountUsingPassword
 {
     [TestClass]
     public class EthRinkeby : BaseEthSimilarCoin

@@ -1,10 +1,10 @@
-﻿using CryptoApisSdkLibrary.ResponseTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CryptoApisLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk
+namespace TestCryptoApis
 {
     [TestClass]
     public abstract class BaseCollectionTest : BaseCollectionTestWithoutSkip
@@ -31,10 +31,7 @@ namespace TestCryptoApiSdk
             var skip = 20000000;
             var response = GetSkipList(skip: skip);
 
-            Assert.IsNotNull(response, $"'{nameof(response)}' must not be null");
-            Assert.IsTrue(
-                string.IsNullOrEmpty(response.ErrorMessage),
-                $"'{nameof(response.ErrorMessage)}' must be null");
+            AssertNullErrorMessage(response);
             AssertEmptyCollection(nameof(response.Items), response.Items);
         }
 
@@ -47,17 +44,13 @@ namespace TestCryptoApiSdk
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(SkipList.ErrorMessage), 
-                    $"'{nameof(SkipList.ErrorMessage)}' must not be null");
+                AssertNullErrorMessage(SkipList);
                 CheckSkip(AllList.Items, SkipList.Items, SkipList.Meta, Skip.Value, DefaultLimit);
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(SkipList.ErrorMessage),
-                    $"'{nameof(SkipList.ErrorMessage)}' must be null");
-                Assert.AreEqual(
-                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
-                    SkipList.ErrorMessage);
+                AssertErrorMessage(SkipList, 
+                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 
@@ -70,17 +63,13 @@ namespace TestCryptoApiSdk
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(SkipAndLimitList.ErrorMessage),
-                    $"'{nameof(SkipAndLimitList.ErrorMessage)}' must not be null");
+                AssertNullErrorMessage(SkipAndLimitList);
                 CheckSkipAndLimit(AllList.Items, SkipAndLimitList.Items, SkipAndLimitList.Meta, Skip.Value, Limit.Value);
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(SkipAndLimitList.ErrorMessage),
-                    $"'{nameof(SkipAndLimitList.ErrorMessage)}' must be null");
-                Assert.AreEqual(
-                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
-                    SkipAndLimitList.ErrorMessage);
+                AssertErrorMessage(SkipAndLimitList,
+                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 
@@ -120,7 +109,7 @@ namespace TestCryptoApiSdk
 
             for (var i = 0; i < all.Count - skip; i++)
             {
-                Assert.AreEqual(all[i + skip], actual[i], "Skip failed");
+                Assert.AreEqual(all[i + skip], actual[i], $"Skip failed, items (skip index={i}) are not equal");
             }
         }
 

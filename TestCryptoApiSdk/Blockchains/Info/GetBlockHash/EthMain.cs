@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHash
+namespace TestCryptoApis.Blockchains.Info.GetBlockHash
 {
     [TestClass]
     public class EthMain : BaseEthSimilarCoin

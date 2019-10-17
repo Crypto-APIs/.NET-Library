@@ -1,9 +1,9 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Blockchains.Tokens.TransferUsingPrivateKey
+namespace TestCryptoApis.Blockchains.Tokens.TransferUsingPrivateKey
 {
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseTest

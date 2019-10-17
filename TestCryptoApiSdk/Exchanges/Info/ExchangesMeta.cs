@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.ResponseTypes;
+﻿using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Info
+namespace TestCryptoApis.Exchanges.Info
 {
     [TestClass]
     public class ExchangesMeta : BaseCollectionTest

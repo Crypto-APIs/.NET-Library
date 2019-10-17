@@ -1,13 +1,12 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Rates
+namespace TestCryptoApis.Exchanges.Rates
 {
     [TestClass]
     public class ExchangeRateInExchange : BaseTest
     {
-        [Ignore] // todo: note #2
         [TestMethod]
         public void TestBtcLtc()
         {
@@ -15,14 +14,13 @@ namespace TestCryptoApiSdk.Exchanges.Rates
 
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Rate, $"{nameof(response.Rate)} must not be null");
-            Assert.AreEqual(BaseAsset.Id, response.Rate.BaseAssetId);
+            Assert.AreEqual(BaseAsset.Id, response.Rate.BaseAssetId, true);
         }
 
-        [Ignore] // todo: note #2
         [TestMethod]
         public void TestBtcLtcTimeStamp()
         {
-            var timeStamp = new DateTime(2019, 02, 03);
+            var timeStamp = new DateTime(2019, 09, 23);
             var response = Manager.Exchanges.Rates.GetOne(BaseAsset, QuoteAsset, Exchange, timeStamp);
 
             AssertNullErrorMessage(response);

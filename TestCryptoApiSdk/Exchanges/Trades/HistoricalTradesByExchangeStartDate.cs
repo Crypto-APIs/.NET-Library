@@ -1,11 +1,11 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] //todo: note #12
     [TestClass]
     public class HistoricalTradesByExchangeStartDate : BaseCollectionTest
     {
@@ -57,9 +57,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Exchange Exchange { get; } = Features.Bitstamp;
-        private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
+        private DateTime StartPeriod { get; } = new DateTime(2019, 09, 23);
     }
 }

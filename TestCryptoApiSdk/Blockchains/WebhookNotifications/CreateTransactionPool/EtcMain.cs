@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateTransactionPool
+namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateTransactionPool
 {
     [TestClass]
     public class EtcMain : BaseEthSimilarCoin

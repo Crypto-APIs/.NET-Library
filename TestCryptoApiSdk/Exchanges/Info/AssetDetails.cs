@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Info
+namespace TestCryptoApis.Exchanges.Info
 {
     [TestClass]
     public class AssetDetails : BaseTest

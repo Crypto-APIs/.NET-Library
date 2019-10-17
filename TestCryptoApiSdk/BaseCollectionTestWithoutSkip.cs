@@ -1,10 +1,10 @@
-﻿using CryptoApisSdkLibrary.ResponseTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CryptoApisLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk
+namespace TestCryptoApis
 {
     [TestClass]
     public abstract class BaseCollectionTestWithoutSkip : BaseTest
@@ -25,31 +25,27 @@ namespace TestCryptoApiSdk
 
         private void AssertAllItems()
         {
-            Assert.IsNotNull(AllList);
+            Assert.IsNotNull(AllList, $"'{nameof(AllList)}' must not be null");
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(AllList.ErrorMessage),
-                    $"'{nameof(AllList.ErrorMessage)}' must be null");
+                AssertNullErrorMessage(AllList);
                 CheckMeta(AllList.Meta, DefaultLimit);
 
                 if (AllList.Meta.Results > 0)
                 {
                     Assert.IsNotNull(AllList.Items, $"'{nameof(AllList.Items)}' must not be null");
-                    Assert.IsTrue(AllList.Items.Any(), "Collection must not be empty");
+                    AssertNotEmptyCollection("AllList", AllList.Items);
                 }
                 else
                 {
-                    AssertEmptyCollection(nameof(AllList.Items), AllList.Items);
+                    AssertEmptyCollection("AllList", AllList.Items);
                 }
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(AllList.ErrorMessage),
-                    $"'{nameof(AllList.ErrorMessage)}' must be null");
-                Assert.AreEqual(
-                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
-                    AllList.ErrorMessage);
+                AssertErrorMessage(AllList,
+                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 
@@ -62,17 +58,13 @@ namespace TestCryptoApiSdk
 
             if (IsNeedAdditionalPackagePlan && IsAdditionalPackagePlan || !IsNeedAdditionalPackagePlan)
             {
-                Assert.IsTrue(string.IsNullOrEmpty(LimitList.ErrorMessage),
-                    $"'{nameof(LimitList.ErrorMessage)}' must not be null");
+                AssertNullErrorMessage(LimitList);
                 CheckLimit(AllList.Items, LimitList.Items, LimitList.Meta, Limit.Value);
             }
             else
             {
-                Assert.IsFalse(string.IsNullOrEmpty(LimitList.ErrorMessage),
-                    $"'{nameof(LimitList.ErrorMessage)}' must be null");
-                Assert.AreEqual(
-                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.",
-                    LimitList.ErrorMessage);
+                AssertErrorMessage(LimitList, 
+                    "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
 
@@ -108,7 +100,7 @@ namespace TestCryptoApiSdk
 
             for (var i = 0; i < actual.Count; i++)
             {
-                Assert.AreEqual(all[i], actual[i], $"Limit failed");
+                Assert.AreEqual(all[i], actual[i], $"Limit failed, items are not equal");
             }
         }
 

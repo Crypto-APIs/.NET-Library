@@ -1,11 +1,10 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: похоже, нужен IsPerhapsNotAnExactMatch. Проанализировать Fiddler'ом запросы
     [TestClass]
     public class HistoricalTradesBySymbol : BaseCollectionTest
     {
@@ -59,7 +58,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Symbol Symbol { get; } = Features.BtcLtc;
     }

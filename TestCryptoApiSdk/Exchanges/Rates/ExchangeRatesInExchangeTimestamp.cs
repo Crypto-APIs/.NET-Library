@@ -1,11 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace TestCryptoApiSdk.Exchanges.Rates
+namespace TestCryptoApis.Exchanges.Rates
 {
-    [Ignore] // todo: note #3
     [TestClass]
     public class ExchangeRatesInExchangeTimestamp : BaseCollectionTest
     {
@@ -51,6 +50,6 @@ namespace TestCryptoApiSdk.Exchanges.Rates
 
         private Asset BaseAsset { get; } = Features.Ltc;
         private Exchange Exchange { get; } = Features.Bittrex;
-        private DateTime TimeStamp { get; } = new DateTime(2019, 02, 03);
+        private DateTime TimeStamp { get; } = new DateTime(2019, 09, 23);
     }
 }

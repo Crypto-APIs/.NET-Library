@@ -1,12 +1,11 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.DataTypes.Exceptions;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.DataTypes.Exceptions;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: note #8
     [TestClass]
     public class HistoricalTradesByAssetPairAndExchangeStartDateEndDate : BaseCollectionTest
     {
@@ -54,7 +53,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             if (AssertAdditionalPackagePlan(response))
             {
                 AssertNullErrorMessage(response);
-                AssertEmptyCollection(nameof(response.Trades), response.Trades);
+                AssertNotEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
 
@@ -68,12 +67,11 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Exchange Exchange { get; } = Features.Bittrex;
-        private Asset BaseAsset { get; } = Features.Bch;
-        private Asset QuoteAsset { get; } = Features.Ltc;
-        private DateTime StartPeriod { get; } = new DateTime(2019, 06, 01);
-        private DateTime EndPeriod { get; } = new DateTime(2019, 06, 10);
+        private Asset BaseAsset { get; } = Features.Btc;
+        private Asset QuoteAsset { get; } = Features.Usd;
+        private DateTime StartPeriod { get; } = new DateTime(2019, 09, 20);
+        private DateTime EndPeriod { get; } = new DateTime(2019, 09, 25);
     }
 }

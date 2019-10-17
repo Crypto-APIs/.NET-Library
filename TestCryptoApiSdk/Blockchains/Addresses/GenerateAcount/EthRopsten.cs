@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Addresses.GenerateAcount
+namespace TestCryptoApis.Blockchains.Addresses.GenerateAcount
 {
     [TestClass]
     public class EthRopsten : BaseEthSimilarCoin

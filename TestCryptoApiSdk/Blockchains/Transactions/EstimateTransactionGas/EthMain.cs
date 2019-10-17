@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.EstimateTransactionGas
+namespace TestCryptoApis.Blockchains.Transactions.EstimateTransactionGas
 {
     //[Ignore] // todo: temporarily ignored
     [TestClass]

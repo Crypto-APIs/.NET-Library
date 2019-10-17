@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Ohlcv
+namespace TestCryptoApis.Exchanges.Ohlcv
 {
     [TestClass]
     public class Periods : BaseTest

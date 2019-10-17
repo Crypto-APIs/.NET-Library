@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateGetDelete
+namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 {
     [TestClass]
     public class EthRopsten : BaseEthSimilarCoin

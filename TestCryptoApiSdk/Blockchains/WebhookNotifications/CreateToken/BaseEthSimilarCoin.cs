@@ -1,9 +1,9 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
 
-namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateToken
+namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateToken
 {
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseTest

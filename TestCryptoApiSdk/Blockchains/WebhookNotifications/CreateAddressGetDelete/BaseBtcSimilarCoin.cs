@@ -1,10 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Linq;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateAddressGetDelete
+namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateAddressGetDelete
 {
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest

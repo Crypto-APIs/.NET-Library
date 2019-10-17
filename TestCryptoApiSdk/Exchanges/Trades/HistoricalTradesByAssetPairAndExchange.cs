@@ -1,11 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: note #8
     [TestClass]
     public class HistoricalTradesByAssetPairAndExchange : BaseCollectionTest
     {
@@ -117,10 +116,9 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Exchange Exchange { get; } = Features.Bittrex;
-        private Asset BaseAsset { get; } = Features.Bch;
-        private Asset QuoteAsset { get; } = Features.Ltc;
+        private Asset BaseAsset { get; } = Features.Btc;
+        private Asset QuoteAsset { get; } = Features.Usd;
     }
 }

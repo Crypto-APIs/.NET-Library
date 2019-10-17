@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Wallets.DeleteHdWallet
+namespace TestCryptoApis.Blockchains.Wallets.DeleteHdWallet
 {
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest

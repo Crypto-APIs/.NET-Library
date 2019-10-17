@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk
+namespace TestCryptoApis
 {
     [TestClass]
     public class TestMissingApiKey : BaseTest

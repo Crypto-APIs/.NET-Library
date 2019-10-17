@@ -1,50 +1,15 @@
-﻿Note #1.
+﻿Note #9.
 End Point
-OHLCV / Historical Data
+Trades / Historical Data by base asset
 
 URL
-http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data
+http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset
 
 Description
-1. If I define a parameter "Skip" with a deliberately large value (20,000,000), I expect the collection to be empty. But it is not.
+I expect a correct response, but it is not.
+- baseAsset = 5b1ea92e584bf5002013061c (it is a BCH)
+- timeStart = XXXXXXXXXXXXXXXXXXXXXX(28 may 2019)
+
 Details
-2. The parameter "Skip" does not work. I expect "meta.index = 2" if I send "skip = 2". But it is not.
-Details
 
-Note #2.
-End Point
-Exchange Rates / Get Specific Rate in a specific Exchange
-
-URL
-http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate-in-a-specific-exchange
-
-Description
-I expect a correct response when I sending parameters:
-baseAssetId = 5b1ea92e584bf50020130612 (it is a BTC)
-quoteAssetId = 5b1ea92e584bf50020130616 (it is a LTC)
-exchangeId = 5b1ea9d21090c200146f7366 (it is a Bittrex)
-
-Note #3.
-End Point
-Exchange Rates / Get All Current Rates in a specific Exchange
-
-URL
-http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange
-
-Description
-I expect a correct response when I sending parameters:
-baseAssetId = 5b1ea92e584bf50020130612 (it is a BTC)
-exchangeId = 5b1ea9d21090c200146f7366 (it is a Bittrex)
-
-
-Note #4.
-End Point
-Exchange Rates / Get All Current Rates
-
-URL
-http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates
-
-Description
-The parameter "Skip" work not correctly. The sequence in the collection is broken.
-baseAssetId = 5b1ea92e584bf50020130616 (it is a LTC)
 

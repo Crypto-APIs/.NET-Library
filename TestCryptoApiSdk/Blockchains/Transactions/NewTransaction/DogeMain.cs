@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using System.Collections.Generic;
+using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.NewTransaction
+namespace TestCryptoApis.Blockchains.Transactions.NewTransaction
 {
     [Ignore] // todo: temporarily ignored
     [TestClass]

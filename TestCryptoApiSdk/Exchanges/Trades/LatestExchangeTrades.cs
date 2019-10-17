@@ -1,11 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: check IsPerhapsNotAnExactMatch flag
     [TestClass]
     public class LatestExchangeTrades : BaseCollectionTest
     {
@@ -55,7 +54,8 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             AssertEmptyCollection(nameof(response.Trades), response.Trades);
         }
 
-        // protected override bool IsPerhapsNotAnExactMatch { get; } = true; 
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+
         private Exchange Exchange { get; } = Features.Bittrex;
     }
 }

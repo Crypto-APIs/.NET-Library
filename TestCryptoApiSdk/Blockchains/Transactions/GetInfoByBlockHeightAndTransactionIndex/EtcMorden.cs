@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfoByBlockHeightAndTransactionIndex
+namespace TestCryptoApis.Blockchains.Transactions.GetInfoByBlockHeightAndTransactionIndex
 {
     [TestClass]
     public class EtcMorden : BaseEthSimilarCoin

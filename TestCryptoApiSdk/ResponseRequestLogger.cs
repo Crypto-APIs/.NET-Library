@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary;
+﻿using CryptoApisLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RestSharp;
 
-namespace TestCryptoApiSdk
+namespace TestCryptoApis
 {
     internal class ResponseRequestLogger : IResponseRequestLogger
     {

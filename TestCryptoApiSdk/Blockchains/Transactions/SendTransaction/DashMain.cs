@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.SendTransaction
+namespace TestCryptoApis.Blockchains.Transactions.SendTransaction
 {
     [TestClass]
     public class DashMain : BaseBtcSimilarCoin

@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.PendingTransactions
+namespace TestCryptoApis.Blockchains.Transactions.PendingTransactions
 {
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseTest

@@ -1,12 +1,12 @@
-﻿using CryptoApisSdkLibrary;
-using CryptoApisSdkLibrary.Misc;
-using CryptoApisSdkLibrary.ResponseTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using CryptoApisLibrary;
+using CryptoApisLibrary.Misc;
+using CryptoApisLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk
+namespace TestCryptoApis
 {
     [TestClass]
     public abstract class BaseTest
@@ -49,12 +49,12 @@ namespace TestCryptoApiSdk
         {
         }
 
-        protected void AssertNotNullResponse(BaseResponse response)
+        protected void AssertNotNullResponse(IResponse response)
         {
             Assert.IsNotNull(response, $"'{nameof(response)}' must not be null");
         }
 
-        protected void AssertNullErrorMessage(BaseResponse response)
+        protected void AssertNullErrorMessage(IResponse response)
         {
             AssertNotNullResponse(response);
             Assert.IsTrue(
@@ -74,7 +74,7 @@ namespace TestCryptoApiSdk
             Assert.IsTrue(collection.Any(), "Collection must not be empty");
         }
 
-        protected void AssertErrorMessage(BaseResponse response, string etalonErrorMessage)
+        protected void AssertErrorMessage(IResponse response, string etalonErrorMessage)
         {
             AssertNotNullResponse(response);
             Assert.IsFalse(
@@ -83,7 +83,7 @@ namespace TestCryptoApiSdk
             Assert.AreEqual(etalonErrorMessage, response.ErrorMessage, "'ErrorMessage' is wrong");
         }
 
-        protected bool AssertAdditionalPackagePlan(BaseResponse response)
+        protected bool AssertAdditionalPackagePlan(IResponse response)
         {
             if (!IsAdditionalPackagePlan)
             {

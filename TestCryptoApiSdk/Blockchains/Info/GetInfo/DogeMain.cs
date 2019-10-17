@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Info.GetInfo
+namespace TestCryptoApis.Blockchains.Info.GetInfo
 {
     [TestClass]
     public class DogeMain : BaseBtcSimilarCoin

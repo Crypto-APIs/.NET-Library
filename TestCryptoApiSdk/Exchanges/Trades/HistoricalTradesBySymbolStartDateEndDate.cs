@@ -1,12 +1,11 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.DataTypes.Exceptions;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.DataTypes.Exceptions;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore]
     [TestClass]
     public class HistoricalTradesBySymbolStartDateEndDate : BaseCollectionTest
     {
@@ -45,7 +44,6 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         [TestMethod]
-        [ExpectedException(typeof(RequestException), "EndPeriod is from future.")]
         public void TestIncorrectEndTimeFromFeature()
         {
             var endPeriod = new DateTime(DateTime.Now.Year + 1, 01, 01);
@@ -54,7 +52,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
             if (AssertAdditionalPackagePlan(response))
             {
                 AssertNullErrorMessage(response);
-                AssertEmptyCollection(nameof(response.Trades), response.Trades);
+                AssertNotEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
 
@@ -70,7 +68,7 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
 
         private Symbol Symbol { get; } = Features.BtcLtc;
-        private DateTime StartPeriod { get; } = new DateTime(2019, 05, 01);
-        private DateTime EndPeriod { get; } = new DateTime(2019, 05, 10);
+        private DateTime StartPeriod { get; } = new DateTime(2019, 09, 20);
+        private DateTime EndPeriod { get; } = new DateTime(2019, 09, 25);
     }
 }

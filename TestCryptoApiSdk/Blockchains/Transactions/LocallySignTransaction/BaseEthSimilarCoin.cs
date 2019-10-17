@@ -1,9 +1,9 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.LocallySignTransaction
+namespace TestCryptoApis.Blockchains.Transactions.LocallySignTransaction
 {
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseTest

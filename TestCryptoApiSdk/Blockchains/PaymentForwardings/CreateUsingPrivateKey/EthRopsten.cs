@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.CreateUsingPrivateKey
+namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateUsingPrivateKey
 {
     [TestClass]
     public class EthRopsten : BaseEthSimilarCoin

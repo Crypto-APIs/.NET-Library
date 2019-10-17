@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Tokens.GetTokens
+namespace TestCryptoApis.Blockchains.Tokens.GetTokens
 {
     [TestClass]
     public class EthRinkeby : BaseEthSimilarCoin

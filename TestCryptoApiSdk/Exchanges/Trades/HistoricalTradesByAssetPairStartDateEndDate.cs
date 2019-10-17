@@ -1,12 +1,12 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.DataTypes.Exceptions;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.DataTypes.Exceptions;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Trades
+namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore]
+    [Ignore] // todo: note #11
     [TestClass]
     public class HistoricalTradesByAssetPairStartDateEndDate : BaseCollectionTest
     {
@@ -67,11 +67,10 @@ namespace TestCryptoApiSdk.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
-
+     
         private Asset BaseAsset { get; } = Features.Btc;
-        private Asset QuoteAsset { get; } = Features.Doge;
-        private DateTime StartPeriod { get; } = new DateTime(2019, 06, 01);
-        private DateTime EndPeriod { get; } = new DateTime(2019, 06, 10);
+        private Asset QuoteAsset { get; } = Features.Usd;
+        private DateTime StartPeriod { get; } = new DateTime(2019, 09, 20);
+        private DateTime EndPeriod { get; } = new DateTime(2019, 09, 25);
     }
 }

@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Info.GetBlockHeight
+namespace TestCryptoApis.Blockchains.Info.GetBlockHeight
 {
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest

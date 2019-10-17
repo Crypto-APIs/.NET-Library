@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.WebhookNotifications.CreateNewBlock
+namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateNewBlock
 {
     [TestClass]
     public class BchTest : BaseBtcSimilarCoin

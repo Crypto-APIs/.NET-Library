@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.CreateTransactionPrivateKey
+namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPrivateKey
 {
     [Ignore] // todo: temporarily ignored
     [TestClass]

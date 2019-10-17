@@ -1,10 +1,10 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using System;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.GetInfosByBlockHeight
+namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHeight
 {
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseCollectionTest

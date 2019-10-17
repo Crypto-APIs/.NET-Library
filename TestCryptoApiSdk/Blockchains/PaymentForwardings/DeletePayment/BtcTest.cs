@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.PaymentForwardings.DeletePayment
+namespace TestCryptoApis.Blockchains.PaymentForwardings.DeletePayment
 {
     [TestClass]
     public class BtcTest : BaseBtcSimilarCoin

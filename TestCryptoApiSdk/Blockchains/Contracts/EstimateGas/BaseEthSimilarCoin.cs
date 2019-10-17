@@ -1,8 +1,8 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes.Blockchains;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Contracts.EstimateGas
+namespace TestCryptoApis.Blockchains.Contracts.EstimateGas
 {
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseTest

@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Transactions.PushTransaction
+namespace TestCryptoApis.Blockchains.Transactions.PushTransaction
 {
     [TestClass]
     public class EthRinkeby : BaseEthSimilarCoin

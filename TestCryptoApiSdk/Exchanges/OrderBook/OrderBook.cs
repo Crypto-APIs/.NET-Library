@@ -1,9 +1,9 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Linq;
+using CryptoApisLibrary.DataTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.OrderBook
+namespace TestCryptoApis.Exchanges.OrderBook
 {
     [TestClass]
     public class OrderBook : BaseTest

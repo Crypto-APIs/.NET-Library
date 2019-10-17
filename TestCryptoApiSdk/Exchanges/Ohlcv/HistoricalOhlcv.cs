@@ -1,11 +1,10 @@
 ﻿using System;
-using CryptoApisSdkLibrary.DataTypes;
-using CryptoApisSdkLibrary.ResponseTypes;
+using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Exchanges.Ohlcv
+namespace TestCryptoApis.Exchanges.Ohlcv
 {
-    [Ignore] // todo: note #1
     [TestClass]
     public class HistoricalOhlcv : BaseCollectionTest
     {

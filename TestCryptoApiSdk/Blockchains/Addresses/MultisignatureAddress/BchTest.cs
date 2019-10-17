@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Addresses.MultisignatureAddress
+namespace TestCryptoApis.Blockchains.Addresses.MultisignatureAddress
 {
     [TestClass]
     public class BchTest : BaseBtcSimilarCoin

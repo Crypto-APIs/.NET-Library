@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using CryptoApisSdkLibrary.DataTypes;
+using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Wallets.ComplexTest
+namespace TestCryptoApis.Blockchains.Wallets.ComplexTest
 {
     [TestClass]
     public class DashTest : BaseBtcSimilarCoin

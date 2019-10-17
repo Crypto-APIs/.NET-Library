@@ -1,7 +1,7 @@
-﻿using CryptoApisSdkLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestCryptoApiSdk.Blockchains.Addresses.AddressTransactions
+namespace TestCryptoApis.Blockchains.Addresses.AddressTransactions
 {
     [TestClass]
     public class BtcMain : BaseBtcSimilarCoin
