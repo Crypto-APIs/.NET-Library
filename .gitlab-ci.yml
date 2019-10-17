@@ -1,7 +1,5 @@
 variables:
   NUGET_PATH: 'D:\Program Files (x86)\nuget.exe'
-  PROJECT_NAME: 'CryptoApisSdkLibrary'
-  TEST_PROJECT_NAME: 'TestCryptoApiSdk'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
   TEST_RESULT_DIR: 'TestResults'
 stages:
@@ -23,7 +21,7 @@ test:
   stage: test
   script:
     #- '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
-    - '& dotnet test --filter "FullyQualifiedName~TestCryptoApiSdk.Exchanges|FullyQualifiedName~TestCryptoApiSdk.Blockchains.Info" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
+    - '& dotnet test --filter "FullyQualifiedName~TestCryptoApis.Exchanges|FullyQualifiedName~TestCryptoApis.Blockchains.Info" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   retry: 2
   dependencies:
     - build
