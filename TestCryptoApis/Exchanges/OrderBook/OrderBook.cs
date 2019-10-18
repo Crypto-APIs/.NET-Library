@@ -16,7 +16,8 @@ namespace TestCryptoApis.Exchanges.OrderBook
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.OrderBook, $"{nameof(response.OrderBook)} must not be null");
             Assert.IsNotNull(response.OrderBook.Depth, $"{nameof(response.OrderBook.Depth)} must not be null");
-            Assert.IsTrue(response.OrderBook.Depth.Asks.Any() || response.OrderBook.Depth.Bids.Any(), "Collection must not be empty");
+            AssertNotEmptyCollection("Asks", response.OrderBook.Depth.Asks);
+            AssertNotEmptyCollection("Bids", response.OrderBook.Depth.Bids);
         }
 
         [TestMethod]

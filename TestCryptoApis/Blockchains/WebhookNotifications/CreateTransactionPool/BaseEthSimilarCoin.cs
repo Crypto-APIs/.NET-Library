@@ -12,7 +12,7 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateTransactionPool
         public void GeneralTest()
         {
             var response = Manager.Blockchains.WebhookNotification.CreateTransactionPool<EthWebHookResponse>(
-                NetworkCoin, Url);
+                NetworkCoin, Url, Address);
 
             if (AssertAdditionalPackagePlan(response))
             {
@@ -23,14 +23,23 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateTransactionPool
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A Url of null was inappropriately allowed.")]
+        [ExpectedException(typeof(ArgumentNullException), "An Url of null was inappropriately allowed.")]
         public void NullUrl()
         {
             string url = null;
-            Manager.Blockchains.WebhookNotification.CreateTransactionPool<EthWebHookResponse>(NetworkCoin, url);
+            Manager.Blockchains.WebhookNotification.CreateTransactionPool<EthWebHookResponse>(NetworkCoin, url, Address);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
+        public void NullAddress()
+        {
+            string address = null;
+            Manager.Blockchains.WebhookNotification.CreateTransactionPool<EthWebHookResponse>(NetworkCoin, Url, address);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }
+        protected abstract string Address { get; }
         private string Url { get; } = "http://www.mocky.io/v2/5b0d4b5f3100006e009d55f5";
     }
 }

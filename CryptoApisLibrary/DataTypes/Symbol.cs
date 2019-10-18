@@ -7,18 +7,6 @@ namespace CryptoApisLibrary.DataTypes
     public class Symbol : IEquatable<Symbol>
     {
         /// <summary>
-        /// Default constructor need for serialization/deserialization.
-        /// </summary>
-        public Symbol()
-        {
-        }
-
-        public Symbol(string id)
-        {
-            Id = id;
-        }
-
-        /// <summary>
         /// Symbol identifier.
         /// </summary>
         [DeserializeAs(Name = "exchangeSymbol")]
@@ -55,7 +43,7 @@ namespace CryptoApisLibrary.DataTypes
         /// Unique symbol identification string (UID).
         /// </summary>
         [DeserializeAs(Name = "_id")]
-        public string Id { get; protected set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Type of symbol.

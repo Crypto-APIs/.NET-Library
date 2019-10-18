@@ -7,7 +7,7 @@ namespace CryptoApisSnippets.Samples.Exchanges
   {
     public void LatestSymbolTrades()
     {
-      var symbol = new Symbol("5b3a4d343d8cea0001653d1d");
+      var symbol = new Symbol { Id = "5b3a4d343d8cea0001653d1d" };
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Exchanges.Trades.Latest(symbol, limit: 10);

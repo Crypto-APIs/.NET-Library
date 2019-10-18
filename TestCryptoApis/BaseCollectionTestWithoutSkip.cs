@@ -90,7 +90,22 @@ namespace TestCryptoApis
             Assert.IsNotNull(actualList, $"'{nameof(actualList)}' must not be null");
             CheckMeta(meta, limit);
 
+            var all = allList as IList<T> ?? allList.ToList();
+            var actual = actualList as IList<T> ?? actualList.ToList();
+            Assert.AreEqual(Math.Min(all.Count, limit), actual.Count, $"Limit count is wrong");
+
             if (IsPerhapsNotAnExactMatch)
+            {
+                //CheckCollectionNotAnExactMatch(all, actual, "Limit  (NotAnExactMatch mode) failed, items are not equal");
+            }
+            else
+            {
+                for (var i = 0; i < actual.Count; i++)
+                {
+                    Assert.AreEqual(all[i], actual[i], $"Limit failed, items are not equal");
+                }
+            }
+            /*if (IsPerhapsNotAnExactMatch)
                 return;
 
             var all = allList as IList<T> ?? allList.ToList();
@@ -101,6 +116,38 @@ namespace TestCryptoApis
             for (var i = 0; i < actual.Count; i++)
             {
                 Assert.AreEqual(all[i], actual[i], $"Limit failed, items are not equal");
+            }*/
+        }
+
+        protected void CheckCollectionNotAnExactMatch<T>(IList<T> allList, IList<T> actualList, string errorMessage)
+        {
+            int? indexInActualList = null;
+            var indexInAllListOfFirstItemInActualList = 0;
+            for (var i = 0; i < actualList.Count; i++)
+            {
+                indexInAllListOfFirstItemInActualList = allList.IndexOf(actualList[i]);
+                if (indexInAllListOfFirstItemInActualList != -1)
+                {
+                    indexInActualList = i;
+                    break;
+                }
+            }
+
+            if (indexInActualList == null)
+                return;
+
+            var j = 0;
+            for (var i = indexInActualList.Value; i < actualList.Count; i++)
+            {
+                if (!allList[indexInAllListOfFirstItemInActualList + j].Equals(actualList[i]))
+                {
+                    Assert.Fail(errorMessage);
+                }
+                Assert.AreEqual(allList[indexInAllListOfFirstItemInActualList + j], actualList[i], 
+                    $"{errorMessage}. ActualIndex={i}, AllIndex={indexInAllListOfFirstItemInActualList + j}");
+                j++;
+                if (indexInAllListOfFirstItemInActualList + j >= allList.Count)
+                    break;
             }
         }
 
@@ -108,6 +155,12 @@ namespace TestCryptoApis
         {
             var enumerable = allList as IList<T> ?? allList.ToList();
 
+            if (enumerable.Count > 20)
+                return 20;
+            if (enumerable.Count > 10)
+                return 10;
+            if (enumerable.Count > 5)
+                return 5;
             if (enumerable.Count > 2)
                 return 2;
             if (enumerable.Count == 2)

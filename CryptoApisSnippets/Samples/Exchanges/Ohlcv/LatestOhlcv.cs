@@ -7,7 +7,7 @@ namespace CryptoApisSnippets.Samples.Exchanges
   {
     public void LatestOhlcv()
     {
-      var symbol = new Symbol("5b3a4d323d8cea0001653bb0");
+      var symbol = new Symbol { Id = "5b3a4d323d8cea0001653bb0" };
       var period = new Period("1day");
 
       var manager = new CryptoManager(ApiKey);

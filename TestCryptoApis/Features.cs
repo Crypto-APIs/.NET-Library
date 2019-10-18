@@ -19,10 +19,10 @@ namespace TestCryptoApis
         public static Asset Bch { get; } = new Asset("5b1ea92e584bf5002013061c");
         public static Asset UnexistingAsset { get; } = new Asset("QWE'EWQ");
 
-        public static Symbol BtcLtc { get; } = new Symbol("5bfc325d9c40a100014db900");
-        public static Symbol BtcBch { get; } = new Symbol("5bfc325f9c40a100014db9b0");
-        public static Symbol UsdBtc { get; } = new Symbol("5bfc325f9c40a100014db9eb");
-        public static Symbol EthLtc { get; } = new Symbol("5bfc325e9c40a100014db98b");
-        public static Symbol UnexistingSymbol { get; } = new Symbol("QWE'EWQ");
+        public static Symbol BtcLtc { get; } = new Symbol { Id = "5bfc325d9c40a100014db900" };
+        public static Symbol BtcBch { get; } = new Symbol { Id = "5bfc325f9c40a100014db9b0" };
+        public static Symbol UsdBtc { get; } = new Symbol { Id = "5bfc325f9c40a100014db9eb" };
+        public static Symbol EthLtc { get; } = new Symbol { Id = "5bfc325e9c40a100014db98b" };
+        public static Symbol UnexistingSymbol { get; } = new Symbol { Id = "QWE'EWQ" };
     }
 }

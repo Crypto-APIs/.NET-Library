@@ -34,7 +34,7 @@ namespace CryptoApisLibrary.DataTypes
         /// FX Spot quote asset identifier (UID), for derivatives it’s contract underlying (e.g. USD for BTC/USD)
         /// </summary>
         [DeserializeAs(Name = "quoteAsset")]
-        public string quoteAsset { get; protected set; }
+        public string QuoteAsset { get; protected set; }
 
         /// <summary>
         /// Type of symbol (possible values are: SPOT, FUTURES or OPTION)
@@ -75,7 +75,7 @@ namespace CryptoApisLibrary.DataTypes
                 return true;
             return SymbolId == other.SymbolId && ExchangeId == other.ExchangeId &&
                    ExchangeSymbol == other.ExchangeSymbol && BaseAsset == other.BaseAsset &&
-                   quoteAsset == other.quoteAsset && TradeTypeAsString == other.TradeTypeAsString;
+                   QuoteAsset == other.QuoteAsset && TradeTypeAsString == other.TradeTypeAsString;
         }
 
         public override bool Equals(object obj)
@@ -95,7 +95,7 @@ namespace CryptoApisLibrary.DataTypes
                 hashCode = (hashCode * 397) ^ (ExchangeId != null ? ExchangeId.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (ExchangeSymbol != null ? ExchangeSymbol.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (BaseAsset != null ? BaseAsset.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (quoteAsset != null ? quoteAsset.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (QuoteAsset != null ? QuoteAsset.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (TradeTypeAsString != null ? TradeTypeAsString.GetHashCode() : 0);
                 return hashCode;
             }

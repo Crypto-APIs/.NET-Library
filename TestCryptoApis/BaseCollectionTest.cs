@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CryptoApisLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CryptoApisLibrary.ResponseTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis
 {
@@ -49,7 +49,7 @@ namespace TestCryptoApis
             }
             else
             {
-                AssertErrorMessage(SkipList, 
+                AssertErrorMessage(SkipList,
                     "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
@@ -96,7 +96,27 @@ namespace TestCryptoApis
             Assert.IsNotNull(actualList);
             CheckMeta(meta, skip, defaultLimit);
 
+            var all = allList as IList<T> ?? allList.ToList();
+            var actual = actualList as IList<T> ?? actualList.ToList();
+
             if (IsPerhapsNotAnExactMatch)
+            {
+                CheckCollectionNotAnExactMatch(all, actual, "Skip (NotAnExactMatch mode) failed, items are not equal");
+            }
+            else
+            {
+                if (all.Count > skip)
+                {
+                    Assert.IsTrue(actual.Any(), "Collection must not be empty");
+                }
+
+                for (var i = 0; i < all.Count - skip; i++)
+                {
+                    Assert.AreEqual(all[i + skip], actual[i], $"Skip failed, items (skip index={i}) are not equal");
+                }
+            }
+
+            /*if (IsPerhapsNotAnExactMatch)
                 return;
 
             var all = allList as IList<T> ?? allList.ToList();
@@ -110,7 +130,7 @@ namespace TestCryptoApis
             for (var i = 0; i < all.Count - skip; i++)
             {
                 Assert.AreEqual(all[i + skip], actual[i], $"Skip failed, items (skip index={i}) are not equal");
-            }
+            }*/
         }
 
         protected void CheckSkipAndLimit<T>(IEnumerable<T> allList, IEnumerable<T> actualList,
@@ -119,7 +139,24 @@ namespace TestCryptoApis
             Assert.IsNotNull(actualList);
             CheckMeta(meta, skip, limit);
 
+            var all = allList as IList<T> ?? allList.ToList();
+            var actual = actualList as IList<T> ?? actualList.ToList();
+
             if (IsPerhapsNotAnExactMatch)
+            {
+                CheckCollectionNotAnExactMatch(all, actual, "Skip and Limit (NotAnExactMatch mode) items aren not equal");
+            }
+            else
+            {
+                Assert.AreEqual(Math.Min(all.Count - skip, limit), actual.Count, "Skip and Limit count failed");
+
+                for (var i = 0; i < actual.Count; i++)
+                {
+                    Assert.AreEqual(all[i + skip], actual[i], $"Skip and Limit items aren not equal");
+                }
+            }
+
+            /*if (IsPerhapsNotAnExactMatch)
                 return;
 
             var all = allList as IList<T> ?? allList.ToList();
@@ -130,7 +167,7 @@ namespace TestCryptoApis
             for (var i = 0; i < actual.Count; i++)
             {
                 Assert.AreEqual(all[i + skip], actual[i], $"Skip and Limit item not equal");
-            }
+            }*/
         }
 
         protected static int? GetSkip<T>(IEnumerable<T> allList)

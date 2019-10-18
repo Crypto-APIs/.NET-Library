@@ -31,10 +31,10 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
             return CreateTokenAsync<T>(CancellationToken.None, networkCoin, url, address).GetAwaiter().GetResult();
         }
 
-        public T CreateTransactionPool<T>(NetworkCoin networkCoin, string url)
+        public T CreateTransactionPool<T>(NetworkCoin networkCoin, string url, string address)
             where T : EthWebHookResponse, new()
         {
-            return CreateTransactionPoolAsync<T>(CancellationToken.None, networkCoin, url).GetAwaiter().GetResult();
+            return CreateTransactionPoolAsync<T>(CancellationToken.None, networkCoin, url, address).GetAwaiter().GetResult();
         }
 
         public T GetHooks<T>(NetworkCoin networkCoin)

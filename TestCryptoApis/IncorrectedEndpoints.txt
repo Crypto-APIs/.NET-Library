@@ -1,15 +1,94 @@
-﻿Note #9.
+﻿LOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGO
+
+Note #.
 End Point
-Trades / Historical Data by base asset
+Metadata / List All Exchanges
 
 URL
-http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset
+https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges
 
 Description
-I expect a correct response, but it is not.
-- baseAsset = 5b1ea92e584bf5002013061c (it is a BCH)
-- timeStart = XXXXXXXXXXXXXXXXXXXXXX(28 may 2019)
+In documentation I don't see "exchangeId" parameter, but in server response it is.
 
 Details
+Два скриншота с Feedler и со страницы документации
 
+
+Note #.
+End Point
+Metadata / List All Assets
+
+URL
+https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets
+
+Description
+In documentation I don't see "assetId" parameter, but in server response it is.
+
+Details
+Два скриншота с Feedler и со страницы документации
+
+
+Note #.
+End Point
+Base data / List All Assets
+
+URL
+https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets-base-data
+
+Description
+The same as in note #5. In documentation I don't see "assetId" parameter, but in server response it is.
+
+
+Note #.
+End Point
+DOGE / Info
+
+URL
+https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/doge/index#doge-blockchain-chain-endpoint
+
+Description
+In documentation I don't see "mediantime" parameter, but in server response it is.
+Details
+Два скриншота с Feedler и со страницы документации
+
+
+Note #.
+End Point
+BCH / Block Hash Endpoint
+
+URL
+https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/bch/index#-blockchain-block-hash-endpoint
+
+Description
+In documentation I don't see "strippedsize" and "weight" parameters, but in server response they are.
+Details
+Два скриншота с Feedler и со страницы документации
+
+Note #.
+End Point
+DOGE / Block Hash Endpoint
+
+URL
+https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/doge/index#doge-blockchain-block-hash-endpoint
+
+Description
+In documentation I don't see "nextblockhash" parameters, but in server response it is.
+Also the parameters "strippedsize", "weight", "versionHex" does't implementing for DOGE, isn't it? They are not in response, but BTC, LTC, BCH... do.
+
+Details
+Два скриншота с Feedler и со страницы документации
+
+Note #.
+End Point
+DASH / Block Hash Endpoint
+
+URL
+https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/dash/index#dash-blockchain-block-hash-endpoint
+
+Description
+In documentation I don't see "nextblockhash" parameters, but in server response it is.
+Also the parameters "strippedsize", "weight", does't implementing for DASH, isn't it? They are not in response, but BTC, LTC, BCH... do.
+
+Details
+Два скриншота с Feedler и со страницы документации
 

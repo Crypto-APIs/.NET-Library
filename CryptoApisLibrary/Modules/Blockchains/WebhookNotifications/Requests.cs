@@ -58,13 +58,15 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
                 new CreateAddressRequest("TOKEN", url, address));
         }
 
-        public IRestRequest CreateTransactionPool(NetworkCoin networkCoin, string url)
+        public IRestRequest CreateTransactionPool(NetworkCoin networkCoin, string url, string address)
         {
             if (string.IsNullOrEmpty(url))
                 throw new ArgumentNullException(nameof(url));
+            if (string.IsNullOrEmpty(address))
+                throw new ArgumentNullException(nameof(address));
 
             return Request.Post($"{Consts.Blockchain}/{networkCoin}/hooks",
-                new CreateWebHookRequest("TXPOOL", url));
+                new CreateAddressRequest("TXPOOL", url, address));
         }
 
         public IRestRequest GetHooks(NetworkCoin networkCoin)

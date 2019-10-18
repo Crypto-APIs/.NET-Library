@@ -103,7 +103,8 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        T CreateTransactionPool<T>(NetworkCoin networkCoin, string url)
+        /// <param name="address">.</param>
+        T CreateTransactionPool<T>(NetworkCoin networkCoin, string url, string address)
             where T : EthWebHookResponse, new();
 
         /// <summary>
@@ -114,8 +115,9 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
+        /// <param name="address"></param>
         Task<T> CreateTransactionPoolAsync<T>(CancellationToken cancellationToken,
-            NetworkCoin networkCoin, string url)
+            NetworkCoin networkCoin, string url, string address)
             where T : EthWebHookResponse, new();
 
         /// <summary>

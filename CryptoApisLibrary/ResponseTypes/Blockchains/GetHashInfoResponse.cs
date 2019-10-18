@@ -100,9 +100,11 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
         [DeserializeAs(Name = "gas_used")]
         public int GasUsed { get; protected set; }
 
-        [DeserializeAs(Name = "total")]
-        public long Total { get; protected set; }
-
+        /* нет в https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/etc/index#etc-block-hash-endpoint
+         если нигде больше не надо, удалить вообще
+         [DeserializeAs(Name = "total")]
+        public long Total { get; protected set; } */
+        
         [DeserializeAs(Name = "size")]
         public string Size { get; protected set; }
 

@@ -40,10 +40,10 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         }
 
         public Task<T> CreateTransactionPoolAsync<T>(CancellationToken cancellationToken,
-            NetworkCoin networkCoin, string url)
+            NetworkCoin networkCoin, string url, string address)
             where T : EthWebHookResponse, new()
         {
-            var request = Requests.CreateTransactionPool(networkCoin, url);
+            var request = Requests.CreateTransactionPool(networkCoin, url, address);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
 

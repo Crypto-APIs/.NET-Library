@@ -7,5 +7,6 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateTransactionPool
     public class EthMain : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthMainNet;
+        protected override string Address { get; } = "0xb794F5eA0ba39494cE839613fffBA74279579268";
     }
 }

@@ -242,7 +242,7 @@ namespace CryptoApisLibrary.Modules.Exchanges.Trades
         /// <returns>Response with historical trades.</returns>
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange"/>
         HistoricalTradesResponse Historical(Exchange exchange, int skip = 0, int limit = 50);
-
+        
         /// <summary>
         /// Get history transactions from specific exchange, returned in time ascending order.
         /// If no start & end time is defined when calling the endpoint, your data results will be provided 24 hours back, by default.
