@@ -96,7 +96,7 @@ namespace TestCryptoApis
 
             if (IsPerhapsNotAnExactMatch)
             {
-                //CheckCollectionNotAnExactMatch(all, actual, "Limit  (NotAnExactMatch mode) failed, items are not equal");
+                CheckCollectionNotAnExactMatch(all, actual, "Limit  (NotAnExactMatch mode) failed, items are not equal");
             }
             else
             {
@@ -139,10 +139,12 @@ namespace TestCryptoApis
             var j = 0;
             for (var i = indexInActualList.Value; i < actualList.Count; i++)
             {
+                /*
                 if (!allList[indexInAllListOfFirstItemInActualList + j].Equals(actualList[i]))
                 {
                     Assert.Fail(errorMessage);
                 }
+                */
                 Assert.AreEqual(allList[indexInAllListOfFirstItemInActualList + j], actualList[i], 
                     $"{errorMessage}. ActualIndex={i}, AllIndex={indexInAllListOfFirstItemInActualList + j}");
                 j++;
