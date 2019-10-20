@@ -212,13 +212,31 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
             where T : DeleteWalletResponse, new();
 
         /// <summary>
-        /// Delete wallet or Hierarchical Deterministic (HD) wallet.
+        /// Delete wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="walletName">Wallet name.</param>
         Task<T> DeleteWalletAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
+            where T : DeleteWalletResponse, new();
+
+        /// <summary>
+        /// Delete Hierarchical Deterministic (HD) wallet.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="walletName">HD-wallet name.</param>
+        T DeleteHdWallet<T>(NetworkCoin networkCoin, string walletName)
+            where T : DeleteWalletResponse, new();
+
+        /// <summary>
+        /// Delete Hierarchical Deterministic (HD) wallet.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="walletName">HD-wallet name.</param>
+        Task<T> DeleteHdWalletAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
             where T : DeleteWalletResponse, new();
     }
 }

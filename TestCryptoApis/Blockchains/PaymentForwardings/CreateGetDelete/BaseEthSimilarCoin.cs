@@ -114,7 +114,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A FromAddress of null was inappropriately allowed.")]
-        public void TestBtcNullFromAddress()
+        public void NullFromAddress()
         {
             string fromAddress = null;
             Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
@@ -123,7 +123,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A ToAddress of null was inappropriately allowed.")]
-        public void TestBtcNullToAddress()
+        public void NullToAddress()
         {
             string toAddress = null;
             Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
@@ -132,7 +132,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A CallbackUrl of null was inappropriately allowed.")]
-        public void TestBtcNullCallbackUrl()
+        public void NullCallbackUrl()
         {
             string callbackUrl = null;
             Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(
@@ -141,7 +141,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException), "A Password of null was inappropriately allowed.")]
-        public void TestBtcNullPassword()
+        public void NullPassword()
         {
             string password = null;
             Manager.Blockchains.PaymentForwarding.CreatePayment<CreateEthPaymentResponse>(

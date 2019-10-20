@@ -93,5 +93,12 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
             var request = Requests.DeleteWallet(networkCoin, walletName);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
+
+        public Task<T> DeleteHdWalletAsync<T>(CancellationToken cancellationToken, 
+            NetworkCoin networkCoin, string walletName) where T : DeleteWalletResponse, new()
+        {
+            var request = Requests.DeleteHdWallet(networkCoin, walletName);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
     }
 }

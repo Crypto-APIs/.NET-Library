@@ -63,6 +63,25 @@ namespace TestCryptoApis
             public static string EtcMorden { get; } = "0x26588a9301b0428d95e6fc3a5024fce8bec12d51";
         }
 
+        public static class CorrectAddress2
+        {
+            public static string BtcMainNet { get; } = "1B5WsYR8m4axbmEMMifveDL2gtZjtpaFr5";
+            public static string BtcTestNet { get; } = "mkU95cnEYqKRb7G9RiLTAP2AbFazUAj2pa";
+            public static string BchMainNet { get; } = "bitcoincash:qphghkmf5zym4nwd45d5tagzzut3xpfkp52045tl2j";
+            public static string BchTestNet { get; } = "bchtest:qq686unm4724lfjh09p4n30n3k649yj56uvyf54ste";
+            public static string LtcMainNet { get; } = "Lad4PXW9HWQctdJVqcC97kSMzRw6iYRSjw";
+            public static string LtcTestNet { get; } = "mkY9bvNEiLZCWwhpGiQ3mCBcNXd1DXzE8m";
+            public static string DogeMainNet { get; } = "D6n45H31Yr91ZS1KuKGq2tt7uNqVNU3QxJ";
+            public static string DogeTestNet { get; } = "2NDutUPDhfMYGUFPhHRy4ZRraHVrEK7odr6";
+            public static string DashMainNet { get; } = "XviPbBbm64KJ6Zje8YKQdtj6AmJvFXP3MH";
+            public static string DashTestNet { get; } = "yM74nFFXXwMUYXEDhpdNP2PCL6vkdkFhkS";
+            public static string EthMainNet { get; } = "0x8683981206d2227ca19bb35d3cade31671eed610";
+            public static string EthRopsten { get; } = "0xbD4D8e4be6b70ab33C29759B398c5663D14245D8";
+            public static string EthRinkenby { get; } = "0x70432FE7B0D1130DA2e3c22Be4FB7F2ECc2883B3";
+            public static string EtcMainNet { get; } = "0xDf7D7e053933b5cC24372f878c90E62dADAD5d42";
+            public static string EtcMorden { get; } = "0x91c37bde81ddce4cef1f30528d3c6878e99af338";
+        }
+
         public static class CorrectTransactionHash
         {
             public static string BtcMainNet { get; } = "5a4ebf66822b0b2d56bd9dc64ece0bc38ee7844a23ff1d7320a88c5fdb2ad3e2";

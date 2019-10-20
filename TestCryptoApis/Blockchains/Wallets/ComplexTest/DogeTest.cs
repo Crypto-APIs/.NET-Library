@@ -11,13 +11,15 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexTest
 
         protected override List<string> Addresses => _addresses ?? (_addresses = new List<string>
         {
-            "muvTWioSTbJWK2HSRGcKoTfT7yDGhgaKso",
-            "mkU95cnEYqKRb7G9RiLTAP2AbFazUAj2pa"
+            "2MtyiFTv3aP9uWWeFZxz2hkJL7Dt5FY2LFV",
+            "2NDutUPDhfMYGUFPhHRy4ZRraHVrEK7odr6",
+            "2NE7KDFqtDFKavXH5YD7hvqU3ohZvzjmpva"
         });
 
         protected override List<string> AddedAddresses => _addedAdresses ?? (_addedAdresses = new List<string>
         {
-            "moFJ97hAus3aipsn2Zny9aDdkic1j5GZ69",
+            "ndtregJytQozES3eKkkSEjgFDDiXYvxR6t",
+            "2My4aAqh43o6q27mEhp5TQLTcHYJN2n4wpC"
         });
 
         private List<string> _addresses;

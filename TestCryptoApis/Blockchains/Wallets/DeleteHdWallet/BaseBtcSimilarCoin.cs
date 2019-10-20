@@ -15,7 +15,7 @@ namespace TestCryptoApis.Blockchains.Wallets.DeleteHdWallet
 
             foreach (var wallet in getWalletsResponse.Wallets)
             {
-                var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, wallet);
+                var deleteResponse = Manager.Blockchains.Wallet.DeleteHdWallet<DeleteWalletResponse>(NetworkCoin, wallet);
 
                 AssertNullErrorMessage(deleteResponse);
                 Assert.AreEqual($"Wallet {wallet} was successfully deleted!", deleteResponse.Payload.Message);

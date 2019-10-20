@@ -71,7 +71,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateUsingPrivateKey
             var response = Manager.Blockchains.PaymentForwarding.CreatePaymentUsingPrivateKey<CreateEthPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, privateKey, Confirmations, GasPrice, GasLimit);
 
-            AssertErrorMessage(response, "For input string: \"qwe\"");
+            AssertErrorMessage(response, "For input string: \"q'we\"");
         }
 
         [TestMethod]

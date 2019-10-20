@@ -7,7 +7,7 @@ namespace TestCryptoApis.Blockchains.Contracts.Deploy
     public class EtcMorden : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMorden;
-        protected override string FromAddress { get; } = "0xe7cc96ba0562dfba61a55c8dd2e162a30942f402";
+        protected override string FromAddress { get; } = Features.CorrectAddress.EtcMorden;
 
     }
 }

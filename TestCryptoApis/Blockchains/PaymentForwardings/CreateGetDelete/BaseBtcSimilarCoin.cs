@@ -72,7 +72,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
             }
             finally
             {
-                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, fromWallet.Wallet.Name);
+                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteHdWallet<DeleteWalletResponse>(NetworkCoin, fromWallet.Wallet.Name);
                 AssertNullErrorMessage(fromWalletDelete);
                 Assert.AreEqual($"Wallet {walletName} was successfully deleted!", fromWalletDelete.Payload.Message,
                     "'Message' after deleting wallet is wrong");
@@ -171,7 +171,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
             var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                 NetworkCoin, FromAddress, ToAddress, CallbackUrl, walletName, password, Confirmations, Fee);
 
-            AssertErrorMessage(response, "'password' is too weak. Min size is 10 characters, actual is 3");
+            AssertErrorMessage(response, "'password' is too weak. Min size is 10 characters, actual is 4");
         }
 
         [TestMethod]
@@ -195,11 +195,11 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
                 var response = Manager.Blockchains.PaymentForwarding.CreatePayment<CreateBtcPaymentResponse>(
                     NetworkCoin, fromAddress, toAddress, CallbackUrl, fromWallet.Wallet.Name, wrongPassword, Confirmations, Fee);
 
-                AssertErrorMessage(response, "'wallet' can not be decrypted with this 'password'");
+                AssertErrorMessage(response, "'wallet' cannot be decrypted with this 'password'");
             }
             finally
             {
-                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, fromWallet.Wallet.Name);
+                var fromWalletDelete = Manager.Blockchains.Wallet.DeleteHdWallet<DeleteWalletResponse>(NetworkCoin, fromWallet.Wallet.Name);
                 AssertNullErrorMessage(fromWalletDelete);
                 Assert.AreEqual($"Wallet {walletName} was successfully deleted!", fromWalletDelete.Payload.Message,
                     "'Message' is wrong");

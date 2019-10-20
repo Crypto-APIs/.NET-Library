@@ -20,6 +20,7 @@ namespace TestCryptoApis.Blockchains.Contracts.Deploy
                 $"'{nameof(response.Payload.Hex)}' must not be null");
         }
 
+        [Ignore] // todo: no funds for testing
         [TestMethod]
         public void InsufficientFunds()
         {
