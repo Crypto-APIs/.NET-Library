@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByTransactionId
     public class LtcMain : BaseBtcSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.LtcMainNet;
-        protected override string TransactionId { get; } = "d77cb6b67f4d559d1e74ef400c6f540c90ca89e9abe4efb497fd0e62c5f8e0aa";
+        protected override string TransactionId { get; } = Features.CorrectTransactionHash.LtcMainNet;
     }
 }

@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateConfirmedTransac
     public class BchTest : BaseBtcSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BchTestNet;
-        protected override string TransactionHash { get; } = "9bba7c4a8121f4bf9819ea481f4abd5e501db40815e23a70dfcb9e99eb9ba05e";
+        protected override string TransactionHash { get; } = Features.CorrectTransactionHash.BchTestNet;
     }
 }

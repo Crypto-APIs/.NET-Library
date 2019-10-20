@@ -52,6 +52,8 @@ namespace TestCryptoApis.Blockchains.Addresses.AddressTransactions
                 NetworkCoin, address);
         }
 
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+
         protected abstract string Address { get; }
         protected abstract NetworkCoin NetworkCoin { get; }
     }

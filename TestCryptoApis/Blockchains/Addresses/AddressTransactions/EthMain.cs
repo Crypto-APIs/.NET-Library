@@ -6,7 +6,7 @@ namespace TestCryptoApis.Blockchains.Addresses.AddressTransactions
     [TestClass]
     public class EthMain : BaseEthSimilarCoin
     {
-        protected override string Address { get; } = "0xb794F5eA0ba39494cE839613fffBA74279579268";
+        protected override string Address { get; } = Features.CorrectAddress.EthMainNet;
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthMainNet;
     }
 }

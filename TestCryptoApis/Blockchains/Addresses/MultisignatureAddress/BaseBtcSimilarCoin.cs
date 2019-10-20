@@ -16,7 +16,7 @@ namespace TestCryptoApis.Blockchains.Addresses.MultisignatureAddress
             var response = Manager.Blockchains.Address.GetAddressInMultisignatureAddresses<GetBtcMultisignatureAddressesResponse>(
                 NetworkCoin, address);
 
-            AssertErrorMessage(response, "Address is not valid");
+            AssertErrorMessage(response, "Internal Server Error");
         }
 
         [TestMethod]

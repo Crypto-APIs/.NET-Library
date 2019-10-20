@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateConfirmedTransac
     public class EtcMorden : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMorden;
-        protected override string TransactionHash { get; } = "0x213ed2c788752539e24b56ebcc1dae932717f81e950fccfe485d61b26f3f27ab";
+        protected override string TransactionHash { get; } = Features.CorrectTransactionHash.EtcMorden;
     }
 }

@@ -6,7 +6,7 @@ namespace TestCryptoApis.Blockchains.Addresses.AddressTransactions
     [TestClass]
     public class BchTest : BaseBtcSimilarCoin
     {
-        protected override string Address { get; } = "qznt28kfs4a6tyknu4ar7whxd2r7mwktq5l50f2pca";
+        protected override string Address { get; } = Features.CorrectAddress.BchTestNet;
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BchTestNet;
     }
 }

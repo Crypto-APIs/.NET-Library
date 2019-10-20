@@ -6,7 +6,7 @@ namespace TestCryptoApis.Blockchains.Addresses.MultisignatureAddress
     [TestClass]
     public class DashTest : BaseBtcSimilarCoin
     {
-        protected override string Address { get; } = "mho4jHBcrNCncKt38trJahXakuaBnS7LK5";
+        protected override string Address { get; } = Features.CorrectAddress.DashTestNet;
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DashTestNet;
     }
 }
