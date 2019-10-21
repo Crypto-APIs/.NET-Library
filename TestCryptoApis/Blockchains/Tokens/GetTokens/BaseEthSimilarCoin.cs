@@ -11,19 +11,19 @@ namespace TestCryptoApis.Blockchains.Tokens.GetTokens
     {
         protected override ICollectionResponse GetAllList()
         {
-            return Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, Address);
+            return Manager.Blockchains.Token.GetTokens<GetEthTokensResponse>(NetworkCoin, Address);
         }
 
         protected override ICollectionResponse GetLimitList(int limit)
         {
-            return Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, Address, limit: limit);
+            return Manager.Blockchains.Token.GetTokens<GetEthTokensResponse>(NetworkCoin, Address, limit: limit);
         }
 
         [TestMethod]
         public void InvalidAddress()
         {
             var address = "1'23";
-            var response = Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, address);
+            var response = Manager.Blockchains.Token.GetTokens<GetEthTokensResponse>(NetworkCoin, address);
 
             AssertErrorMessage(response, $"{address} is not a valid Ethereum address");
         }
@@ -33,7 +33,7 @@ namespace TestCryptoApis.Blockchains.Tokens.GetTokens
         public void NullAddress()
         {
             string address = null;
-            Manager.Blockchains.Token.GetTokens<GetTokensResponse>(NetworkCoin, address);
+            Manager.Blockchains.Token.GetTokens<GetEthTokensResponse>(NetworkCoin, address);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

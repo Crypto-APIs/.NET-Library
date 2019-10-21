@@ -59,6 +59,29 @@ namespace CryptoApisLibrary.Modules.Blockchains.Tokens
             return request;
         }
 
+        public IRestRequest GetTransactions(NetworkCoin networkCoin, string address, int skip, int limit)
+        {
+            if (string.IsNullOrEmpty(address))
+                throw new ArgumentNullException(nameof(address));
+            if (skip < 0)
+                throw new ArgumentOutOfRangeException(nameof(skip), skip, "Skip is negative");
+            if (limit <= 0)
+                throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
+
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/tokens/address/{address}/transfers");
+            request.AddQueryParameter("skip", skip.ToString());
+            request.AddQueryParameter("limit", limit.ToString());
+
+            return request;
+        }
+        public IRestRequest GetTokenTotalSupplyAndDecimalsAsync(NetworkCoin networkCoin, string contract)
+        {
+            if (string.IsNullOrEmpty(contract))
+                throw new ArgumentNullException(nameof(contract));
+
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/tokens/contract/{contract}");
+            return request;
+        }
         private IRestRequest InternalTransfer(NetworkCoin networkCoin, TransferTokensRequest request)
         {
             if (string.IsNullOrEmpty(request.FromAddress))
@@ -78,5 +101,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.Tokens
         }
 
         private CryptoApiRequest Request { get; }
+
+        
     }
 }

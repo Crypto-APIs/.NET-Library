@@ -1,4 +1,5 @@
-﻿using RestSharp.Deserializers;
+﻿using CryptoApisLibrary.ResponseTypes.Blockchains.Payloads;
+using RestSharp.Deserializers;
 using System.Collections.Generic;
 
 namespace CryptoApisLibrary.ResponseTypes.Blockchains

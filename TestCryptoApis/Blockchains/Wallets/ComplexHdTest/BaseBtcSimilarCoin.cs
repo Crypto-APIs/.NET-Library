@@ -9,14 +9,13 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest
     {
-        [Ignore] // todo: !!!!!!!!!!! проанализировать почему не работает
         [TestMethod]
         public void GeneralTest()
         {
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}GeneralWallet";
             var addressCount = 3;
             var password = "0123456789";
-            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(
+            var response = Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(
                 NetworkCoin, walletName, addressCount, password);
             try
             {
@@ -32,7 +31,7 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
                 Assert.AreEqual(1, getWalletsResponse.Wallets.Count(w => w == walletName));
 
                 // GetWalletInfo
-                var getResponse = Manager.Blockchains.Wallet.GetHdWalletInfo<HdWalletInfoResponse>(NetworkCoin, walletName);
+                var getResponse = Manager.Blockchains.Wallet.GetHdWalletInfo<BtcHdWalletInfoResponse>(NetworkCoin, walletName);
 
                 AssertNullErrorMessage(getResponse);
                 Assert.AreEqual(walletName, getResponse.Wallet.Name);
@@ -40,12 +39,19 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
 
                 // GenerateAddress
                 var newAddressCount = 4;
-                var generateResponse = Manager.Blockchains.Wallet.GenerateHdAddress<HdWalletInfoResponse>(
+                var generateResponse = Manager.Blockchains.Wallet.GenerateHdAddress<BtcHdWalletInfoResponse>(
                     NetworkCoin, walletName, newAddressCount, password);
 
                 AssertNullErrorMessage(generateResponse);
                 Assert.AreEqual(walletName, generateResponse.Wallet.Name);
-                Assert.AreEqual(addressCount + newAddressCount, generateResponse.Wallet.Addresses.Count);
+                Assert.AreEqual(newAddressCount, generateResponse.Wallet.Addresses.Count);
+
+                // GetWalletInfo2
+                var getResponse2 = Manager.Blockchains.Wallet.GetHdWalletInfo<BtcHdWalletInfoResponse>(NetworkCoin, walletName);
+
+                AssertNullErrorMessage(getResponse2);
+                Assert.AreEqual(walletName, getResponse2.Wallet.Name);
+                Assert.AreEqual(addressCount + newAddressCount, getResponse2.Wallet.Addresses.Count);
             }
             finally
             {
@@ -63,7 +69,7 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}WeakPasswordWallet";
             var addressCount = 3;
             var password = "123456";
-            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(
+            var response = Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(
                 NetworkCoin, walletName, addressCount, password);
 
             AssertErrorMessage(response, "'password' is too weak. Min size is 10 characters, actual is 6");
@@ -77,14 +83,14 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}ExistingWallet";
 
             // Create the first wallet
-            var response = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
+            var response = Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
             try
             {
                 AssertNullErrorMessage(response);
                 Assert.AreEqual(walletName, response.Wallet.Name);
 
                 // Create the second wallet
-                var response2 = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
+                var response2 = Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
                 AssertErrorMessage(response2, $"Wallet '{walletName}' already exists");
             }
             finally
@@ -103,7 +109,7 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}EmptyAddressesWallet";
             var password = "0123456789";
             var addressCount = -1;
-            Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
+            Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
         }
 
         [TestMethod]
@@ -113,7 +119,7 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexHdTest
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}NullPasswordWallet";
             string password = null;
             var addressCount = 3;
-            Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
+            Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(NetworkCoin, walletName, addressCount, password);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

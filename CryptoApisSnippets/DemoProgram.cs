@@ -1,8 +1,8 @@
-﻿using CryptoApisSnippets.Samples.Blockchains;
+﻿using CryptoApisLibrary.Misc;
+using CryptoApisSnippets.Samples.Blockchains;
 using CryptoApisSnippets.Samples.Exchanges;
 using System;
 using System.IO;
-using CryptoApisLibrary.Misc;
 
 namespace CryptoApisSnippets
 {
@@ -140,7 +140,8 @@ namespace CryptoApisSnippets
             snippets.GetAddressTransactionsDash();
 
             snippets.GenerateAccountEth();
-            snippets.GetAddressBalanceEth();
+            snippets.GetNonceEth();
+            snippets.GetNonceEtc();
         }
 
         private static void RunWalletBlockchainsFeatures(BlockchainSnippets snippets)
@@ -399,12 +400,20 @@ namespace CryptoApisSnippets
 
         private static void RunTokenBlockchainsFeatures(BlockchainSnippets snippets)
         {
-            snippets.GetBalance();
-            snippets.TransferUsingPassword();
-            snippets.TransferUsingPrivateKey();
-            snippets.GetTokens();
+            snippets.GetBalanceEth();
+            snippets.GetBalanceEtc();
+
+            snippets.TransferUsingPasswordEth();
+            snippets.TransferUsingPasswordEtc();
+
+            snippets.TransferUsingPrivateKeyEth();
+            snippets.TransferUsingPrivateKeyEtc();
+
+            snippets.GetTokenTotalSupplyAndDecimalsEth();
+            snippets.GetTokenTotalSupplyAndDecimalsEtc();
+
+            snippets.GetTokensEth();
+            snippets.GetTransactionsEth();
         }
-
-
     }
 }

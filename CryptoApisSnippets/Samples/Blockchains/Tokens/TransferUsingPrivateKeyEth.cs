@@ -6,7 +6,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 {
   partial class BlockchainSnippets
   {
-    public void TransferUsingPrivateKey()
+    public void TransferUsingPrivateKeyEth()
     {
       var fromAddress = "0x0cb1883c01377f45ee5d7448a32b5ac1709afc11";
       var toAddress = "0x0cb1883c01377f45ee5d7448a32b5ac1709afc11";
@@ -22,9 +22,9 @@ namespace CryptoApisSnippets.Samples.Blockchains
           gasPrice, gasLimit, amount, privateKey);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? "TransferUsingPrivateKey executed successfully, " +
+        ? "TransferUsingPrivateKeyEth executed successfully, " +
           $"TransactionHash is \"{response.Payload.Hex}\""
-        : $"TransferUsingPrivateKey error: {response.ErrorMessage}");
+        : $"TransferUsingPrivateKeyEth error: {response.ErrorMessage}");
     }
   }
 }

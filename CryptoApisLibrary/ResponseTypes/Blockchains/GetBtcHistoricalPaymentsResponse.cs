@@ -12,7 +12,25 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
         public MetaCollectionResultsOnly Meta { get; protected set; }
 
         [DeserializeAs(Name = "payload")]
-        public List<GetBtcHistoricalPayments> Payments { get; protected set; } = new List<GetBtcHistoricalPayments>();
+        public List<BtcHistoricalPayment> Payments { get; protected set; } = new List<BtcHistoricalPayment>();
+
+        public class BtcHistoricalPayment
+        {
+            [DeserializeAs(Name = "status")]
+            public string Status { get; protected set; }
+
+            [DeserializeAs(Name = "uuid")]
+            public string Id { get; protected set; }
+
+            [DeserializeAs(Name = "block_height")]
+            public int BlockHeight { get; protected set; }
+
+            [DeserializeAs(Name = "txid")]
+            public string TransactionId { get; protected set; }
+
+            [DeserializeAs(Name = "payment_uuid")]
+            public string PaymentId { get; protected set; }
+        }
     }
 
     public class GetEthHistoricalPaymentsResponse : GetHistoricalPaymentsResponse
@@ -21,42 +39,24 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
         public MetaCollectionResultsOnly Meta { get; protected set; }
 
         [DeserializeAs(Name = "payload")]
-        public List<CreateEthHistoricalPayment> Payments { get; protected set; } = new List<CreateEthHistoricalPayment>();
-    }
+        public List<EthHistoricalPayment> Payments { get; protected set; } = new List<EthHistoricalPayment>();
 
-    public class GetBtcHistoricalPayments
-    {
-        [DeserializeAs(Name = "status")]
-        public string Status { get; protected set; }
+        public class EthHistoricalPayment
+        {
+            [DeserializeAs(Name = "payment_uuid")]
+            public string PaymentId { get; protected set; }
 
-        [DeserializeAs(Name = "uuid")]
-        public string Id { get; protected set; }
+            [DeserializeAs(Name = "status")]
+            public string Status { get; protected set; }
 
-        [DeserializeAs(Name = "block_height")]
-        public int BlockHeight { get; protected set; }
+            [DeserializeAs(Name = "block_height")]
+            public int BlockHeight { get; protected set; }
 
-        [DeserializeAs(Name = "txid")]
-        public string TransactionId { get; protected set; }
+            [DeserializeAs(Name = "transaction")]
+            public string Transaction { get; protected set; }
 
-        [DeserializeAs(Name = "payment_uuid")]
-        public string PaymentId { get; protected set; }
-    }
-
-    public class CreateEthHistoricalPayment
-    {
-        [DeserializeAs(Name = "payment_uuid")]
-        public string PaymentId { get; protected set; }
-
-        [DeserializeAs(Name = "status")]
-        public string Status { get; protected set; }
-
-        [DeserializeAs(Name = "block_height")]
-        public int BlockHeight { get; protected set; }
-
-        [DeserializeAs(Name = "transaction")]
-        public string Transaction { get; protected set; }
-
-        [DeserializeAs(Name = "uuid")]
-        public string Id { get; protected set; }
+            [DeserializeAs(Name = "uuid")]
+            public string Id { get; protected set; }
+        }
     }
 }

@@ -8,15 +8,15 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
     public class EthEstimateGasContractResponse : EstimateGasContractResponse
     {
         [DeserializeAs(Name = "payload")]
-        public EstimateGasContract Payload { get; protected set; }
-    }
+        public ResponsePayload Payload { get; protected set; }
 
-    public class EstimateGasContract : BaseResponse
-    {
-        [DeserializeAs(Name = "gas_price")]
-        public double GasPrice { get; protected set; }
+        public class ResponsePayload
+        {
+            [DeserializeAs(Name = "gas_price")]
+            public double GasPrice { get; protected set; }
 
-        [DeserializeAs(Name = "gas_limit")]
-        public double GasLimit { get; protected set; }
+            [DeserializeAs(Name = "gas_limit")]
+            public double GasLimit { get; protected set; }
+        }
     }
 }

@@ -26,26 +26,35 @@ namespace CryptoApisLibrary.DataTypes
         [DeserializeAs(Name = "confirmations")]
         public long Confirmations { get; protected set; }
 
+        [DeserializeAs(Name = "block")]
+        public long Block { get; protected set; }
+
+        [DeserializeAs(Name = "gas_price")]
+        public string GasPrice { get; protected set; }
+
+        [DeserializeAs(Name = "gas_used")]
+        public string GasUsed { get; protected set; }
+
         #region IEquatable<EthTransaction>
 
         public bool Equals(EthTransaction other)
         {
-            if (ReferenceEquals(null, other))
+            if (ReferenceEquals(null, other)) 
                 return false;
-            if (ReferenceEquals(this, other))
+            if (ReferenceEquals(this, other)) 
                 return true;
-            return string.Equals(From, other.From) && string.Equals(To, other.To) && string.Equals(Hash, other.Hash)
-                && Value.Equals(other.Value) && string.Equals(Timestamp, other.Timestamp) && Nonce == other.Nonce
-                && Confirmations == other.Confirmations;
+            return From == other.From && To == other.To && Hash == other.Hash && Value == other.Value && 
+                   Timestamp == other.Timestamp && Nonce == other.Nonce && Confirmations == other.Confirmations && 
+                   Block == other.Block && GasPrice == other.GasPrice && GasUsed == other.GasUsed;
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if (ReferenceEquals(null, obj)) 
                 return false;
-            if (ReferenceEquals(this, obj))
+            if (ReferenceEquals(this, obj)) 
                 return true;
-            return obj.GetType() == this.GetType() && Equals((EthTransaction)obj);
+            return obj.GetType() == GetType() && Equals((EthTransaction) obj);
         }
 
         public override int GetHashCode()
@@ -55,10 +64,13 @@ namespace CryptoApisLibrary.DataTypes
                 var hashCode = (From != null ? From.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (To != null ? To.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Hash != null ? Hash.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ Value.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Value != null ? Value.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (Timestamp != null ? Timestamp.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ Nonce.GetHashCode();
                 hashCode = (hashCode * 397) ^ Confirmations.GetHashCode();
+                hashCode = (hashCode * 397) ^ Block.GetHashCode();
+                hashCode = (hashCode * 397) ^ (GasPrice != null ? GasPrice.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (GasUsed != null ? GasUsed.GetHashCode() : 0);
                 return hashCode;
             }
         }

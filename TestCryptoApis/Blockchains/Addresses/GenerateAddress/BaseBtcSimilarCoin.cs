@@ -10,12 +10,7 @@ namespace TestCryptoApis.Blockchains.Addresses.GenerateAddress
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Address.GenerateAddress<GenerateBtcAddressResponse>(NetworkCoin);
-
-            AssertNullErrorMessage(response);
-
-            var address = response.Payload.Bch ?? response.Payload.Address;
-            Assert.IsFalse(string.IsNullOrEmpty(address), $"'{nameof(address)}' must not be null");
+            var address = CheckGenerateAddress();
 
             var getAddressResponse = Manager.Blockchains.Address.GetAddress<GetBtcAddressResponse>(NetworkCoin, address);
 
@@ -23,6 +18,18 @@ namespace TestCryptoApis.Blockchains.Addresses.GenerateAddress
             Assert.IsFalse(string.IsNullOrEmpty(getAddressResponse.Payload.Address),
                 $"'{nameof(getAddressResponse.Payload.Address)}' must not be null");
             Assert.AreEqual(address, getAddressResponse.Payload.Address, "'Address' is wrong");
+        }
+
+        protected virtual string CheckGenerateAddress()
+        {
+            var response = Manager.Blockchains.Address.GenerateAddress<GenerateBtcAddressResponse>(NetworkCoin);
+
+            AssertNullErrorMessage(response);
+
+            var address = response.Payload.Address;
+            Assert.IsFalse(string.IsNullOrEmpty(address), $"'{nameof(address)}' must not be null");
+
+            return address;
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

@@ -1,4 +1,5 @@
-﻿using RestSharp.Deserializers;
+﻿using CryptoApisLibrary.ResponseTypes.Blockchains.Payloads;
+using RestSharp.Deserializers;
 
 namespace CryptoApisLibrary.ResponseTypes.Blockchains
 {
@@ -8,21 +9,12 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
     public class CreateBtcConfirmedTransactionWebHookResponse : CreateConfirmedTransactionWebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public CreateConfirmedTransactionWebHook Payload { get; protected set; }
+        public CreateConfirmedTransactionWebHookPayload Payload { get; protected set; }
     }
 
     public class CreateEthConfirmedTransactionWebHookResponse : CreateConfirmedTransactionWebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public CreateConfirmedTransactionWebHook Payload { get; protected set; }
-    }
-
-    public class CreateConfirmedTransactionWebHook : WebHookPayload
-    {
-        [DeserializeAs(Name = "confirmations")]
-        public int ConfirmationCount { get; protected set; }
-
-        [DeserializeAs(Name = "transaction")]
-        public string TransactionHash { get; protected set; }
+        public CreateConfirmedTransactionWebHookPayload Payload { get; protected set; }
     }
 }

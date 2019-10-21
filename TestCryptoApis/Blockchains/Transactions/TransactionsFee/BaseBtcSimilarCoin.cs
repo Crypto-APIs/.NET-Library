@@ -13,9 +13,9 @@ namespace TestCryptoApis.Blockchains.Transactions.TransactionsFee
             var response = Manager.Blockchains.Transaction.TransactionsFee<BtcTransactionsFeeResponse>(NetworkCoin);
 
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.Payload, $"'{nameof(response.Payload)}' must not be null");
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Recommended), 
-                $"'{nameof(response.Payload.Recommended)}' must not be null");
+            Assert.IsNotNull(response.Fee, $"'{nameof(response.Fee)}' must not be null");
+            Assert.IsFalse(string.IsNullOrEmpty(response.Fee.Recommended), 
+                $"'{nameof(response.Fee.Recommended)}' must not be null");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

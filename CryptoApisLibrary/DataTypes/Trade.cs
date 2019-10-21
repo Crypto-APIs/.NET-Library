@@ -1,6 +1,6 @@
-using CryptoApisLibrary.DataTypes.Exceptions;
 using RestSharp.Deserializers;
 using System;
+using CryptoApisLibrary.Exceptions;
 
 namespace CryptoApisLibrary.DataTypes
 {

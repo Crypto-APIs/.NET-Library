@@ -9,7 +9,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
     public void GetHdWalletDoge(string walletName)
     {
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Wallet.GetHdWalletInfo<HdWalletInfoResponse>(
+      var response = manager.Blockchains.Wallet.GetHdWalletInfo<BtcHdWalletInfoResponse>(
         NetworkCoin.DogeMainNet, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)

@@ -61,12 +61,12 @@ namespace CryptoApisLibrary.Modules.Blockchains.Addresses
             return request;
         }
 
-        public IRestRequest GetAddressBalance(NetworkCoin networkCoin, string address)
+        public IRestRequest GetNonce(NetworkCoin networkCoin, string address)
         {
             if (string.IsNullOrEmpty(address))
                 throw new ArgumentNullException(nameof(address));
 
-            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/address/{address}/balance");
+            var request = Request.Get($"{Consts.Blockchain}/{networkCoin}/address/{address}/nonce");
             return request;
         }
 

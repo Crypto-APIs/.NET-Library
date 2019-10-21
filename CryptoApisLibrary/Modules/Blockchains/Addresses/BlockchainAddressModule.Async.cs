@@ -37,11 +37,11 @@ namespace CryptoApisLibrary.Modules.Blockchains.Addresses
             return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<T> GetAddressBalanceAsync<T>(CancellationToken cancellationToken,
+        public Task<T> GetNonceAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string address)
-            where T : GetAddressBalanceResponse, new()
+            where T : GetNonceResponse, new()
         {
-            var request = Requests.GetAddressBalance(networkCoin, address);
+            var request = Requests.GetNonce(networkCoin, address);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
 

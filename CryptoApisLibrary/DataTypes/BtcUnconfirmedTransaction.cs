@@ -1,7 +1,7 @@
+using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using RestSharp.Deserializers;
 
 namespace CryptoApisLibrary.DataTypes
 {

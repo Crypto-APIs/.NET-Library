@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TestCryptoApis.Blockchains.Wallets.ComplexTest
 {
@@ -15,44 +15,48 @@ namespace TestCryptoApis.Blockchains.Wallets.ComplexTest
         {
             var walletName = $"{NetworkCoin.Coin}{NetworkCoin.Network}GeneralWallet";
             var response = Manager.Blockchains.Wallet.CreateWallet<WalletInfoResponse>(NetworkCoin, walletName, Addresses);
+            try
+            {
+                AssertNullErrorMessage(response);
+                Assert.AreEqual(walletName, response.Wallet.Name);
 
-            AssertNullErrorMessage(response);
-            Assert.AreEqual(walletName, response.Wallet.Name);
+                // GetWallets
+                var getWalletsResponse = Manager.Blockchains.Wallet.GetWallets<GetWalletsResponse>(NetworkCoin);
+                AssertNullErrorMessage(getWalletsResponse);
+                AssertNotEmptyCollection(nameof(getWalletsResponse.Wallets), getWalletsResponse.Wallets);
+                Assert.AreEqual(1, getWalletsResponse.Wallets.Count(w => w == walletName));
 
-            // GetWallets
-            var getWalletsResponse = Manager.Blockchains.Wallet.GetWallets<GetWalletsResponse>(NetworkCoin);
-            AssertNullErrorMessage(getWalletsResponse);
-            AssertNotEmptyCollection(nameof(getWalletsResponse.Wallets), getWalletsResponse.Wallets);
-            Assert.AreEqual(1, getWalletsResponse.Wallets.Count(w => w == walletName));
+                // GetWalletInfo
+                var getResponse = Manager.Blockchains.Wallet.GetWalletInfo<WalletInfoResponse>(NetworkCoin, walletName);
+                AssertNullErrorMessage(getResponse);
+                Assert.AreEqual(walletName, getResponse.Wallet.Name);
+                Assert.AreEqual(Addresses.Count, getResponse.Wallet.Addresses.Count);
 
-            // GetWalletInfo
-            var getResponse = Manager.Blockchains.Wallet.GetWalletInfo<WalletInfoResponse>(NetworkCoin, walletName);
-            AssertNullErrorMessage(getResponse);
-            Assert.AreEqual(walletName, getResponse.Wallet.Name);
-            Assert.AreEqual(Addresses.Count, getResponse.Wallet.Addresses.Count);
+                // AddAddress
+                var addResponse = Manager.Blockchains.Wallet.AddAddress<WalletInfoResponse>(NetworkCoin, walletName, AddedAddresses);
+                AssertNullErrorMessage(addResponse);
+                Assert.AreEqual(walletName, addResponse.Wallet.Name);
+                Assert.AreEqual(Addresses.Count + AddedAddresses.Count, addResponse.Wallet.Addresses.Count);
 
-            // AddAddress
-            var addResponse = Manager.Blockchains.Wallet.AddAddress<WalletInfoResponse>(NetworkCoin, walletName, AddedAddresses);
-            AssertNullErrorMessage(addResponse);
-            Assert.AreEqual(walletName, addResponse.Wallet.Name);
-            Assert.AreEqual(Addresses.Count + AddedAddresses.Count, addResponse.Wallet.Addresses.Count);
+                // GenerateAddress
+                var generateResponse = Manager.Blockchains.Wallet.GenerateAddress<GenerateWalletAddressResponse>(NetworkCoin, walletName);
+                AssertNullErrorMessage(generateResponse);
+                Assert.AreEqual(walletName, generateResponse.Payload.Wallet.Name);
+                Assert.AreEqual(Addresses.Count + AddedAddresses.Count + 1, generateResponse.Payload.Wallet.Addresses.Count);
 
-            // GenerateAddress
-            var generateResponse = Manager.Blockchains.Wallet.GenerateAddress<GenerateWalletAddressResponse>(NetworkCoin, walletName);
-            AssertNullErrorMessage(generateResponse);
-            Assert.AreEqual(walletName, generateResponse.Payload.Wallet.Name);
-            Assert.AreEqual(Addresses.Count + AddedAddresses.Count + 1, generateResponse.Payload.Wallet.Addresses.Count);
-
-            // RemoveAddress
-            var removingAddress = Addresses[0];
-            var removeResponse = Manager.Blockchains.Wallet.RemoveAddress<RemoveAddressResponse>(NetworkCoin, walletName, removingAddress);
-            AssertNullErrorMessage(removeResponse);
-            Assert.AreEqual($"address {removingAddress} was successfully deleted!", removeResponse.Payload.Message);
-
-            // DeleteWallet
-            var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
-            AssertNullErrorMessage(deleteResponse);
-            Assert.AreEqual($"Wallet {walletName} was successfully deleted!", deleteResponse.Payload.Message);
+                // RemoveAddress
+                var removingAddress = Addresses[0];
+                var removeResponse = Manager.Blockchains.Wallet.RemoveAddress<RemoveAddressResponse>(NetworkCoin, walletName, removingAddress);
+                AssertNullErrorMessage(removeResponse);
+                Assert.AreEqual($"address {removingAddress} was successfully deleted!", removeResponse.Payload.Message);
+            }
+            finally
+            {
+                // DeleteWallet
+                var deleteResponse = Manager.Blockchains.Wallet.DeleteWallet<DeleteWalletResponse>(NetworkCoin, walletName);
+                AssertNullErrorMessage(deleteResponse);
+                Assert.AreEqual($"Wallet {walletName} was successfully deleted!", deleteResponse.Payload.Message);
+            }
         }
 
         [TestMethod]

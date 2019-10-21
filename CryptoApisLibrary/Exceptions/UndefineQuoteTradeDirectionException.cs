@@ -1,6 +1,6 @@
 using System;
 
-namespace CryptoApisLibrary.DataTypes.Exceptions
+namespace CryptoApisLibrary.Exceptions
 {
     public sealed class UndefineQuoteTradeDirectionException : InvalidOperationException
     {

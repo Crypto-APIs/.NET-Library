@@ -13,8 +13,8 @@ namespace TestCryptoApis.Blockchains.Transactions.TransactionsFee
             var response = Manager.Blockchains.Transaction.TransactionsFee<EthTransactionsFeeResponse>(NetworkCoin);
 
             AssertNullErrorMessage(response);
-            Assert.IsNotNull(response.Payload);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Recommended));
+            Assert.IsNotNull(response.Fee);
+            Assert.IsFalse(string.IsNullOrEmpty(response.Fee.Recommended));
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

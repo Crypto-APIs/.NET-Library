@@ -1,3 +1,4 @@
+using CryptoApisLibrary.ResponseTypes.Blockchains.Payloads;
 using RestSharp.Deserializers;
 
 namespace CryptoApisLibrary.ResponseTypes.Blockchains
@@ -8,18 +9,12 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
     public class DeleteBtcPaymentResponse : DeletePaymentResponse
     {
         [DeserializeAs(Name = "payload")]
-        public DeletePayment Payload { get; protected set; }
+        public DeletePaymentPayload Payload { get; protected set; }
     }
 
     public class DeleteEthPaymentResponse : DeletePaymentResponse
     {
         [DeserializeAs(Name = "payload")]
-        public DeletePayment Payload { get; protected set; }
-    }
-
-    public class DeletePayment
-    {
-        [DeserializeAs(Name = "message")]
-        public string Message { get; protected set; }
+        public DeletePaymentPayload Payload { get; protected set; }
     }
 }

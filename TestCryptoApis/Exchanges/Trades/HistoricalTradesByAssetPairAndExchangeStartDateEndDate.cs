@@ -1,6 +1,6 @@
 ﻿using System;
 using CryptoApisLibrary.DataTypes;
-using CryptoApisLibrary.DataTypes.Exceptions;
+using CryptoApisLibrary.Exceptions;
 using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

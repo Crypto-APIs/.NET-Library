@@ -14,7 +14,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "TransactionsFeeDoge executed successfully, " +
-          $"recommended transactions fee is '{response.Payload.Recommended}'"
+          $"recommended transactions fee is '{response.Fee.Recommended}'"
         : $"TransactionsFeeDoge error: {response.ErrorMessage}");
     }
   }

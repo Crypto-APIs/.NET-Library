@@ -1,5 +1,6 @@
 using RestSharp.Deserializers;
 using System.Collections.Generic;
+using CryptoApisLibrary.ResponseTypes.Blockchains.Payloads;
 
 namespace CryptoApisLibrary.ResponseTypes.Blockchains
 {
@@ -12,7 +13,7 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
         public MetaCollectionResultsOnly Meta { get; protected set; }
 
         [DeserializeAs(Name = "payload")]
-        public List<CreateBtcPayment> Payments { get; protected set; } = new List<CreateBtcPayment>();
+        public List<CreateBtcPaymentPayload> Payments { get; protected set; } = new List<CreateBtcPaymentPayload>();
     }
 
     public class GetEthPaymentsResponse : GetPaymentsResponse
@@ -21,6 +22,6 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
         public MetaCollectionResultsOnly Meta { get; protected set; }
 
         [DeserializeAs(Name = "payload")]
-        public List<CreateEthPayment> Payments { get; protected set; } = new List<CreateEthPayment>();
+        public List<CreateEthPaymentPayload> Payments { get; protected set; } = new List<CreateEthPaymentPayload>();
     }
 }

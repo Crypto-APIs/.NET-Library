@@ -1,8 +1,8 @@
 ﻿using CryptoApisLibrary.DataTypes;
-using CryptoApisLibrary.DataTypes.Exceptions;
 using CryptoApisLibrary.Misc;
 using RestSharp;
 using System;
+using CryptoApisLibrary.Exceptions;
 
 namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
 {

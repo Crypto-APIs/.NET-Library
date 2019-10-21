@@ -17,7 +17,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 
             var walletName = GetRandomWalletName();
             var addressCount = 2;
-            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(
+            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(
                 NetworkCoin, walletName, addressCount, Password);
             Assert.IsNotNull(fromWallet);
             try
@@ -182,7 +182,7 @@ namespace TestCryptoApis.Blockchains.PaymentForwardings.CreateGetDelete
 
             var walletName = GetRandomWalletName();
             var addressCount = 2;
-            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet<HdWalletInfoResponse>(
+            var fromWallet = Manager.Blockchains.Wallet.CreateHdWallet<BtcHdWalletInfoResponse>(
                 NetworkCoin, walletName, addressCount, Password);
             Assert.IsNotNull(fromWallet);
             try

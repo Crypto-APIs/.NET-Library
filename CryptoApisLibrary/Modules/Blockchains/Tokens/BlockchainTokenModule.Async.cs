@@ -33,9 +33,23 @@ namespace CryptoApisLibrary.Modules.Blockchains.Tokens
 
         public Task<T> GetTokensAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string address,
             int skip = 0, int limit = 50)
-            where T : GetTokensResponse, new()
+            where T : GetEthTokensResponse, new()
         {
             var request = Requests.GetTokens(networkCoin, address, skip, limit);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> GetTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
+            string address, int skip = 0, int limit = 50) where T : GetEthTransactionsResponse, new()
+        {
+            var request = Requests.GetTransactions(networkCoin, address, skip, limit);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> GetTokenTotalSupplyAndDecimalsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
+            string contract) where T : GetTokenTotalSupplyAndDecimalsResponse, new()
+        {
+            var request = Requests.GetTokenTotalSupplyAndDecimalsAsync(networkCoin, contract);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
     }

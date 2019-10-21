@@ -102,7 +102,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.Tokens
         /// <param name="skip">The offset of items to start from.</param>
         /// <param name="limit">Amount of items to return.</param>
         T GetTokens<T>(NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
-            where T : GetTokensResponse, new();
+            where T : GetEthTokensResponse, new();
 
         /// <summary>
         /// Get list of each transfer for the specified address.
@@ -115,6 +115,48 @@ namespace CryptoApisLibrary.Modules.Blockchains.Tokens
         /// <param name="limit">Amount of items to return.</param>
         Task<T> GetTokensAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
-            where T : GetTokensResponse, new();
+            where T : GetEthTokensResponse, new();
+
+        /// <summary>
+        /// Get list of token transactions for the specified address.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="address">Address with tokens.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        T GetTransactions<T>(NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetEthTransactionsResponse, new();
+
+        /// <summary>
+        /// Get list of token transactions for the specified address.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="address">Address with tokens.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        Task<T> GetTransactionsAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string address, int skip = 0, int limit = 50)
+            where T : GetEthTransactionsResponse, new();
+
+        /// <summary>
+        /// Get list of token transactions for the specified address.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="contract">Contract address.</param>
+        T GetTokenTotalSupplyAndDecimals<T>(NetworkCoin networkCoin, string contract)
+            where T : GetTokenTotalSupplyAndDecimalsResponse, new();
+
+        /// <summary>
+        /// Get list of token transactions for the specified address.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="contract">Contract address.</param>
+        Task<T> GetTokenTotalSupplyAndDecimalsAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string contract)
+            where T : GetTokenTotalSupplyAndDecimalsResponse, new();
     }
 }

@@ -31,10 +31,10 @@ namespace CryptoApisLibrary.Modules.Blockchains.Addresses
             return GetAddressTransactionsAsync<T>(CancellationToken.None, networkCoin, address, skip, limit).GetAwaiter().GetResult();
         }
 
-        public T GetAddressBalance<T>(NetworkCoin networkCoin, string address)
-            where T : GetAddressBalanceResponse, new()
+        public T GetNonce<T>(NetworkCoin networkCoin, string address)
+            where T : GetNonceResponse, new()
         {
-            return GetAddressBalanceAsync<T>(CancellationToken.None, networkCoin, address).GetAwaiter().GetResult();
+            return GetNonceAsync<T>(CancellationToken.None, networkCoin, address).GetAwaiter().GetResult();
         }
 
         public T GenerateAccount<T>(NetworkCoin networkCoin, string password)

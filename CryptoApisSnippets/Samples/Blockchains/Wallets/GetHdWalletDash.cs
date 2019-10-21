@@ -10,7 +10,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
     {
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Wallet.GetHdWalletInfo<HdWalletInfoResponse>(
+      var response = manager.Blockchains.Wallet.GetHdWalletInfo<BtcHdWalletInfoResponse>(
         NetworkCoin.DashMainNet, walletName);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)

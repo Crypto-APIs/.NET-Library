@@ -87,24 +87,6 @@ namespace CryptoApisLibrary.Modules.Blockchains.Addresses
             where T : GetAddressTransactionsResponse, new();
 
         /// <summary>
-        /// Get a subset of information on a public address.
-        /// </summary>
-        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
-        /// <param name="address">Address in blockchain.</param>
-        T GetAddressBalance<T>(NetworkCoin networkCoin, string address)
-            where T : GetAddressBalanceResponse, new();
-
-        /// <summary>
-        /// Get a subset of information on a public address.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
-        /// <param name="address">Address in blockchain.</param>
-        Task<T> GetAddressBalanceAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string address)
-            where T : GetAddressBalanceResponse, new();
-
-        /// <summary>
         /// Allows you to generate private-public key-pairs along with an associated public address encoded in a keyfile.
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
@@ -121,5 +103,23 @@ namespace CryptoApisLibrary.Modules.Blockchains.Addresses
         /// <param name="password"></param>
         Task<T> GenerateAccountAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string password)
             where T : GenerateAccountResponse, new();
+
+        /// <summary>
+        /// Returns the current nonce of the specified address.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="address">Address in blockchain.</param>
+        T GetNonce<T>(NetworkCoin networkCoin, string address)
+            where T : GetNonceResponse, new();
+
+        /// <summary>
+        /// Returns the current nonce of the specified address.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="address">Address in blockchain.</param>
+        Task<T> GetNonceAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string address)
+            where T : GetNonceResponse, new();
     }
 }
