@@ -84,7 +84,7 @@ namespace TestCryptoApis.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "We are facing technical issues, please try again later");
+                AssertErrorMessage(response, "General validation error: Wrong ID format for baseAsset");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
@@ -97,7 +97,7 @@ namespace TestCryptoApis.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "We are facing technical issues, please try again later");
+                AssertErrorMessage(response, "General validation error: Wrong ID format for quoteAsset");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
@@ -110,7 +110,7 @@ namespace TestCryptoApis.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "We are facing technical issues, please try again later");
+                AssertErrorMessage(response, "General validation error: Wrong ID format for exchangeId");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
