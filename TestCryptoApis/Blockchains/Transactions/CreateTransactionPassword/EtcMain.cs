@@ -8,8 +8,8 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPassword
     public class EtcMain : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMainNet;
-        protected override string FromAddress { get; } = "0x1c0fa194a9d3b44313dcd849f3c6be6ad270a0a4";
-        protected override string ToAddress { get; } = "0x461d05612a9fea4a9ed118dbf21ebb81ef0dac3c";
+        protected override string FromAddress { get; } = "0x2E00156fCF13Da534526E51f055E545d61c9191D";
+        protected override string ToAddress { get; } = "0x1E95674d636a2D78D5BfAE646A4Abe4709F6F8Bd";
         protected override double Value { get; } = 0.12;
     }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPassword
 {
@@ -16,7 +16,7 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPassword
                 NetworkCoin, FromAddress, ToAddress, Value, Password);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex), 
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex),
                 $"'{nameof(response.Payload.Hex)}' must not be null");
         }
 
@@ -47,7 +47,7 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, password);
 
-            AssertErrorMessage(response, "");
+            AssertErrorMessage(response, $"There is no registry for address: { FromAddress }");
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPassword
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, value, Password);
 
-            AssertErrorMessage(response, "");
+            AssertErrorMessage(response, $"There is no registry for address: { FromAddress }");
         }
 
         [TestMethod]

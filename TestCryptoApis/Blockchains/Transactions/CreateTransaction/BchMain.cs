@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 {
-    [Ignore] // todo: temporarily ignored
     [TestClass]
     public class BchMain : BaseBtcSimilarCoin
     {
@@ -13,13 +12,13 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 
         protected override Dictionary<string, double> InputAddressesDictionary => _inputAddresses ?? (_inputAddresses = new Dictionary<string, double>
         {
-            { "",0.54},
-            { "",1.00}
+            { "bitcoincash:qr3vzws2wwr3hdwhaxw9edrdscv7west45qel5yxj6",0.54},
+            { "bitcoincash:qphghkmf5zym4nwd45d5tagzzut3xpfkp52045tl2j",1.00}
         });
 
         protected override Dictionary<string, double> OutputAddressesDictionary => _outputAddresses ?? (_outputAddresses = new Dictionary<string, double>
         {
-            { "", 1.54},
+            { "bitcoincash:qr9pdsvzp9ylauqlrw7tys7px5rkf704hvr4t9xf0y", 1.54},
         });
 
         private Dictionary<string, double> _inputAddresses;

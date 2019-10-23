@@ -26,7 +26,8 @@ test:
       |FullyQualifiedName~TestCryptoApis.Blockchains.WebhookNotifications
       |FullyQualifiedName~TestCryptoApis.Blockchains.Addresses
       |FullyQualifiedName~TestCryptoApis.Blockchains.Contracts
-      |FullyQualifiedName~TestCryptoApis.Blockchains.PaymentForwardings" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
+      |FullyQualifiedName~TestCryptoApis.Blockchains.PaymentForwardings
+      |FullyQualifiedName~TestCryptoApis.Blockchains.Wallets" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   retry: 2
   dependencies:
     - build
