@@ -9,8 +9,8 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
 
         public class ResponsePayload
         {
-            [DeserializeAs(Name = "gas_needed")]
-            public string GasNeeded { get; protected set; }
+            [DeserializeAs(Name = "gasLimit")]
+            public string GasLimit { get; protected set; }
         }
     }
 }

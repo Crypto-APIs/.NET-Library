@@ -106,7 +106,7 @@ namespace TestCryptoApis.Exchanges.OrderBook
         [TestMethod]
         public void TestIncorrectExchange()
         {
-            var exchange = new Exchange { ExchangeId = "qw'e" };
+            var exchange = new Exchange { Name = "qw'e" };
             var response = Manager.Exchanges.OrderBook.Get(exchange, BaseAsset, QuoteAsset);
 
             if (AssertAdditionalPackagePlan(response))
@@ -116,7 +116,7 @@ namespace TestCryptoApis.Exchanges.OrderBook
             }
         }
 
-        private Exchange Exchange { get; } = new Exchange { ExchangeId = "BITFINEX" };
+        private Exchange Exchange { get; } = new Exchange { Name = "BITFINEX" };
         private Asset BaseAsset { get; } = new Asset { AssetId = "EOS" };
         private Asset QuoteAsset { get; } = new Asset { AssetId = "BTC" };
     }

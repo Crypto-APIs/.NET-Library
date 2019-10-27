@@ -83,6 +83,15 @@ namespace TestCryptoApis
             Assert.AreEqual(etalonErrorMessage, response.ErrorMessage, "'ErrorMessage' is wrong");
         }
 
+        protected void AssertErrorMessagePart(IResponse response, string etalonErrorMessage)
+        {
+            AssertNotNullResponse(response);
+            Assert.IsFalse(
+                string.IsNullOrEmpty(response.ErrorMessage),
+                $"'{nameof(response.ErrorMessage)}' must not be null");
+            Assert.IsTrue(response.ErrorMessage.Contains(etalonErrorMessage), "'ErrorMessage' is wrong");
+        }
+
         protected bool AssertAdditionalPackagePlan(IResponse response)
         {
             if (!IsAdditionalPackagePlan)

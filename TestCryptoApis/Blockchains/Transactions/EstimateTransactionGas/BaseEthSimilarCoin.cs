@@ -15,8 +15,8 @@ namespace TestCryptoApis.Blockchains.Transactions.EstimateTransactionGas
                 NetworkCoin, FromAddress, ToAddress, Value, Data);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded),
-                $"'{nameof(response.Payload.GasNeeded)}' must not be null");
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasLimit),
+                $"'{nameof(response.Payload.GasLimit)}' must not be null");
         }
 
         [TestMethod]
@@ -57,8 +57,8 @@ namespace TestCryptoApis.Blockchains.Transactions.EstimateTransactionGas
                 NetworkCoin, FromAddress, ToAddress, value, Data);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasNeeded),
-                $"'{nameof(response.Payload.GasNeeded)}' must not be null");
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasLimit),
+                $"'{nameof(response.Payload.GasLimit)}' must not be null");
         }
 
         [TestMethod]
@@ -86,7 +86,9 @@ namespace TestCryptoApis.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, data);
 
-            AssertErrorMessage(response, "Internal Server Error");
+            ////AssertNullErrorMessage(response);
+            Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasLimit),
+                $"'{nameof(response.Payload.GasLimit)}' must not be null");
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

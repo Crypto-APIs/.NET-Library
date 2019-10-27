@@ -11,8 +11,8 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 
         protected override Dictionary<string, double> InputAddressesDictionary => _inputAddresses ?? (_inputAddresses = new Dictionary<string, double>
         {
-            { "n2ov2TJfLv3vPdU7xZuycpwaJCxtwf2QTJ",0.54},
-            { "mkY9bvNEiLZCWwhpGiQ3mCBcNXd1DXzE8m",1.00}
+            { "n2ov2TJfLv3vPdU7xZuycpwaJCxtwf2QTJ", 0.54},
+            { "mkY9bvNEiLZCWwhpGiQ3mCBcNXd1DXzE8m", 1.00}
         });
 
         protected override Dictionary<string, double> OutputAddressesDictionary => _outputAddresses ?? (_outputAddresses = new Dictionary<string, double>

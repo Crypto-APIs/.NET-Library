@@ -114,7 +114,6 @@ namespace TestCryptoApis.Exchanges.Ohlcv
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Symbol Symbol { get; } = Features.BtcLtc;
         private Period Period { get; } = new Period("1day");

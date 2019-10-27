@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 {
@@ -27,6 +27,15 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 
             AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.Hex));
+        }
+
+        [TestMethod]
+        public void NotEnoughBalance()
+        {
+            var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
+                NetworkCoin, InputAddresses, OutputAddresses, Fee);
+            AssertErrorMessagePart(response, "Not enough balance in ");
+            Assert.IsTrue(response.Payload == null);
         }
 
         [TestMethod]
@@ -135,7 +144,7 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, OutputAddresses, fee);
 
-            AssertErrorMessage(response, 
+            AssertErrorMessage(response,
                 $"Not enough balance in '{InputAddressesDictionary.First().Key}' available '0.00000000', but needed is '2147483648.54000000' (including fee)");
         }
 

@@ -46,6 +46,8 @@ namespace CryptoApisLibrary.DataTypes
         [DeserializeAs(Name = "_id")]
         public string Id { get; protected set; }
 
+        public Asset ToAsset => new Asset(Id);
+
         public override string ToString()
         {
             return AssetId;

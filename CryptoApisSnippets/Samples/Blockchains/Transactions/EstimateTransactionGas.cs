@@ -19,7 +19,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "EstimateTransactionGas executed successfully, " +
-          $"gas needed {response.Payload.GasNeeded}"
+          $"gas needed {response.Payload.GasLimit}"
         : $"EstimateTransactionGas error: {response.ErrorMessage}");
     }
   }
