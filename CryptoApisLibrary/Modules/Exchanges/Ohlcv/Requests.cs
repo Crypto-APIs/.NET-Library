@@ -1,8 +1,8 @@
 ﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.Exceptions;
 using CryptoApisLibrary.Misc;
 using RestSharp;
 using System;
-using CryptoApisLibrary.Exceptions;
 
 namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
 {
@@ -33,6 +33,39 @@ namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
                 throw new ArgumentNullException(nameof(symbol));
             if (string.IsNullOrEmpty(symbol.Id))
                 throw new ArgumentNullException($"{nameof(symbol)}.{nameof(symbol.Id)}");
+
+            return InternalLatestOhlcv(period, limit, () =>
+                $"{Consts.OHLCVEndPoint}/latest/{symbol.Id}");
+        }
+
+        public IRestRequest LatestOhlcv(Exchange exchange, Period period, int limit)
+        {
+            if (exchange == null)
+                throw new ArgumentNullException(nameof(exchange));
+            if (string.IsNullOrEmpty(exchange.Id))
+                throw new ArgumentNullException($"{nameof(exchange)}.{nameof(exchange.Id)}");
+
+            return InternalLatestOhlcv(period, limit, () =>
+                $"{Consts.OHLCVEndPoint}/latest/by-exchange/{exchange.Id}");
+        }
+
+        public IRestRequest LatestOhlcv(Exchange exchange, Asset asset, Period period, int limit)
+        {
+            if (exchange == null)
+                throw new ArgumentNullException(nameof(exchange));
+            if (string.IsNullOrEmpty(exchange.Id))
+                throw new ArgumentNullException($"{nameof(exchange)}.{nameof(exchange.Id)}");
+            if (asset == null)
+                throw new ArgumentNullException(nameof(asset));
+            if (string.IsNullOrEmpty(asset.Id))
+                throw new ArgumentNullException($"{nameof(asset)}.{nameof(asset.Id)}");
+
+            return InternalLatestOhlcv(period, limit, () =>
+                $"{Consts.OHLCVEndPoint}/latest/by-exchange-and-asset/{exchange.Id}/{asset.Id}");
+        }
+
+        private IRestRequest InternalLatestOhlcv(Period period, int limit, Func<string> getUrl)
+        {
             if (period == null)
                 throw new ArgumentNullException(nameof(period));
             if (string.IsNullOrEmpty(period.Id))
@@ -40,7 +73,7 @@ namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
             if (limit <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limit), limit, "Limit is negative or zero");
 
-            var request = Request.Get($"{Consts.OHLCVEndPoint}/latest/{symbol.Id}");
+            var request = Request.Get(getUrl.Invoke());
             request.AddQueryParameter("period", period.Id);
             request.AddQueryParameter("limit", limit.ToString());
 
@@ -54,6 +87,42 @@ namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
                 throw new ArgumentNullException(nameof(symbol));
             if (string.IsNullOrEmpty(symbol.Id))
                 throw new ArgumentNullException($"{nameof(symbol)}.{nameof(symbol.Id)}");
+
+            return InternalHistoricalOhlcv(period, startPeriod, endPeriod, skip, limit,
+                () => $"{Consts.OHLCVEndPoint}/history/{symbol.Id}");
+        }
+
+        public IRestRequest HistoricalOhlcv(Exchange exchange, Period period,
+            DateTime startPeriod, DateTime? endPeriod, int skip, int limit)
+        {
+            if (exchange == null)
+                throw new ArgumentNullException(nameof(exchange));
+            if (string.IsNullOrEmpty(exchange.Id))
+                throw new ArgumentNullException($"{nameof(exchange)}.{nameof(exchange.Id)}");
+
+            return InternalHistoricalOhlcv(period, startPeriod, endPeriod, skip, limit,
+                () => $"{Consts.OHLCVEndPoint}/history/by-exchange/{exchange.Id}");
+        }
+
+        public IRestRequest HistoricalOhlcv(Exchange exchange, Asset asset, Period period,
+            DateTime startPeriod, DateTime? endPeriod, int skip, int limit)
+        {
+            if (exchange == null)
+                throw new ArgumentNullException(nameof(exchange));
+            if (string.IsNullOrEmpty(exchange.Id))
+                throw new ArgumentNullException($"{nameof(exchange)}.{nameof(exchange.Id)}");
+            if (asset == null)
+                throw new ArgumentNullException(nameof(asset));
+            if (string.IsNullOrEmpty(asset.Id))
+                throw new ArgumentNullException($"{nameof(asset)}.{nameof(asset.Id)}");
+
+            return InternalHistoricalOhlcv(period, startPeriod, endPeriod, skip, limit,
+                () => $"{Consts.OHLCVEndPoint}/history/by-exchange-and-asset/{exchange.Id}/{asset.Id}");
+        }
+
+        private IRestRequest InternalHistoricalOhlcv(Period period,
+            DateTime startPeriod, DateTime? endPeriod, int skip, int limit, Func<string> getUrl)
+        {
             if (period == null)
                 throw new ArgumentNullException(nameof(period));
             if (string.IsNullOrEmpty(period.Id))
@@ -65,7 +134,7 @@ namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
             if (endPeriod.HasValue && startPeriod >= endPeriod)
                 throw new RequestException("StartPeriod is more than EndPeriod");
 
-            var request = Request.Get($"{Consts.OHLCVEndPoint}/history/{symbol.Id}");
+            var request = Request.Get(getUrl.Invoke());
             request.AddQueryParameter("period", period.ToString());
             request.AddQueryParameter("timePeriodStart", Tools.ToUnixTimestamp(startPeriod));
             if (endPeriod.HasValue)

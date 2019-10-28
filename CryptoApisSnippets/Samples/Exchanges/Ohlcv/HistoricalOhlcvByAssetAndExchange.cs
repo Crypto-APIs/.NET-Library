@@ -5,21 +5,22 @@ namespace CryptoApisSnippets.Samples.Exchanges
 {
   partial class ExchangeSnippets
   {
-    public void HistoricalOhlcv()
+    public void HistoricalOhlcvByAssetAndExchange()
     {
-      var symbol = new Symbol { Id = "5b3a4d323d8cea0001653bb0" };
+      var exchange = new Exchange("5b3a4d323d8cea0001653bb0");
+      var asset = new Asset("5b1ea92e584bf50020130845");
       var period = new Period("6hrs");
       var startPeriod = new DateTime(2019, 02, 04);
       var endPeriod = new DateTime(2019, 02, 05);
 
       var manager = new CryptoManager(ApiKey);
       var response = manager.Exchanges.Ohlcv.Historical(
-        symbol, period, startPeriod, endPeriod, limit: 10);
+        exchange, asset, period, startPeriod, endPeriod, limit: 10);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? "HistoricalOhlcv executed successfully, " +
+        ? "HistoricalOhlcvByAssetAndExchange executed successfully, " +
           $"{response.Ohlcv.Count} records returned"
-        : $"HistoricalOhlcv error: {response.ErrorMessage}");
+        : $"HistoricalOhlcvByAssetAndExchange error: {response.ErrorMessage}");
     }
   }
 }

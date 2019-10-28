@@ -61,7 +61,12 @@ namespace CryptoApisSnippets
 
             snippets.Periods();
             snippets.LatestOhlcv();
+            snippets.LatestOhlcvByExchange();
+            snippets.LatestOhlcvByAssetAndExchange();
             snippets.HistoricalOhlcv();
+            snippets.HistoricalOhlcvByExchange();
+            snippets.HistoricalOhlcvByAssetAndExchange();
+
             snippets.LatestSymbolTrades();
             snippets.LatestTrades();
             snippets.HistoricalTrades();

@@ -61,7 +61,7 @@ namespace WindowsFormsApp1
             RegisterRadioButton(ohlcvHistoricalDataByAssetAndExchangeRadioButton, () =>
                 StartDate == null
                     ? null
-                    : new OhlcvHistoricalDataByAssetAndExchangeCollectionProvider(Manager, Exchange, BaseAsset, StartDate.Value, EndDate));
+                    : new OhlcvHistoricalDataByAssetAndExchangeCollectionProvider(Manager, Exchange, BaseAsset, Period, StartDate.Value, EndDate));
 
             RegisterRadioButton(allCurrentRatesRadioButton, () =>
                 new AllCurrentRatesCollectionProvider(Manager, BaseAsset, StartDate));

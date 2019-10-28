@@ -12,12 +12,13 @@ namespace WindowsFormsApp1.DataProviders
 {
     internal class OhlcvHistoricalDataByAssetAndExchangeCollectionProvider : BaseCollectionProvider<HistoricalOhlcvResponse>
     {
-        public OhlcvHistoricalDataByAssetAndExchangeCollectionProvider(
-            ICryptoManager manager, Exchange exchange, Asset asset, DateTime startDateTime, DateTime? endDateTime)
+        public OhlcvHistoricalDataByAssetAndExchangeCollectionProvider(ICryptoManager manager, 
+            Exchange exchange, Asset asset, Period period, DateTime startDateTime, DateTime? endDateTime)
             : base(manager)
         {
             _exchange = exchange;
             _asset = asset;
+            _period = period;
             _startDateTime = startDateTime;
             _endDateTime = endDateTime;
         }
@@ -47,12 +48,12 @@ namespace WindowsFormsApp1.DataProviders
             if (_endDateTime == null)
             {
                 task = Manager.Exchanges.Ohlcv.HistoricalAsync(
-                    CancellationToken.None, _exchange, _asset, _startDateTime, skip, limit);
+                    CancellationToken.None, _exchange, _asset, _period, _startDateTime, skip, limit);
             }
             else
             {
                 task = Manager.Exchanges.Ohlcv.HistoricalAsync(
-                    CancellationToken.None, _exchange, _asset, _startDateTime, _endDateTime.Value, skip, limit);
+                    CancellationToken.None, _exchange, _asset, _period, _startDateTime, _endDateTime.Value, skip, limit);
             }
 
             return task.AsITask();
@@ -60,6 +61,7 @@ namespace WindowsFormsApp1.DataProviders
 
         private readonly Exchange _exchange;
         private readonly Asset _asset;
+        private readonly Period _period;
         private readonly DateTime _startDateTime;
         private readonly DateTime? _endDateTime;
     }

@@ -30,7 +30,6 @@
     <Folder Include="Blockchains\Addresses\AddressTransactions\" />
     <Folder Include="Blockchains\Contracts\Deploy\" />
     <Folder Include="Exchanges\Info\" />
-    <Folder Include="Exchanges\Ohlcv\" />
     <Folder Include="Exchanges\OrderBook\" />
     <Folder Include="Exchanges\Rates\" />
     <Folder Include="Exchanges\Trades\" />

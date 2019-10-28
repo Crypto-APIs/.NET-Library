@@ -53,6 +53,54 @@ namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
             Symbol symbol, Period period, int limit = 50);
 
         /// <summary>
+        /// Get OHLCV latest time-series data for requested symbol and period, returned in time descending order.
+        /// </summary>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with latest time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data-by-exchange"/>
+        LatestOhlcvResponse Latest(Exchange exchange, Period period, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV latest time-series data for requested symbol and period, returned in time descending order.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with latest time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data-by-exchange"/>
+        Task<LatestOhlcvResponse> LatestAsync(CancellationToken cancellationToken,
+            Exchange exchange, Period period, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV latest time-series data for requested symbol and period, returned in time descending order.
+        /// </summary>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="asset">Asset used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with latest time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data-by-exchange-and-asset"/>
+        LatestOhlcvResponse Latest(Exchange exchange, Asset asset, Period period, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV latest time-series data for requested symbol and period, returned in time descending order.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="asset">Asset used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with latest time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data-by-exchange-and-asset"/>
+        Task<LatestOhlcvResponse> LatestAsync(CancellationToken cancellationToken,
+            Exchange exchange, Asset asset, Period period, int limit = 50);
+
+        /// <summary>
         /// Get OHLCV time-series data for requested symbol and period. Returned in time ascending order.
         /// The data is returned to the end or when count of result elements reaches the limit.
         /// </summary>
@@ -111,5 +159,125 @@ namespace CryptoApisLibrary.Modules.Exchanges.Ohlcv
         /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data"/>
         Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
             Symbol symbol, Period period, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange"/>
+        HistoricalOhlcvResponse Historical(Exchange exchange, Period period,
+            DateTime startPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange"/>
+        Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Exchange exchange, Period period, DateTime startPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="endPeriod">Time period ending time</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange"/>
+        HistoricalOhlcvResponse Historical(Exchange exchange, Period period,
+            DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="endPeriod">Time period ending time</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange"/>
+        Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Exchange exchange, Period period, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="asset">Asset used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange-and-asset"/>
+        HistoricalOhlcvResponse Historical(Exchange exchange, Asset asset, Period period,
+            DateTime startPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="asset">Asset used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange-and-asset"/>
+        Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Exchange exchange, Asset asset, Period period, DateTime startPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="asset">Asset used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="endPeriod">Time period ending time</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange-and-asset"/>
+        HistoricalOhlcvResponse Historical(Exchange exchange, Asset asset, Period period,
+            DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
+
+        /// <summary>
+        /// Get OHLCV time-series data for requested exchange and period, returned in time ascending order.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="exchange">Exchange used to filter response.</param>
+        /// <param name="asset">Asset used to filter response.</param>
+        /// <param name="period">Identifier of requested time period.</param>
+        /// <param name="startPeriod">Time period starting time.</param>
+        /// <param name="endPeriod">Time period ending time</param>
+        /// <param name="skip">The offset of items to start from.</param>
+        /// <param name="limit">Amount of items to return.</param>
+        /// <returns>Response with historical time-series data.</returns>
+        /// <see cref="http://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data-by-exchange-and-asset"/>
+        Task<HistoricalOhlcvResponse> HistoricalAsync(CancellationToken cancellationToken,
+            Exchange exchange, Asset asset, Period period, DateTime startPeriod, DateTime endPeriod, int skip = 0, int limit = 50);
     }
 }
