@@ -10,7 +10,7 @@ build:
   only:
     - branches  
   script:
-    - '& "$env:NUGET_PATH" restore'
+    #- '& "$env:NUGET_PATH" restore'
     - '& dotnet build --configuration Release /clp:ErrorsOnly'
   artifacts:
     untracked: true
