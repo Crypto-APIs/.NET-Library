@@ -14,7 +14,7 @@ namespace TestCryptoApis.Exchanges.Rates
 
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must not be null");
-            Assert.AreEqual(BaseAsset.Id, response.ExchangeRate.BaseAssetId);
+            Assert.AreEqual(BaseAsset.Id, response.ExchangeRate.BaseAssetId, true);
         }
 
         [TestMethod]
@@ -26,7 +26,7 @@ namespace TestCryptoApis.Exchanges.Rates
 
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must not be null");
-            Assert.AreEqual(QuoteAsset.Id, response.ExchangeRate.BaseAssetId);
+            Assert.AreEqual(QuoteAsset.Id, response.ExchangeRate.BaseAssetId, true);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace TestCryptoApis.Exchanges.Rates
 
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.ExchangeRate, $"{nameof(response.ExchangeRate)} must not be null");
-            Assert.AreEqual(BaseAsset.Id, response.ExchangeRate.BaseAssetId);
+            Assert.AreEqual(BaseAsset.Id, response.ExchangeRate.BaseAssetId, true);
             Assert.AreEqual(timeStamp, response.ExchangeRate.Timestamp);
         }
 

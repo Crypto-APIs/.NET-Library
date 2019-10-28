@@ -26,7 +26,7 @@ namespace TestCryptoApis.Exchanges.Rates
 
             AssertNullErrorMessage(response);
             Assert.IsNotNull(response.Rate, $"{nameof(response.Rate)} must not be null");
-            Assert.AreEqual(QuoteAsset.Id, response.Rate.BaseAssetId);
+            Assert.AreEqual(QuoteAsset.Id, response.Rate.BaseAssetId, true);
         }
 
 
