@@ -230,6 +230,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
             where T : DeleteWalletResponse, new();
 
         /// <summary>
+        /// 
         /// Delete Hierarchical Deterministic (HD) wallet.
         /// </summary>
         /// <remarks>The request is executed asynchronously.</remarks>
@@ -238,5 +239,10 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
         /// <param name="walletName">HD-wallet name.</param>
         Task<T> DeleteHdWalletAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName)
             where T : DeleteWalletResponse, new();
+
+        // Create XPub
+        // Get XPub Change Addresses
+        // Get XPub Receive Addresses
+        // Import Address as a Wallet
     }
 }

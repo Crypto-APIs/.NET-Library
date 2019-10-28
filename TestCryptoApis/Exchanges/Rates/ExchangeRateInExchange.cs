@@ -18,6 +18,19 @@ namespace TestCryptoApis.Exchanges.Rates
         }
 
         [TestMethod]
+        public void TestLtcBtc()
+        {
+            var baseAsset = QuoteAsset;
+            var quoteAsset = BaseAsset;
+            var response = Manager.Exchanges.Rates.GetOne(baseAsset, quoteAsset, Exchange);
+
+            AssertNullErrorMessage(response);
+            Assert.IsNotNull(response.Rate, $"{nameof(response.Rate)} must not be null");
+            Assert.AreEqual(QuoteAsset.Id, response.Rate.BaseAssetId);
+        }
+
+
+        [TestMethod]
         public void TestBtcLtcTimeStamp()
         {
             var timeStamp = new DateTime(2019, 09, 23);

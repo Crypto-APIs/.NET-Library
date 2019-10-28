@@ -1,5 +1,4 @@
 variables:
-  NUGET_PATH: 'D:\Program Files (x86)\nuget.exe'
   FAULTED_TESTS_PUBLISHER: 'E:\Work\Trx\Release\ParseTrx.bat'
   TEST_RESULT_DIR: 'TestResults'
 stages:
@@ -10,7 +9,6 @@ build:
   only:
     - branches  
   script:
-    #- '& "$env:NUGET_PATH" restore'
     - '& dotnet build --configuration Release /clp:ErrorsOnly'
   artifacts:
     untracked: true
@@ -20,7 +18,6 @@ build:
 test:
   stage: test
   script:
-    #- '& dotnet test --filter FullyQualifiedName~TestCryptoApiSdk.Exchanges --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
     - '& dotnet test --filter "FullyQualifiedName~TestCryptoApis.Exchanges
       |FullyQualifiedName~TestCryptoApis.Blockchains.Info
       |FullyQualifiedName~TestCryptoApis.Blockchains.WebhookNotifications
@@ -33,4 +30,3 @@ test:
     - build
   after_script:
     - '& "$env:FAULTED_TESTS_PUBLISHER" "$env:TEST_RESULT_DIR"'
-#
