@@ -1,21 +1,19 @@
-﻿using System;
+﻿using CryptoApisLibrary;
+using CryptoApisLibrary.Misc;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CryptoApisLibrary;
-using CryptoApisLibrary.Misc;
 
 namespace WindowsFormsApp1
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             var proxyCredentialsFilenameProvider = new GetFilenameProvider(new[]
             {
@@ -37,9 +35,8 @@ namespace WindowsFormsApp1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1(manager));
-
-
         }
+
         private static string LoadApiKey(IFilenameProvider filenameProvider)
         {
             var apiKeyFilename = filenameProvider.Filename;
