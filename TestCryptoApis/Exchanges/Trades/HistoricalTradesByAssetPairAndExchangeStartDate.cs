@@ -55,6 +55,7 @@ namespace TestCryptoApis.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Exchange Exchange { get; } = Features.Bittrex;
         private Asset BaseAsset { get; } = Features.Btc;

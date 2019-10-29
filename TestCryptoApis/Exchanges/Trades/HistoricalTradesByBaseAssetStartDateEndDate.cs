@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: note #9
     [TestClass]
     public class HistoricalTradesByBaseAssetStartDateEndDate : BaseCollectionTest
     {
@@ -52,7 +51,7 @@ namespace TestCryptoApis.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertNullErrorMessage(response);
+                AssertErrorMessage(response, "Exceeded limit of 1 day period for historical data");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
@@ -67,10 +66,10 @@ namespace TestCryptoApis.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Asset BaseAsset { get; } = Features.Bch;
         private DateTime StartPeriod { get; } = new DateTime(2019, 06, 01);
-        private DateTime EndPeriod { get; } = new DateTime(2019, 06, 10);
+        private DateTime EndPeriod { get; } = new DateTime(2019, 06, 02);
     }
 }

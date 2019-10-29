@@ -71,7 +71,7 @@ namespace TestCryptoApis.Exchanges.Ohlcv
             AssertEmptyCollection(nameof(response.Ohlcv), response.Ohlcv);
         }
 
-        protected override bool IsPerhapsNotAnExactMatch => true;
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Symbol Symbol { get; } = Features.BtcLtc;
         private Period Period { get; } = new Period("1day");

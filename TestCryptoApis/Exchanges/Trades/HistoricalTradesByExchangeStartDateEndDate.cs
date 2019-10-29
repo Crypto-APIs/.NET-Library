@@ -1,15 +1,19 @@
-﻿using System;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.Exceptions;
 using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] //todo: note #12
     [TestClass]
     public class HistoricalTradesByExchangeStartDateEndDate : BaseCollectionTest
     {
+        [Ignore] //todo: random sequence of collection elements with equality "EventTime"
+        [TestMethod]
+        public override void MainTest()
+        { }
+
         protected override ICollectionResponse GetAllList()
         {
             return Manager.Exchanges.Trades.Historical(Exchange, StartPeriod, EndPeriod);
@@ -52,7 +56,7 @@ namespace TestCryptoApis.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertNullErrorMessage(response);
+                AssertErrorMessage(response, "Exceeded limit of 1 day period for historical data");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }
@@ -67,10 +71,10 @@ namespace TestCryptoApis.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Exchange Exchange { get; } = Features.Binance;
         private DateTime StartPeriod { get; } = new DateTime(2019, 06, 01);
-        private DateTime EndPeriod { get; } = new DateTime(2019, 06, 10);
+        private DateTime EndPeriod { get; } = new DateTime(2019, 06, 02);
     }
 }

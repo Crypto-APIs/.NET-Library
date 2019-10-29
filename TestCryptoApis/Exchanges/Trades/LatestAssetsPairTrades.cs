@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: note #14
     [TestClass]
     public class LatestAssetsPairTrades : BaseCollectionTest
     {

@@ -1,7 +1,7 @@
-﻿using System;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.ResponseTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
@@ -116,6 +116,7 @@ namespace TestCryptoApis.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Exchange Exchange { get; } = Features.Bittrex;
         private Asset BaseAsset { get; } = Features.Btc;

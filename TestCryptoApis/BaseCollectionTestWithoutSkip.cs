@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CryptoApisLibrary.ResponseTypes;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using CryptoApisLibrary.ResponseTypes;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis
 {
@@ -63,7 +63,7 @@ namespace TestCryptoApis
             }
             else
             {
-                AssertErrorMessage(LimitList, 
+                AssertErrorMessage(LimitList,
                     "This endpoint has not been enabled for your package plan. Please contact us if you need this or upgrade your plan.");
             }
         }
@@ -95,6 +95,7 @@ namespace TestCryptoApis
             Assert.AreEqual(Math.Min(all.Count, limit), actual.Count, $"Limit count is wrong");
 
             if (IsPerhapsNotAnExactMatch)
+            //if (!string.IsNullOrEmpty(SortingField))
             {
                 CheckCollectionNotAnExactMatch(all, actual, "Limit  (NotAnExactMatch mode) failed, items are not equal");
             }
@@ -105,18 +106,6 @@ namespace TestCryptoApis
                     Assert.AreEqual(all[i], actual[i], $"Limit failed, items are not equal");
                 }
             }
-            /*if (IsPerhapsNotAnExactMatch)
-                return;
-
-            var all = allList as IList<T> ?? allList.ToList();
-            var actual = actualList as IList<T> ?? actualList.ToList();
-
-            Assert.AreEqual(Math.Min(all.Count, limit), actual.Count, $"Limit count is wrong");
-
-            for (var i = 0; i < actual.Count; i++)
-            {
-                Assert.AreEqual(all[i], actual[i], $"Limit failed, items are not equal");
-            }*/
         }
 
         protected void CheckCollectionNotAnExactMatch<T>(IList<T> allList, IList<T> actualList, string errorMessage)
@@ -145,7 +134,7 @@ namespace TestCryptoApis
                     Assert.Fail(errorMessage);
                 }
                 */
-                Assert.AreEqual(allList[indexInAllListOfFirstItemInActualList + j], actualList[i], 
+                Assert.AreEqual(allList[indexInAllListOfFirstItemInActualList + j], actualList[i],
                     $"{errorMessage}. ActualIndex={i}, AllIndex={indexInAllListOfFirstItemInActualList + j}");
                 j++;
                 if (indexInAllListOfFirstItemInActualList + j >= allList.Count)
@@ -181,5 +170,12 @@ namespace TestCryptoApis
         /// Эти тесты возводят этот флаг "Возможно не точное соответствие" в True.
         /// </summary>
         protected virtual bool IsPerhapsNotAnExactMatch { get; } = false;
+
+        /// <summary>
+        /// Разработчики серверной части осуществляют сортировку коллекции по этому полю.
+        /// Но если значение этого поля для нескольких записей одинаково, то эти элементы коллекции неупорядочены.
+        /// Для их тестирования применяется другой алгоритм.
+        /// </summary>
+        //protected virtual string SortingField { get; } = null;
     }
 }

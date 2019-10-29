@@ -94,10 +94,39 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
             return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<T> DeleteHdWalletAsync<T>(CancellationToken cancellationToken, 
+        public Task<T> DeleteHdWalletAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string walletName) where T : DeleteWalletResponse, new()
         {
             var request = Requests.DeleteHdWallet(networkCoin, walletName);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> CreateXPubAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string password)
+            where T : CreateXPubResponse, new()
+        {
+            var request = Requests.CreateXPub(networkCoin, password);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> GetXPubChangeAddressesAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
+            where T : GetXPubAddressesResponse, new()
+        {
+            var request = Requests.GetXPubChangeAddresses(networkCoin, xpub, startIndex, finishIndex);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> GetXPubReceiveAddressesAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string xpub,
+            int startIndex, int finishIndex) where T : GetXPubAddressesResponse, new()
+        {
+            var request = Requests.GetXPubReceiveAddresses(networkCoin, xpub, startIndex, finishIndex);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> ImportAddressAsWalletAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string walletName,
+            string password, string privateKey, string address) where T : ImportAddressAsWalletResponse, new()
+        {
+            var request = Requests.ImportAddressAsWallet(networkCoin, walletName, password, privateKey, address);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
     }

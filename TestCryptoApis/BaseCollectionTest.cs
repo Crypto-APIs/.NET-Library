@@ -115,22 +115,6 @@ namespace TestCryptoApis
                     Assert.AreEqual(all[i + skip], actual[i], $"Skip failed, items (skip index={i}) are not equal");
                 }
             }
-
-            /*if (IsPerhapsNotAnExactMatch)
-                return;
-
-            var all = allList as IList<T> ?? allList.ToList();
-            var actual = actualList as IList<T> ?? actualList.ToList();
-
-            if (all.Count > skip)
-            {
-                Assert.IsTrue(actual.Any(), "Collection must not be empty");
-            }
-
-            for (var i = 0; i < all.Count - skip; i++)
-            {
-                Assert.AreEqual(all[i + skip], actual[i], $"Skip failed, items (skip index={i}) are not equal");
-            }*/
         }
 
         protected void CheckSkipAndLimit<T>(IEnumerable<T> allList, IEnumerable<T> actualList,
@@ -155,19 +139,6 @@ namespace TestCryptoApis
                     Assert.AreEqual(all[i + skip], actual[i], $"Skip and Limit items aren not equal");
                 }
             }
-
-            /*if (IsPerhapsNotAnExactMatch)
-                return;
-
-            var all = allList as IList<T> ?? allList.ToList();
-            var actual = actualList as IList<T> ?? actualList.ToList();
-
-            Assert.AreEqual(Math.Min(all.Count - skip, limit), actual.Count, "Skip and Limit count failed");
-
-            for (var i = 0; i < actual.Count; i++)
-            {
-                Assert.AreEqual(all[i + skip], actual[i], $"Skip and Limit item not equal");
-            }*/
         }
 
         protected static int? GetSkip<T>(IEnumerable<T> allList)

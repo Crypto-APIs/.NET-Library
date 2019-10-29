@@ -5,10 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore]
     [TestClass]
     public class HistoricalTradesByExchange : BaseCollectionTest
     {
+        [Ignore] //todo: random sequence of collection elements with equality "EventTime"
+        [TestMethod]
+        public override void MainTest()
+        { }
+
         protected override ICollectionResponse GetAllList()
         {
             return Manager.Exchanges.Trades.Historical(Exchange);
@@ -53,7 +57,7 @@ namespace TestCryptoApis.Exchanges.Trades
 
             if (AssertAdditionalPackagePlan(response))
             {
-                AssertErrorMessage(response, "We are facing technical issues, please try again later");
+                AssertErrorMessage(response, "General validation error: Wrong ID format for exchangeId");
                 AssertEmptyCollection(nameof(response.Trades), response.Trades);
             }
         }

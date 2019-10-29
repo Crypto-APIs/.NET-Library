@@ -77,9 +77,35 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
             return DeleteWalletAsync<T>(CancellationToken.None, networkCoin, walletName).GetAwaiter().GetResult();
         }
 
-        public T DeleteHdWallet<T>(NetworkCoin networkCoin, string walletName) where T : DeleteWalletResponse, new()
+        public T DeleteHdWallet<T>(NetworkCoin networkCoin, string walletName)
+            where T : DeleteWalletResponse, new()
         {
             return DeleteHdWalletAsync<T>(CancellationToken.None, networkCoin, walletName).GetAwaiter().GetResult();
+        }
+
+        public T CreateXPub<T>(NetworkCoin networkCoin, string password)
+            where T : CreateXPubResponse, new()
+        {
+            return CreateXPubAsync<T>(CancellationToken.None, networkCoin, password).GetAwaiter().GetResult();
+        }
+
+        public T GetXPubChangeAddresses<T>(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
+            where T : GetXPubAddressesResponse, new()
+        {
+            return GetXPubChangeAddressesAsync<T>(CancellationToken.None, networkCoin, xpub, startIndex, finishIndex).GetAwaiter().GetResult();
+        }
+
+        public T GetXPubReceiveAddresses<T>(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
+            where T : GetXPubAddressesResponse, new()
+        {
+            return GetXPubReceiveAddressesAsync<T>(CancellationToken.None, networkCoin, xpub, startIndex, finishIndex).GetAwaiter().GetResult();
+        }
+
+        public T ImportAddressAsWallet<T>(NetworkCoin networkCoin, string walletName, string password, string privateKey, string address)
+            where T : ImportAddressAsWalletResponse, new()
+        {
+            return ImportAddressAsWalletAsync<T>(CancellationToken.None,
+                networkCoin, walletName, password, privateKey, address).GetAwaiter().GetResult();
         }
     }
 }

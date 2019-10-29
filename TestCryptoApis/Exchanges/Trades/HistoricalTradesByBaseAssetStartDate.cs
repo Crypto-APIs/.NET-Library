@@ -5,10 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] //todo: note #9
     [TestClass]
     public class HistoricalTradesByBaseAssetStartDate : BaseCollectionTest
     {
+        [Ignore] //todo: random sequence of collection elements with equality "EventTime"
+        [TestMethod]
+        public override void MainTest()
+        { }
+
         protected override ICollectionResponse GetAllList()
         {
             return Manager.Exchanges.Trades.Historical(BaseAsset, StartPeriod);
@@ -56,7 +60,7 @@ namespace TestCryptoApis.Exchanges.Trades
         }
 
         protected override bool IsNeedAdditionalPackagePlan { get; } = true;
-        //protected override bool IsPerhapsNotAnExactMatch { get; } = true;
+        protected override bool IsPerhapsNotAnExactMatch { get; } = true;
 
         private Asset BaseAsset { get; } = Features.Bch;
         private DateTime StartPeriod { get; } = new DateTime(2019, 05, 28);

@@ -133,6 +133,60 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
             return Request.Delete($"{Consts.Blockchain}/{networkCoin}/wallets/hd/{walletName}");
         }
 
+        public IRestRequest CreateXPub(NetworkCoin networkCoin, string password)
+        {
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub",
+                new CreateXPubRequest(password));
+        }
+
+        public IRestRequest GetXPubChangeAddresses(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
+        {
+            if (string.IsNullOrEmpty(xpub))
+                throw new ArgumentNullException(nameof(xpub));
+            if (startIndex <= 0)
+                throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex, $"StartIndex is negative or zero");
+            if (finishIndex <= 0)
+                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex is negative or zero");
+            if (startIndex >= finishIndex)
+                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex must be greater than StartIndex");
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub/addresses/change",
+                new GetXPubAddressesRequest(xpub, startIndex, finishIndex));
+        }
+
+        public IRestRequest GetXPubReceiveAddresses(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
+        {
+            if (string.IsNullOrEmpty(xpub))
+                throw new ArgumentNullException(nameof(xpub));
+            if (startIndex <= 0)
+                throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex, $"StartIndex is negative or zero");
+            if (finishIndex <= 0)
+                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex is negative or zero");
+            if (startIndex >= finishIndex)
+                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex must be greater than StartIndex");
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub/addresses/receive",
+                new GetXPubAddressesRequest(xpub, startIndex, finishIndex));
+        }
+
+        public IRestRequest ImportAddressAsWallet(NetworkCoin networkCoin, string walletName, string password, string privateKey, string address)
+        {
+            if (string.IsNullOrEmpty(walletName))
+                throw new ArgumentNullException(nameof(walletName));
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+            if (string.IsNullOrEmpty(privateKey))
+                throw new ArgumentNullException(nameof(privateKey));
+            if (string.IsNullOrEmpty(address))
+                throw new ArgumentNullException(nameof(address));
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/import",
+                new ImportAddressAsWalletRequest(walletName, password, privateKey, address));
+        }
+
         private CryptoApiRequest Request { get; }
     }
 }

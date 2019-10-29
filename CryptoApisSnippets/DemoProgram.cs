@@ -235,6 +235,30 @@ namespace CryptoApisSnippets
             snippets.GenerateHdAddressesDash(dashHdWallet);
             // snippets.RemoveHdDashAddresses(dashHdWallet, dashHdAddresses[0]); todo: this is not implemented?
             snippets.DeleteHdWalletDash(dashHdWallet);
+
+            snippets.CreateXPubBtc();
+            snippets.CreateXPubBch();
+            snippets.CreateXPubLtc();
+            snippets.CreateXPubDoge();
+            snippets.CreateXPubDash();
+
+            snippets.GetXPubChangeAddressesBtc();
+            snippets.GetXPubChangeAddressesBch();
+            snippets.GetXPubChangeAddressesLtc();
+            snippets.GetXPubChangeAddressesDoge();
+            snippets.GetXPubChangeAddressesDash();
+
+            snippets.GetXPubReceiveAddressesBtc();
+            snippets.GetXPubReceiveAddressesBch();
+            snippets.GetXPubReceiveAddressesLtc();
+            snippets.GetXPubReceiveAddressesDoge();
+            snippets.GetXPubReceiveAddressesDash();
+
+            snippets.ImportAddressAsWalletBtc();
+            snippets.ImportAddressAsWalletBch();
+            snippets.ImportAddressAsWalletLtc();
+            snippets.ImportAddressAsWalletDoge();
+            snippets.ImportAddressAsWalletDash();
         }
 
         private static void RunTransactionBlockchainsFeatures(BlockchainSnippets snippets)

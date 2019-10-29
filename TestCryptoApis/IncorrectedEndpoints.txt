@@ -92,3 +92,33 @@ Also the parameters "strippedsize", "weight", does't implementing for DASH, isn'
 Details
 Два скриншота с Feedler и со страницы документации
 
+
+Предложения
+Элементы в коллекции отсортированы по какому-либо полю. Это хорошо, это обеспечивает постоянный порядок в элементах коллекции.
+Но есть элементы с одинаковым значением поля, по которому производится сортировка. 
+Например, транзакции, произведённые в одно и то же время и отсортированные по полю EventTime будут находится рядом.
+Но при этом их порядок непостоянен. Если будут произведены два подряд запроса, то элементы в коллекции с одинаковым EventTime могут находится на разных позициях. Это неудобно. Особенно неудобно пользоваться параметром Skip для фильтрации коллекции. Результат непредсказуем.
+Эту проблему невозможно решить на клиентской стороне. Да это и неправильно решать проблему в множестве SDK вместо того, чтобы исправить серверную часть.
+Я предлагаю при равенстве значений первого ключа для сортировки, использовать второе поле, чтобы обеспечить постоянную последовательность элементов.
+Вы согласны, что постоянная последовательность элементов коллекции это удобно?
+
+Offers
+
+Items in the collection are sorted by any field. This is good, it provides a constant order in the elements of the collection.
+But there are elements with the same value of the field, which is sorted. 
+For example, transactions made at the same time and sorted by the "EventTime" field will be located next to each other.
+But at the same time their order is unstable. If two consecutive requests are made, the items in the collection with the same "EventTime" may be in different positions. It's awkward. It is especially inconvenient to use the "Skip" parameter to filter the collection. The result is unpredictable.
+This problem cannot be solved on the client side. Yes, it is wrong to solve the problem in a lot of SDKs instead of fixing the server side.
+I suggest when the values of the first key to sort are equal, use the second field to ensure a constant sequence of elements.
+Do you agree that a constant sequence of collection elements is convenient?
+
+
+Будет ли тебе удобно получать сообщение об ошибках по электронной почте в виде непрошедших тестов?
+Мне тяжело описывать каждую проблему. Тем более, что проблемы эти наблюдаются не стабильно и часто повторяются.
+Я добавляю в систему тестирования только те тесты, которые я уже проверил. Это означает, что я наблюдал, что они хотя бы один раз прошли тестирование. Если они не проходят тестирование этого говорит об их нестабильности.
+Также я прошу обратить внимание на соббщения "We are facing technical issues, please try again later" или "Internal Server Error", которые встречаются в тестах. Я считаю, что система не должна сообщать о неидентифицированные сообщения. Это признак потенциально неработоспособного кода.
+
+Will it be convenient for you to receive an error message by e-mail in the form of failed tests?
+It's hard for me to describe every problem. Moreover, these problems are not stable and are often repeated.
+I add to the testing system only those tests that I have already checked. This means that I have observed that they have been tested at least once. If they are not passed it speaks to their instability.
+I also ask you to pay attention to the messages "We are facing technical issues, please try again later" or "Internal Server Error" that occur in tests. I believe that the system should not report unidentified messages. This is a sign of potentially broken code.

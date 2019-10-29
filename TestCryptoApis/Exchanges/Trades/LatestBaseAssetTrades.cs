@@ -5,10 +5,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestCryptoApis.Exchanges.Trades
 {
-    [Ignore] // todo: note #14
     [TestClass]
     public class LatestBaseAssetTrades : BaseCollectionTest
     {
+        [Ignore] //todo: random sequence of collection elements with equality "EventTime"
+        [TestMethod]
+        public override void MainTest()
+        { }
+
         protected override ICollectionResponse GetAllList()
         {
             return Manager.Exchanges.Trades.Latest(BaseAsset);
