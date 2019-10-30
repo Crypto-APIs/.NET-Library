@@ -37,6 +37,12 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
             return CreateTransactionPoolAsync<T>(CancellationToken.None, networkCoin, url, address).GetAwaiter().GetResult();
         }
 
+        public T CreateTransactionConfirmations<T>(NetworkCoin networkCoin, string url, string address, int confirmations) 
+            where T : CreateTransactionConfirmationsResponse, new()
+        {
+            return CreateTransactionConfirmationsAsync<T>(CancellationToken.None, networkCoin, url, address, confirmations).GetAwaiter().GetResult();
+        }
+
         public T GetHooks<T>(NetworkCoin networkCoin)
             where T : GetHooksResponse, new()
         {
@@ -47,6 +53,11 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
             where T : DeleteWebhookResponse, new()
         {
             return DeleteAsync<T>(CancellationToken.None, networkCoin, hookId).GetAwaiter().GetResult();
+        }
+
+        public T DeleteAll<T>(NetworkCoin networkCoin) where T : DeleteAllWebhookResponse, new()
+        {
+            return DeleteAllAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
         }
     }
 }

@@ -69,6 +69,18 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
                 new CreateAddressRequest("TXPOOL", url, address));
         }
 
+        public IRestRequest CreateTransactionConfirmations(NetworkCoin networkCoin, string url, string address, int confirmations)
+        {
+            if (string.IsNullOrEmpty(url))
+                throw new ArgumentNullException(nameof(url));
+            if (string.IsNullOrEmpty(address))
+                throw new ArgumentNullException(nameof(address));
+            if (confirmations <= 0 || confirmations > 20)
+                throw new ArgumentOutOfRangeException(nameof(confirmations), "Confirmations can be any number between 1 and 20.");
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/hooks",
+                new CreateTransactionConfirmationsRequest("TRANSACTION_CONFIRMATIONS", url, address, confirmations));
+        }
         public IRestRequest GetHooks(NetworkCoin networkCoin)
         {
             return Request.Get($"{Consts.Blockchain}/{networkCoin}/hooks");
@@ -82,6 +94,13 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
             return Request.Delete($"{Consts.Blockchain}/{networkCoin}/hooks/{hookId}");
         }
 
+
+        public IRestRequest DeleteAll(NetworkCoin networkCoin)
+        {
+            return Request.Delete($"{Consts.Blockchain}/{networkCoin}/hooks/all");
+        }
+
         private CryptoApiRequest Request { get; }
+
     }
 }

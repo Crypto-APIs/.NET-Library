@@ -144,32 +144,14 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
 
         public IRestRequest GetXPubChangeAddresses(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
         {
-            if (string.IsNullOrEmpty(xpub))
-                throw new ArgumentNullException(nameof(xpub));
-            if (startIndex <= 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex, $"StartIndex is negative or zero");
-            if (finishIndex <= 0)
-                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex is negative or zero");
-            if (startIndex >= finishIndex)
-                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex must be greater than StartIndex");
-
-            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub/addresses/change",
-                new GetXPubAddressesRequest(xpub, startIndex, finishIndex));
+            return InternalGetXPubAddresses(networkCoin, xpub, startIndex, finishIndex,
+                () => $"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub/addresses/change");
         }
 
         public IRestRequest GetXPubReceiveAddresses(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex)
         {
-            if (string.IsNullOrEmpty(xpub))
-                throw new ArgumentNullException(nameof(xpub));
-            if (startIndex <= 0)
-                throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex, $"StartIndex is negative or zero");
-            if (finishIndex <= 0)
-                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex is negative or zero");
-            if (startIndex >= finishIndex)
-                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex must be greater than StartIndex");
-
-            return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub/addresses/receive",
-                new GetXPubAddressesRequest(xpub, startIndex, finishIndex));
+            return InternalGetXPubAddresses(networkCoin, xpub, startIndex, finishIndex,
+                () => $"{Consts.Blockchain}/{networkCoin}/wallets/hd/xpub/addresses/receive");
         }
 
         public IRestRequest ImportAddressAsWallet(NetworkCoin networkCoin, string walletName, string password, string privateKey, string address)
@@ -185,6 +167,20 @@ namespace CryptoApisLibrary.Modules.Blockchains.Wallets
 
             return Request.Post($"{Consts.Blockchain}/{networkCoin}/wallets/hd/import",
                 new ImportAddressAsWalletRequest(walletName, password, privateKey, address));
+        }
+
+        private IRestRequest InternalGetXPubAddresses(NetworkCoin networkCoin, string xpub, int startIndex, int finishIndex, Func<string> getUrl)
+        {
+            if (string.IsNullOrEmpty(xpub))
+                throw new ArgumentNullException(nameof(xpub));
+            if (startIndex < 0)
+                throw new ArgumentOutOfRangeException(nameof(startIndex), startIndex, $"StartIndex is negative or zero");
+            if (finishIndex <= 0)
+                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex is negative or zero");
+            if (startIndex >= finishIndex)
+                throw new ArgumentOutOfRangeException(nameof(finishIndex), finishIndex, $"FinishIndex must be greater than StartIndex");
+
+            return Request.Post(getUrl.Invoke(), new GetXPubAddressesRequest(xpub, startIndex, finishIndex));
         }
 
         private CryptoApiRequest Request { get; }

@@ -9,6 +9,6 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
         public MetaCollectionResultsOnly Meta { get; protected set; }
 
         [DeserializeAs(Name = "payload")]
-        public List<string> Addresses { get; } = new List<string>();
+        public List<string> Addresses { get; protected set; } = new List<string>();
     }
 }

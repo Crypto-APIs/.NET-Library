@@ -60,7 +60,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        /// <param name="address">.</param>
+        /// <param name="address">Address from the blockchain.</param>
         T CreateAddress<T>(NetworkCoin networkCoin, string url, string address)
             where T : CreateAddressWebHookResponse, new();
 
@@ -71,7 +71,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        /// <param name="address">.</param>
+        /// <param name="address">Address from the blockchain.</param>
         Task<T> CreateAddressAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string url, string address)
             where T : CreateAddressWebHookResponse, new();
@@ -81,7 +81,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        /// <param name="address">.</param>
+        /// <param name="address">Address from the blockchain.</param>
         T CreateToken<T>(NetworkCoin networkCoin, string url, string address)
             where T : CreateEthAddressWebHookResponse, new();
 
@@ -92,7 +92,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        /// <param name="address">.</param>
+        /// <param name="address">Address from the blockchain.</param>
         Task<T> CreateTokenAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string url, string address)
             where T : CreateEthAddressWebHookResponse, new();
@@ -103,7 +103,7 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        /// <param name="address">.</param>
+        /// <param name="address">Address from the blockchain.</param>
         T CreateTransactionPool<T>(NetworkCoin networkCoin, string url, string address)
             where T : EthWebHookResponse, new();
 
@@ -115,10 +115,35 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         /// <param name="url">Webhook callback url.</param>
-        /// <param name="address"></param>
+        /// <param name="address">Address from the blockchain.</param>
         Task<T> CreateTransactionPoolAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string url, string address)
             where T : EthWebHookResponse, new();
+
+        /// <summary>
+        /// Triggered for every queued transaction in the Ethereum Blockchain before it’s confirmed in a block.
+        /// The payload is a list with queued transactions.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="url">Webhook callback url.</param>
+        /// <param name="address">Address from the blockchain.</param>
+        /// <param name="confirmations">Receive Webhook after a specified number of confirmations. Confirmations can be any number between 1 and 20.</param>
+        T CreateTransactionConfirmations<T>(NetworkCoin networkCoin, string url, string address, int confirmations)
+            where T : CreateTransactionConfirmationsResponse, new();
+
+        /// <summary>
+        /// Triggered for every queued transaction in the Ethereum Blockchain before it’s confirmed in a block.
+        /// The payload is a list with queued transactions.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="url">Webhook callback url.</param>
+        /// <param name="address">Address from the blockchain.</param>
+        /// <param name="confirmations">Receive Webhook after a specified number of confirmations. Confirmations can be any number between 1 and 20.</param>
+        Task<T> CreateTransactionConfirmationsAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string url, string address, int confirmations)
+            where T : CreateTransactionConfirmationsResponse, new();
 
         /// <summary>
         /// Provides a list with the webhooks for a given user id.
@@ -153,5 +178,21 @@ namespace CryptoApisLibrary.Modules.Blockchains.WebhookNotifications
         /// <param name="hookId">Webhook id.</param>
         Task<T> DeleteAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string hookId)
             where T : DeleteWebhookResponse, new();
+
+        /// <summary>
+        /// Delete all webhooks.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        T DeleteAll<T>(NetworkCoin networkCoin)
+            where T : DeleteAllWebhookResponse, new();
+
+        /// <summary>
+        /// Delete all webhooks.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        Task<T> DeleteAllAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
+            where T : DeleteAllWebhookResponse, new();
     }
 }

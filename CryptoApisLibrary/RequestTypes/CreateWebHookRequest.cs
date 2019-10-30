@@ -44,4 +44,16 @@ namespace CryptoApisLibrary.RequestTypes
         [JsonProperty(PropertyName = "address")]
         public string Address { get; }
     }
+
+    internal class CreateTransactionConfirmationsRequest : CreateAddressRequest
+    {
+        public CreateTransactionConfirmationsRequest(string @event, string url, string address, int confirmations)
+            : base(@event, url, address)
+        {
+            Confirmations = confirmations;
+        }
+
+        [JsonProperty(PropertyName = "confirmations")]
+        public int Confirmations { get; }
+    }
 }

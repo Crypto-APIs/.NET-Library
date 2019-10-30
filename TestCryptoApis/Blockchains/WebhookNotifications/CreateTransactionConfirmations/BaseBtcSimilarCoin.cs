@@ -1,9 +1,9 @@
-﻿using System;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
-namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateConfirmedTransaction
+namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateTransactionConfirmations
 {
     [TestClass]
     public abstract class BaseBtcSimilarCoin : BaseTest
@@ -11,8 +11,8 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateConfirmedTransac
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.WebhookNotification.CreateConfirmedTransaction<CreateBtcConfirmedTransactionWebHookResponse>(
-                NetworkCoin, Url, TransactionHash, ConfirmationCount);
+            var response = Manager.Blockchains.WebhookNotification.CreateTransactionConfirmations<CreateTransactionConfirmationsResponse>(
+                NetworkCoin, Url, Address, ConfirmationCount);
 
             if (AssertAdditionalPackagePlan(response))
             {
@@ -27,17 +27,17 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateConfirmedTransac
         public void NullUrl()
         {
             string nullUrl = null;
-            Manager.Blockchains.WebhookNotification.CreateConfirmedTransaction<CreateBtcConfirmedTransactionWebHookResponse>(
-                NetworkCoin, nullUrl, TransactionHash, ConfirmationCount);
+            Manager.Blockchains.WebhookNotification.CreateTransactionConfirmations<CreateTransactionConfirmationsResponse>(
+                NetworkCoin, nullUrl, Address, ConfirmationCount);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "A TransactionHash of null was inappropriately allowed.")]
-        public void NullTransactionHash()
+        [ExpectedException(typeof(ArgumentNullException), "An Address of null was inappropriately allowed.")]
+        public void NullAddress()
         {
-            string transactionHash = null;
-            Manager.Blockchains.WebhookNotification.CreateConfirmedTransaction<CreateBtcConfirmedTransactionWebHookResponse>(
-                NetworkCoin, Url, transactionHash, ConfirmationCount);
+            string address = null;
+            Manager.Blockchains.WebhookNotification.CreateTransactionConfirmations<CreateTransactionConfirmationsResponse>(
+                NetworkCoin, Url, address, ConfirmationCount);
         }
 
         [TestMethod]
@@ -45,12 +45,12 @@ namespace TestCryptoApis.Blockchains.WebhookNotifications.CreateConfirmedTransac
         public void InvalidConfirmationCount()
         {
             var confirmationCount = -6;
-            Manager.Blockchains.WebhookNotification.CreateConfirmedTransaction<CreateBtcConfirmedTransactionWebHookResponse>(
-                NetworkCoin, Url, TransactionHash, confirmationCount);
+            Manager.Blockchains.WebhookNotification.CreateTransactionConfirmations<CreateTransactionConfirmationsResponse>(
+                NetworkCoin, Url, Address, confirmationCount);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }
-        protected abstract string TransactionHash { get; }
+        protected abstract string Address { get; }
         private string Url { get; } = "http://www.mocky.io/v2/5b0d4b5f3100006e009d55f5";
         private int ConfirmationCount { get; } = 6;
     }
