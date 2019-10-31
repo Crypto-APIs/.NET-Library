@@ -47,7 +47,7 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransactionPrivateKeyWit
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateEthTransactionResponse>(
                 NetworkCoin, FromAddress, ToAddress, privateKey, Value, GasPrice, GasLimit);
 
-            AssertErrorMessage(response, "Bad Request");
+            AssertErrorMessage(response, "Invalid Private Key");
         }
 
         [TestMethod]

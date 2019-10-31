@@ -8,6 +8,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHash
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BchMainNet;
 
-        protected override string BlockHash { get; } = "00000000000036312a44ab7711afa46f475913fbd9727cf508ed4af3bc933d16";
+        protected override string BlockHash { get; } = Features.CorrectBlockHash.BchMainNet;
     }
 }

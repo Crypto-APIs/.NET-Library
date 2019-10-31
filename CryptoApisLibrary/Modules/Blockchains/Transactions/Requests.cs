@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.Misc;
 using CryptoApisLibrary.RequestTypes;
 using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CryptoApisLibrary.Modules.Blockchains.Transactions
 {
@@ -23,12 +23,12 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/txid/{transactionId}");
         }
 
-        public IRestRequest GetInfoByBlockHash(NetworkCoin networkCoin, string blockHash)
+        public IRestRequest GetInfoByTransactionHash(NetworkCoin networkCoin, string transactionHash)
         {
-            if (string.IsNullOrEmpty(blockHash))
-                throw new ArgumentNullException(nameof(blockHash));
+            if (string.IsNullOrEmpty(transactionHash))
+                throw new ArgumentNullException(nameof(transactionHash));
 
-            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/hash/{blockHash}");
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/hash/{transactionHash}");
         }
 
         public IRestRequest GetInfo(NetworkCoin networkCoin, string blockHash, int transactionIndex)
@@ -322,6 +322,62 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
                 new DecodeTransactionRequest(hexEncodedInfo));
         }
 
+        public IRestRequest GetInternalTransactions(NetworkCoin networkCoin, string transactionHash)
+        {
+            if (string.IsNullOrEmpty(transactionHash))
+                throw new ArgumentNullException(nameof(transactionHash));
+
+            return Request.Get($"{Consts.Blockchain}/{networkCoin}/txs/hash/{transactionHash}/internal");
+        }
+
+        public IRestRequest RefundTransaction(NetworkCoin networkCoin, string transactionId, string wif, double? fee)
+        {
+            if (string.IsNullOrEmpty(transactionId))
+                throw new ArgumentNullException(nameof(transactionId));
+            if (string.IsNullOrEmpty(wif))
+                throw new ArgumentNullException(nameof(wif));
+            if (fee != null)
+            {
+                if (fee < 0)
+                    throw new ArgumentOutOfRangeException(nameof(fee), fee, "Fee is negative");
+            }
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/refund",
+                new RefundTransactionRequest(transactionId, wif, fee));
+        }
+
+        public IRestRequest RefundTransactionUsingPrivateKey(NetworkCoin networkCoin, string transactionHash, string privateKey, double? gasPrice)
+        {
+            if (string.IsNullOrEmpty(transactionHash))
+                throw new ArgumentNullException(nameof(transactionHash));
+            if (string.IsNullOrEmpty(privateKey))
+                throw new ArgumentNullException(nameof(privateKey));
+            if (gasPrice != null)
+            {
+                if (gasPrice < 0)
+                    throw new ArgumentOutOfRangeException(nameof(gasPrice), gasPrice, "GasPrice is negative");
+            }
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/refund",
+                new RefundTransactionUsingPrivateKeyRequest(transactionHash, privateKey, gasPrice));
+        }
+
+        public IRestRequest RefundTransactionUsingPassword(NetworkCoin networkCoin, string transactionHash, string password, double? gasPrice)
+        {
+            if (string.IsNullOrEmpty(transactionHash))
+                throw new ArgumentNullException(nameof(transactionHash));
+            if (string.IsNullOrEmpty(password))
+                throw new ArgumentNullException(nameof(password));
+            if (gasPrice != null)
+            {
+                if (gasPrice < 0)
+                    throw new ArgumentOutOfRangeException(nameof(gasPrice), gasPrice, "GasPrice is negative");
+            }
+
+            return Request.Post($"{Consts.Blockchain}/{networkCoin}/txs/refund",
+                new RefundTransactionUsingPasswordRequest(transactionHash, password, gasPrice));
+        }
+
         private IRestRequest InternalCreateTransaction(NetworkCoin networkCoin,
             CreateEthTransactionUsingPasswordRequest request)
         {
@@ -353,5 +409,6 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
         }
 
         private CryptoApiRequest Request { get; }
+
     }
 }

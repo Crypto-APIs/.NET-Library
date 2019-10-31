@@ -8,6 +8,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByBlockHeightAndTransac
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMorden;
         protected override int BlockHeight { get; } = 6530876;
-        protected override int TransactionIndex { get; } = 79;
+        protected override int TransactionIndex { get; } = 1;
     }
 }

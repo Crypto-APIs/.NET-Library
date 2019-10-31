@@ -13,10 +13,10 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             return GetInfoAsync<T>(CancellationToken.None, networkCoin, transactionId).GetAwaiter().GetResult();
         }
 
-        public T GetInfoByBlockHash<T>(NetworkCoin networkCoin, string blockHash)
+        public T GetInfoByTransactionHash<T>(NetworkCoin networkCoin, string transactionHash)
             where T : EthTransactionInfoResponse, new()
         {
-            return GetInfoByBlockHashAsync<T>(CancellationToken.None, networkCoin, blockHash).GetAwaiter().GetResult();
+            return GetInfoByTransactionHashAsync<T>(CancellationToken.None, networkCoin, transactionHash).GetAwaiter().GetResult();
         }
 
         public T GetInfo<T>(NetworkCoin networkCoin,
@@ -186,6 +186,32 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             where T : TransactionsFeeResponse, new()
         {
             return TransactionsFeeAsync<T>(CancellationToken.None, networkCoin).GetAwaiter().GetResult();
+        }
+
+        public T GetInternalTransactions<T>(NetworkCoin networkCoin, string transactionHash) 
+            where T : GetInternalTransactionsResponse, new()
+        {
+            return GetInternalTransactionsAsync<T>(CancellationToken.None, networkCoin, transactionHash).GetAwaiter().GetResult();
+        }
+
+        public T RefundTransaction<T>(NetworkCoin networkCoin, string transactionId, string wif, double? fee = null) 
+            where T : RefundTransactionResponse, new()
+        {
+            return RefundTransactionAsync<T>(CancellationToken.None, networkCoin, transactionId, wif, fee).GetAwaiter().GetResult();
+        }
+
+        public T RefundTransactionUsingPrivateKey<T>(NetworkCoin networkCoin, string transactionHash, string privateKey,
+            double? gasPrice = null) where T : RefundTransactionResponse, new()
+        {
+            return RefundTransactionUsingPrivateKeyAsync<T>(
+                CancellationToken.None, networkCoin, transactionHash, privateKey, gasPrice).GetAwaiter().GetResult();
+        }
+
+        public T RefundTransactionUsingPassword<T>(NetworkCoin networkCoin, string transactionHash, string password,
+            double? gasPrice = null) where T : RefundTransactionResponse, new()
+        {
+            return RefundTransactionUsingPasswordAsync<T>(
+                CancellationToken.None, networkCoin, transactionHash, password, gasPrice).GetAwaiter().GetResult();
         }
     }
 }

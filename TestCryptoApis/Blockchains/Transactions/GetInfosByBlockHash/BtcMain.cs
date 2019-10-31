@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHash
     public class BtcMain : BaseBtcSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.BtcMainNet;
-        protected override string BlockHash { get; } = "0000000000000000002647c65b97083eacc60466990151cfe08e6cc95175ee1b";
+        protected override string BlockHash { get; } = Features.CorrectBlockHash.BtcMainNet;
     }
 }

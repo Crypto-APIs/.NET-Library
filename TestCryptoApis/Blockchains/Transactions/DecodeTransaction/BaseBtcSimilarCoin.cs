@@ -26,7 +26,7 @@ namespace TestCryptoApis.Blockchains.Transactions.DecodeTransaction
             var response = Manager.Blockchains.Transaction.DecodeTransaction<BtcDecodeTransactionResponse>(
                 NetworkCoin, hexEncodedInfo);
 
-            AssertErrorMessage(response, "Can not decode transaction");
+            AssertErrorMessage(response, "Cannot decode transaction");
         }
 
         [TestMethod]

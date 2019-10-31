@@ -11,7 +11,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
       var transactionHash = "0x0d13e81c01de31060a2830bb53761ef29ac5c4e5c1d43e309ca9a101140e394c";
 
       var manager = new CryptoManager(ApiKey);
-      var response = manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(
+      var response = manager.Blockchains.Transaction.GetInfoByTransactionHash<EthTransactionInfoResponse>(
         NetworkCoin.EthMainNet, transactionHash);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)

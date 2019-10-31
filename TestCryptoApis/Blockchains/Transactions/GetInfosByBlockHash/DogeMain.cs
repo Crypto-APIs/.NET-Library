@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHash
     public class DogeMain : BaseBtcSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DogeMainNet;
-        protected override string BlockHash { get; } = "00000000000036312a44ab7711afa46f475913fbd9727cf508ed4af3bc933d16";
+        protected override string BlockHash { get; } = Features.CorrectBlockHash.DogeMainNet;
     }
 }

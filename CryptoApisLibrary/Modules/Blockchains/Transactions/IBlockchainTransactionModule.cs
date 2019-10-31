@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using CryptoApisLibrary.DataTypes;
-using CryptoApisLibrary.ResponseTypes.Blockchains;
 
 namespace CryptoApisLibrary.Modules.Blockchains.Transactions
 {
@@ -30,8 +30,8 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
         /// Returns detailed information about a given transaction based on its block hash.
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
-        /// <param name="blockHash">Id (block hash) of the transaction in blockchain.</param>
-        T GetInfoByBlockHash<T>(NetworkCoin networkCoin, string blockHash)
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        T GetInfoByTransactionHash<T>(NetworkCoin networkCoin, string transactionHash)
             where T : EthTransactionInfoResponse, new();
 
         /// <summary>
@@ -40,8 +40,8 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
         /// <remarks>The request is executed asynchronously.</remarks>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
-        /// <param name="blockHash">Block hash of the transaction in blockchain.</param>
-        Task<T> GetInfoByBlockHashAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string blockHash)
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        Task<T> GetInfoByTransactionHashAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string transactionHash)
             where T : EthTransactionInfoResponse, new();
 
         /// <summary>
@@ -497,31 +497,6 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             where T : PushTransactionResponse, new();
 
         /// <summary>
-        /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
-        /// </summary>
-        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
-        /// <param name="fromAddress">Output address.</param>
-        /// <param name="toAddress">Input address.</param>
-        /// <param name="value">Value to transfer (in Ether).</param>
-        /// <param name="data"></param>
-        T EstimateTransactionGas<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
-            where T : EstimateTransactionGasResponse, new();
-
-        /// <summary>
-        /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
-        /// </summary>
-        /// <remarks>The request is executed asynchronously.</remarks>
-        /// <param name="cancellationToken">Cancellation token.</param>
-        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
-        /// <param name="fromAddress">Output address.</param>
-        /// <param name="toAddress">Input address.</param>
-        /// <param name="value">Value to transfer (in Ether).</param>
-        /// <param name="data"></param>
-        Task<T> EstimateTransactionGasAsync<T>(CancellationToken cancellationToken,
-            NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
-            where T : EstimateTransactionGasResponse, new();
-
-        /// <summary>
         /// Makes a call to the EVM and returns all pending transactions. The response might be limited if you lack credits.
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
@@ -554,6 +529,31 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             where T : QueuedTransactionsResponse, new();
 
         /// <summary>
+        /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="fromAddress">Output address.</param>
+        /// <param name="toAddress">Input address.</param>
+        /// <param name="value">Value to transfer (in Ether).</param>
+        /// <param name="data"></param>
+        T EstimateTransactionGas<T>(NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
+            where T : EstimateTransactionGasResponse, new();
+
+        /// <summary>
+        /// Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="fromAddress">Output address.</param>
+        /// <param name="toAddress">Input address.</param>
+        /// <param name="value">Value to transfer (in Ether).</param>
+        /// <param name="data"></param>
+        Task<T> EstimateTransactionGasAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string fromAddress, string toAddress, double value, string data = null)
+            where T : EstimateTransactionGasResponse, new();
+
+        /// <summary>
         /// Gives information about the gas price for the successfull transactions included in the last 1500 blocks.
         /// </summary>
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
@@ -568,5 +568,92 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
         /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
         Task<T> TransactionsFeeAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin)
             where T : TransactionsFeeResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        T GetInternalTransactions<T>(NetworkCoin networkCoin, string transactionHash)
+            where T : GetInternalTransactionsResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        Task<T> GetInternalTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string transactionHash)
+            where T : GetInternalTransactionsResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="transactionId">Id (block hash) of the transaction in blockchain.</param>
+        /// <param name="wif">Wif.</param>
+        /// <param name="fee">Fee.</param>
+        T RefundTransaction<T>(NetworkCoin networkCoin, string transactionId, string wif, double? fee = null)
+            where T : RefundTransactionResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (BTC on Mainnet, ETH on Ropsten, ...)</param>
+        /// <param name="transactionId">Id (block hash) of the transaction in blockchain.</param>
+        /// <param name="wif">Wif.</param>
+        /// <param name="fee">Fee.</param>
+        Task<T> RefundTransactionAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string transactionId, string wif, double? fee = null)
+            where T : RefundTransactionResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (ETH on Ropsten, ...)</param>
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        /// <param name="privateKey">PrivateKey.</param>
+        /// <param name="gasPrice">Gas price.</param>
+        T RefundTransactionUsingPrivateKey<T>(NetworkCoin networkCoin, string transactionHash, string privateKey, double? gasPrice = null)
+            where T : RefundTransactionResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (ETH on Ropsten, ...)</param>
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        /// <param name="privateKey">PrivateKey.</param>
+        /// <param name="gasPrice">Gas price.</param>
+        Task<T> RefundTransactionUsingPrivateKeyAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string transactionHash, string privateKey, double? gasPrice = null)
+            where T : RefundTransactionResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <param name="networkCoin">Coin and network (ETH on Ropsten, ...)</param>
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
+        /// <param name="gasPrice">Gas price.</param>
+        T RefundTransactionUsingPassword<T>(NetworkCoin networkCoin, string transactionHash, string password, double? gasPrice = null)
+            where T : RefundTransactionResponse, new();
+
+        /// <summary>
+        /// Returns information about the contract internal transactions for the given transaction.
+        /// </summary>
+        /// <remarks>The request is executed asynchronously.</remarks>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <param name="networkCoin">Coin and network (ETH on Ropsten, ...)</param>
+        /// <param name="transactionHash">Hash of the transaction in blockchain.</param>
+        /// <param name="password">The password associated with the keyfile should also be specified in order to unlock the account.</param>
+        /// <param name="gasPrice">Gas price.</param>
+        Task<T> RefundTransactionUsingPasswordAsync<T>(CancellationToken cancellationToken,
+            NetworkCoin networkCoin, string transactionHash, string password, double? gasPrice = null)
+            where T : RefundTransactionResponse, new();
     }
 }

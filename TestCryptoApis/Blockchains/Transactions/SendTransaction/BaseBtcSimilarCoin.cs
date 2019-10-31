@@ -26,7 +26,7 @@ namespace TestCryptoApis.Blockchains.Transactions.SendTransaction
             var response = Manager.Blockchains.Transaction.SendTransaction<SendBtcTransactionResponse>(
                 NetworkCoin, hexEncodedInfo);
 
-            AssertErrorMessage(response, "Can not send transaction: TX decode failed");
+            AssertErrorMessage(response, "Cannot send transaction: TX decode failed");
         }
 
         [TestMethod]

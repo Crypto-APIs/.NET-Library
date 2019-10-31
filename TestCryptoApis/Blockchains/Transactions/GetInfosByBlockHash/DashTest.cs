@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHash
     public class DashTest : BaseBtcSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.DashTestNet;
-        protected override string BlockHash { get; } = "00000000007a4fdfeb39ef933a0e75aece6e399c33cc93be453ddce832a22482";
+        protected override string BlockHash { get; } = Features.CorrectBlockHash.DashTestnet;
     }
 }

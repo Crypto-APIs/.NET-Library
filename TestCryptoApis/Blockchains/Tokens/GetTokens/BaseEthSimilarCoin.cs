@@ -9,6 +9,12 @@ namespace TestCryptoApis.Blockchains.Tokens.GetTokens
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseCollectionTestWithoutSkip
     {
+        [Ignore]
+        [TestMethod]
+        public override void MainTest()
+        {
+        }
+
         protected override ICollectionResponse GetAllList()
         {
             return Manager.Blockchains.Token.GetTokens<GetEthTokensResponse>(NetworkCoin, Address);

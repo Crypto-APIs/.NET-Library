@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CryptoApisLibrary.DataTypes;
+using CryptoApisLibrary.ResponseTypes.Blockchains;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using CryptoApisLibrary.DataTypes;
-using CryptoApisLibrary.ResponseTypes.Blockchains;
 
 namespace CryptoApisLibrary.Modules.Blockchains.Transactions
 {
@@ -16,11 +16,11 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             return GetAsyncResponse<T>(request, cancellationToken);
         }
 
-        public Task<T> GetInfoByBlockHashAsync<T>(CancellationToken cancellationToken,
+        public Task<T> GetInfoByTransactionHashAsync<T>(CancellationToken cancellationToken,
             NetworkCoin networkCoin, string transactionHash)
             where T : EthTransactionInfoResponse, new()
         {
-            var request = Requests.GetInfoByBlockHash(networkCoin, transactionHash);
+            var request = Requests.GetInfoByTransactionHash(networkCoin, transactionHash);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
 
@@ -206,6 +206,34 @@ namespace CryptoApisLibrary.Modules.Blockchains.Transactions
             where T : TransactionsFeeResponse, new()
         {
             var request = Requests.TransactionsFee(networkCoin);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> GetInternalTransactionsAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
+            string transactionHash) where T : GetInternalTransactionsResponse, new()
+        {
+            var request = Requests.GetInternalTransactions(networkCoin, transactionHash);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> RefundTransactionAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin, string transactionId,
+            string wif, double? fee = null) where T : RefundTransactionResponse, new()
+        {
+            var request = Requests.RefundTransaction(networkCoin, transactionId, wif, fee);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> RefundTransactionUsingPrivateKeyAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
+            string transactionHash, string privateKey, double? gasPrice = null) where T : RefundTransactionResponse, new()
+        {
+            var request = Requests.RefundTransactionUsingPrivateKey(networkCoin, transactionHash, privateKey, gasPrice);
+            return GetAsyncResponse<T>(request, cancellationToken);
+        }
+
+        public Task<T> RefundTransactionUsingPasswordAsync<T>(CancellationToken cancellationToken, NetworkCoin networkCoin,
+            string transactionHash, string password, double? gasPrice = null) where T : RefundTransactionResponse, new()
+        {
+            var request = Requests.RefundTransactionUsingPassword(networkCoin, transactionHash, password, gasPrice);
             return GetAsyncResponse<T>(request, cancellationToken);
         }
     }

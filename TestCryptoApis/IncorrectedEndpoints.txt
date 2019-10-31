@@ -1,4 +1,11 @@
-﻿LOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGO
+﻿Надо сделать:
+1. Unit-тесты на Transactions/RefundTransactionUsingPrivateKey, RefundTransactionUsingPassword, RefundTransaction
+2. Snippets на Transactions/RefundTransactionUsingPrivateKey, RefundTransactionUsingPassword, RefundTransaction
+3. Omni Layer API endpoint не сделан вообще (он есть только для BTC)
+4. Сделать response однотипными. 
+
+
+LOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGOLOGO
 
 Note #.
 End Point

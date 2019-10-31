@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestCryptoApis.Blockchains.Tokens.TransferUsingPrivateKey
 {
     [TestClass]
-    public class EtcMain : TransferUsingPassword.BaseEthSimilarCoin
+    public class EtcMain : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMainNet;
         protected override string FromAddress { get; } = "0xcbb36e2019f03c7d6dc8536b0d32e31aef18bded";

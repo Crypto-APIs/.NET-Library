@@ -1,7 +1,7 @@
-﻿using System;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using CryptoApisLibrary.ResponseTypes.Blockchains;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace TestCryptoApis.Blockchains.Transactions.GetInfoByTransactionId
 {
@@ -11,7 +11,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByTransactionId
         [TestMethod]
         public void GeneralTest()
         {
-            var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(
+            var response = Manager.Blockchains.Transaction.GetInfoByTransactionHash<EthTransactionInfoResponse>(
                 NetworkCoin, TransactionHash);
 
             AssertNullErrorMessage(response);
@@ -22,7 +22,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByTransactionId
         public void InvalidBlockHash()
         {
             var blockHash = "q'we";
-            var response = Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(
+            var response = Manager.Blockchains.Transaction.GetInfoByTransactionHash<EthTransactionInfoResponse>(
                 NetworkCoin, blockHash);
 
             AssertErrorMessage(response, "Transaction not found");
@@ -33,7 +33,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByTransactionId
         public void NullBlockHash()
         {
             string blockHash = null;
-            Manager.Blockchains.Transaction.GetInfoByBlockHash<EthTransactionInfoResponse>(NetworkCoin, blockHash);
+            Manager.Blockchains.Transaction.GetInfoByTransactionHash<EthTransactionInfoResponse>(NetworkCoin, blockHash);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

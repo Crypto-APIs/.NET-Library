@@ -347,6 +347,8 @@ namespace CryptoApisSnippets
             snippets.SignTransactionLtc();
             snippets.SignTransactionDoge();
             snippets.SignTransactionDash();
+
+            snippets.GetInternalTransactionsEth();
         }
 
         private static void RunPaymentForwardingBlockchainsFeatures(BlockchainSnippets snippets)

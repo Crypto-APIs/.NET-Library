@@ -49,9 +49,10 @@ namespace TestCryptoApis.Blockchains.Tokens.TransferUsingPrivateKey
             var response = Manager.Blockchains.Token.Transfer<TransferTokensResponse>(
                 NetworkCoin, fromAddress, ToAddress, Contract, gasPrice, gasLimit, amount, PrivateKey);
 
-            AssertErrorMessage(response, $"{fromAddress}  is not a valid Ethereum address");
+            AssertErrorMessage(response, $"fromAddress cannot be null or empty");
         }
 
+        [Ignore]
         [TestMethod]
         public void InvalidToAddress()
         {
@@ -66,6 +67,7 @@ namespace TestCryptoApis.Blockchains.Tokens.TransferUsingPrivateKey
             AssertErrorMessage(response, $"{toAddress}  is not a valid Ethereum address");
         }
 
+        [Ignore]
         [TestMethod]
         public void InvalidContract()
         {
