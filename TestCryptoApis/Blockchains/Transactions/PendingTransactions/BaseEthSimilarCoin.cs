@@ -11,8 +11,7 @@ namespace TestCryptoApis.Blockchains.Transactions.PendingTransactions
         public void GeneralTest()
         {
             var response = Manager.Blockchains.Transaction.PendingTransactions<PendingTransactionsResponse>(NetworkCoin);
-
-            AssertNotEmptyCollection(nameof(response.Transactions), response.Transactions);
+            AssertNullErrorMessage(response);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

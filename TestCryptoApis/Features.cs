@@ -37,13 +37,31 @@ namespace TestCryptoApis
             public static string DogeTestnet { get; } = "ea11f3fdb69e2006beb2c951ff6d7ce6e01a599df7f5d8a61c85a75cd4ac5161";
             public static string DashMainNet { get; } = "000000000000000044c74c5c7e0f9258a04eff106fb29bbbf858643a7b4977fd";
             public static string DashTestnet { get; } = "00000b8b8367c820dbf81544c730f158d5c9b2e52a1ce80af99f1c9ef9ca5a38";
-            public static string EthMainNet { get; } = "0x79230d974f6cea8c11cc2f3a58c2b811313af17a2f7391de6665502910d4d383";
+            public static string EthMainNet { get; } = "0x0d13e81c01de31060a2830bb53761ef29ac5c4e5c1d43e309ca9a101140e394c";
             public static string EthRopsten { get; } = "0xe82f907c663de3887c4952fde13e57507f79509a73542310fef0eec4ae484762";
             public static string EthRinkenby { get; } = "0x93a4dd08d2f8bfb2f502f9cace4b75f6380f7f283bf3ae62de357c1dceeaec14";
-            public static string EtcMainNet { get; } = "0x3b41239a11d264e14786d48f3719a4ceee7b5a711f821df312a056ec4e755e88";
+            public static string EtcMainNet { get; } = "0x85e705f42f76436febf004bd0140babba894989b3c7c4e41508947d6050b8026";
             public static string EtcMorden { get; } = "0x70365d87c8f3d01d51feb641ef8fcaa71b366b165b8fb73397b6f3c7d38b5781";
         }
 
+        public static class CorrectBlockHeight
+        {
+            //public static int BtcMainNet { get; } = ;
+            //public static int BtcTestNet { get; } = ;
+            //public static int BchMainNet { get; } = ;
+            //public static int BchTestnet { get; } = ;
+            //public static int LtcMainNet { get; } = ;
+            //public static int LtcTestnet { get; } = ;
+            //public static int DogeMainNet { get; } = ;
+            //public static int DogeTestnet { get; } = ;
+            //public static int DashMainNet { get; } = ;
+            //public static int DashTestnet { get; } = ;
+            public static int EthMainNet { get; } = 6530876;
+            public static int EthRopsten { get; } = 4173655;
+            public static int EthRinkenby { get; } = 4280114;
+            public static int EtcMainNet { get; } = 8654153;
+            public static int EtcMorden { get; } = 1885149;
+        }
         public static class CorrectAddress
         {
             public static string BtcMainNet { get; } = "1DUb2YYbQA1jjaNYzVXLZ7ZioEhLXtbUru";
@@ -80,6 +98,25 @@ namespace TestCryptoApis
             public static string EthRinkenby { get; } = "0x70432FE7B0D1130DA2e3c22Be4FB7F2ECc2883B3";
             public static string EtcMainNet { get; } = "0xDf7D7e053933b5cC24372f878c90E62dADAD5d42";
             public static string EtcMorden { get; } = "0x91c37bde81ddce4cef1f30528d3c6878e99af338";
+        }
+
+        public static class CorrectAddress3
+        {
+            public static string BtcMainNet { get; } = "1P3t6SKHuymgrs2vvgFvtsmnKen2C8gKU9";
+            public static string BtcTestNet { get; } = "muvTWioSTbJWK2HSRGcKoTfT7yDGhgaKso";
+            public static string BchMainNet { get; } = "bitcoincash:qr3vzws2wwr3hdwhaxw9edrdscv7west45qel5yxj6";
+            public static string BchTestNet { get; } = "bchtest:qpfpec7klx2x2mfn65n873jqcas395y9jcfl64ed4x";
+            public static string LtcMainNet { get; } = "LdYmBLEYNHs4XDomUwCHAQi2RNZ61dvu9n";
+            public static string LtcTestNet { get; } = "n2ov2TJfLv3vPdU7xZuycpwaJCxtwf2QTJ";
+            public static string DogeMainNet { get; } = "D6mpUJucStypmumqPAXGTr5wTS2q1bPScn";
+            public static string DogeTestNet { get; } = "2MtyiFTv3aP9uWWeFZxz2hkJL7Dt5FY2LFV";
+            public static string DashMainNet { get; } = "XkQXcew87m5FoY7Zuwd81ixkoFPMbYeENo";
+            public static string DashTestNet { get; } = "yereyozxENB9jbhqpbg1coE5c39ExqLSaG";
+            public static string EthMainNet { get; } = "";
+            public static string EthRopsten { get; } = "";
+            public static string EthRinkenby { get; } = "";
+            public static string EtcMainNet { get; } = "";
+            public static string EtcMorden { get; } = "";
         }
 
         public static class CorrectTransactionHash

@@ -19,7 +19,7 @@ namespace TestCryptoApis.Blockchains.Transactions.PushTransaction
         }
 
         [TestMethod]
-        public void WrongHexEncodedInfo()
+        public virtual void WrongHexEncodedInfo()
         {
             var hexEncodedInfo = "q'we";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
@@ -28,7 +28,7 @@ namespace TestCryptoApis.Blockchains.Transactions.PushTransaction
         }
 
         [TestMethod]
-        public void WrongHexEncodedInfo2()
+        public virtual void WrongHexEncodedInfo2()
         {
             var hexEncodedInfo = "0xqwe";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);
@@ -37,7 +37,7 @@ namespace TestCryptoApis.Blockchains.Transactions.PushTransaction
         }
 
         [TestMethod]
-        public void WrongHexEncodedInfo3()
+        public virtual void WrongHexEncodedInfo3()
         {
             var hexEncodedInfo = "0xqwer";
             var response = Manager.Blockchains.Transaction.PushTransaction<PushTransactionResponse>(NetworkCoin, hexEncodedInfo);

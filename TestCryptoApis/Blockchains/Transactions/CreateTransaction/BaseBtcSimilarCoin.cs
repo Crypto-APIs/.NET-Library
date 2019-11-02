@@ -32,8 +32,15 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
         [TestMethod]
         public void NotEnoughBalance()
         {
+            // increase in "multiplier" times
+            var multiplier = 100000000;
+            var inputAddresses = InputAddresses.Select(
+                address => new TransactionAddress(address.Address, address.Value * multiplier));
+            var outputAddresses = OutputAddresses.Select(
+                address => new TransactionAddress(address.Address, address.Value * multiplier));
+
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
-                NetworkCoin, InputAddresses, OutputAddresses, Fee);
+                NetworkCoin, inputAddresses, outputAddresses, Fee);
             AssertErrorMessagePart(response, "Not enough balance in ");
             Assert.IsTrue(response.Payload == null);
         }
@@ -144,8 +151,8 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
             var response = Manager.Blockchains.Transaction.CreateTransaction<CreateBtcTransactionResponse>(
                 NetworkCoin, InputAddresses, OutputAddresses, fee);
 
-            AssertErrorMessage(response,
-                $"Not enough balance in '{InputAddressesDictionary.First().Key}' available '0.00000000', but needed is '2147483648.54000000' (including fee)");
+            AssertErrorMessagePart(response,
+                $"Not enough balance in '{InputAddressesDictionary.First().Key}' available ");
         }
 
         private IEnumerable<TransactionAddress> GetTransactionAddresses(Dictionary<string, double> addresses)

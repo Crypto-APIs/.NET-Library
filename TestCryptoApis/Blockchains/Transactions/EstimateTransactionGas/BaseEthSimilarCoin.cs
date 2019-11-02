@@ -86,7 +86,7 @@ namespace TestCryptoApis.Blockchains.Transactions.EstimateTransactionGas
             var response = Manager.Blockchains.Transaction.EstimateTransactionGas<EstimateTransactionGasResponse>(
                 NetworkCoin, FromAddress, ToAddress, Value, data);
 
-            ////AssertNullErrorMessage(response);
+            AssertNullErrorMessage(response);
             Assert.IsFalse(string.IsNullOrEmpty(response.Payload.GasLimit),
                 $"'{nameof(response.Payload.GasLimit)}' must not be null");
         }

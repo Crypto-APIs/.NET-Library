@@ -24,8 +24,8 @@ test:
       |FullyQualifiedName~TestCryptoApis.Blockchains.Addresses
       |FullyQualifiedName~TestCryptoApis.Blockchains.Contracts
       |FullyQualifiedName~TestCryptoApis.Blockchains.Tokens
-      #|FullyQualifiedName~TestCryptoApis.Blockchains.Transactions
       |FullyQualifiedName~TestCryptoApis.Blockchains.PaymentForwardings
+      |FullyQualifiedName~TestCryptoApis.Blockchains.Transactions
       |FullyQualifiedName~TestCryptoApis.Blockchains.Wallets" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   dependencies:
     - build

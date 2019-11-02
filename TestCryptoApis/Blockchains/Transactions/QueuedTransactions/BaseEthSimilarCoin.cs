@@ -13,7 +13,6 @@ namespace TestCryptoApis.Blockchains.Transactions.QueuedTransactions
             var response = Manager.Blockchains.Transaction.QueuedTransactions<QueuedTransactionsResponse>(NetworkCoin);
 
             AssertNullErrorMessage(response);
-            AssertNotEmptyCollection(nameof(response.Transactions), response.Transactions);
         }
 
         protected abstract NetworkCoin NetworkCoin { get; }

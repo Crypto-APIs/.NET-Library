@@ -7,6 +7,6 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHeight
     public class EthRinkeby : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EthRinkeby;
-        protected override int BlockHeight { get; } = 4173655;
+        protected override int BlockHeight { get; } = Features.CorrectBlockHeight.EthRinkenby;
     }
 }

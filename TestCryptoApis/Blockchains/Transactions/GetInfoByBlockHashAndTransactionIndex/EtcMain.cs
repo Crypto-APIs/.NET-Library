@@ -7,7 +7,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByBlockHashAndTransacti
     public class EtcMain : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMainNet;
-        protected override string BlockHash { get; } = "0x0d13e81c01de31060a2830bb53761ef29ac5c4e5c1d43e309ca9a101140e394c";
-        protected override int TransactionIndex { get; } = 1;
+        protected override string BlockHash { get; } = Features.CorrectBlockHash.EtcMainNet;
+        protected override int TransactionIndex { get; } = 2;
     }
 }

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using CryptoApisLibrary.DataTypes;
+﻿using CryptoApisLibrary.DataTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
 namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 {
@@ -11,13 +11,13 @@ namespace TestCryptoApis.Blockchains.Transactions.CreateTransaction
 
         protected override Dictionary<string, double> InputAddressesDictionary => _inputAddresses ?? (_inputAddresses = new Dictionary<string, double>
         {
-            { "LdYmBLEYNHs4XDomUwCHAQi2RNZ61dvu9n", 0.54},
-            { "LUc2pToUCLLGh3PdfMQonHQhFrQmFDwRwM", 1.00}
+            { Features.CorrectAddress.LtcMainNet, 0.54},
+            { Features.CorrectAddress2.LtcMainNet, 1.00}
         });
 
         protected override Dictionary<string, double> OutputAddressesDictionary => _outputAddresses ?? (_outputAddresses = new Dictionary<string, double>
         {
-            { "Lad4PXW9HWQctdJVqcC97kSMzRw6iYRSjw", 1.54},
+            { Features.CorrectAddress3.LtcMainNet, 1.54},
         });
 
         private Dictionary<string, double> _inputAddresses;

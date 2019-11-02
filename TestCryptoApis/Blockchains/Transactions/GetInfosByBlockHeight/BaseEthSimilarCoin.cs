@@ -9,6 +9,12 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHeight
     [TestClass]
     public abstract class BaseEthSimilarCoin : BaseCollectionTest
     {
+        [Ignore] //todo: random sequence of collection elements
+        [TestMethod]
+        public override void MainTest()
+        {
+        }
+
         protected override ICollectionResponse GetAllList()
         {
             return Manager.Blockchains.Transaction.GetInfos<GetEthTransactionInfosResponse>(NetworkCoin, BlockHeight);
@@ -39,7 +45,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfosByBlockHeight
             Assert.IsFalse(
                 string.IsNullOrEmpty(response.ErrorMessage),
                 $"'{nameof(response.ErrorMessage)}' must not be null");
-            Assert.AreEqual("Transaction not found!", response.ErrorMessage, "'ErrorMessage' is wrong");
+            Assert.AreEqual("Transactions not found!", response.ErrorMessage, "'ErrorMessage' is wrong");
         }
 
         [TestMethod]

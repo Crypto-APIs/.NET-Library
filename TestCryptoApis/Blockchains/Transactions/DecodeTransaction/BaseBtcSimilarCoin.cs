@@ -15,8 +15,8 @@ namespace TestCryptoApis.Blockchains.Transactions.DecodeTransaction
                 NetworkCoin, HexEncodedInfo);
 
             AssertNullErrorMessage(response);
-            Assert.IsFalse(string.IsNullOrEmpty(response.Transaction.Hash),
-                $"'{nameof(response.Transaction.Hash)}' must not be null");
+            Assert.IsFalse(string.IsNullOrEmpty(response.Transaction.TransactionId),
+                $"'{nameof(response.Transaction.TransactionId)}' must not be null");
         }
 
         [TestMethod]

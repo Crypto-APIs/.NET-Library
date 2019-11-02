@@ -7,7 +7,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByBlockHeightAndTransac
     public class EtcMorden : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMorden;
-        protected override int BlockHeight { get; } = 6530876;
-        protected override int TransactionIndex { get; } = 1;
+        protected override int BlockHeight { get; } = Features.CorrectBlockHeight.EtcMorden;
+        protected override int TransactionIndex { get; } = 3;
     }
 }

@@ -7,7 +7,7 @@ namespace TestCryptoApis.Blockchains.Transactions.GetInfoByBlockHeightAndTransac
     public class EtcMain : BaseEthSimilarCoin
     {
         protected override NetworkCoin NetworkCoin { get; } = NetworkCoin.EtcMainNet;
-        protected override int BlockHeight { get; } = 6530876;
-        protected override int TransactionIndex { get; } = 1;
+        protected override int BlockHeight { get; } = Features.CorrectBlockHeight.EtcMainNet;
+        protected override int TransactionIndex { get; } = 2;
     }
 }
