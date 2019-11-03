@@ -4,11 +4,30 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <ApplicationIcon />
     <Win32Resource />
+    <PackageProjectUrl>https://github.com/Crypto-APIs/.NET-Library</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Crypto-APIs/.NET-Library</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>Copyright © Igor Borzenkov 2019</Copyright>
+    <Authors>Igor Borzenkov</Authors>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>C# API cryptocurrency crypto exchange blockchain trader trade</PackageTags>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Product>CryptoAPIs C# Library</Product>
+    <Company />
+    <Version>1.0.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="RestSharp" Version="106.6.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
