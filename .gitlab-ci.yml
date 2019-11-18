@@ -18,15 +18,15 @@ build:
 test:
   stage: test
   script:
-    - '& dotnet test --filter "FullyQualifiedName~TestCryptoApis.Exchanges
-      |FullyQualifiedName~TestCryptoApis.Blockchains.Info
-      |FullyQualifiedName~TestCryptoApis.Blockchains.WebhookNotifications
-      |FullyQualifiedName~TestCryptoApis.Blockchains.Addresses
-      |FullyQualifiedName~TestCryptoApis.Blockchains.Contracts
-      |FullyQualifiedName~TestCryptoApis.Blockchains.Tokens
-      |FullyQualifiedName~TestCryptoApis.Blockchains.PaymentForwardings
-      |FullyQualifiedName~TestCryptoApis.Blockchains.Transactions
-      |FullyQualifiedName~TestCryptoApis.Blockchains.Wallets" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
+    - '& dotnet test --filter "FullyQualifiedName~CryptoApisLibrary.Tests.Exchanges
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.Info
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.WebhookNotifications
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.Addresses
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.Contracts
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.Tokens
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.PaymentForwardings
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.Transactions
+      |FullyQualifiedName~CryptoApisLibrary.Tests.Blockchains.Wallets" --no-build --results-directory "$env:TEST_RESULT_DIR" --logger trx --verbosity quiet --configuration Release'
   dependencies:
     - build
   after_script:
