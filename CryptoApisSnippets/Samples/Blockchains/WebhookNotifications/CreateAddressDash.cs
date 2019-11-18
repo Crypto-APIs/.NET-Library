@@ -17,10 +17,10 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateAddressDash executed successfully, HookId is \"" +
-          $"{response.Payload.Id}\""
+          $"{response.Hook.Id}\""
         : $"CreateAddressDash error: {response.ErrorMessage}");
 
-      return response.Payload.Id;
+      return response.Hook.Id;
     }
   }
 }

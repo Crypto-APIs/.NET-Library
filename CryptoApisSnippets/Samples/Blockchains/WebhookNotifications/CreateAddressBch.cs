@@ -17,10 +17,10 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateAddressBch executed successfully, HookId is \"" +
-          $"{response.Payload.Id}\""
+          $"{response.Hook.Id}\""
         : $"CreateAddressBch error: {response.ErrorMessage}");
 
-      return response.Payload.Id;
+      return response.Hook.Id;
     }
   }
 }

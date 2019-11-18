@@ -9,12 +9,12 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
     public class CreateBtcConfirmedTransactionWebHookResponse : CreateConfirmedTransactionWebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public CreateConfirmedTransactionWebHookPayload Payload { get; protected set; }
+        public CreateConfirmedTransactionWebHookPayload Hook { get; protected set; }
     }
 
     public class CreateEthConfirmedTransactionWebHookResponse : CreateConfirmedTransactionWebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public CreateConfirmedTransactionWebHookPayload Payload { get; protected set; }
+        public CreateConfirmedTransactionWebHookPayload Hook { get; protected set; }
     }
 }

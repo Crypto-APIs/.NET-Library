@@ -17,10 +17,10 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateAddressLtc executed successfully, HookId is \"" +
-          $"{response.Payload.Id}\""
+          $"{response.Hook.Id}\""
         : $"CreateAddressLtc error: {response.ErrorMessage}");
 
-      return response.Payload.Id;
+      return response.Hook.Id;
     }
   }
 }

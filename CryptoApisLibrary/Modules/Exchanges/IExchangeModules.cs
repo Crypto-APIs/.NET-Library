@@ -6,7 +6,7 @@ using CryptoApisLibrary.Modules.Exchanges.Trades;
 
 namespace CryptoApisLibrary.Modules.Exchanges
 {
-    public interface IExchangeModules
+    public interface ITradeModules
     {
         IExchangeInfoModules Info { get; }
         IExchangeRatesModules Rates { get; }

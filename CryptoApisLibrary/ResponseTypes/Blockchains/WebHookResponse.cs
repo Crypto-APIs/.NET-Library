@@ -9,12 +9,12 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
     public class BtcWebHookResponse : WebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public WebHook Payload { get; protected set; }
+        public WebHook Hook { get; protected set; }
     }
 
     public class EthWebHookResponse : WebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public WebHook Payload { get; protected set; }
+        public WebHook Hook { get; protected set; }
     }
 }

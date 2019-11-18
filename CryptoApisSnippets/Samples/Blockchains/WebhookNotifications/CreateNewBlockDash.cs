@@ -16,7 +16,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateNewBlockDash executed successfully, HookId is \"" +
-          $"{response.Payload.Id}\""
+          $"{response.Hook.Id}\""
         : $"CreateNewBlockDash error: {response.ErrorMessage}");
     }
   }

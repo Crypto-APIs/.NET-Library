@@ -19,7 +19,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateConfirmedTransactionBch executed successfully, " +
-          $"HookId is \"{response.Payload.Id}\""
+          $"HookId is \"{response.Hook.Id}\""
         : $"CreateConfirmedTransactionBch error: {response.ErrorMessage}");
     }
   }

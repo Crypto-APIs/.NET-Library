@@ -5,7 +5,8 @@ namespace CryptoApisLibrary
 {
     public interface ICryptoManager
     {
-        IExchangeModules Exchanges { get; }
+        ITradeModules Exchanges { get; }
         IBlockchainModules Blockchains { get; }
+        ITradeModules Trade { get; }
     }
 }

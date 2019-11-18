@@ -16,7 +16,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateNewBlockBtc executed successfully, HookId is \"" +
-          $"{response.Payload.Id}\""
+          $"{response.Hook.Id}\""
         : $"CreateNewBlockBtc error: {response.ErrorMessage}");
     }
   }

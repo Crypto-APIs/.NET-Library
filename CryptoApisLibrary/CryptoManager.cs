@@ -15,8 +15,9 @@ namespace CryptoApisLibrary
 
             var request = new CryptoApiRequest();
 
-            _exchanges = new ExchangeModules(_client, request);
+            _exchanges = new TradeModules(_client, request);
             _blockchains = new BlockchainModules(_client, request);
+            _trade = new TradeModules(_client, request);
         }
 
         public CryptoManager(string apiKey, ProxyCredentials credentials) : this(apiKey)
@@ -25,6 +26,13 @@ namespace CryptoApisLibrary
             {
                 _client.Proxy = MakeProxy(credentials);
             }
+        }
+
+        public void SetResponseRequestLogger(IResponseRequestLogger logger)
+        {
+            _exchanges.SetResponseRequestLogger(logger);
+            _blockchains.SetResponseRequestLogger(logger);
+            _trade.SetResponseRequestLogger(logger);
         }
 
         private IWebProxy MakeProxy(ProxyCredentials credentials)
@@ -36,18 +44,14 @@ namespace CryptoApisLibrary
             };
         }
 
-        public void SetResponseRequestLogger(IResponseRequestLogger logger)
-        {
-            _exchanges.SetResponseRequestLogger(logger);
-            _blockchains.SetResponseRequestLogger(logger);
-        }
-
-        public IExchangeModules Exchanges => _exchanges;
-
+        public ITradeModules Exchanges => _exchanges;
         public IBlockchainModules Blockchains => _blockchains;
+        public ITradeModules Trade => _trade;
 
         private readonly IRestClient _client;
-        private readonly ExchangeModules _exchanges;
+        
+        private readonly TradeModules _exchanges;
         private readonly BlockchainModules _blockchains;
+        private readonly TradeModules _trade;
     }
 }

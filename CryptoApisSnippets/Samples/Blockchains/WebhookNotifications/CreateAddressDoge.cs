@@ -17,10 +17,10 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateAddressDoge executed successfully, HookId is \"" +
-          $"{response.Payload.Id}\""
+          $"{response.Hook.Id}\""
         : $"CreateAddressDoge error: {response.ErrorMessage}");
 
-      return response.Payload.Id;
+      return response.Hook.Id;
     }
   }
 }

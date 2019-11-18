@@ -9,12 +9,12 @@ namespace CryptoApisLibrary.ResponseTypes.Blockchains
     public class CreateBtcAddressWebHookResponse : CreateAddressWebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public CreateAddressWebHookPayload Payload { get; protected set; }
+        public CreateAddressWebHookPayload Hook { get; protected set; }
     }
 
     public class CreateEthAddressWebHookResponse : CreateAddressWebHookResponse
     {
         [DeserializeAs(Name = "payload")]
-        public CreateAddressWebHookPayload Payload { get; protected set; }
+        public CreateAddressWebHookPayload Hook { get; protected set; }
     }
 }

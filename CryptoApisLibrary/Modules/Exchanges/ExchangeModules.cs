@@ -8,9 +8,9 @@ using RestSharp;
 
 namespace CryptoApisLibrary.Modules.Exchanges
 {
-    internal class ExchangeModules : IExchangeModules
+    internal class TradeModules : ITradeModules
     {
-        public ExchangeModules(IRestClient client, CryptoApiRequest request)
+        public TradeModules(IRestClient client, CryptoApiRequest request)
         {
             _info = new ExchangeInfoModules(client, request);
             _rates = new ExchangeRatesModules(client, request);

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 namespace CryptoApisLibrary.DataTypes
 {
@@ -18,7 +19,9 @@ namespace CryptoApisLibrary.DataTypes
 
         public static bool operator ==(Coin a, Coin b)
         {
-            return a.Equals(b);
+            if (a == null && b == null)
+                return true;
+            return a != null && a.Equals(b);
         }
 
         public static bool operator !=(Coin a, Coin b)

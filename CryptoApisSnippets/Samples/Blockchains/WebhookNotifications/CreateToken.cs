@@ -16,7 +16,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
           NetworkCoin.EthRopsten, url, address);
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
-        ? $"CreateToken executed successfully, HookId is \"{response.Payload.Id}\""
+        ? $"CreateToken executed successfully, HookId is \"{response.Hook.Id}\""
         : $"CreateToken error: {response.ErrorMessage}");
     }
   }

@@ -19,7 +19,7 @@ namespace CryptoApisSnippets.Samples.Blockchains
 
       Console.WriteLine(string.IsNullOrEmpty(response.ErrorMessage)
         ? "CreateConfirmedTransactionDoge executed successfully, " +
-          $"HookId is \"{response.Payload.Id}\""
+          $"HookId is \"{response.Hook.Id}\""
         : $"CreateConfirmedTransactionDoge error: {response.ErrorMessage}");
     }
   }
